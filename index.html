@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<title>مكتبة آل الشيرازي | موسوعة مؤلفات أسرة آل الشيرازي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --red-900:#4a0a0a;--red-800:#6b0f0f;--red-700:#8b1414;--red-600:#a01a1a;
+  --red-500:#b71c1c;--red-400:#c93535;--red-100:#fbeeec;--red-50:#fdf6f5;
+  --gold:#c9a227;--gold-2:#e5c869;
+  --bg:#f4f5f6;--paper:#ffffff;
+  --ink:#1a1a1a;--ink-2:#3a3a3a;--muted:#6a6a6a;
+  --line:#e3e5e8;--line-2:#eceef0;
+  --neutral-900:#1c1c1c;--neutral-800:#2a2a2a;--neutral-700:#3a3a3a;
+  --blue:#1e5c9c;--green:#1c7a5a;
+  --radius:12px;--radius-lg:16px;--radius-xl:20px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  --shadow:0 4px 14px rgba(0,0,0,.07);
+  --shadow-lg:0 12px 32px rgba(0,0,0,.10);
+  --tr:.25s cubic-bezier(.4,0,.2,1);
+  --font-naskh:'Noto Naskh Arabic','Amiri',serif;
+}
+[data-theme="dark"]{
+  --bg:#121213;--paper:#1c1c1e;
+  --ink:#f0f0f0;--ink-2:#d8d8d8;--muted:#9a9a9a;
+  --line:#2d2d30;--line-2:#26262a;
+  --neutral-900:#0e0e0e;--neutral-800:#1c1c1c;--neutral-700:#2a2a2a;
+  --red-50:#1a1a1c;--red-100:#2a2a2d;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.5);
+  --shadow:0 4px 14px rgba(0,0,0,.55);
+  --shadow-lg:0 12px 32px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.7;min-height:100vh;display:flex;flex-direction:column;
+  transition:background .3s,color .3s;
+}
+body.no-scroll{overflow:hidden}
+a{color:var(--red-700);text-decoration:none;transition:color var(--tr)}
+a:hover{color:var(--gold)}
+.container{width:min(1340px,94%);margin-inline:auto}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+[data-theme="dark"] .dua-bar{background:linear-gradient(90deg,#0e0303,#1a0505)}
+[data-theme="dark"] .dua-bar::before{background:linear-gradient(90deg,transparent,#0e0303)}
+[data-theme="dark"] .dua-bar::after{background:linear-gradient(-90deg,transparent,#0e0303)}
+[data-theme="dark"] .site-head{background:linear-gradient(135deg,#1c0505,#2a0808)}
+[data-theme="dark"] .site-head::after{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.015) 0 10px,transparent 10px 20px)}
+[data-theme="dark"] .hero{background:radial-gradient(circle at 78% 15%,rgba(201,162,39,.08),transparent 55%),linear-gradient(135deg,#1c0505,#2a0808)}
+[data-theme="dark"] .widget-head{background:linear-gradient(135deg,#1a1a1c,#26262a)}
+[data-theme="dark"] .cat-head{background:radial-gradient(circle at 85% 30%,rgba(201,162,39,.08),transparent 55%),linear-gradient(135deg,#1c0505,#2a0808)}
+[data-theme="dark"] .book-cover{background:linear-gradient(135deg,#2a0808,#1a0303)}
+[data-theme="dark"] .mini-book .thumb{background:linear-gradient(135deg,#3a0808,#2a0606)}
+[data-theme="dark"] .series-card{background:linear-gradient(135deg,#1c0505,#2a0808)}
+[data-theme="dark"] .series-mini .sm-icon{background:linear-gradient(135deg,#2a0808,#3a0a0a);box-shadow:0 4px 12px rgba(0,0,0,.5)}
+[data-theme="dark"] .author-avatar{background:linear-gradient(135deg,#2a0808,#3a0a0a);box-shadow:0 4px 12px rgba(0,0,0,.5)}
+[data-theme="dark"] .author-card.empty .author-avatar{background:linear-gradient(135deg,#3a3030,#2a2020)}
+[data-theme="dark"] footer{background:linear-gradient(135deg,#0e0303,#2a0808)}
+[data-theme="dark"] .soon-box{background:var(--paper);border-color:var(--gold)}
+[data-theme="dark"] .download-all-box{background:linear-gradient(135deg,#1a1a1c,var(--paper));border-color:var(--gold)}
+[data-theme="dark"] .back-btn:hover{background:#2a0808;color:#fff;border-color:#2a0808}
+[data-theme="dark"] .cat-list a:hover{background:var(--red-50);color:var(--gold-2)}
+[data-theme="dark"] .fmt-pdf{background:#4a0a0a}
+[data-theme="dark"] .fmt-pdf:hover{background:#5a0d0d}
+[data-theme="dark"] .fmt-word{background:#154a7a}
+[data-theme="dark"] .fmt-word:hover{background:#1e5c9c}
+[data-theme="dark"] .fmt-epub{background:#155a40}
+[data-theme="dark"] .fmt-epub:hover{background:#1c7a5a}
+[data-theme="dark"] .view-toggle button.active{background:#2a0808}
+[data-theme="dark"] .cat-list a.active{background:#2a0808}
+[data-theme="dark"] .topbar-btn:hover{background:#2a0808}
+[data-theme="dark"] .side-search button{background:#2a0808}
+[data-theme="dark"] .side-search button:hover{background:#3a0a0a}
+[data-theme="dark"] .cat-card:hover .cc-badge{background:#2a0808;color:var(--gold-2)}
+[data-theme="dark"] .cat-card.highlight{background:linear-gradient(135deg,#1a1a1c,var(--paper))}
+[data-theme="dark"] .author-card.empty{background:linear-gradient(135deg,var(--paper),#1a1a1c)}
+[data-theme="dark"] .back-btn{color:var(--gold-2)}
+[data-theme="dark"] .modal-close{color:var(--gold-2)}
+[data-theme="dark"] .detail .meta2 a{color:var(--gold-2)}
+[data-theme="dark"] .book-card:hover{border-color:var(--gold)}
+[data-theme="dark"] .book-row:hover{border-color:var(--gold)}
+[data-theme="dark"] .topbar-search{background:#121213}
+[data-theme="dark"] .topbar-search .search-type{color:#d8d8d8}
+[data-theme="dark"] .topbar-search .search-type option{background:var(--paper);color:var(--ink)}
+
+.dua-bar{
+  background:linear-gradient(90deg,var(--red-900),var(--red-700));
+  color:var(--gold-2);padding:7px 0;overflow:hidden;font-size:12px;
+  border-bottom:1px solid rgba(0,0,0,.2);position:relative;
+}
+.dua-bar::before,.dua-bar::after{content:"";position:absolute;top:0;bottom:0;width:50px;z-index:1}
+.dua-bar::before{right:0;background:linear-gradient(90deg,transparent,var(--red-900))}
+.dua-bar::after{left:0;background:linear-gradient(-90deg,transparent,var(--red-900))}
+.dua-track{display:inline-block;white-space:nowrap;animation:marquee 60s linear infinite;padding-inline-start:100%}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.site-head{
+  background:linear-gradient(135deg,var(--red-800),var(--red-600));
+  color:#fff;padding:14px 0 0;position:relative;overflow:hidden;
+}
+.site-head::after{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 10px,transparent 10px 20px);
+  pointer-events:none;
+}
+.head-row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  position:relative;z-index:1;padding-bottom:12px;
+}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand:hover{color:var(--gold-2)}
+.brand-logo{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  font-size:24px;background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:var(--red-900);box-shadow:0 6px 16px rgba(0,0,0,.28);font-family:'Amiri',serif;
+}
+.brand-text strong{display:block;font-size:17px;font-weight:800;line-height:1.2}
+.brand-text small{font-size:11px;opacity:.85;font-family:'Amiri',serif}
+
+.head-actions{display:flex;align-items:center;gap:8px}
+.head-btn{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 14px;
+  border-radius:22px;background:rgba(255,255,255,.13);color:#fff;
+  font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,.18);
+  transition:all var(--tr);white-space:nowrap;
+  position:relative;
+}
+.head-btn:hover{background:rgba(255,255,255,.24)}
+.head-btn svg{
+  width:16px;height:16px;stroke:currentColor;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+.head-fav-btn .fav-count{
+  position:absolute;top:-4px;inset-inline-end:-4px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:#1a1a1a;
+  font-size:10px;font-weight:800;
+  min-width:18px;height:18px;border-radius:9px;
+  display:grid;place-items:center;padding:0 4px;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.head-fav-btn .fav-count:empty{display:none}
+
+.date-strip{
+  background:rgba(0,0,0,.22);color:#ffe8c0;font-size:10.5px;padding:5px 0;
+  position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);
+  font-family:var(--font-naskh);
+}
+.date-strip .container{
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.date-strip strong{color:#fff;font-weight:600}
+.date-strip .clock{display:flex;align-items:center;gap:4px}
+.date-strip .dates{display:flex;gap:14px;flex-wrap:wrap}
+.date-strip .dates span{display:flex;align-items:center;gap:4px}
+
+.topbar{
+  background:var(--paper);border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:60;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);transition:background .3s,border-color .3s;
+}
+.topbar-inner{
+  display:flex;justify-content:space-between;align-items:center;padding:9px 0;gap:10px;
+}
+.topbar-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 15px;
+  border-radius:22px;background:var(--red-50);color:var(--red-700);
+  font-size:13px;font-weight:700;border:1px solid transparent;
+  transition:all var(--tr);flex-shrink:0;
+}
+.topbar-btn:hover{background:var(--neutral-800);color:#fff}
+.topbar-btn svg{
+  width:17px;height:17px;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+}
+[data-theme="dark"] .topbar-btn{background:var(--red-100);color:var(--gold-2)}
+
+.topbar-search{
+  display:flex;flex:0 1 500px;position:relative;min-width:0;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  transition:border-color var(--tr);
+}
+.topbar-search:focus-within{border-color:var(--neutral-700)}
+.topbar-search .search-type{
+  border:none;background:transparent;color:var(--ink-2);
+  font:inherit;font-size:12px;font-weight:700;
+  padding:8px 8px;cursor:pointer;outline:none;
+  border-inline-end:1px solid var(--line);
+  min-width:90px;max-width:130px;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236a6a6a' stroke-width='2.5' stroke-linecap='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;background-position:left 6px center;
+  padding-inline-start:20px;transition:all var(--tr);
+}
+.topbar-search .search-type:focus{background-color:var(--paper);color:var(--ink)}
+.topbar-search input{
+  flex:1;padding:8px 12px;border:none;background:transparent;
+  font:inherit;font-size:13px;outline:none;color:var(--ink);min-width:0;
+}
+.topbar-search input::placeholder{color:var(--muted);font-size:12.5px}
+.topbar-search button{
+  padding:0 13px;border:none;background:var(--gold);color:#fff;
+  font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;
+  gap:5px;transition:all var(--tr);flex-shrink:0;
+}
+.topbar-search button:hover{background:var(--gold-2);color:var(--neutral-900)}
+.topbar-search button svg{
+  width:15px;height:15px;stroke:currentColor;fill:none;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+}
+
+.suggestions{
+  position:absolute;top:calc(100% + 6px);inset-inline:0;
+  background:var(--paper);color:var(--ink);border-radius:10px;
+  box-shadow:var(--shadow-lg);list-style:none;
+  max-height:340px;overflow-y:auto;z-index:70;display:none;
+  border:1px solid var(--line);
+}
+.suggestions.show{display:block}
+.suggestions li{padding:10px 14px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line-2)}
+.suggestions li:last-child{border-bottom:none}
+.suggestions li:hover{background:var(--bg)}
+.suggestions li .sug-auth{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+
+.sidebar{
+  position:fixed;top:0;right:0;bottom:0;width:330px;max-width:88vw;
+  background:var(--paper);z-index:98;overflow-y:auto;padding:20px 18px 30px;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1),background .3s;
+  box-shadow:-8px 0 32px rgba(0,0,0,.14);
+  border-inline-start:1px solid var(--line);
+}
+body.sidebar-open .sidebar{transform:translateX(0)}
+.sidebar-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line);
+}
+.sidebar-head h3{font-family:'Amiri',serif;font-size:20px;color:var(--neutral-800)}
+[data-theme="dark"] .sidebar-head h3{color:#fff}
+.sidebar-close{
+  width:36px;height:36px;border-radius:50%;background:var(--bg);
+  color:var(--neutral-700);display:grid;place-items:center;font-size:16px;transition:all var(--tr);
+}
+.sidebar-close:hover{background:var(--neutral-800);color:#fff}
+[data-theme="dark"] .sidebar-close{color:#fff}
+
+.sidebar-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);
+  opacity:0;pointer-events:none;transition:opacity .3s;z-index:97;
+}
+body.sidebar-open .sidebar-backdrop{opacity:1;pointer-events:auto}
+
+main{flex:1;padding:22px 0 70px}
+
+.widget{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-sm);margin-bottom:14px;
+  transition:background .3s,border-color .3s;
+}
+.widget-head{
+  background:linear-gradient(135deg,var(--neutral-800),var(--neutral-900));
+  color:#fff;padding:11px 16px;font-weight:700;font-size:13.5px;
+}
+.widget-body{padding:12px 14px}
+
+.side-search{display:flex;gap:6px;flex-wrap:wrap}
+.side-search .side-search-type{
+  width:100%;padding:7px 10px;border:1px solid var(--line);
+  border-radius:8px;font:inherit;font-size:12.5px;font-weight:600;
+  background:var(--bg);color:var(--ink);outline:none;cursor:pointer;
+  margin-bottom:6px;transition:all var(--tr);
+}
+.side-search .side-search-type:focus{border-color:var(--neutral-700);background:var(--paper)}
+.side-search input{
+  flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;
+  font:inherit;font-size:13.5px;outline:none;background:var(--bg);color:var(--ink);
+  transition:all var(--tr);min-width:0;
+}
+.side-search input:focus{border-color:var(--neutral-700);background:var(--paper)}
+.side-search button{
+  padding:0 14px;border-radius:8px;background:var(--neutral-800);color:#fff;
+  font-weight:600;font-size:13px;transition:background var(--tr);
+}
+.side-search button:hover{background:var(--neutral-900)}
+
+.cat-list{list-style:none}
+.cat-list li{margin-bottom:2px}
+.cat-list a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 12px;border-radius:9px;font-size:13px;color:var(--ink-2);
+  transition:all var(--tr);
+}
+.cat-list a:hover{background:var(--bg);color:var(--ink)}
+.cat-list a.active{background:var(--neutral-800);color:#fff}
+.cat-list a.active .cnt{background:rgba(255,255,255,.25);color:#fff}
+.cat-list a.empty{opacity:.55;cursor:not-allowed}
+.cat-list a.empty:hover{background:transparent;color:var(--ink-2)}
+.cat-list a.fav-link{background:linear-gradient(135deg,#fffbee,var(--paper));border:1px solid var(--gold);color:var(--neutral-800);font-weight:700}
+.cat-list a.fav-link:hover{background:var(--gold);color:#fff}
+.cat-list a.fav-link:hover .cnt{background:rgba(255,255,255,.3);color:#fff}
+[data-theme="dark"] .cat-list a.fav-link{background:linear-gradient(135deg,#1a1a1c,var(--paper));color:var(--gold-2)}
+.cat-list .cnt{
+  background:var(--bg);color:var(--muted);
+  font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;
+}
+.cat-list .cnt.soon{background:var(--gold);color:#fff;font-size:9.5px;padding:2px 7px}
+.cat-list .cnt.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#fff;font-weight:800}
+
+.mini-books{display:flex;flex-direction:column;gap:6px}
+.mini-book{
+  display:flex;gap:11px;cursor:pointer;padding:7px;border-radius:9px;
+  transition:background var(--tr);
+}
+.mini-book:hover{background:var(--bg)}
+.mini-book .thumb{
+  width:42px;height:56px;border-radius:7px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--neutral-700),var(--neutral-900));
+  display:grid;place-items:center;color:var(--gold-2);
+  font-family:'Amiri',serif;font-size:17px;font-weight:700;
+  box-shadow:0 3px 8px rgba(0,0,0,.2);
+}
+.mini-book .txt{flex:1;min-width:0}
+.mini-book .t{
+  font-size:12.5px;font-weight:700;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;line-height:1.4;
+}
+.mini-book .y{font-size:11px;color:var(--muted);margin-top:3px}
+
+.hero{
+  background:
+    radial-gradient(circle at 78% 15%,rgba(201,162,39,.15),transparent 55%),
+    linear-gradient(135deg,#6b0f0f,#8b1414);
+  color:#fff;border-radius:var(--radius-xl);padding:16px 20px;margin-bottom:18px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"﷽";position:absolute;inset-inline-start:30px;bottom:-18px;
+  font-family:'Amiri',serif;font-size:110px;opacity:.05;pointer-events:none;
+}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(20px,3vw,26px);margin-bottom:6px;line-height:1.25}
+.hero p{max-width:820px;opacity:.95;font-size:13.5px;line-height:1.75}
+.hero .stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);
+}
+.hero .stat{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:8px 12px;backdrop-filter:blur(6px);
+}
+.hero .stat strong{display:block;font-size:18px;color:var(--gold-2);font-weight:800;line-height:1.2}
+.hero .stat span{font-size:11px;opacity:.92;display:block;margin-top:2px}
+
+.sec-title{
+  font-family:'Amiri',serif;font-size:20px;color:var(--neutral-800);
+  border-inline-start:3px solid var(--gold);padding-inline-start:10px;margin:0 0 12px;
+}
+[data-theme="dark"] .sec-title{color:var(--gold-2)}
+
+.featured{
+  display:grid;grid-template-columns:150px 1fr;gap:18px;
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:16px;
+  box-shadow:var(--shadow-sm);margin-bottom:22px;
+  transition:background .3s,border-color .3s;
+}
+
+.toolbar{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:10px 16px;margin-bottom:14px;box-shadow:var(--shadow-sm);
+  transition:background .3s,border-color .3s;
+}
+.results{font-size:13px;color:var(--muted)}
+.results strong{color:var(--ink);font-weight:800}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools select{
+  padding:8px 12px;border:1px solid var(--line);border-radius:10px;
+  font:inherit;font-size:13px;background:var(--paper);cursor:pointer;color:var(--ink);
+  transition:border-color var(--tr);
+}
+.tools select:focus{border-color:var(--neutral-700);outline:none}
+.view-toggle{
+  display:flex;background:var(--bg);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;padding:2px;
+}
+.view-toggle button{
+  border:none;background:transparent;padding:6px 13px;font-size:12.5px;
+  color:var(--muted);border-radius:8px;transition:all var(--tr);font-weight:600;
+}
+.view-toggle button.active{background:var(--neutral-800);color:#fff}
+
+.books-table{background:transparent;border:none;box-shadow:none}
+.books-list{display:flex;flex-direction:column;gap:10px}
+.book-row{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:14px 18px;
+  box-shadow:var(--shadow-sm);transition:all var(--tr);
+}
+.book-row:hover{border-color:var(--gold);box-shadow:var(--shadow);transform:translateY(-2px)}
+.book-row-top{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;
+}
+.book-row-top .book-num{
+  display:inline-block;min-width:26px;text-align:center;
+  background:var(--bg);color:var(--muted);
+  font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:7px;flex-shrink:0;
+}
+.book-row-top .book-title{
+  color:var(--ink);font-weight:700;cursor:pointer;
+  line-height:1.5;transition:color var(--tr);
+  flex:1;min-width:180px;font-size:15px;
+  font-family:'Cairo','Amiri',sans-serif;
+}
+.book-row-top .book-title:hover{color:var(--gold)}
+.book-row-top .book-actions{
+  display:flex;gap:4px;flex-shrink:0;margin-inline-start:auto;align-items:center;
+}
+.book-row-bottom{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--muted);
+  padding-top:6px;border-top:1px dashed var(--line);
+}
+.book-row-bottom .author-name{display:flex;align-items:center;gap:6px}
+.book-author-inline{font-weight:400}
+.book-status{
+  display:inline-block;font-size:9.5px;padding:1px 7px;border-radius:8px;
+  font-weight:700;background:var(--gold);color:#fff;
+}
+.book-status.available{background:var(--green);color:#fff}
+
+/* ============ زر المفضلة ============ */
+.fav-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg);color:var(--muted);
+  border:1px solid var(--line);
+  transition:all var(--tr);flex-shrink:0;
+  padding:0;
+}
+.fav-btn:hover{
+  background:#fffbee;color:var(--gold);
+  border-color:var(--gold);
+  transform:scale(1.08);
+}
+[data-theme="dark"] .fav-btn:hover{background:#2a1f0a}
+.fav-btn.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:#fff;border-color:var(--gold);
+  box-shadow:0 3px 10px rgba(201,162,39,.35);
+}
+.fav-btn.active:hover{
+  background:linear-gradient(135deg,var(--gold-2),var(--gold));
+  color:#fff;
+}
+.fav-btn svg{
+  width:16px;height:16px;
+  fill:none;stroke:currentColor;
+  stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;
+  transition:all var(--tr);
+}
+.fav-btn.active svg{fill:currentColor}
+.fav-btn.small{width:28px;height:28px}
+.fav-btn.small svg{width:14px;height:14px}
+.fav-btn.large{width:38px;height:38px}
+.fav-btn.large svg{width:19px;height:19px}
+
+.fmt-btn{
+  display:inline-block;min-width:42px;padding:4px 9px;margin-inline:1px;
+  border:none;border-radius:6px;font-family:inherit;font-size:10.5px;
+  font-weight:700;letter-spacing:.3px;color:#fff;cursor:pointer;
+  transition:all var(--tr);text-align:center;line-height:1.5;
+}
+.fmt-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.fmt-pdf{background:var(--red-500)}
+.fmt-pdf:hover{background:var(--red-400)}
+.fmt-word{background:var(--blue)}
+.fmt-word:hover{background:#2a6db8}
+.fmt-epub{background:var(--green)}
+.fmt-epub:hover{background:#228c66}
+.fmt-read{background:var(--gold);color:#fff;min-width:52px}
+.fmt-read:hover{background:var(--gold-2);color:var(--red-900)}
+.fmt-btn-md{min-width:auto;padding:6px 12px;font-size:11.5px}
+
+.books-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;
+}
+.book-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
+  transition:all var(--tr);
+}
+.book-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
+.book-cover{
+  aspect-ratio:3/4;background:linear-gradient(135deg,var(--neutral-800),var(--neutral-900));
+  padding:14px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;cursor:pointer;
+}
+.book-cover::before{
+  content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.15);
+  border-radius:8px;pointer-events:none;
+}
+.book-cover .ct{
+  font-family:'Amiri',serif;font-size:16px;font-weight:700;line-height:1.4;z-index:1;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
+.book-cover .ca{font-size:11px;opacity:.85;z-index:1}
+.book-cover .cbadge{
+  position:absolute;top:8px;inset-inline-start:8px;z-index:2;
+  font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;
+  background:var(--gold);color:#fff;
+}
+.book-cover .cbadge.available{background:var(--green);color:#fff}
+.book-cover .cover-fav{
+  position:absolute;top:8px;inset-inline-end:8px;z-index:3;
+  background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+}
+.book-cover .cover-fav:hover{background:rgba(255,255,255,.25);color:#fff;border-color:#fff}
+.book-cover .cover-fav.active{background:linear-gradient(135deg,var(--gold),var(--gold-2));border-color:var(--gold);color:#fff}
+.book-info{padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.book-info .bi-title{
+  font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  line-height:1.45;font-family:'Cairo','Amiri',sans-serif;
+}
+.book-info .bi-meta{font-size:11.5px;color:var(--muted)}
+.book-info .bi-formats{display:flex;gap:4px;margin-top:3px}
+.book-info .bi-formats .fmt-btn{flex:1;min-width:0;font-size:10px;padding:4px 3px}
+
+.cat-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-inline-start:3px solid var(--gold);border-radius:var(--radius-lg);
+  padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  color:inherit;box-shadow:var(--shadow-sm);transition:all var(--tr);cursor:pointer;
+}
+.cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-inline-start-color:var(--neutral-800)}
+.cat-card .cc-info{flex:1;min-width:0}
+.cat-card .cc-name{font-weight:700;color:var(--ink);font-size:14px;line-height:1.4}
+.cat-card .cc-count{font-size:11.5px;color:var(--muted);margin-top:2px}
+.cat-card .cc-badge{
+  flex-shrink:0;min-width:38px;height:38px;border-radius:10px;
+  background:var(--bg);color:var(--neutral-800);display:grid;place-items:center;
+  font-size:14px;font-weight:800;transition:all var(--tr);padding:0 6px;
+}
+.cat-card:hover .cc-badge{background:var(--neutral-800);color:#fff}
+[data-theme="dark"] .cat-card .cc-badge{color:var(--gold-2)}
+.cat-card.highlight{
+  border-color:var(--gold);border-inline-start-color:var(--gold);
+  background:linear-gradient(135deg,#fffbee,var(--paper));
+}
+[data-theme="dark"] .cat-card.highlight{background:linear-gradient(135deg,#1a1a1c,var(--paper))}
+.cat-card.highlight .cc-badge{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#fff}
+
+.series-card{
+  background:linear-gradient(135deg,#6b0f0f,#8b1414);
+  color:#fff;border-radius:var(--radius-lg);
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  gap:16px;box-shadow:var(--shadow);transition:all var(--tr);
+  cursor:pointer;border:1px solid transparent;position:relative;overflow:hidden;
+}
+.series-card::after{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 10px,transparent 10px 20px);
+  pointer-events:none;
+}
+.series-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.series-card .sc-info{flex:1;min-width:0;position:relative;z-index:1}
+.series-card .sc-tag{
+  display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:var(--neutral-900);font-size:10px;font-weight:800;
+  padding:2px 10px;border-radius:10px;margin-bottom:6px;letter-spacing:.3px;
+}
+.series-card .sc-name{font-family:'Amiri',serif;font-size:19px;font-weight:700;margin-bottom:5px;line-height:1.3}
+.series-card .sc-desc{
+  font-size:12.5px;opacity:.9;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.series-card .sc-meta{font-size:11.5px;opacity:.85;margin-top:5px}
+.series-card .sc-badge{
+  flex-shrink:0;min-width:66px;height:66px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.25);
+  display:grid;place-items:center;font-size:20px;font-weight:900;color:var(--gold-2);
+  line-height:1;padding:0 8px;position:relative;z-index:1;
+}
+.series-card .sc-badge small{display:block;font-size:9.5px;color:#fff;font-weight:600;opacity:.85;margin-top:2px}
+.series-card .sc-fav-wrap{
+  position:absolute;top:12px;inset-inline-end:12px;z-index:2;
+}
+.series-card .sc-fav-wrap .fav-btn{
+  background:rgba(0,0,0,.35);border-color:rgba(255,255,255,.3);color:#fff;
+}
+.series-card .sc-fav-wrap .fav-btn:hover{background:rgba(255,255,255,.25);color:#fff;border-color:#fff}
+.series-card .sc-fav-wrap .fav-btn.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  border-color:var(--gold);color:#fff;
+}
+
+.series-mini{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:14px 16px;
+  box-shadow:var(--shadow-sm);transition:all var(--tr);
+  cursor:pointer;color:inherit;display:flex;gap:14px;align-items:center;
+  border-inline-start:4px solid var(--gold);position:relative;
+}
+.series-mini:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.series-mini .sm-icon{
+  width:52px;height:52px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--neutral-700),var(--neutral-900));
+  display:grid;place-items:center;color:var(--gold-2);
+  font-size:24px;font-weight:900;font-family:'Amiri',serif;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+.series-mini .sm-info{flex:1;min-width:0}
+.series-mini .sm-name{font-weight:800;color:var(--ink);font-size:15px;line-height:1.4;font-family:'Amiri',serif}
+.series-mini .sm-desc{
+  font-size:11.5px;color:var(--muted);margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.series-mini .sm-count{font-size:11.5px;color:var(--gold);font-weight:700;margin-top:4px}
+.series-mini .sm-fav{flex-shrink:0}
+
+.download-all-box{
+  background:linear-gradient(135deg,#fffbee,var(--paper));
+  border:1px solid var(--gold);border-radius:var(--radius-lg);
+  padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  flex-wrap:wrap;box-shadow:var(--shadow-sm);
+}
+[data-theme="dark"] .download-all-box{background:linear-gradient(135deg,#1a1a1c,var(--paper))}
+.download-all-box .da-info{flex:1;min-width:220px}
+.download-all-box .da-title{
+  font-weight:800;color:var(--ink);font-size:14px;
+  font-family:'Amiri',serif;margin-bottom:3px;
+}
+.download-all-box .da-desc{font-size:11.5px;color:var(--muted)}
+.download-all-box .da-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+.author-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius-lg);padding:14px 16px;
+  display:flex;gap:12px;align-items:center;box-shadow:var(--shadow-sm);
+  transition:all var(--tr);cursor:pointer;color:inherit;
+}
+.author-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--gold)}
+.author-card.empty{border-style:dashed;background:linear-gradient(135deg,var(--paper),#fffbee)}
+[data-theme="dark"] .author-card.empty{background:linear-gradient(135deg,var(--paper),#1a1a1c)}
+.author-avatar{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--neutral-700),var(--neutral-900));
+  display:grid;place-items:center;color:var(--gold-2);
+  font-family:'Amiri',serif;font-size:22px;font-weight:700;
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+.author-card.empty .author-avatar{background:linear-gradient(135deg,#a09080,#877a6c);color:#fff}
+.author-info{flex:1;min-width:0}
+.author-info .a-name{font-weight:800;color:var(--ink);font-size:14px;line-height:1.4}
+.author-info .a-bio{
+  font-size:11.5px;color:var(--muted);margin-top:3px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  line-height:1.5;
+}
+.author-info .a-count{font-size:11px;color:var(--neutral-700);font-weight:700;margin-top:4px}
+[data-theme="dark"] .author-info .a-count{color:var(--gold-2)}
+.author-info .a-count.soon{
+  display:inline-block;background:var(--gold);color:#fff;
+  padding:2px 10px;border-radius:12px;font-size:10px;
+}
+
+.soon-box{
+  background:var(--paper);border:2px dashed var(--gold);
+  border-radius:var(--radius-lg);padding:40px 24px;
+  text-align:center;box-shadow:var(--shadow-sm);
+}
+.soon-box .soon-icon{
+  width:70px;height:70px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  display:grid;place-items:center;margin:0 auto 16px;
+  font-size:32px;color:#fff;box-shadow:0 8px 24px rgba(201,162,39,.3);
+}
+.soon-box h3{font-family:'Amiri',serif;font-size:22px;color:var(--ink);margin-bottom:10px}
+.soon-box p{color:var(--muted);font-size:14px;line-height:1.9;max-width:560px;margin-inline:auto}
+
+.reader-iframe-wrap{
+  background:var(--paper);border-radius:var(--radius-lg);
+  overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.reader-header-info{
+  padding:14px 20px;background:var(--paper);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.reader-header-info h1{
+  font-family:'Amiri',serif;font-size:19px;color:var(--ink);
+  line-height:1.4;flex:1;min-width:200px;
+}
+.reader-header-info .r-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.reader-header-info .r-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.reader-iframe{width:100%;height:80vh;border:none;display:block;background:var(--paper)}
+.reader-no-file{
+  background:var(--paper);border:2px dashed var(--gold);
+  border-radius:var(--radius-lg);padding:50px 24px;
+  text-align:center;box-shadow:var(--shadow-sm);
+}
+.reader-no-file .icon{
+  width:70px;height:70px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  display:grid;place-items:center;margin:0 auto 16px;
+  font-size:32px;color:#fff;box-shadow:0 8px 24px rgba(201,162,39,.3);
+}
+.reader-no-file h3{font-family:'Amiri',serif;font-size:20px;color:var(--ink);margin-bottom:8px}
+.reader-no-file p{color:var(--muted);font-size:13.5px;line-height:1.9;max-width:520px;margin-inline:auto}
+
+.reader{
+  background:var(--paper);border-radius:var(--radius-lg);
+  overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.reader-head{
+  padding:14px 20px;background:var(--paper);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.reader-head .r-title{flex:1;min-width:200px}
+.reader-head h1{font-family:'Amiri',serif;font-size:19px;color:var(--ink);line-height:1.4}
+.reader-head .r-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.reader-tools{
+  padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.reader-tools .grp{display:flex;gap:5px;align-items:center}
+.reader-tools button{
+  background:var(--paper);border:1px solid var(--line);border-radius:7px;
+  padding:5px 11px;font:inherit;font-size:12px;color:var(--ink-2);transition:all var(--tr);
+}
+.reader-tools button:hover{background:var(--bg)}
+.reader-tools button.active{background:var(--neutral-800);color:#fff;border-color:var(--neutral-800)}
+.reader-tools .sep{width:1px;height:20px;background:var(--line);margin:0 6px}
+.reader-tools .lbl{font-size:11.5px;color:var(--muted);font-weight:600}
+.reader-body{
+  padding:34px 40px;max-width:840px;margin-inline:auto;
+  font-family:'Scheherazade New','Amiri',serif;font-size:22px;line-height:2.1;
+  transition:font-size .18s,line-height .18s;
+}
+.reader-body h2{
+  font-family:'Amiri',serif;color:var(--neutral-800);font-size:26px;
+  margin:24px 0 12px;border-inline-start:3px solid var(--gold);padding-inline-start:12px;
+}
+[data-theme="dark"] .reader-body h2{color:var(--gold-2)}
+.reader-body p{margin-bottom:16px;text-align:justify;text-indent:1.5em}
+.reader-body .bism{
+  text-align:center;font-family:'Amiri',serif;font-size:26px;
+  margin:18px 0 22px;color:var(--neutral-800);text-indent:0;
+}
+[data-theme="dark"] .reader-body .bism{color:var(--gold-2)}
+.reader-foot{
+  padding:12px 20px;background:var(--paper);border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  font-size:12px;color:var(--muted);
+}
+.reader-foot .rf-nav{display:flex;gap:8px}
+.reader-foot button{
+  background:var(--paper);border:1px solid var(--line);border-radius:7px;
+  padding:5px 12px;font:inherit;font-size:12px;color:var(--ink-2);transition:all var(--tr);
+}
+.reader-foot button:hover{background:var(--bg)}
+
+.back-btn{
+  display:inline-flex;align-items:center;gap:8px;background:var(--paper);
+  color:var(--ink-2);border:1px solid var(--line);border-radius:10px;
+  padding:8px 16px;font:inherit;font-size:13px;font-weight:600;
+  margin-bottom:14px;transition:all var(--tr);
+}
+.back-btn:hover{background:var(--neutral-800);color:#fff;border-color:var(--neutral-800)}
+
+.cat-head{
+  background:
+    radial-gradient(circle at 85% 30%,rgba(201,162,39,.15),transparent 55%),
+    linear-gradient(135deg,#6b0f0f,#8b1414);
+  color:#fff;border-radius:var(--radius-xl);padding:18px 22px;
+  margin-bottom:18px;box-shadow:var(--shadow);
+}
+.cat-head .ch-txt h1{font-family:'Amiri',serif;font-size:22px;margin-bottom:4px}
+.cat-head .ch-txt p{opacity:.9;font-size:13px}
+
+/* بطاقة صفحة المفضلة */
+.fav-header{
+  background:
+    radial-gradient(circle at 80% 20%,rgba(201,162,39,.25),transparent 55%),
+    linear-gradient(135deg,#6b0f0f,#8b1414);
+  color:#fff;border-radius:var(--radius-xl);padding:22px 26px;
+  margin-bottom:20px;box-shadow:var(--shadow);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.fav-header .fh-info{flex:1;min-width:200px}
+.fav-header h1{
+  font-family:'Amiri',serif;font-size:24px;margin-bottom:6px;
+  display:flex;align-items:center;gap:10px;
+}
+.fav-header h1 svg{
+  width:28px;height:28px;fill:var(--gold-2);stroke:var(--gold-2);
+  stroke-width:1.5;
+}
+.fav-header p{opacity:.92;font-size:13.5px}
+.fav-header .fh-stats{
+  display:flex;gap:14px;margin-top:10px;flex-wrap:wrap;
+}
+.fav-header .fh-stat{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  padding:6px 14px;border-radius:20px;
+  font-size:12.5px;font-weight:600;
+}
+.fav-header .fh-stat strong{color:var(--gold-2);font-weight:800}
+.fav-clear-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.12);color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  padding:9px 18px;border-radius:22px;
+  font-size:13px;font-weight:600;transition:all var(--tr);
+}
+.fav-clear-btn:hover{background:#8b1414;border-color:#fff}
+.fav-clear-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.fav-section-title{
+  font-family:'Amiri',serif;font-size:20px;color:var(--neutral-800);
+  border-inline-start:3px solid var(--gold);padding-inline-start:10px;
+  margin:22px 0 12px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+[data-theme="dark"] .fav-section-title{color:var(--gold-2)}
+.fav-section-title .fst-count{
+  font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;
+  color:var(--muted);background:var(--paper);
+  padding:2px 10px;border-radius:10px;border:1px solid var(--line);
+}
+.empty-fav{
+  background:var(--paper);border:2px dashed var(--line);
+  border-radius:var(--radius-lg);padding:40px 24px;
+  text-align:center;
+}
+.empty-fav .ef-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--bg);display:grid;place-items:center;
+  margin:0 auto 14px;
+  font-size:28px;color:var(--muted);
+}
+.empty-fav p{color:var(--muted);font-size:13.5px;line-height:1.9}
+
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center}
+.modal[hidden]{display:none}
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.modal-box{
+  position:relative;background:var(--paper);border-radius:var(--radius-lg);
+  padding:24px;width:min(680px,92%);max-height:88vh;overflow-y:auto;
+  box-shadow:var(--shadow-lg);animation:pop .25s ease;
+}
+@keyframes pop{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+.modal-close{
+  position:absolute;top:14px;inset-inline-end:14px;background:var(--bg);
+  border:1px solid var(--line);width:36px;height:36px;border-radius:50%;
+  font-size:14px;color:var(--neutral-700);transition:all var(--tr);
+}
+.modal-close:hover{background:var(--neutral-800);color:#fff}
+.detail{display:grid;grid-template-columns:160px 1fr;gap:20px}
+.detail .book-cover{border-radius:var(--radius);cursor:default}
+.detail h2{
+  font-family:'Amiri',serif;font-size:21px;color:var(--ink);
+  margin-bottom:12px;line-height:1.4;
+}
+.detail .meta2{
+  display:flex;flex-direction:column;gap:5px;font-size:13px;
+  color:var(--muted);margin-bottom:14px;
+}
+.detail .meta2 strong{color:var(--ink)}
+.detail .meta2 a{color:var(--neutral-800);font-weight:600}
+.detail .meta2 a:hover{color:var(--gold)}
+[data-theme="dark"] .detail .meta2 a{color:var(--gold-2)}
+.detail .dl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.status-badge{
+  display:inline-block;font-size:10.5px;padding:2px 10px;border-radius:10px;
+  font-weight:700;background:var(--gold);color:#fff;
+}
+.status-badge.available{background:var(--green);color:#fff}
+
+footer{
+  background:linear-gradient(135deg,#3a0808,#6b0f0f);
+  color:#f0d9d9;padding:26px 0;text-align:center;font-size:13px;margin-top:auto;
+}
+footer .dua{
+  margin-top:10px;opacity:.85;font-size:12px;max-width:760px;
+  margin-inline:auto;line-height:1.9;font-family:'Amiri',serif;
+}
+
+@media (max-width:900px){
+  .featured{grid-template-columns:1fr}
+  .featured .book-cover{max-width:170px;margin-inline:auto}
+}
+@media (max-width:640px){
+  .head-row{gap:10px}
+  .brand-logo{width:40px;height:40px;font-size:20px;border-radius:11px}
+  .brand-text strong{font-size:15px}
+  .brand-text small{font-size:10px}
+  .head-btn{padding:6px 11px;font-size:11.5px}
+  .head-btn .txt{display:none}
+  .head-btn svg{width:15px;height:15px}
+  .head-fav-btn .fav-count{font-size:9px;min-width:16px;height:16px}
+  .books-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .reader-iframe{height:70vh}
+  .reader-body{padding:22px 18px;font-size:19px;line-height:1.9}
+  .reader-body h2{font-size:22px}
+  .reader-head{padding:12px 14px}
+  .reader-head h1{font-size:16px}
+  .reader-tools{padding:10px 12px}
+  .book-row{padding:12px 14px}
+  .book-row-top .book-title{font-size:13.5px;min-width:100%;font-weight:700}
+  .book-row-top .book-actions{margin-inline-start:0;width:100%}
+  .book-row-top .book-num{display:none}
+  .fmt-btn{min-width:36px;padding:4px 6px;font-size:10px}
+  .cat-head{padding:14px 16px}
+  .cat-head .ch-txt h1{font-size:19px}
+  .detail{grid-template-columns:1fr}
+  .detail .book-cover{max-width:150px;margin-inline:auto}
+  .hero{padding:14px 16px}
+  .hero .stat{padding:8px 10px}
+  .hero .stat strong{font-size:17px}
+  .sidebar{padding:14px 12px 22px}
+  .topbar-btn{padding:6px 12px;font-size:12px}
+  .topbar-btn .txt{display:none}
+  .topbar-btn svg{width:18px;height:18px}
+  .topbar-search{flex:1}
+  .topbar-search .search-type{
+    font-size:11px;min-width:auto;max-width:80px;
+    padding:8px 4px;padding-inline-start:16px;
+    background-position:left 3px center;
+  }
+  .topbar-search button .txt{display:none}
+  .topbar-search button{padding:0 12px}
+  .date-strip{font-size:10px;padding:4px 0}
+  .date-strip .dates{gap:10px}
+  .date-strip .dates span{gap:3px}
+  .author-avatar{width:46px;height:46px;font-size:20px}
+  .author-card{padding:12px 14px;gap:10px}
+  .author-info .a-name{font-size:13.5px}
+  .author-info .a-bio{font-size:11px}
+  .series-card{padding:14px 16px;gap:12px}
+  .series-card .sc-name{font-size:17px}
+  .series-card .sc-badge{min-width:56px;height:56px;font-size:18px}
+  .series-mini{padding:12px 14px;gap:10px}
+  .series-mini .sm-icon{width:44px;height:44px;font-size:20px;border-radius:10px}
+  .series-mini .sm-name{font-size:14px}
+  .download-all-box{padding:12px 14px;gap:10px}
+  .download-all-box .da-actions{width:100%}
+  .download-all-box .da-actions .fmt-btn{flex:1}
+  .cat-card{padding:11px 13px}
+  .cat-card .cc-name{font-size:13.5px}
+  .cat-card .cc-badge{min-width:34px;height:34px;font-size:13px}
+  .fav-header{padding:16px 18px}
+  .fav-header h1{font-size:19px}
+  .fav-header h1 svg{width:22px;height:22px}
+  .fav-btn{width:28px;height:28px}
+  .fav-btn svg{width:14px;height:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="dua-bar">
+  <div class="dua-track">
+    ﷽ &nbsp;•&nbsp; اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين &nbsp;•&nbsp; ﷽
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="container head-row">
+    <a href="#/home" class="brand">
+      <span class="brand-logo">ﷲ</span>
+      <span class="brand-text">
+        <strong>مكتبة آل الشيرازي</strong>
+        <small>موسوعة تراث أسرة آل الشيرازي العلمي</small>
+      </span>
+    </a>
+    <div class="head-actions">
+      <a href="#/favorites" class="head-btn head-fav-btn" aria-label="المفضلة">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="txt">المفضلة</span>
+        <span class="fav-count" id="favCountTop">0</span>
+      </a>
+      <button class="head-btn" id="themeBtn" aria-label="تبديل الوضع">
+        <svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span class="txt" id="themeText">ليلي</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="date-strip">
+    <div class="container">
+      <span class="clock">🕐 <strong id="clock">—</strong></span>
+      <div class="dates">
+        <span>🗓️ <strong id="hijriDate">—</strong></span>
+        <span>📅 <strong id="gregDate">—</strong></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <button class="topbar-btn" id="menuBtn" aria-label="فتح القائمة">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <span class="txt">القائمة</span>
+    </button>
+
+    <div class="topbar-search">
+      <select class="search-type" id="searchType" aria-label="نوع البحث">
+        <option value="title">اسم الكتاب</option>
+        <option value="author">اسم المؤلف</option>
+        <option value="category">التصنيف</option>
+        <option value="all">كل الحقول</option>
+      </select>
+      <input id="q" type="search" placeholder="ابحث في عناوين الكتب…" autocomplete="off" />
+      <button id="qBtn" aria-label="بحث">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="txt">بحث</span>
+      </button>
+      <ul id="sug" class="suggestions"></ul>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <h3>التصفح</h3>
+    <button class="sidebar-close" id="sidebarClose" aria-label="إغلاق">✕</button>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">بحث في المكتبة</div>
+    <div class="widget-body">
+      <div class="side-search">
+        <select class="side-search-type" id="sideSearchType" aria-label="نوع البحث">
+          <option value="title">بحث باسم الكتاب</option>
+          <option value="author">بحث باسم المؤلف</option>
+          <option value="category">بحث بالتصنيف</option>
+          <option value="all">بحث في كل الحقول</option>
+        </select>
+        <input id="sq" type="search" placeholder="اكتب ما تبحث عنه…" />
+        <button id="sqBtn">ابحث</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">تصنيفات المكتبة</div>
+    <div class="widget-body">
+      <ul class="cat-list" id="sideCats"></ul>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">الموسوعات</div>
+    <div class="widget-body">
+      <ul class="cat-list" id="sideSeries"></ul>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">المؤلفون</div>
+    <div class="widget-body">
+      <ul class="cat-list" id="sideAuthors"></ul>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">أحدث الإضافات</div>
+    <div class="widget-body">
+      <div class="mini-books" id="sideLatest"></div>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="widget-head">روابط سريعة</div>
+    <div class="widget-body">
+      <ul class="cat-list">
+        <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
+        <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
+        <li><a href="#/favorites" data-fav="all" onclick="closeSidebar()" class="fav-link">
+          <span>⭐ المفضلة</span>
+          <span class="cnt gold" id="favCountSide">0</span>
+        </a></li>
+        <li><a href="#/authors" onclick="closeSidebar()">قائمة المؤلفين</a></li>
+        <li><a href="#/cats" onclick="closeSidebar()">قائمة التصنيفات</a></li>
+        <li><a href="#/languages" onclick="closeSidebar()">كتب بلغات أخرى</a></li>
+        <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<main class="container">
+  <section class="main-col" id="app"></section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© <span id="yr"></span> مكتبة آل الشيرازي — جميع الحقوق محفوظة</p>
+    <p class="dua">اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين.</p>
+  </div>
+</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const htmlEl = document.documentElement;
+const themeBtn = document.getElementById("themeBtn");
+const themeIcon = document.getElementById("themeIcon");
+const themeText = document.getElementById("themeText");
+
+function setTheme(t){
+  if(t === "dark"){
+    htmlEl.setAttribute("data-theme", "dark");
+    themeIcon.innerHTML = '<circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>';
+    themeText.textContent = "نهاري";
+  } else {
+    htmlEl.removeAttribute("data-theme");
+    themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    themeText.textContent = "ليلي";
+  }
+  try{ localStorage.setItem("alsh_theme", t); }catch(e){}
+}
+try{
+  const saved = localStorage.getItem("alsh_theme");
+  if(saved === "dark") setTheme("dark");
+}catch(e){}
+themeBtn.addEventListener("click", ()=>{
+  const cur = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  setTheme(cur);
+});
+
+const CATS = [
+  {id:"quran",     name:"القرآن والتفسير"},
+  {id:"aqaid",     name:"العقائد والكلام"},
+  {id:"fiqh",      name:"الفقه والأصول"},
+  {id:"akhlaq",    name:"الحديث والأخلاق"},
+  {id:"seerah",    name:"السيرة والتاريخ"},
+  {id:"ahlulbayt", name:"أهل البيت (عليهم السلام)"},
+  {id:"hussein",   name:"الإمام الحسين وعاشوراء"},
+  {id:"mahdi",     name:"الإمام المهدي (عجل الله فرجه)"},
+  {id:"siyasah",   name:"السياسة والاقتصاد"},
+  {id:"mujtama",   name:"المجتمع والأسرة والشباب"},
+  {id:"languages", name:"كتب بلغات أخرى", highlight:true}
+];
+
+const AUTHORS = [
+  { id:"shirazi-m",  name:"آية الله العظمى السيد محمد الحسيني الشيرازي",
+    short:"السيد محمد الحسيني الشيرازي",
+    bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»." },
+  { id:"shirazi-s",  name:"آية الله العظمى السيد صادق الحسيني الشيرازي",
+    short:"السيد صادق الحسيني الشيرازي",
+    bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي. ستُضاف مؤلفاته قريباً بإذن الله." },
+  { id:"shirazi-mr", name:"آية الله الفقيه السيد محمد رضا الشيرازي",
+    short:"السيد محمد رضا الشيرازي",
+    bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي. ستُضاف مؤلفاته قريباً بإذن الله." },
+  { id:"shirazi-mo", name:"آية الله السيد مرتضى الحسيني الشيرازي",
+    short:"السيد مرتضى الحسيني الشيرازي",
+    bio:"عالم دين ومؤلف، من أسرة آل الشيرازي. ستُضاف مؤلفاته قريباً بإذن الله." },
+  { id:"shirazi-j",  name:"السيد جعفر الحسيني الشيرازي",
+    short:"السيد جعفر الحسيني الشيرازي",
+    bio:"باحث ومؤلف إسلامي، من أسرة آل الشيرازي. ستُضاف مؤلفاته قريباً بإذن الله." },
+  { id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي",
+    short:"السيد مهدي الحسيني الشيرازي",
+    bio:"من أعلام أسرة آل الشيرازي. ستُضاف مؤلفاته قريباً بإذن الله." }
+];
+
+const SERIES = [
+  { id:"fiqh-encyclopedia",
+    name:"موسوعة الفقه",
+    author:"shirazi-m",
+    desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات، وهي من أهم المؤلفات الفقهية لسماحة آية الله العظمى السيد محمد الحسيني الشيرازي (أعلى الله درجاته).",
+    formats: "pw"
+  }
+];
+
+const DEFAULT_AUTH = "shirazi-m";
+
+const SEARCH_PLACEHOLDERS = {
+  title: "ابحث في عناوين الكتب…",
+  author: "ابحث باسم المؤلف…",
+  category: "ابحث في التصنيفات…",
+  all: "ابحث في كل الحقول…"
+};
+
+const DATA = `
+تقريب القرآن إلى الأذهان – ج1|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج2|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج3|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج4|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج5|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج6|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج7|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج8|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج9|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج10|quran|1420|pwe
+تبيين القرآن – ج1|quran|1418|pwe
+تبيين القرآن – ج2|quran|1418|pwe
+تبيين القرآن – ج3|quran|1418|pwe
+متى جمع القرآن؟|quran|1415|pwe
+القرآن منهج وسلوك|quran|1416|pwe
+القرآن يتحدى|quran|1417|pwe
+مكانة القرآن الكريم في المجتمع الإسلامي|quran|1419|pwe
+لماذا يحاربون القرآن؟|quran|1419|pwe
+بيان التجويد|quran|1417|pwe
+استفتاءات في التجويد|quran|1418|pwe
+استفتاءات في القرآن الكريم والشعائر الحسينية|quran|1419|pwe
+العقائد الإسلامية|aqaid|1414|pwe
+مسائل في العقائد|aqaid|1415|pwe
+المقدمة العقائدية|aqaid|1415|pwe
+المعارف الإسلامية|aqaid|1416|pwe
+هل تحب معرفة الله|aqaid|1417|pwe
+مائة سؤال حول الثالوث|aqaid|1418|pwe
+بين الإسلام ودارون|aqaid|1416|pwe
+نقد نظريات فرويد|aqaid|1417|pwe
+وقفة مع الوجوديين|aqaid|1418|pwe
+مائة مسألة شرعية|aqaid|1419|pwe
+لماذا نزور الإمام (عليه السلام)|aqaid|1418|pwe
+مريم الطاهرة|aqaid|1416|pwe
+عيسى المسيح (عليه السلام)|aqaid|1416|pwe
+نوح (عليه السلام)|aqaid|1417|pwe
+إبراهيم (عليه السلام)|aqaid|1417|pwe
+موسى (عليه السلام) في البحر|aqaid|1418|pwe
+موسى (عليه السلام)|aqaid|1418|pwe
+الكليم (عليه السلام) وبنو إسرائيل|aqaid|1418|pwe
+الكليم وفرعون|aqaid|1418|pwe
+سليمان (عليه السلام) وبلقيس|aqaid|1419|pwe
+بساط سليمان (عليه السلام)|aqaid|1419|pwe
+بنو إسرائيل في التيه|aqaid|1419|pwe
+الفقه العقائد|aqaid|1418|pwe
+الرؤيا في الإسلام|aqaid|1417|pwe
+الأحلام من وجهة نظر الإسلام|aqaid|1417|pwe
+الطريق إلى الغيب|aqaid|1418|pwe
+كيف عرفت الله|aqaid|1417|pwe
+حوار حول تطبيق الإسلام|aqaid|1419|pwe
+ما هو الإسلام|aqaid|1417|pwe
+الإسلام هو الإسلام|aqaid|1419|pwe
+من فقه العترة الطاهرة (عليهم السلام) 1|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 2|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 3|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 4|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 5|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 6|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 7|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 8|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 9|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 10|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 11|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 12|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 13|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 14|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 15|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 16|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 17|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 18|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 19|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 20|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 21|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 22|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 23|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 24|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 25|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 26|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 27|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 28|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 29|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 30|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 31|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 32|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 33|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 34|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 35|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 36|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 37|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 38|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 39|fiqh|1421|pwe
+من فقه العترة الطاهرة (عليهم السلام) 40|fiqh|1421|pwe
+من فقه الزهراء (عليها السلام) – ج1|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج2|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج3|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج4|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج5|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج6|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج7|fiqh|1420|pwe
+مناسك الحج|fiqh|1420|pwe
+منتخب المسائل الإسلامية|fiqh|1419|pwe
+جامع المسائل الشرعية|fiqh|1420|pwe
+القواعد الفقهية|fiqh|1421|pwe
+الإرث في الإسلام|fiqh|1418|pwe
+أحكام المرأة في الحج والعمرة|fiqh|1419|pwe
+فقه المال أخذاً وعطاءً وصرفاً|fiqh|1420|pwe
+الفقه الزرع والزراعة|fiqh|1420|pwe
+الفقه السلم والسلام|fiqh|1420|pwe
+الفقه حقوق الحيوان وأحكامه|fiqh|1420|pwe
+الفقه المرور|fiqh|1420|pwe
+الفقه النظافة|fiqh|1420|pwe
+الفقه التجارة|fiqh|1420|pwe
+الفقه الحريات|fiqh|1420|pwe
+الفقه طريق النجاة|fiqh|1420|pwe
+الفقه القانون|fiqh|1420|pwe
+الفقه العولمة|fiqh|1421|pwe
+الفقه من الآداب الطبية|fiqh|1421|pwe
+فقه المستقبل|fiqh|1421|pwe
+رسالة في أبعاد الفقه|fiqh|1418|pwe
+رسالة أحكام الصوم|fiqh|1418|pwe
+رسالة في التحية والسلام|fiqh|1418|pwe
+استفتاءات في الصوم|fiqh|1419|pwe
+مسائل حديثة|fiqh|1420|pwe
+مسائل حديثة في الحج|fiqh|1420|pwe
+مسائل شرعية تهم الشباب|fiqh|1420|pwe
+من استفتاءات الحج 1421هـ|fiqh|1421|pwe
+من مسائل الحج|fiqh|1420|pwe
+استفتاءات حول الحج|fiqh|1419|pwe
+أجوبة المسائل العلوية|fiqh|1418|pwe
+أجوبة المسائل الكندية|fiqh|1419|pwe
+أجوبة المسائل المالكية|fiqh|1419|pwe
+إستفتاءات حول السياسة الإسلامية|fiqh|1420|pwe
+الاستفتاءات الدمشقية|fiqh|1419|pwe
+أجوبة المسائل الفرنسية|fiqh|1419|pwe
+أجوبة المسائل اللبنانية|fiqh|1419|pwe
+أجوبة مسائل القطيف|fiqh|1418|pwe
+استفتاءات حول الحجاب والنظر|fiqh|1419|pwe
+استفتاءات حول الصديقة الكبرى فاطمة الزهراء (عليها السلام)|fiqh|1420|pwe
+أسئلة وأجوبة شرعية|fiqh|1419|pwe
+المسائل الإسلامية المختصرة|fiqh|1418|pwe
+المسائل الإسلامية المفصلة|fiqh|1418|pwe
+المسائل الإسلامية|fiqh|1418|pwe
+توجيهات شرعية|fiqh|1419|pwe
+المسائل المقدادية|fiqh|1419|pwe
+الفوائد الأصولية – الحكومة|fiqh|1419|pwe
+الفوائد الأصولية – الترتب|fiqh|1419|pwe
+الفوائد الأصولية – القصد|fiqh|1419|pwe
+مباحث الأصول – مبحث الإطلاق|fiqh|1420|pwe
+الأصل الفوقاني في المعاملات|fiqh|1419|pwe
+الأصل عند إطلاق لفظ عام على معاني خاصة|fiqh|1419|pwe
+القواعد الفقهية – القسم الثاني|fiqh|1421|pwe
+الأخلاق الإسلامية|akhlaq|1415|pwe
+الأخلاق المثالية|akhlaq|1416|pwe
+قسوة القلب|akhlaq|1416|pwe
+من مكارم الأخلاق|akhlaq|1417|pwe
+من أخلاق العلماء|akhlaq|1418|pwe
+الزهد|akhlaq|1418|pwe
+لا للحسد|akhlaq|1419|pwe
+الإخلاص سر التقدم|akhlaq|1419|pwe
+لين الكلام|akhlaq|1420|pwe
+قيمة المرء|akhlaq|1420|pwe
+الأجوبة على مسائل من علم الدراية|akhlaq|1419|pwe
+تلخيص منية المريد|akhlaq|1418|pwe
+من أخلاق الرسول (صلى الله عليه وآله) وإرشاداته|akhlaq|1417|pwe
+شخصية المؤمن|akhlaq|1417|pwe
+الفضيلة الإسلامية|akhlaq|1416|pwe
+من خطى الأولياء|akhlaq|1418|pwe
+من كرامات الأولياء|akhlaq|1418|pwe
+الارتباط بالله وجهاد النفس|akhlaq|1417|pwe
+خدمة الناس والتقوى|akhlaq|1418|pwe
+الثبات على المبدأ|akhlaq|1418|pwe
+الجدال بالتي هي أحسن|akhlaq|1418|pwe
+اغتنام الفرص|akhlaq|1418|pwe
+الإنسان الحقيقي|akhlaq|1418|pwe
+من حياة الرسول الأعظم (صلى الله عليه وآله)|seerah|1414|pwe
+رسول الإسلام (صلى الله عليه وآله) في مكة|seerah|1415|pwe
+رسول الإسلام (صلى الله عليه وآله) في المدينة – ج1|seerah|1415|pwe
+رسول الإسلام (صلى الله عليه وآله) في المدينة – ج2|seerah|1415|pwe
+رسول الإسلام (صلى الله عليه وآله) في المدينة – ج3|seerah|1415|pwe
+أول حكومة إسلامية في المدينة المنورة|seerah|1416|pwe
+من قصص التاريخ|seerah|1417|pwe
+من قصص المستبدين|seerah|1417|pwe
+موجز عن الدولة العثمانية|seerah|1418|pwe
+تلخيص الحضارة الإسلامية – ج1|seerah|1418|pwe
+تلخيص الحضارة الإسلامية – ج2|seerah|1418|pwe
+قم المقدسة رائدة الحضارة|seerah|1419|pwe
+مقتطفات من تاريخ المدينة المنورة|seerah|1418|pwe
+القوميات في خمسين سنة|seerah|1417|pwe
+بعض ما فعله الشيوعيون في العراق|seerah|1418|pwe
+البقيع الغرقد|seerah|1416|pwe
+من المساجد والمزارات في الحرمين الشريفين|seerah|1417|pwe
+هكذا حج رسول الله (صلى الله عليه وآله)|seerah|1416|pwe
+عدالة أمير المؤمنين (عليه السلام)|seerah|1416|pwe
+دروس من الهجرة|seerah|1417|pwe
+المولد النبوي الشريف|seerah|1416|pwe
+أسبوع المولد الشريف|seerah|1416|pwe
+البعثة النبوية الشريفة والدين الإسلامي|seerah|1417|pwe
+صلاح الدين والتعصب الطائفي|seerah|1418|pwe
+جابر بن حيان الأنصاري|seerah|1417|pwe
+مطاردة قرن ونصف|seerah|1418|pwe
+من عوامل الاستقرار في العراق|seerah|1420|pwe
+محنة العراق|seerah|1420|pwe
+العراق بعد حزب البعث – العراق بعد التغيير|seerah|1420|pwe
+العراق.. ماضيه ومستقبله|seerah|1420|pwe
+النازحون من العراق|seerah|1420|pwe
+إلى المجاهدين في العراق|seerah|1420|pwe
+مع الإمام موسى بن جعفر (عليه السلام) والتغيير في العراق|seerah|1420|pwe
+نظام الحوزات العلمية في العراق|seerah|1419|pwe
+إذا قام الإسلام في العراق|seerah|1420|pwe
+حكم الإسلام بعد نجاة العراق|seerah|1420|pwe
+إلى حكومة شيعية في العراق|seerah|1420|pwe
+الأكثرية الشيعية في العراق|seerah|1420|pwe
+الشيعة والحكم في العراق|seerah|1420|pwe
+التيار الإصلاحي|seerah|1421|pwe
+مستقبل العراق بين الدعاء والعمل|seerah|1420|pwe
+دعاة التغيير ومستقبل العراق|seerah|1420|pwe
+سقوط بعد سقوط|seerah|1419|pwe
+عشت في كربلاء|seerah|1420|pwe
+تجاربي في المنبر|seerah|1420|pwe
+تلك الأيام|seerah|1419|pwe
+كفاحنا|seerah|1419|pwe
+كيف ولماذا أخرجنا من العراق؟|seerah|1420|pwe
+والدتي|seerah|1419|pwe
+المنامات|seerah|1418|pwe
+الأخ الشهيد|seerah|1418|pwe
+تذكرة الأخبار في تلخيص|seerah|1418|pwe
+خلاصة العروض|seerah|1418|pwe
+أبنية الصرف|seerah|1417|pwe
+المنصورية في النحو والصرف|seerah|1417|pwe
+قواعد الإعراب|seerah|1417|pwe
+البلاغة – علم البديع|seerah|1417|pwe
+البلاغة – علم البيان|seerah|1417|pwe
+البلاغة – علم المعاني|seerah|1417|pwe
+من حياة الإمام أمير المؤمنين (عليه السلام)|ahlulbayt|1415|pwe
+فاطمة الزهراء (عليها السلام) أفضل أسوة للنساء|ahlulbayt|1415|pwe
+من حياة الإمام الحسن (عليه السلام)|ahlulbayt|1416|pwe
+صلح الإمام الحسن (عليه السلام)|ahlulbayt|1416|pwe
+ثورة الإمام الحسن (عليه السلام)|ahlulbayt|1416|pwe
+الإمام زين العابدين (عليه السلام) قدوة الصالحين|ahlulbayt|1416|pwe
+من حياة الإمام الباقر (عليه السلام)|ahlulbayt|1416|pwe
+من حياة الإمام الصادق (عليه السلام)|ahlulbayt|1416|pwe
+من حياة الإمام الكاظم (عليه السلام)|ahlulbayt|1417|pwe
+من حياة الإمام الرضا (عليه السلام)|ahlulbayt|1417|pwe
+الإمام الرضا (عليه السلام) يقود الحياة|ahlulbayt|1417|pwe
+من حياة الإمام الجواد (عليه السلام)|ahlulbayt|1417|pwe
+من حياة الإمام الهادي (عليه السلام)|ahlulbayt|1417|pwe
+من حياة الإمام العسكري (عليه السلام)|ahlulbayt|1417|pwe
+من حياة الإمام السجاد (عليه السلام)|ahlulbayt|1416|pwe
+المعصومون الأربعة عشر|ahlulbayt|1415|pwe
+أمهات المعصومين (عليهم وعليهن السلام)|ahlulbayt|1418|pwe
+أم البنين (عليها السلام)|ahlulbayt|1418|pwe
+السيدة زينب (عليها السلام) عالمة غير معلمة|ahlulbayt|1418|pwe
+فاطمة الزهراء (عليها السلام) امتداد النبوة|ahlulbayt|1417|pwe
+فاطمة الزهراء (عليها السلام) في السنة المطهرة|ahlulbayt|1417|pwe
+من حياة فاطمة الزهراء (عليها السلام)|ahlulbayt|1416|pwe
+في رحاب السيدة المعصومة (عليها السلام)|ahlulbayt|1418|pwe
+العباس (عليه السلام) والعصمة الصغرى|ahlulbayt|1417|pwe
+أشعة من أمير المؤمنين (عليه السلام)|ahlulbayt|1417|pwe
+نحن والإمام أمير المؤمنين (عليه السلام)|ahlulbayt|1418|pwe
+عيد الغدير أعظم الأعياد في الإسلام|ahlulbayt|1418|pwe
+من قصص المعصومين (عليهم السلام)|ahlulbayt|1418|pwe
+من قضاء المعصومين (عليهم السلام)|ahlulbayt|1418|pwe
+فضائل آل الرسول (عليهم السلام) من الصواعق المحرقة|ahlulbayt|1417|pwe
+حقائق من تاريخ العلماء|ahlulbayt|1418|pwe
+هداية الناس وقضاء حوائجهم|ahlulbayt|1418|pwe
+الحسن والحسين (عليهما السلام) إمامان قاما أو قعدا|ahlulbayt|1417|pwe
+الحسين (عليه السلام) أسوة|ahlulbayt|1416|pwe
+المدائح والمراثي|ahlulbayt|1418|pwe
+من حياة الإمام الحسين (عليه السلام)|hussein|1415|pwe
+موجز عن النهضة الحسينية|hussein|1416|pwe
+قتلة الإمام الحسين (عليه السلام) والجزاء الدنيوي|hussein|1416|pwe
+رؤى عن نهضة الإمام الحسين (عليه السلام)|hussein|1417|pwe
+الحسين (عليه السلام) مصباح هدى|hussein|1417|pwe
+عاشوراء والعودة إلى الإسلام|hussein|1418|pwe
+عاشوراء والقرآن المهجور|hussein|1418|pwe
+رسالة عاشوراء|hussein|1418|pwe
+النهضة الحسينية رسالة إصلاح متجددة|hussein|1419|pwe
+الاستفادة من عاشوراء|hussein|1419|pwe
+قبس من شعاع الإمام الحسين (عليه السلام)|hussein|1417|pwe
+يوم الحسين (عليه السلام)|hussein|1418|pwe
+الحسين (عليه السلام) المحمول على أجنحة الملائكة|hussein|1418|pwe
+الإمام الحسين (عليه السلام) خليفة الله وإمام الأمة|hussein|1418|pwe
+إلى الهيئات الحسينية|hussein|1419|pwe
+إحياء الشعائر|hussein|1419|pwe
+أجوبة المسائل الحسينية|hussein|1419|pwe
+حقائق عن الإمام المهدي (عليه السلام)|mahdi|1415|pwe
+الإمام المهدي (عجل الله تعالى فرجه الشريف)|mahdi|1416|pwe
+في مولد الإمام الحجة (عجل الله فرجه)|mahdi|1416|pwe
+إحياء أمر الإمام المهدي (عجل الله فرجه)|mahdi|1417|pwe
+الاقتصاد الإسلامي|siyasah|1416|pwe
+الاقتصاد عصب الحياة|siyasah|1416|pwe
+استراتيجية مكافحة الفقر في منهج الإمام علي (عليه السلام)|siyasah|1418|pwe
+من أسباب الفقر والحرمان في العالم|siyasah|1418|pwe
+ماذا بعد النفط|siyasah|1419|pwe
+أنفقوا لكي تتقدموا|siyasah|1419|pwe
+هذا هو النظام الإسلامي|siyasah|1417|pwe
+العدل أساس الملك|siyasah|1417|pwe
+الشورى في الإسلام|siyasah|1418|pwe
+الحرية الإسلامية|siyasah|1418|pwe
+العدالة الإسلامية|siyasah|1418|pwe
+نحو حكومة ألف مليون مسلم|siyasah|1419|pwe
+الدولة الإسلامية رؤى وآفاق|siyasah|1419|pwe
+حكومة الأكثرية|siyasah|1419|pwe
+النظام الإسلامي والأنظمة المعاصرة|siyasah|1419|pwe
+المرجعية الإسلامية|siyasah|1418|pwe
+المرجع والأمة|siyasah|1418|pwe
+مواصفات القيادة الإسلامية|siyasah|1419|pwe
+الفهم السياسي|siyasah|1419|pwe
+الرأي العام وسبل توجيهه|siyasah|1419|pwe
+الرأي العام ودوره في المجتمع|siyasah|1419|pwe
+حكم حول العدل|siyasah|1418|pwe
+حكم الإسلام مبادئه أهدافه|siyasah|1418|pwe
+خطط الغرب في بلاد الإسلام|siyasah|1419|pwe
+دور الاستعمار في تفكيك الأمة|siyasah|1419|pwe
+البلاد الإسلامية بين الحاجة والاستعمار|siyasah|1419|pwe
+الغرب والحصار الاقتصادي على المسلمين|siyasah|1420|pwe
+الغرب يتغير|siyasah|1419|pwe
+كيف يمكن نجاة الغرب|siyasah|1419|pwe
+الصلح مع اليهود استسلام لا سلام|siyasah|1418|pwe
+هل سيبقى الصلح بين العرب وإسرائيل؟|siyasah|1418|pwe
+احذروا اليهود|siyasah|1418|pwe
+بين المسلمين واليهود|siyasah|1418|pwe
+قصص من اليهود|siyasah|1418|pwe
+هؤلاء اليهود|siyasah|1418|pwe
+انتهاء أمد اليهود في اغتصاب فلسطين|siyasah|1419|pwe
+مؤتمرات الإنقاذ|siyasah|1420|pwe
+إلى حكومة ألف مليون مسلم|siyasah|1419|pwe
+إلى العالم|siyasah|1419|pwe
+إلى الكتّاب الإسلاميين|siyasah|1418|pwe
+وصولاً إلى حكومة إسلامية واحدة|siyasah|1420|pwe
+هل للشعوب قيمة؟|siyasah|1419|pwe
+أسئلة حول إيران والحكومة المترقبة|siyasah|1420|pwe
+فاعتبروا يا أولي الأبصار|siyasah|1419|pwe
+السبيل إلى انهاض المسلمين|mujtama|1417|pwe
+كيف نجمع شمل المسلمين|mujtama|1417|pwe
+لماذا تأخر المسلمون؟|mujtama|1418|pwe
+العمل الصالح طريق التغيير|mujtama|1418|pwe
+التواصي والمواساة طريقا الإصلاح|mujtama|1418|pwe
+دور الحوزات العلمية في بناء المجتمع|mujtama|1419|pwe
+الأخوة الإسلامية|mujtama|1419|pwe
+احترام الإنسان في الإسلام|mujtama|1419|pwe
+التعاون والعمل|mujtama|1420|pwe
+المرأة في المنظار الإسلامي|mujtama|1416|pwe
+المرأة في ظل الإسلام|mujtama|1416|pwe
+المرأة في المجتمع المعاصر|mujtama|1417|pwe
+الحجاب الدرع الواقي|mujtama|1417|pwe
+الزواج وتشكيل الأسرة في الإسلام|mujtama|1418|pwe
+هكذا الزواج في الإسلام|mujtama|1418|pwe
+كيف نزوج العازبات|mujtama|1419|pwe
+تحديد النسل فكرة غربية|mujtama|1419|pwe
+المرأة المسلمة والوصايا الأخيرة|mujtama|1419|pwe
+إلى أبنائنا في البلاد الأجنبية|mujtama|1416|pwe
+حديث مع الناشئين|mujtama|1417|pwe
+وصايا إلى الشباب المسلم|mujtama|1418|pwe
+وإلى الشباب نقول|mujtama|1418|pwe
+دور الشباب في إنهاض الأمة|mujtama|1419|pwe
+الشباب|mujtama|1419|pwe
+إعداد الأجيال|mujtama|1418|pwe
+الأمة الواحدة|mujtama|1418|pwe
+الإنسان والمحبة الاجتماعية|mujtama|1419|pwe
+الحزب في النظرية الإسلامية|mujtama|1418|pwe
+الفئات الاجتماعية بين الحق والباطل|mujtama|1418|pwe
+نحو التغيير|mujtama|1419|pwe
+نحو إدارة ناجحة|mujtama|1419|pwe
+كيف تدير الأمور|mujtama|1419|pwe
+الكتاب دعامة الحياة|mujtama|1417|pwe
+الكتاب من لوازم الحياة|mujtama|1417|pwe
+إنشاء الجمعيات|mujtama|1418|pwe
+تسعون مليار نسمة|mujtama|1417|pwe
+ثلاثة مليارات من الكتب|mujtama|1417|pwe
+القطرات والذرات|mujtama|1417|pwe
+اللاعنف في الإسلام|mujtama|1418|pwe
+اللاعنف منهج وسلوك|mujtama|1418|pwe
+الصياغة الجديدة لعالم الإيمان والحرية والرفاه والسلام|mujtama|1419|pwe
+ممارسة التغيير لإنقاذ المسلمين|mujtama|1419|pwe
+من التمدن الإسلامي|mujtama|1418|pwe
+الأفلام المفسدة في الأقمار الصناعية|mujtama|1419|pwe
+الاكتفاء الذاتي والبساطة في العيش|mujtama|1418|pwe
+إنقاذ العتبات المقدسة|mujtama|1419|pwe
+استمرارية المؤسسات الإسلامية|mujtama|1419|pwe
+ثقافة التحرير|mujtama|1419|pwe
+إلى نهضة ثقافية إسلامية|mujtama|1420|pwe
+إلى الحوزات العلمية|mujtama|1418|pwe
+إلى الوكلاء في البلاد|mujtama|1418|pwe
+مقومات رجل الدين|mujtama|1417|pwe
+ضرورة التفرغ للعمل في سبيل الله|mujtama|1418|pwe
+طريق التقدم|mujtama|1419|pwe
+طريق النزاهة|mujtama|1419|pwe
+كلمات حول نهضة المسلمين|mujtama|1418|pwe
+لكي لا تتنازعوا|mujtama|1418|pwe
+لنبدأ من جديد|mujtama|1419|pwe
+ليحج خمسون مليوناً كل عام|mujtama|1419|pwe
+المتخلفون مليارا مسلم|mujtama|1418|pwe
+مقالات|mujtama|1418|pwe
+مساوئ الفرقة|mujtama|1418|pwe
+مع الحرس والشرطة|mujtama|1420|pwe
+معالجة الأمراض النفسية|mujtama|1418|pwe
+من أسباب ضعف المسلمين|mujtama|1418|pwe
+من مأساة بلاد المسلمين|mujtama|1419|pwe
+من معاناة الإسلام والمسلمين|mujtama|1419|pwe
+نحو يقظة إسلامية|mujtama|1419|pwe
+الهداية والرشد الفكري|mujtama|1418|pwe
+الأزمات وحلولها|mujtama|1419|pwe
+الإصلاح|mujtama|1419|pwe
+الإصلاح الاجتماعي|mujtama|1418|pwe
+العقل رقي الإنسان|mujtama|1418|pwe
+الطموح في حياة الإنسان والمجتمع|mujtama|1418|pwe
+العبرة سبيل النجاة|mujtama|1418|pwe
+العقل يرى هذه القوانين|mujtama|1418|pwe
+الأمراض والأعراض|mujtama|1417|pwe
+النضج وأثره في حياة الإنسان|mujtama|1418|pwe
+النضج وسمو النفس|mujtama|1418|pwe
+في بلادي في بلادي|mujtama|1418|pwe
+كيف ولماذا أسلموا؟؟|mujtama|1418|pwe
+كيف ينظر الإسلام إلى السجين|mujtama|1419|pwe
+لا للحدود الجغرافية|mujtama|1419|pwe
+لا للحدود|mujtama|1419|pwe
+لماذا الكوارث؟|mujtama|1418|pwe
+مبادئ الطب|mujtama|1417|pwe
+من القانون الإسلامي في المال والعمل|mujtama|1419|pwe
+ثلاثون سؤالاً في الفكر الإسلامي|mujtama|1418|pwe
+الأقصى المبارك|mujtama|1419|pwe
+التجربة وسلوك الخبراء|mujtama|1418|pwe
+التصرفات العقلائية واللاعقلائية|mujtama|1418|pwe
+التكامل والشمولية في الشريعة الإسلامية|mujtama|1419|pwe
+التهجير جناية العصر|mujtama|1420|pwe
+الجهل المركب وطريق الخلاص منه|mujtama|1419|pwe
+الخبرة ودورها في الحياة|mujtama|1418|pwe
+الشعور بالمسؤولية|mujtama|1418|pwe
+--- كتب بلغات أخرى ---
+The Qur'an: A Guide (English)|languages|1420|pwe
+Islamic Government (English)|languages|1418|pwe
+Islamic Economics (English)|languages|1419|pw
+Woman in Islam (English)|languages|1417|pwe
+The Prophet's Family (English)|languages|1416|pw
+Qur'an and Modern Science (English)|languages|1419|pwe
+Imam Hussein and Ashura (English)|languages|1418|pwe
+حکومت اسلامی (فارسی)|languages|1420|pwe
+اقتصاد اسلامی (فارسی)|languages|1419|pwe
+زن در اسلام (فارسی)|languages|1418|pw
+تفسیر نمونه (فارسی)|languages|1417|pw
+عاشورا و انقلاب حسینی (فارسی)|languages|1418|pwe
+اسلام کا نظام حکومت (اردو)|languages|1419|pwe
+قرآن اور سائنس (اردو)|languages|1418|pwe
+خاندان نبوت (اردو)|languages|1417|pw
+اسلام میں عورت (اردو)|languages|1418|pwe
+İslam'da Kadın (Türkçe)|languages|1418|pw
+İslam Ekonomisi (Türkçe)|languages|1419|pw
+La Femme en Islam (Français)|languages|1417|pwe
+Le Gouvernement Islamique (Français)|languages|1418|pw
+Islamische Regierung (Deutsch)|languages|1419|pw
+La Donna nell'Islam (Italiano)|languages|1418|pw
+--- موسوعة الفقه ---
+كتاب الاجتهاد والتقليد|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج5|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج6|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج7|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج8|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج9|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج10|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج11|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج12|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج13|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج14|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطهارة ج15|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج5|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج6|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج7|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج8|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج9|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج10|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج11|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصلاة ج12|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الزكاة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الزكاة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الزكاة ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الزكاة ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الخمس|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصوم ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصوم ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصوم ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الصوم ج4/ كتاب الحج ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج5|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج6|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج7|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج8|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج9|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحج ج10|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الجهاد ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الجهاد ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الرهن|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المفلس والحجر|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الضمان والحوالة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الكفالة والصلح|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الشركة والمضاربة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المضاربة والمزارعة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المزارعة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الوديعة والعارية|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإجارة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإجارة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الوكالة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الوقوف والصدقات والسكنى والهبات والسبق والرماية|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الوصية|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج5|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج6|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النكاح ج7|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطلاق ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الطلاق والخلع ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الخلع والمباراة والظهار والكفارات|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإيلاء واللعان والعتق|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب التدبير والمكاتبة والاستيلاء والإقرار|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الجعالة والأيمان|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب النذر والصيد والذباحة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الأطعمة والأشربة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الأطعمة والأشربة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الغضب|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الشفعة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب إحياء الموات|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب اللقطة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإرث ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإرث ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب القضاء ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب القضاء ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الشهادات|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحدود والتعزيرات ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحدود والتعزيرات ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب القصاص|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الديات ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الديات ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الواجبات|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المحرمات|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الآداب والسنن ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الآداب والسنن ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الآداب والسنن ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الآداب والسنن ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب حول القرآن الحكيم|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحكم في الإسلام|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الحقوق|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الدولة الإسلامية ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الدولة الإسلامية ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإدارة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الإدارة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب السياسة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب السياسة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الاقتصاد ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الاقتصاد ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الاجتماع ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الاجتماع ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب حول السنة المطهرة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب البيع ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب البيع ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب البيع ج3|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب البيع ج4|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب البيع ج5|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب التجارة|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الخيارات ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب الخيارات ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المكاسب المحرمة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+كتاب المكاسب المحرمة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+`;
+
+const BOOKS = DATA.trim().split("\n").filter(l=>l && !l.startsWith("---")).map((line,i)=>{
+  const parts = line.split("|").map(s=>s.trim());
+  const [t, c, y, f="pw", a, s="", arc="", wExt=""] = parts;
+  return {
+    id: "b"+i,
+    t, c,
+    y: parseInt(y)||0,
+    f,
+    a: a || DEFAULT_AUTH,
+    series: s || "",
+    archiveId: arc || "",
+    wordExt: wExt || "docx",
+    hasPdf:  f.includes("p"),
+    hasWord: f.includes("w"),
+    hasEpub: f.includes("e"),
+    reads: Math.floor(Math.random()*1800)+80
+  };
+});
+
+/* =========================================================
+   المفضلة
+========================================================= */
+let FAVORITES = { books: [], series: [] };
+
+try{
+  const f = JSON.parse(localStorage.getItem("alsh_favorites")||"{}");
+  if(Array.isArray(f.books)) FAVORITES.books = f.books;
+  if(Array.isArray(f.series)) FAVORITES.series = f.series;
+}catch(e){}
+
+const saveFavorites = () => {
+  try{ localStorage.setItem("alsh_favorites", JSON.stringify(FAVORITES)); }catch(e){}
+};
+
+const isFav = (type, id) => {
+  if(type === "book") return FAVORITES.books.includes(id);
+  if(type === "series") return FAVORITES.series.includes(id);
+  return false;
+};
+
+const countFavs = () => FAVORITES.books.length + FAVORITES.series.length;
+
+function updateFavCounters(){
+  const c = countFavs();
+  const topEl = document.getElementById("favCountTop");
+  const sideEl = document.getElementById("favCountSide");
+  if(topEl) topEl.textContent = c;
+  if(sideEl) sideEl.textContent = c;
+}
+
+function toggleFav(type, id, ev){
+  if(ev){ ev.stopPropagation(); ev.preventDefault(); }
+  const arr = type === "book" ? FAVORITES.books : FAVORITES.series;
+  const idx = arr.indexOf(id);
+  if(idx > -1){
+    arr.splice(idx, 1);
+  } else {
+    arr.push(id);
+  }
+  saveFavorites();
+  updateFavCounters();
+  refreshFavButtons(type, id);
+  if(location.hash === "#/favorites"){
+    renderFavorites();
+  }
+}
+
+function refreshFavButtons(type, id){
+  document.querySelectorAll(`[data-fav-type="${type}"][data-fav-id="${id}"]`).forEach(btn=>{
+    if(isFav(type, id)){
+      btn.classList.add("active");
+      btn.setAttribute("aria-label", "إزالة من المفضلة");
+    } else {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-label", "إضافة إلى المفضلة");
+    }
+  });
+}
+
+function clearAllFavs(){
+  if(!countFavs()) return;
+  if(!confirm("هل أنت متأكد من حذف جميع العناصر من المفضلة؟")) return;
+  FAVORITES = { books: [], series: [] };
+  saveFavorites();
+  updateFavCounters();
+  renderFavorites();
+}
+
+/* =========================================================
+   بناء زر المفضلة (HTML)
+========================================================= */
+function favBtnHtml(type, id, extraClass=""){
+  const active = isFav(type, id);
+  return `<button class="fav-btn ${active?'active':''} ${extraClass}"
+    data-fav-type="${type}" data-fav-id="${id}"
+    onclick="toggleFav('${type}','${id}',event)"
+    aria-label="${active?'إزالة من المفضلة':'إضافة إلى المفضلة'}"
+    title="${active?'إزالة من المفضلة':'إضافة إلى المفضلة'}">
+    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  </button>`;
+}
+
+/* =========================================================
+   أدوات
+========================================================= */
+const app = document.getElementById("app");
+const state = {
+  view:"table", sort:"title-asc", q:"", cat:"all",
+  author:"all", series:"all", searchType:"title"
+};
+const reader = {size:22, line:2.1, theme:"light"};
+
+const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const getCat = id => CATS.find(c=>c.id===id);
+const getBook = id => BOOKS.find(b=>b.id===id);
+const getAuthor = id => AUTHORS.find(a=>a.id===id);
+const getSeries = id => SERIES.find(s=>s.id===id);
+const countIn = id => BOOKS.filter(b=>b.c===id).length;
+const countByAuthor = id => BOOKS.filter(b=>b.a===id).length;
+const countBySeries = id => BOOKS.filter(b=>b.series===id).length;
+const authorName = id => getAuthor(id)?.short || "—";
+const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id) > 0);
+
+try{
+  const p = JSON.parse(localStorage.getItem("alsh_prefs")||"{}");
+  if(p.view) state.view = p.view;
+  if(p.sort) state.sort = p.sort;
+  if(p.searchType) state.searchType = p.searchType;
+  if(p.reader) Object.assign(reader, p.reader);
+}catch(e){}
+
+const savePrefs = () => {
+  try{localStorage.setItem("alsh_prefs",JSON.stringify({view:state.view,sort:state.sort,searchType:state.searchType,reader}));}catch(e){}
+};
+
+function matchBook(b, query, type){
+  const q = query.toLowerCase().trim();
+  if(!q) return true;
+  const title = b.t.toLowerCase();
+  const authShort = authorName(b.a).toLowerCase();
+  const authFull = (getAuthor(b.a)?.name||"").toLowerCase();
+  const catName = (getCat(b.c)?.name||"").toLowerCase();
+  switch(type){
+    case "title":     return title.includes(q);
+    case "author":    return authShort.includes(q) || authFull.includes(q);
+    case "category":  return catName.includes(q);
+    case "all":
+    default:
+      return title.includes(q) || authShort.includes(q) || authFull.includes(q) || catName.includes(q);
+  }
+}
+
+const sidebarBackdrop = document.getElementById("sidebarBackdrop");
+const menuBtn = document.getElementById("menuBtn");
+const sidebarClose = document.getElementById("sidebarClose");
+
+function openSidebar(){
+  document.body.classList.add("sidebar-open");
+  document.body.classList.add("no-scroll");
+}
+function closeSidebar(){
+  document.body.classList.remove("sidebar-open");
+  document.body.classList.remove("no-scroll");
+}
+menuBtn.addEventListener("click", openSidebar);
+sidebarClose.addEventListener("click", closeSidebar);
+sidebarBackdrop.addEventListener("click", closeSidebar);
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape"){ closeSidebar(); closeModal(); }
+});
+
+function updateDT(){
+  const now = new Date();
+  try{
+    const h = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(now);
+    document.getElementById('hijriDate').textContent = h + " هـ";
+  }catch(e){ document.getElementById('hijriDate').textContent = "—"; }
+  try{
+    const g = new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
+    document.getElementById('gregDate').textContent = g + " م";
+  }catch(e){ document.getElementById('gregDate').textContent = "—"; }
+  const t = new Intl.DateTimeFormat('ar-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now);
+  document.getElementById('clock').textContent = t;
+}
+updateDT();
+setInterval(updateDT, 1000);
+
+window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  buildSidebar();
+  updateFavCounters();
+  router();
+});
+
+function router(){
+  const raw = location.hash.replace(/^#\/?/, "") || "home";
+  const [route, param] = raw.split("/");
+  window.scrollTo({top:0,behavior:"smooth"});
+  closeModal();
+
+  if(route === "home")            renderHome();
+  else if(route === "library")    renderLibrary();
+  else if(route === "cats")       renderAllCats();
+  else if(route === "series")     renderAllSeries();
+  else if(route === "series-one") renderSeriesPage(param);
+  else if(route === "favorites")  renderFavorites();
+  else if(route === "authors")    renderAllAuthors();
+  else if(route === "author")     renderAuthorPage(param);
+  else if(route === "languages")  renderCategory("languages");
+  else if(route === "category")   renderCategory(param);
+  else if(route === "read")       renderReader(param);
+  else if(route === "about")      renderAbout();
+  else                            renderHome();
+
+  updateSideActive();
+}
+
+function buildSidebar(){
+  const cats = document.getElementById("sideCats");
+  cats.innerHTML = `
+    <li><a href="#/home" data-sc="home" onclick="closeSidebar()"><span>الرئيسية</span></a></li>
+    <li><a href="#/library" data-sc="all" onclick="closeSidebar()"><span>كل الكتب</span><span class="cnt">${BOOKS.length}</span></a></li>
+    ${CATS.map(c=>`
+      <li><a href="#/category/${c.id}" data-sc="${c.id}" onclick="closeSidebar()">
+        <span>${esc(c.name)}</span>
+        <span class="cnt">${countIn(c.id)}</span>
+      </a></li>`).join("")}
+  `;
+
+  const seriesEl = document.getElementById("sideSeries");
+  seriesEl.innerHTML = SERIES.map(s=>`
+    <li><a href="#/series-one/${s.id}" data-sr="${s.id}" onclick="closeSidebar()">
+      <span>${esc(s.name)}</span>
+      <span class="cnt">${countBySeries(s.id)}</span>
+    </a></li>`).join("");
+
+  const auths = document.getElementById("sideAuthors");
+  auths.innerHTML = AUTHORS.map(a=>{
+    const count = countByAuthor(a.id);
+    if(count === 0){
+      return `<li><a class="empty">
+        <span>${esc(a.short)}</span>
+        <span class="cnt soon">قريباً</span>
+      </a></li>`;
+    }
+    return `<li><a href="#/author/${a.id}" data-au="${a.id}" onclick="closeSidebar()">
+      <span>${esc(a.short)}</span>
+      <span class="cnt">${count}</span>
+    </a></li>`;
+  }).join("");
+
+  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0,5);
+  document.getElementById("sideLatest").innerHTML = latest.map(b=>`
+    <div class="mini-book" onclick="closeSidebar();location.hash='#/read/${b.id}'">
+      <div class="thumb">${esc(b.t.charAt(0))}</div>
+      <div class="txt">
+        <div class="t">${esc(b.t)}</div>
+        <div class="y">${esc(authorName(b.a))}</div>
+      </div>
+    </div>`).join("");
+}
+
+function updateSideActive(){
+  const raw = location.hash.replace(/^#\/?/, "") || "home";
+  const [route, param] = raw.split("/");
+  document.querySelectorAll("#sideCats a").forEach(a=>a.classList.remove("active"));
+  document.querySelectorAll("#sideSeries a").forEach(a=>a.classList.remove("active"));
+  document.querySelectorAll("#sideAuthors a").forEach(a=>a.classList.remove("active"));
+  document.querySelectorAll(".cat-list a[data-fav]").forEach(a=>a.classList.remove("active"));
+  if(route==="category"){
+    const a = document.querySelector(`#sideCats a[data-sc="${param}"]`);
+    if(a) a.classList.add("active");
+  } else if(route==="library"){
+    const a = document.querySelector(`#sideCats a[data-sc="all"]`);
+    if(a) a.classList.add("active");
+  } else if(route==="home"){
+    const a = document.querySelector(`#sideCats a[data-sc="home"]`);
+    if(a) a.classList.add("active");
+  } else if(route==="series-one"){
+    const a = document.querySelector(`#sideSeries a[data-sr="${param}"]`);
+    if(a) a.classList.add("active");
+  } else if(route==="author"){
+    const a = document.querySelector(`#sideAuthors a[data-au="${param}"]`);
+    if(a) a.classList.add("active");
+  } else if(route==="favorites"){
+    const a = document.querySelector(`.cat-list a[data-fav="all"]`);
+    if(a) a.classList.add("active");
+  }
+}
+
+function authorCardHtml(a){
+  const count = countByAuthor(a.id);
+  const isEmpty = count === 0;
+  const href = isEmpty ? "javascript:void(0)" : `#/author/${a.id}`;
+  const clickAttr = isEmpty ? `onclick="showSoon('${esc(a.name)}')"` : "";
+  return `
+    <a href="${href}" class="author-card ${isEmpty?'empty':''}" ${clickAttr}>
+      <div class="author-avatar">${esc(a.short.charAt(0))}</div>
+      <div class="author-info">
+        <div class="a-name">${esc(a.name)}</div>
+        <div class="a-bio">${esc(a.bio)}</div>
+        ${isEmpty
+          ? `<div class="a-count soon">قريباً</div>`
+          : `<div class="a-count">${count} كتاب</div>`}
+      </div>
+    </a>`;
+}
+
+function seriesCardHtml(s){
+  const count = countBySeries(s.id);
+  return `
+    <a href="#/series-one/${s.id}" class="series-card">
+      <div class="sc-fav-wrap">${favBtnHtml("series", s.id, "small")}</div>
+      <div class="sc-info">
+        <span class="sc-tag">موسوعة</span>
+        <div class="sc-name">${esc(s.name)}</div>
+        <div class="sc-desc">${esc(s.desc)}</div>
+        <div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div>
+      </div>
+      <div class="sc-badge">${count}<small>كتاب</small></div>
+    </a>`;
+}
+
+function seriesMiniHtml(s){
+  const count = countBySeries(s.id);
+  return `
+    <a href="#/series-one/${s.id}" class="series-mini">
+      <div class="sm-icon">${esc(s.name.charAt(0))}</div>
+      <div class="sm-info">
+        <div class="sm-name">${esc(s.name)}</div>
+        <div class="sm-desc">${esc(s.desc)}</div>
+        <div class="sm-count">${count} كتاب • ${esc(authorName(s.author))}</div>
+      </div>
+      <div class="sm-fav">${favBtnHtml("series", s.id, "small")}</div>
+    </a>`;
+}
+
+function showSoon(name){
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/authors'">→ كل المؤلفين</button>
+    <div class="soon-box">
+      <div class="soon-icon">✦</div>
+      <h3>قريباً إن شاء الله</h3>
+      <p>مؤلفات <strong>${esc(name)}</strong> ستُضاف إلى المكتبة في تحديث قادم بإذن الله تعالى.</p>
+      <p style="margin-top:14px;font-size:13px">تابعونا للحصول على الجديد.</p>
+    </div>`;
+}
+
+/* =========================================================
+   صفحة المفضلة
+========================================================= */
+function renderFavorites(){
+  const favBooks = FAVORITES.books.map(id => getBook(id)).filter(Boolean);
+  const favSeries = FAVORITES.series.map(id => getSeries(id)).filter(Boolean);
+  const total = favBooks.length + favSeries.length;
+
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ الرئيسية</button>
+
+    <div class="fav-header">
+      <div class="fh-info">
+        <h1>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          المفضلة
+        </h1>
+        <p>جميع الكتب والموسوعات التي حفظتها في مكان واحد</p>
+        <div class="fh-stats">
+          <span class="fh-stat">الكتب: <strong>${favBooks.length}</strong></span>
+          <span class="fh-stat">الموسوعات: <strong>${favSeries.length}</strong></span>
+          <span class="fh-stat">الإجمالي: <strong>${total}</strong></span>
+        </div>
+      </div>
+      ${total ? `
+        <button class="fav-clear-btn" onclick="clearAllFavs()">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+          حذف الكل
+        </button>` : ""}
+    </div>
+
+    ${total === 0 ? `
+      <div class="empty-fav">
+        <div class="ef-icon">⭐</div>
+        <h3 style="font-family:'Amiri',serif;font-size:20px;color:var(--ink);margin-bottom:8px">لا توجد عناصر محفوظة بعد</h3>
+        <p>يمكنك حفظ أي كتاب أو موسوعة بالضغط على أيقونة النجمة (⭐) الموجودة على بطاقة الكتاب أو في صفحة القراءة.</p>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+          <button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/library'">تصفح الكتب</button>
+          <button class="fmt-btn fmt-pdf fmt-btn-md" onclick="location.hash='#/series'">تصفح الموسوعات</button>
+        </div>
+      </div>
+    ` : `
+      ${favBooks.length ? `
+        <div class="fav-section-title">
+          <span>الكتب المحفوظة</span>
+          <span class="fst-count">${favBooks.length}</span>
+        </div>
+        ${tableHtml(favBooks)}
+      ` : ""}
+
+      ${favSeries.length ? `
+        <div class="fav-section-title" style="margin-top:26px">
+          <span>الموسوعات المحفوظة</span>
+          <span class="fst-count">${favSeries.length}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+          ${favSeries.map(seriesMiniHtml).join("")}
+        </div>
+      ` : ""}
+    `}
+  `;
+}
+
+function renderHome(){
+  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0,10);
+  const dayIdx = Math.floor(Date.now()/(1000*60*60*24));
+  const featured = BOOKS[dayIdx % BOOKS.length];
+  const fc = getCat(featured.c);
+  const fa = getAuthor(featured.a);
+
+  app.innerHTML = `
+    <section class="hero">
+      <h1>مكتبة آل الشيرازي</h1>
+      <p>موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات في التفسير والعقائد والفقه والأخلاق والتاريخ وغيرها.</p>
+      <div class="stats">
+        <div class="stat"><strong>${BOOKS.length}</strong><span>كتاب في المكتبة</span></div>
+        <div class="stat"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
+        <div class="stat"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div>
+        <div class="stat"><strong>PDF · Word · epub</strong><span>صيغ التحميل</span></div>
+      </div>
+    </section>
+
+    <div class="sec-title">كتاب اليوم</div>
+    <div class="featured">
+      <div class="book-cover" style="border-radius:var(--radius)" onclick="location.hash='#/read/${featured.id}'">
+        <div class="ct">${esc(featured.t)}</div>
+        <div class="ca">${esc(fa?.short||"")}</div>
+        ${featured.archiveId ? `<span class="cbadge available">متوفر</span>` : `<span class="cbadge">قريباً</span>`}
+      </div>
+      <div>
+        <h3 style="font-family:'Amiri',serif;font-size:19px;color:var(--ink);margin-bottom:6px;font-weight:700">${esc(featured.t)}</h3>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:5px">
+          <strong style="color:var(--ink)">المؤلف:</strong>
+          <a href="#/author/${featured.a}" style="color:var(--neutral-800);font-weight:600">${esc(fa?.name||"")}</a>
+        </p>
+        <p style="color:var(--muted);font-size:13.5px;margin-bottom:12px">
+          <strong style="color:var(--ink)">التصنيف:</strong> ${esc(fc?.name||"")}${featured.y?` — ${featured.y}هـ`:""}
+        </p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+          <button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/read/${featured.id}'">اقرأ الآن</button>
+          ${featured.hasPdf?`<button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadBook('${featured.id}','pdf')">تحميل PDF</button>`:""}
+          ${featured.hasWord?`<button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadBook('${featured.id}','word')">تحميل Word</button>`:""}
+          ${favBtnHtml("book", featured.id, "large")}
+        </div>
+      </div>
+    </div>
+
+    ${SERIES.length ? `
+      <div class="sec-title">الموسوعات</div>
+      <div style="display:grid;gap:12px;margin-bottom:24px">
+        ${SERIES.map(seriesCardHtml).join("")}
+      </div>
+    ` : ""}
+
+    <div class="sec-title">المؤلفون</div>
+    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-bottom:24px">
+      ${AUTHORS.map(authorCardHtml).join("")}
+    </div>
+
+    <div class="sec-title">تصنيفات المكتبة</div>
+    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-bottom:24px">
+      ${CATS.map(c=>`
+        <a href="#/category/${c.id}" class="cat-card ${c.highlight?'highlight':''}">
+          <div class="cc-info">
+            <div class="cc-name">${esc(c.name)}</div>
+            <div class="cc-count">${countIn(c.id)} كتاب</div>
+          </div>
+          <div class="cc-badge">${countIn(c.id)}</div>
+        </a>`).join("")}
+    </div>
+
+    <div class="sec-title">أحدث الإضافات</div>
+    ${tableHtml(latest)}
+  `;
+}
+
+function renderAllCats(){
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>تصنيفات المكتبة</h1>
+        <p>${CATS.length} تصنيف رئيسي — ${BOOKS.length} كتاب</p>
+      </div>
+    </div>
+    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+      ${CATS.map(c=>`
+        <a href="#/category/${c.id}" class="cat-card ${c.highlight?'highlight':''}">
+          <div class="cc-info">
+            <div class="cc-name">${esc(c.name)}</div>
+            <div class="cc-count">${countIn(c.id)} كتاب</div>
+          </div>
+          <div class="cc-badge">${countIn(c.id)}</div>
+        </a>`).join("")}
+    </div>`;
+}
+
+function renderAllSeries(){
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>الموسوعات</h1>
+        <p>${SERIES.length} موسوعة — مجموع كتبها ${SERIES.reduce((sum,s)=>sum+countBySeries(s.id),0)}</p>
+      </div>
+    </div>
+    ${SERIES.length ? `
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+        ${SERIES.map(seriesMiniHtml).join("")}
+      </div>
+    ` : `
+      <div class="soon-box">
+        <div class="soon-icon">✦</div>
+        <h3>قريباً</h3>
+        <p>سيتم إضافة الموسوعات تباعاً بإذن الله.</p>
+      </div>
+    `}`;
+}
+
+function renderSeriesPage(id){
+  const s = getSeries(id);
+  if(!s){ location.hash = "#/series"; return; }
+  const count = countBySeries(id);
+  state.cat = "all";
+  state.author = "all";
+  state.series = id;
+  state.q = "";
+  document.getElementById("q").value = "";
+
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/series'">→ كل الموسوعات</button>
+    <div class="cat-head" style="position:relative">
+      <span class="sc-tag" style="position:absolute;top:-10px;inset-inline-start:20px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--neutral-900);font-size:11px;font-weight:800;padding:3px 12px;border-radius:12px">موسوعة</span>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div class="ch-txt" style="flex:1;min-width:200px">
+          <h1>${esc(s.name)}</h1>
+          <p>${esc(s.desc)}</p>
+          <p style="margin-top:6px">المؤلف: <strong>${esc(authorName(s.author))}</strong> — <strong>${count}</strong> كتاب</p>
+        </div>
+        <div style="position:relative;z-index:1">
+          ${favBtnHtml("series", s.id, "large")}
+        </div>
+      </div>
+    </div>
+
+    ${toolbarHtml(true)}
+    <div id="list">${booksContainerHtml()}</div>
+
+    <div class="download-all-box" style="margin-top:18px">
+      <div class="da-info">
+        <div class="da-title">تحميل جميع الأجزاء</div>
+        <div class="da-desc">يمكنك تحميل كل كتب هذه الموسوعة (${count} كتاباً) بصيغتي PDF و Word دفعة واحدة. المتوفر حالياً: ${BOOKS.filter(b=>b.series===id && b.archiveId).length} من ${count}.</div>
+      </div>
+      <div class="da-actions">
+        <button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadAll('${s.id}','pdf')">تحميل PDF</button>
+        <button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadAll('${s.id}','word')">تحميل Word</button>
+      </div>
+    </div>`;
+  bindToolbar();
+  renderList();
+}
+
+function renderAllAuthors(){
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>المؤلفون</h1>
+        <p>${AUTHORS.length} مؤلف من أسرة آل الشيرازي</p>
+      </div>
+    </div>
+    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      ${AUTHORS.map(authorCardHtml).join("")}
+    </div>`;
+}
+
+function renderAuthorPage(id){
+  const a = getAuthor(id);
+  if(!a){ location.hash = "#/authors"; return; }
+  const count = countByAuthor(id);
+  if(count === 0){ showSoon(a.name); return; }
+
+  state.cat = "all";
+  state.author = id;
+  state.series = "all";
+  state.q = "";
+  document.getElementById("q").value = "";
+
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/authors'">→ كل المؤلفين</button>
+    <div class="cat-head" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <div class="author-avatar" style="width:64px;height:64px;font-size:28px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--neutral-900)">${esc(a.short.charAt(0))}</div>
+      <div class="ch-txt" style="flex:1;min-width:200px">
+        <h1>${esc(a.name)}</h1>
+        <p>${esc(a.bio)}</p>
+        <p style="margin-top:6px"><strong>${count}</strong> كتاب في المكتبة</p>
+      </div>
+    </div>
+    ${toolbarHtml()}
+    <div id="list">${booksContainerHtml()}</div>`;
+  bindToolbar();
+  renderList();
+}
+
+function renderCategory(id){
+  const cat = getCat(id);
+  if(!cat){ location.hash = "#/home"; return; }
+  state.cat = id;
+  state.author = "all";
+  state.series = "all";
+  state.q = "";
+  document.getElementById("q").value = "";
+
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع إلى الرئيسية</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>${esc(cat.name)}</h1>
+        <p>${countIn(cat.id)} كتاب في هذا التصنيف</p>
+      </div>
+    </div>
+    ${toolbarHtml()}
+    <div id="list">${booksContainerHtml()}</div>`;
+  bindToolbar();
+  renderList();
+}
+
+function renderLibrary(){
+  state.cat = "all";
+  state.author = "all";
+  state.series = "all";
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ الرئيسية</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>كل الكتب</h1>
+        <p>${BOOKS.length} كتاب في المكتبة</p>
+      </div>
+    </div>
+    ${toolbarHtml()}
+    <div id="list">${booksContainerHtml()}</div>`;
+  bindToolbar();
+  renderList();
+}
+
+function toolbarHtml(isSeriesPage){
+  const auths = authorsWithBooks();
+  return `
+    <div class="toolbar">
+      <div class="results" id="resCount"></div>
+      <div class="tools">
+        ${(!isSeriesPage && auths.length > 1) ? `
+          <select id="authorFilter">
+            <option value="all">كل المؤلفين</option>
+            ${auths.map(a=>`<option value="${a.id}">${esc(a.short)}</option>`).join("")}
+          </select>` : ""}
+        <select id="sort">
+          <option value="title-asc">أبجدي (أ – ي)</option>
+          <option value="title-desc">أبجدي (ي – أ)</option>
+          <option value="year-desc">الأحدث أولاً</option>
+          <option value="year-asc">الأقدم أولاً</option>
+          <option value="reads-desc">الأكثر قراءة</option>
+        </select>
+        <div class="view-toggle">
+          <button data-view="table" class="${state.view==="table"?"active":""}">قائمة</button>
+          <button data-view="grid"  class="${state.view==="grid"?"active":""}">بطاقات</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function booksContainerHtml(){
+  return `<div id="booksBox" class="${state.view==="table"?"books-table":"books-grid"}"></div>`;
+}
+
+function bindToolbar(){
+  const sel = document.getElementById("sort");
+  if(sel){
+    sel.value = state.sort;
+    sel.onchange = ()=>{ state.sort = sel.value; savePrefs(); renderList(); };
+  }
+  const auSel = document.getElementById("authorFilter");
+  if(auSel){
+    auSel.value = state.author;
+    auSel.onchange = ()=>{ state.author = auSel.value; renderList(); };
+  }
+  document.querySelectorAll(".view-toggle button").forEach(b=>{
+    b.onclick = ()=>{
+      state.view = b.dataset.view; savePrefs();
+      document.querySelectorAll(".view-toggle button").forEach(x=>x.classList.toggle("active", x===b));
+      const box = document.getElementById("booksBox");
+      box.className = state.view==="table"?"books-table":"books-grid";
+      renderList();
+    };
+  });
+}
+
+function getFiltered(){
+  let list = [...BOOKS];
+  if(state.cat !== "all") list = list.filter(b=>b.c===state.cat);
+  if(state.author !== "all") list = list.filter(b=>b.a===state.author);
+  if(state.series !== "all") list = list.filter(b=>b.series===state.series);
+  if(state.q){
+    list = list.filter(b => matchBook(b, state.q, state.searchType));
+  }
+  switch(state.sort){
+    case "title-asc":  list.sort((a,b)=>a.t.localeCompare(b.t,"ar")); break;
+    case "title-desc": list.sort((a,b)=>b.t.localeCompare(a.t,"ar")); break;
+    case "year-desc":  list.sort((a,b)=>(b.y||0)-(a.y||0)); break;
+    case "year-asc":   list.sort((a,b)=>(a.y||0)-(b.y||0)); break;
+    case "reads-desc": list.sort((a,b)=>(b.reads||0)-(a.reads||0)); break;
+  }
+  return list;
+}
+
+function renderList(){
+  const list = getFiltered();
+  const box  = document.getElementById("booksBox");
+  const res  = document.getElementById("resCount");
+  if(!box) return;
+
+  if(res) res.innerHTML = `عدد النتائج: <strong>${list.length}</strong> كتاب`;
+
+  if(!list.length){
+    box.className = "";
+    box.innerHTML = `<div style="text-align:center;padding:70px 20px;color:var(--muted)">
+      <p style="font-size:15px">لا توجد نتائج مطابقة.</p>
+    </div>`;
+    return;
+  }
+
+  if(state.view === "table") box.innerHTML = tableInnerHtml(list);
+  else box.innerHTML = gridInnerHtml(list);
+}
+
+function tableHtml(list){
+  return `<div class="books-table">${tableInnerHtml(list)}</div>`;
+}
+
+function tableInnerHtml(list){
+  return `
+    <div class="books-list">
+      ${list.map((b,i)=>{
+        const num = state.sort==="title-asc" || state.sort==="reads-desc" ? i+1 : "";
+        return `
+          <div class="book-row">
+            <div class="book-row-top">
+              ${num?`<span class="book-num">${num}</span>`:""}
+              <span class="book-title" onclick="location.hash='#/read/${b.id}'">${esc(b.t)}</span>
+              <span class="book-actions">
+                ${favBtnHtml("book", b.id)}
+                <button class="fmt-btn fmt-read" onclick="location.hash='#/read/${b.id}'">قراءة</button>
+                ${b.hasPdf?`<button class="fmt-btn fmt-pdf" onclick="downloadBook('${b.id}','pdf')">PDF</button>`:""}
+                ${b.hasWord?`<button class="fmt-btn fmt-word" onclick="downloadBook('${b.id}','word')">Word</button>`:""}
+                ${b.hasEpub?`<button class="fmt-btn fmt-epub" onclick="downloadBook('${b.id}','epub')">epub</button>`:""}
+              </span>
+            </div>
+            <div class="book-row-bottom">
+              <span class="author-name">${esc(authorName(b.a))}${b.series?` • ${esc(getSeries(b.series)?.name||"")}`:""}</span>
+              ${b.archiveId 
+                ? `<span class="book-status available">متوفر</span>` 
+                : `<span class="book-status">قريباً</span>`}
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function gridInnerHtml(list){
+  return list.map(b=>{
+    const c = getCat(b.c);
+    return `
+      <article class="book-card">
+        <div class="book-cover" onclick="location.hash='#/read/${b.id}'">
+          ${b.archiveId ? `<span class="cbadge available">متوفر</span>` : `<span class="cbadge">قريباً</span>`}
+          <div class="cover-fav">${favBtnHtml("book", b.id, "small")}</div>
+          <div class="ct">${esc(b.t)}</div>
+          <div class="ca">${esc(authorName(b.a))}</div>
+        </div>
+        <div class="book-info">
+          <div class="bi-title" onclick="openBook('${b.id}')">${esc(b.t)}</div>
+          <div class="bi-meta">${esc(authorName(b.a))} • ${esc(c?.name||"")}${b.y?` • ${b.y}هـ`:""}</div>
+          <div class="bi-formats">
+            <button class="fmt-btn fmt-read" onclick="event.stopPropagation();location.hash='#/read/${b.id}'">قراءة</button>
+            ${b.hasPdf?`<button class="fmt-btn fmt-pdf" onclick="event.stopPropagation();downloadBook('${b.id}','pdf')">PDF</button>`:""}
+            ${b.hasWord?`<button class="fmt-btn fmt-word" onclick="event.stopPropagation();downloadBook('${b.id}','word')">Word</button>`:""}
+          </div>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+function openBook(id){
+  const b = getBook(id);
+  if(!b) return;
+  const c = getCat(b.c);
+  const a = getAuthor(b.a);
+  const s = b.series ? getSeries(b.series) : null;
+  const wordLabel = b.wordExt === "doc" ? "Word (.doc)" : "Word (.docx)";
+  document.getElementById("modalBody").innerHTML = `
+    <div class="detail">
+      <div class="book-cover" onclick="location.hash='#/read/${b.id}';closeModal()">
+        <div class="ct">${esc(b.t)}</div>
+        <div class="ca">${esc(a?.short||"")}</div>
+      </div>
+      <div>
+        <h2>${esc(b.t)}</h2>
+        <div class="meta2">
+          <div><strong>المؤلف:</strong>
+            <a href="#/author/${b.a}" onclick="closeModal()">${esc(a?.name||"")}</a>
+          </div>
+          <div><strong>التصنيف:</strong> ${esc(c?.name||"")}</div>
+          ${s?`<div><strong>الموسوعة:</strong> <a href="#/series-one/${s.id}" onclick="closeModal()">${esc(s.name)}</a></div>`:""}
+          ${b.y?`<div><strong>سنة النشر:</strong> ${b.y}هـ</div>`:""}
+          <div><strong>الصيغ المتوفرة:</strong> ${
+            [b.hasPdf&&"PDF", b.hasWord&&wordLabel, b.hasEpub&&"epub"].filter(Boolean).join(" · ")
+          }</div>
+          <div><strong>حالة الملف:</strong>
+            ${b.archiveId 
+              ? `<span class="status-badge available">متوفر للقراءة والتحميل</span>` 
+              : `<span class="status-badge">قيد الإضافة</span>`}
+          </div>
+        </div>
+        <div class="dl">
+          <button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/read/${b.id}';closeModal()">اقرأ الآن</button>
+          ${b.hasPdf?`<button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadBook('${b.id}','pdf')">تحميل PDF</button>`:""}
+          ${b.hasWord?`<button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadBook('${b.id}','word')">تحميل ${wordLabel}</button>`:""}
+          ${b.hasEpub?`<button class="fmt-btn fmt-epub fmt-btn-md" onclick="downloadBook('${b.id}','epub')">تحميل epub</button>`:""}
+          ${favBtnHtml("book", b.id, "large")}
+        </div>
+      </div>
+    </div>`;
+  document.getElementById("modal").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeModal(){
+  document.getElementById("modal").hidden = true;
+  document.body.style.overflow = "";
+}
+
+const ARCHIVE_BASE = "https://archive.org/download/";
+
+function getFileUrl(book, format){
+  const ext = (format === "word") ? (book.wordExt || "docx") : format;
+  return `${ARCHIVE_BASE}${book.archiveId}/${book.id}.${ext}`;
+}
+
+function downloadBook(id, format){
+  const b = getBook(id);
+  if(!b) return;
+  if(!b.archiveId){
+    alert(`⚠️ ملف هذا الكتاب غير متوفر بعد.\n\n«${b.t}»\n\nسيتم إضافته قريباً بإذن الله.`);
+    return;
+  }
+  const url = getFileUrl(b, format);
+  window.open(url, "_blank");
+}
+
+function downloadAll(seriesId, format){
+  const s = getSeries(seriesId);
+  if(!s) return;
+  const books = BOOKS.filter(b => b.series === seriesId && b.archiveId);
+  const total = countBySeries(seriesId);
+  if(!books.length){
+    alert("⚠️ ملفات هذه الموسوعة غير متوفرة بعد.\n\nسيتم إضافتها قريباً بإذن الله.");
+    return;
+  }
+  let msg = `سيتم فتح ${books.length} ملفاً للتحميل بصيغة ${format === "word" ? "Word" : format.toUpperCase()}.`;
+  if(books.length < total){
+    msg += `\n\nملاحظة: ${total - books.length} كتاب لم تُضف ملفاتها بعد.`;
+  }
+  msg += "\n\nمتابعة؟";
+  if(!confirm(msg)) return;
+  books.forEach((b, i) => {
+    setTimeout(() => {
+      window.open(getFileUrl(b, format), "_blank");
+    }, i * 500);
+  });
+}
+
+const SAMPLE = `
+<p class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+<p>الحمد لله رب العالمين، والصلاة والسلام على أشرف الأنبياء والمرسلين، سيدنا ونبينا محمد وآله الطيبين الطاهرين، واللعنة الدائمة على أعدائهم أجمعين إلى قيام يوم الدين.</p>
+<h2>مقدمة</h2>
+<p>إنّ من أعظم ما تُبنى به المجتمعات، وتُصان به الأمم، العلمُ والمعرفة، فقد جعل الله سبحانه وتعالى العلم نورًا يهتدي به العباد، وسبيلًا إلى معرفته ومعرفة أنبيائه وأوليائه، وطريقًا إلى سعادة الدارين.</p>
+<p>وقد أولى الإسلام عناية فائقة بالعلم والعلماء، فكان أول ما نزل من القرآن الكريم قوله تعالى: <em>«اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ»</em>، مما يدل على أن الإسلام دين العلم والمعرفة.</p>
+<h2>فضل العلم وأهله</h2>
+<p>روي عن النبي الأكرم (صلى الله عليه وآله) أنه قال: «طلبُ العلمِ فريضةٌ على كلّ مسلمٍ ومسلمةٍ»، وقال أمير المؤمنين علي (عليه السلام): «العلمُ خيرٌ من المال؛ العلمُ يحرسُك وأنت تحرسُ المال».</p>
+<p>وفي هذا الكتاب نسعى إلى تقديم صورة واضحة عن هذا الموضوع، مستندين إلى القرآن الكريم والسنة المطهرة، وسيرة أهل البيت (عليهم السلام).</p>
+<p class="bism">وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>
+`;
+
+function renderReader(id){
+  const b = getBook(id);
+  if(!b){ location.hash = "#/home"; return; }
+  const c = getCat(b.c);
+  const a = getAuthor(b.a);
+  const s = b.series ? getSeries(b.series) : null;
+  const wordLabel = b.wordExt === "doc" ? "Word (.doc)" : "Word (.docx)";
+
+  if(!b.archiveId){
+    app.innerHTML = `
+      <button class="back-btn" onclick="history.back()">→ رجوع</button>
+      <div class="reader-head" style="background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg) var(--radius-lg) 0 0;border-bottom:none">
+        <div class="r-title">
+          <h1>${esc(b.t)}</h1>
+          <div class="r-sub">${esc(a?.name||"")} — ${esc(c?.name||"")}${s?` — ${esc(s.name)}`:""}${b.y?` — ${b.y}هـ`:""}</div>
+        </div>
+        ${favBtnHtml("book", b.id, "large")}
+      </div>
+      <div class="reader-no-file" style="border-radius:0 0 var(--radius-lg) var(--radius-lg);border-top:none">
+        <div class="icon">⏳</div>
+        <h3>الملف قيد الإضافة</h3>
+        <p>نسخة PDF من هذا الكتاب ستُضاف قريباً بإذن الله. تابعونا للحصول على التحديثات.</p>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+          ${s?`<button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/series-one/${s.id}'">الموسوعة</button>`:""}
+          <button class="fmt-btn fmt-pdf fmt-btn-md" onclick="location.hash='#/category/${b.c}'">كتب ${esc(c?.name||"")}</button>
+          <button class="fmt-btn fmt-word fmt-btn-md" onclick="location.hash='#/library'">كل الكتب</button>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <div class="sec-title">معاينة نصية (نموذج)</div>
+        <div class="reader">
+          <div class="reader-body">${SAMPLE}</div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  app.innerHTML = `
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
+    <div class="reader-iframe-wrap">
+      <div class="reader-header-info">
+        <div style="flex:1;min-width:200px">
+          <h1>${esc(b.t)}</h1>
+          <div class="r-sub">
+            <a href="#/author/${b.a}">${esc(a?.name||"")}</a> — ${esc(c?.name||"")}${s?` — <a href="#/series-one/${s.id}">${esc(s.name)}</a>`:""}${b.y?` — ${b.y}هـ`:""}
+          </div>
+        </div>
+        <div class="r-actions">
+          ${favBtnHtml("book", b.id, "large")}
+          ${b.hasPdf?`<button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadBook('${b.id}','pdf')">تحميل PDF</button>`:""}
+          ${b.hasWord?`<button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadBook('${b.id}','word')">تحميل ${wordLabel}</button>`:""}
+          ${b.hasEpub?`<button class="fmt-btn fmt-epub fmt-btn-md" onclick="downloadBook('${b.id}','epub')">تحميل epub</button>`:""}
+        </div>
+      </div>
+      <iframe 
+        src="https://archive.org/embed/${b.archiveId}" 
+        class="reader-iframe"
+        allowfullscreen
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+      ></iframe>
+    </div>`;
+}
+
+const q = document.getElementById("q");
+const sq = document.getElementById("sq");
+const sug = document.getElementById("sug");
+const searchTypeSel = document.getElementById("searchType");
+const sideSearchTypeSel = document.getElementById("sideSearchType");
+let timer;
+
+/* تهيئة نوع البحث من المحفوظات */
+if(searchTypeSel) searchTypeSel.value = state.searchType;
+if(sideSearchTypeSel) sideSearchTypeSel.value = state.searchType;
+updateSearchPlaceholder();
+
+function updateSearchPlaceholder(){
+  const ph = SEARCH_PLACEHOLDERS[state.searchType] || SEARCH_PLACEHOLDERS.title;
+  if(q) q.placeholder = ph;
+  if(sq) sq.placeholder = "اكتب ما تبحث عنه…";
+}
+
+searchTypeSel?.addEventListener("change", ()=>{
+  state.searchType = searchTypeSel.value;
+  if(sideSearchTypeSel) sideSearchTypeSel.value = state.searchType;
+  savePrefs();
+  updateSearchPlaceholder();
+  if(state.q && (location.hash === "#/library" || location.hash.startsWith("#/category") || location.hash.startsWith("#/author"))){
+    renderList();
+  }
+});
+
+sideSearchTypeSel?.addEventListener("change", ()=>{
+  state.searchType = sideSearchTypeSel.value;
+  if(searchTypeSel) searchTypeSel.value = state.searchType;
+  savePrefs();
+  updateSearchPlaceholder();
+});
+
+q.addEventListener("input", ()=>{
+  clearTimeout(timer);
+  const v = q.value.trim();
+  if(!v){ sug.classList.remove("show"); return; }
+  timer = setTimeout(()=>{
+    const results = BOOKS.filter(b => matchBook(b, v, state.searchType)).slice(0,8);
+    if(!results.length){ sug.classList.remove("show"); return; }
+    sug.innerHTML = results.map(b=>`
+      <li data-id="${b.id}">
+        ${esc(b.t)}
+        <span class="sug-auth">${esc(authorName(b.a))}</span>
+      </li>`).join("");
+    sug.classList.add("show");
+  },180);
+});
+
+sug.addEventListener("click", e=>{
+  const li = e.target.closest("li[data-id]");
+  if(!li) return;
+  sug.classList.remove("show");
+  q.value = "";
+  location.hash = "#/read/" + li.dataset.id;
+});
+
+document.getElementById("qBtn").onclick = ()=>doSearch(q.value);
+q.addEventListener("keydown", e=>{ if(e.key==="Enter") doSearch(q.value); });
+document.getElementById("sqBtn").onclick = ()=>{ doSearch(sq.value); closeSidebar(); };
+sq.addEventListener("keydown", e=>{ if(e.key==="Enter"){ doSearch(sq.value); closeSidebar(); } });
+
+function doSearch(v){
+  v = (v||"").trim();
+  if(!v){ state.q = ""; renderList(); return; }
+  state.q = v;
+  state.cat = "all";
+  state.author = "all";
+  state.series = "all";
+  sug.classList.remove("show");
+  if(location.hash === "#/library" || location.hash === "#/home" || location.hash === "#/favorites"){
+    renderLibrary();
+  } else location.hash = "#/library";
+}
+
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".topbar-search")) sug.classList.remove("show");
+});
+
+function renderAbout(){
+  app.innerHTML = `
+    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <div class="cat-head">
+      <div class="ch-txt">
+        <h1>عن المكتبة</h1>
+        <p>تعريف بالمشروع وأهدافه</p>
+      </div>
+    </div>
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);line-height:2;font-size:14.5px">
+      <p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح يسهّل الوصول إلى المؤلفات في مختلف المجالات: التفسير، والعقائد، والفقه، والأصول، والحديث، والأخلاق، والتاريخ، والاقتصاد، والسياسة، والأسرة، والشباب، وغيرها.</p>
+      <p style="margin-top:14px">كما تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> التي تغطي جميع أبواب الفقه الإسلامي، وقسمًا آخر بـ<strong>الكتب المترجمة إلى لغات أخرى</strong> (الإنجليزية، الفارسية، الأردية، التركية، الفرنسية، والألمانية...).</p>
+      <p style="margin-top:14px">ويمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي. حاليًا يضم القسم مؤلفات <strong>آية الله العظمى السيد محمد الحسيني الشيرازي (أعلى الله درجاته)</strong>، وستُضاف مؤلفات بقية الأعلام تباعًا بإذن الله.</p>
+      <p style="margin-top:14px">ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة في أي وقت.</p>
+      <p style="margin-top:14px;color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) نموذجية، ويمكن توسيع القائمة لتشمل كل مؤلفات أسرة آل الشيرازي التي تتجاوز <strong>1000 مؤلف</strong>.</p>
+    </div>`;
+}
+</script>
+</body>
+</html>
