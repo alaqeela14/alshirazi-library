@@ -1,0 +1,26 @@
+backend:
+  name: github
+  repo: alaqeela14/alshirazi-library
+  branch: main
+  base_url: https://sveltia-cms-auth.REPLACE-ME.workers.dev
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "books"
+    label: "الكتب"
+    label_singular: "كتاب"
+    folder: "books"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "اسم الكتاب", name: "title", widget: "string" }
+      - { label: "التصنيف", name: "category", widget: "select", options: ["quran","aqaid","fiqh","akhlaq","seerah","ahlulbayt","hussein","mahdi","siyasah","mujtama","languages"] }
+      - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m" }
+      - { label: "السنة", name: "year", widget: "number", default: 1420 }
+      - { label: "الصيغ", name: "formats", widget: "string", default: "pwe" }
+      - { label: "معرّف Archive", name: "archive_id", widget: "string", required: false }
+      - { label: "امتداد Word", name: "word_ext", widget: "string", default: "docx", required: false }
