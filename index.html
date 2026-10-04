@@ -4,6 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#6b0f0f" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="مكتبة آل الشيرازي" />
 <title>مكتبة آل الشيرازي | موسوعة مؤلفات أسرة آل الشيرازي</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
 <style>
@@ -1782,24 +1788,58 @@ La Donna nell'Islam (Italiano)|languages|1418|pw
 كتاب المكاسب المحرمة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
 `;
 
-const BOOKS = DATA.trim().split("\n").filter(l=>l && !l.startsWith("---")).map((line,i)=>{
-  const parts = line.split("|").map(s=>s.trim());
-  const [t, c, y, f="pw", a, s="", arc="", wExt=""] = parts;
-  return {
-    id: "b"+i,
-    t, c,
-    y: parseInt(y)||0,
-    f,
-    a: a || DEFAULT_AUTH,
-    series: s || "",
-    archiveId: arc || "",
-    wordExt: wExt || "docx",
-    hasPdf:  f.includes("p"),
-    hasWord: f.includes("w"),
-    hasEpub: f.includes("e"),
-    reads: Math.floor(Math.random()*1800)+80
-  };
-});
+let BOOKS = [];
+
+async function loadAdminBooks(){
+  try{
+    const res = await fetch('books.json?t=' + Date.now());
+    if(!res.ok) return [];
+    const json = await res.json();
+    if(!json.items || !Array.isArray(json.items)) return [];
+    return json.items.map((item, idx) => ({
+      id: "adm_" + idx,
+      t: item.title || "",
+      c: item.category || "fiqh",
+      y: parseInt(item.year) || 0,
+      f: (item.formats || ["pdf"]).map(f => f === "pdf" ? "p" : f === "word" ? "w" : f === "epub" ? "e" : "").join(""),
+      a: item.author || DEFAULT_AUTH,
+      series: item.series || "",
+      archiveId: item.archive_id || "",
+      wordExt: item.word_ext || "docx",
+      pdfUrl: item.pdf_file || item.drive_pdf || "",
+      wordUrl: item.word_file || item.drive_word || "",
+      hasPdf: (item.formats || []).includes("pdf"),
+      hasWord: (item.formats || []).includes("word"),
+      hasEpub: false,
+      reads: Math.floor(Math.random()*1800)+80
+    }));
+  }catch(e){
+    console.log("لا يوجد books.json");
+    return [];
+  }
+}
+
+function loadLegacyBooks(){
+  return DATA.trim().split("\n").filter(l=>l && !l.startsWith("---")).map((line,i)=>{
+    const parts = line.split("|").map(s=>s.trim());
+    const [t, c, y, f="pw", a, s="", arc="", wExt=""] = parts;
+    return {
+      id: "b"+i,
+      t, c,
+      y: parseInt(y)||0,
+      f,
+      a: a || DEFAULT_AUTH,
+      series: s || "",
+      archiveId: arc || "",
+      wordExt: wExt || "docx",
+      pdfUrl: "", wordUrl: "",
+      hasPdf:  f.includes("p"),
+      hasWord: f.includes("w"),
+      hasEpub: f.includes("e"),
+      reads: Math.floor(Math.random()*1800)+80
+    };
+  });
+}
 
 /* =========================================================
    المفضلة
@@ -1968,6 +2008,13 @@ function updateDT(){
 }
 updateDT();
 setInterval(updateDT, 1000);
+/* ============ تحميل الكتب من المصدرين ============ */
+(async function initBooks(){
+  const legacy = loadLegacyBooks();
+  const admin = await loadAdminBooks();
+  BOOKS = [...admin, ...legacy];
+  console.log(`✅ تم تحميل ${admin.length} كتاب من لوحة التحكم + ${legacy.length} من القائمة الأساسية`);
+})();
 
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", ()=>{
