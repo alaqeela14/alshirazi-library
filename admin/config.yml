@@ -2,25 +2,60 @@ backend:
   name: github
   repo: alaqeela14/alshirazi-library
   branch: main
-  base_url: https://sveltia-cms-auth.REPLACE-ME.workers.dev
+  base_url: https://sveltia-cms-auth.alaqeelafoundation.workers.dev
+  auth_endpoint: auth
 
-media_folder: "uploads"
-public_folder: "/uploads"
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "books"
     label: "الكتب"
-    label_singular: "كتاب"
-    folder: "books"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "frontmatter"
-    fields:
-      - { label: "اسم الكتاب", name: "title", widget: "string" }
-      - { label: "التصنيف", name: "category", widget: "select", options: ["quran","aqaid","fiqh","akhlaq","seerah","ahlulbayt","hussein","mahdi","siyasah","mujtama","languages"] }
-      - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m" }
-      - { label: "السنة", name: "year", widget: "number", default: 1420 }
-      - { label: "الصيغ", name: "formats", widget: "string", default: "pwe" }
-      - { label: "معرّف Archive", name: "archive_id", widget: "string", required: false }
-      - { label: "امتداد Word", name: "word_ext", widget: "string", default: "docx", required: false }
+    files:
+      - name: "books-list"
+        label: "قائمة الكتب"
+        file: "books.json"
+        fields:
+          - label: "قائمة الكتب"
+            name: "items"
+            widget: "list"
+            add_to_top: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "اسم الكتاب", name: "title", widget: "string" }
+              - label: "التصنيف"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "القرآن والتفسير", value: "quran" }
+                  - { label: "العقائد والكلام", value: "aqaid" }
+                  - { label: "الفقه والأصول", value: "fiqh" }
+                  - { label: "الحديث والأخلاق", value: "akhlaq" }
+                  - { label: "السيرة والتاريخ", value: "seerah" }
+                  - { label: "أهل البيت (عليهم السلام)", value: "ahlulbayt" }
+                  - { label: "الإمام الحسين وعاشوراء", value: "hussein" }
+                  - { label: "الإمام المهدي (عجل الله فرجه)", value: "mahdi" }
+                  - { label: "السياسة والاقتصاد", value: "siyasah" }
+                  - { label: "المجتمع والأسرة والشباب", value: "mujtama" }
+                  - { label: "كتب بلغات أخرى", value: "languages" }
+              - label: "المؤلف"
+                name: "author"
+                widget: "select"
+                default: "shirazi-m"
+                options:
+                  - { label: "السيد محمد الحسيني الشيرازي", value: "shirazi-m" }
+                  - { label: "السيد صادق الحسيني الشيرازي", value: "shirazi-s" }
+                  - { label: "السيد محمد رضا الشيرازي", value: "shirazi-mr" }
+                  - { label: "السيد مرتضى الحسيني الشيرازي", value: "shirazi-mo" }
+                  - { label: "السيد جعفر الحسيني الشيرازي", value: "shirazi-j" }
+                  - { label: "السيد مهدي الحسيني الشيرازي", value: "shirazi-me" }
+              - { label: "السنة الهجرية", name: "year", widget: "number", default: 1420 }
+              - { label: "الصيغ", name: "formats", widget: "string", default: "pwe", hint: "p=PDF · w=Word · e=ePub" }
+              - { label: "معرّف Archive.org", name: "archive_id", widget: "string", required: false, hint: "مثال: taqrib-quran-1" }
+              - { label: "امتداد Word", name: "word_ext", widget: "select", required: false, default: "docx", options: ["docx", "doc"] }
+              - label: "الموسوعة"
+                name: "series"
+                widget: "select"
+                required: false
+                options:
+                  - { label: "موسوعة الفقه", value: "fiqh-encyclopedia" }
