@@ -2008,17 +2008,17 @@ function updateDT(){
 }
 updateDT();
 setInterval(updateDT, 1000);
-/* ============ تحميل الكتب من المصدرين ============ */
-(async function initBooks(){
+window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", async ()=>{
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  
+  /* 1. حمّل الكتب أولاً */
   const legacy = loadLegacyBooks();
   const admin = await loadAdminBooks();
   BOOKS = [...admin, ...legacy];
   console.log(`✅ تم تحميل ${admin.length} كتاب من لوحة التحكم + ${legacy.length} من القائمة الأساسية`);
-})();
-
-window.addEventListener("hashchange", router);
-window.addEventListener("DOMContentLoaded", ()=>{
-  document.getElementById("yr").textContent = new Date().getFullYear();
+  
+  /* 2. ثم ابنِ الواجهة */
   buildSidebar();
   updateFavCounters();
   router();
