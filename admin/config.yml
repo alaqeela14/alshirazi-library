@@ -9,73 +9,126 @@ media_folder: "books"
 public_folder: "/books"
 
 collections:
-  - name: "books"
-    label: "الكتب"
-    label_singular: "كتاب"
+  # ========== 1. الموسوعات ==========
+  - name: "series"
+    label: "📚 الموسوعات"
     files:
-      - name: "books-list"
-        label: "قائمة الكتب"
-        file: "books.json"
+      - name: "series-list"
+        label: "إدارة الموسوعات"
+        file: "series.json"
+        fields:
+          - label: "الموسوعات"
+            name: "items"
+            widget: "list"
+            add_to_top: true
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "اسم الموسوعة", name: "name", widget: "string" }
+              - { label: "المعرّف الإنجليزي", name: "id", widget: "string", hint: "مثال: fiqh-encyclopedia (بدون مسافات)" }
+              - { label: "الوصف", name: "desc", widget: "text" }
+              - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m" }
+
+  # ========== 2. المؤلفون ==========
+  - name: "authors"
+    label: "✍️ المؤلفون"
+    files:
+      - name: "authors-list"
+        label: "إدارة المؤلفين"
+        file: "authors.json"
+        fields:
+          - label: "المؤلفون"
+            name: "items"
+            widget: "list"
+            add_to_top: true
+            summary: "{{fields.short}}"
+            fields:
+              - { label: "المعرّف الإنجليزي", name: "id", widget: "string", hint: "مثال: shirazi-s" }
+              - { label: "الاسم الكامل", name: "name", widget: "string" }
+              - { label: "الاسم المختصر", name: "short", widget: "string" }
+              - { label: "نبذة", name: "bio", widget: "text", required: false }
+
+  # ========== 3. الكتب (مقسّمة) ==========
+  - name: "books"
+    label: "📖 الكتب"
+    files:
+      - name: "books-quran"
+        label: "📖 القرآن والتفسير"
+        file: "books-quran.json"
         fields:
           - label: "الكتب"
             name: "items"
             widget: "list"
             add_to_top: true
-            summary: "{{fields.title}} [{{fields.source_type}}]"
-            fields:
+            summary: "{{fields.title}}"
+            fields: &book_fields
               - { label: "اسم الكتاب", name: "title", widget: "string" }
-              - label: "التصنيف"
-                name: "category"
-                widget: "select"
-                options:
-                  - { label: "القرآن والتفسير", value: "quran" }
-                  - { label: "العقائد والكلام", value: "aqaid" }
-                  - { label: "الفقه والأصول", value: "fiqh" }
-                  - { label: "الحديث والأخلاق", value: "akhlaq" }
-                  - { label: "السيرة والتاريخ", value: "seerah" }
-                  - { label: "أهل البيت (عليهم السلام)", value: "ahlulbayt" }
-                  - { label: "الإمام الحسين وعاشوراء", value: "hussein" }
-                  - { label: "الإمام المهدي (عجل الله فرجه)", value: "mahdi" }
-                  - { label: "السياسة والاقتصاد", value: "siyasah" }
-                  - { label: "المجتمع والأسرة والشباب", value: "mujtama" }
-                  - { label: "كتب بلغات أخرى", value: "languages" }
-              - label: "المؤلف"
-                name: "author"
-                widget: "select"
-                default: "shirazi-m"
-                options:
-                  - { label: "السيد محمد الحسيني الشيرازي", value: "shirazi-m" }
-                  - { label: "السيد صادق الحسيني الشيرازي", value: "shirazi-s" }
-                  - { label: "السيد محمد رضا الشيرازي", value: "shirazi-mr" }
-                  - { label: "السيد مرتضى الحسيني الشيرازي", value: "shirazi-mo" }
-                  - { label: "السيد جعفر الحسيني الشيرازي", value: "shirazi-j" }
-                  - { label: "السيد مهدي الحسيني الشيرازي", value: "shirazi-me" }
+              - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m", hint: "أضف مؤلفاً جديداً من قسم «✍️ المؤلفون»" }
               - { label: "السنة الهجرية", name: "year", widget: "number", default: 1420 }
-              - label: "الموسوعة"
-                name: "series"
-                widget: "select"
-                required: false
-                options:
-                  - { label: "بدون موسوعة", value: "" }
-                  - { label: "موسوعة الفقه", value: "fiqh-encyclopedia" }
-              - label: "📦 مصدر الملف"
-                name: "source_type"
-                widget: "select"
-                default: "upload"
-                options:
-                  - { label: "⬆️ رفع مباشر (من الجهاز)", value: "upload" }
-                  - { label: "📁 Google Drive (رابط)", value: "drive" }
-                  - { label: "🌐 Archive.org", value: "archive" }
-              - { label: "📄 ملف PDF (رفع مباشر)", name: "pdf_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".pdf", hint: "الأحجام الصغيرة فقط < 25MB" }
-              - { label: "📝 ملف Word (رفع مباشر)", name: "word_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".doc,.docx", hint: "الأحجام الصغيرة فقط < 25MB" }
-              - { label: "📁 رابط Google Drive (PDF)", name: "drive_pdf", widget: "string", required: false, hint: "الصق رابط المشاركة من Drive" }
-              - { label: "📁 رابط Google Drive (Word)", name: "drive_word", widget: "string", required: false, hint: "الصق رابط المشاركة من Drive" }
-              - { label: "🌐 معرّف Archive.org", name: "archive_id", widget: "string", required: false, hint: "مثال: taqrib-quran-1" }
-              - label: "📋 الصيغ المتوفرة"
-                name: "formats"
-                widget: "select"
-                multiple: true
-                default: ["pdf"]
-                options:
-                  - { label: "PDF", value: "pdf" }
-                  - { label: "Word", value: "word" }
+              - { label: "الموسوعة", name: "series", widget: "string", required: false, hint: "أضف موسوعة جديدة من قسم «📚 الموسوعات»" }
+              - { label: "📦 مصدر الملف", name: "source_type", widget: "select", options: [{ label: "⬆️ رفع مباشر", value: "upload" }, { label: "📁 Google Drive", value: "drive" }, { label: "🌐 Archive.org", value: "archive" }], default: "upload" }
+              - { label: "📄 ملف PDF", name: "pdf_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".pdf" }
+              - { label: "📝 ملف Word", name: "word_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".doc,.docx" }
+              - { label: "📁 رابط Drive (PDF)", name: "drive_pdf", widget: "string", required: false }
+              - { label: "📁 رابط Drive (Word)", name: "drive_word", widget: "string", required: false }
+              - { label: "🌐 معرّف Archive.org", name: "archive_id", widget: "string", required: false }
+              - { label: "الصيغ المتوفرة", name: "formats", widget: "select", multiple: true, default: ["pdf"], options: [{ label: "PDF", value: "pdf" }, { label: "Word", value: "word" }] }
+
+      - name: "books-aqaid"
+        label: "🕋 العقائد والكلام"
+        file: "books-aqaid.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-fiqh"
+        label: "⚖️ الفقه والأصول"
+        file: "books-fiqh.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-akhlaq"
+        label: "🌸 الحديث والأخلاق"
+        file: "books-akhlaq.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-seerah"
+        label: "🏛️ السيرة والتاريخ"
+        file: "books-seerah.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-ahlulbayt"
+        label: "🕌 أهل البيت (عليهم السلام)"
+        file: "books-ahlulbayt.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-hussein"
+        label: "🌙 الإمام الحسين وعاشوراء"
+        file: "books-hussein.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-mahdi"
+        label: "✨ الإمام المهدي (عجل الله فرجه)"
+        file: "books-mahdi.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-siyasah"
+        label: "💰 السياسة والاقتصاد"
+        file: "books-siyasah.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-mujtama"
+        label: "🤝 المجتمع والأسرة والشباب"
+        file: "books-mujtama.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
+
+      - name: "books-languages"
+        label: "🌍 كتب بلغات أخرى"
+        file: "books-languages.json"
+        fields:
+          - { label: "الكتب", name: "items", widget: "list", add_to_top: true, summary: "{{fields.title}}", fields: *book_fields }
