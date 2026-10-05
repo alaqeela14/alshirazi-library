@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "title": "تقريب القرآن - المجلد الخامس",
+      "title": "تقريب القرآن إلى الأذهان ج1",
       "category": "quran",
       "author": "shirazi-m",
       "year": 1447,
@@ -9,11 +9,12 @@
       "source_type": "archive",
       "pdf_file": "",
       "word_file": "",
-      "drive_pdf": "",
-      "drive_word": "",
-      "archive_id": "ark:/13960/t2n677z1w",
+      "drive_pdf": "https://drive.google.com/file/d/1mwYE6Xg2EE7GRuEoJv0JA2PHEfJlQEUz/view?usp=sharing",
+      "drive_word": "https://docs.google.com/document/d/1sdfzOnepQmerOpX3HgjxmhFoIQPG8UNY/edit?usp=sharing&ouid=109595724591188846128&rtpof=true&sd=true",
+      "archive_id": "",
       "formats": [
-        "pdf"
+        "pdf",
+        "word"
       ]
     }
   ]
