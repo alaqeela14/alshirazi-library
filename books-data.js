@@ -1,14 +1,14 @@
 window.BOOKS_DATA = `
-تقريب القرآن إلى الأذهان – ج1|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج2|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج3|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج4|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج5|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج6|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج7|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج8|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج9|quran|1420|pwe
-تقريب القرآن إلى الأذهان – ج10|quran|1420|pwe
+تقريب القرآن إلى الأذهان – ج1|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج2|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج3|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج4|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج5|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج6|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج7|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج8|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج9|quran|1420|pwe|shirazi-m|taqrib-quran
+تقريب القرآن إلى الأذهان – ج10|quran|1420|pwe|shirazi-m|taqrib-quran
 تبيين القرآن – ج1|quran|1418|pwe
 تبيين القرآن – ج2|quran|1418|pwe
 تبيين القرآن – ج3|quran|1418|pwe
@@ -90,13 +90,13 @@ window.BOOKS_DATA = `
 من فقه العترة الطاهرة (عليهم السلام) 38|fiqh|1421|pwe
 من فقه العترة الطاهرة (عليهم السلام) 39|fiqh|1421|pwe
 من فقه العترة الطاهرة (عليهم السلام) 40|fiqh|1421|pwe
-من فقه الزهراء (عليها السلام) – ج1|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج2|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج3|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج4|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج5|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج6|fiqh|1420|pwe
-من فقه الزهراء (عليها السلام) – ج7|fiqh|1420|pwe
+من فقه الزهراء (عليها السلام) – ج1|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج2|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج3|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج4|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج5|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج6|fiqh|1420|pwe|shirazi-m|fiqh-zahra
+من فقه الزهراء (عليها السلام) – ج7|fiqh|1420|pwe|shirazi-m|fiqh-zahra
 مناسك الحج|fiqh|1420|pwe
 منتخب المسائل الإسلامية|fiqh|1419|pwe
 جامع المسائل الشرعية|fiqh|1420|pwe
@@ -572,4 +572,72 @@ La Donna nell'Islam (Italiano)|languages|1418|pw
 كتاب الخيارات ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
 كتاب المكاسب المحرمة ج1|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
 كتاب المكاسب المحرمة ج2|fiqh|1420|pw|shirazi-m|fiqh-encyclopedia
+--- كتب السيد صادق الشيرازي ---
+حاشية العروة الوثقى - الجزء الأول|fiqh|1420|pwe|shirazi-s
+حاشية العروة الوثقى - الجزء الثاني|fiqh|1420|pwe|shirazi-s
+إضاءات مرجعية|fiqh|1420|pwe|shirazi-s
+توصيات مرجعية|fiqh|1420|pwe|shirazi-s
+فقه السائرين والزائرين|fiqh|1420|pwe|shirazi-s
+أحكام الشباب|mujtama|1420|pwe|shirazi-s
+تعظيم الشعائر الفاطمية|ahlulbayt|1420|pwe|shirazi-s
+المقام الدفاعي وواجباتنا تجاه الدين والعصرة|mujtama|1420|pwe|shirazi-s
+يا أيار|mujtama|1420|pwe|shirazi-s
+سنة الزواج|mujtama|1420|pwe|shirazi-s
+الحجاب|mujtama|1420|pwe|shirazi-s
+إحياء عاشوراء|hussein|1420|pwe|shirazi-s
+المسائل الحسينية|hussein|1420|pwe|shirazi-s
+المرأة والعائلة|mujtama|1420|pwe|shirazi-s
+أحكام العتبات المقدسة|ahlulbayt|1420|pwe|shirazi-s
+كتاب السياسة|siyasah|1420|pwe|shirazi-s
+المقدمة العقائدية|aqaid|1420|pwe|shirazi-s
+مساوئ السفور|mujtama|1420|pwe|shirazi-s
+الشهيد الأول|seerah|1420|pwe|shirazi-s
+الشهيد الثاني|seerah|1420|pwe|shirazi-s
+شرح العروة الوثقى (كتاب الطهارة)|fiqh|1420|pwe|shirazi-s
+شرح العروة الوثقى - الجزء الأول|fiqh|1420|pwe|shirazi-s
+شرح العروة الوثقى - الجزء الثاني|fiqh|1420|pwe|shirazi-s
+شرح السيوطي|fiqh|1420|pwe|shirazi-s
+صلاة الجماعة ومنزلتها في الإسلام|fiqh|1420|pwe|shirazi-s
+الموجز في المنطق|akhlaq|1420|pwe|shirazi-s
+مالك الأشتر النخعي|ahlulbayt|1420|pwe|shirazi-s
+التعادل والتراجح|fiqh|1420|pwe|shirazi-s
+قاعدة لا ضرر ولا ضرار|fiqh|1420|pwe|shirazi-s
+حقائق عن الشيعة|aqaid|1420|pwe|shirazi-s
+شرح تبصرة المتعلمين|fiqh|1420|pwe|shirazi-s
+شرح الصمدية|fiqh|1420|pwe|shirazi-s
+توضيح شرائع الإسلام|fiqh|1420|pwe|shirazi-s
+شرح العوامل|fiqh|1420|pwe|shirazi-s
+القياس في الشريعة الإسلامية|fiqh|1420|pwe|shirazi-s
+فاطمة في القرآن|quran|1420|pwe|shirazi-s
+علي في القرآن|quran|1420|pwe|shirazi-s
+المهدي في القرآن|quran|1420|pwe|shirazi-s
+أهل البيت سلام الله عليهم في القرآن|quran|1420|pwe|shirazi-s
+الشيعة في القرآن|quran|1420|pwe|shirazi-s
+أحكام النساء|mujtama|1420|pwe|shirazi-s
+العقوبات في الإسلام|fiqh|1420|pwe|shirazi-s
+الرسالة العملية|fiqh|1420|pwe|shirazi-s
+تمهيدات في الاقتصاد الإسلامي|siyasah|1420|pwe|shirazi-s
+بيان الأصول|fiqh|1420|pwe|shirazi-s
+الحج|fiqh|1420|pwe|shirazi-s
+رسالة مناسك الحج|fiqh|1420|pwe|shirazi-s
+الصوم|fiqh|1420|pwe|shirazi-s
+الربا المشكلة الاقتصادية القائمة|siyasah|1420|pwe|shirazi-s
+السياسة من واقع الإسلام|siyasah|1420|pwe|shirazi-s
+الطريق إلى بني إسلامي|siyasah|1420|pwe|shirazi-s
+قصص توجيهية|mujtama|1420|pwe|shirazi-s
+منتخب المسائل|fiqh|1420|pwe|shirazi-s
+شرح اللمعة الدمشقية|fiqh|1420|pwe|shirazi-s
+الخمر كوليرا المجتمع|mujtama|1420|pwe|shirazi-s
+الإصلاح الزراعي في الإسلام|siyasah|1420|pwe|shirazi-s
+الوالد|mujtama|1420|pwe|shirazi-s
+--- كتب السيد محمد رضا الشيرازي ---
+فقه النظر|fiqh|1420|pwe|shirazi-mr
+ومضات|akhlaq|1420|pwe|shirazi-mr
+الإمام الحسين عظمة إلهية وعطاء بلا حدود|hussein|1420|pwe|shirazi-mr
+المدخل|aqaid|1420|pwe|shirazi-mr
+التدبر في القرآن ج1|quran|1420|pwe|shirazi-mr
+التدبر في القرآن ج2|quran|1420|pwe|shirazi-mr
+تبيين الأصول ج1|fiqh|1420|pwe|shirazi-mr
+تبيين الأصول ج2|fiqh|1420|pwe|shirazi-mr
+تبيين الأصول ج3|fiqh|1420|pwe|shirazi-mr
 `;
