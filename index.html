@@ -74,7 +74,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 [data-theme="dark"] .topbar-search .search-type{color:#d8d8d8}
 [data-theme="dark"] .fmt-pdf{background:#4a0a0a}
 [data-theme="dark"] .fmt-word{background:#154a7a}
-[data-theme="dark"] .fmt-epub{background:#155a40}
 
 .dua-bar{background:linear-gradient(90deg,var(--red-900),var(--red-700));color:var(--gold-2);padding:7px 0;overflow:hidden;font-size:12px;border-bottom:1px solid rgba(0,0,0,.2);position:relative}
 .dua-bar::before,.dua-bar::after{content:"";position:absolute;top:0;bottom:0;width:50px;z-index:1}
@@ -214,9 +213,14 @@ main{flex:1;padding:22px 0 70px}
 .fmt-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
 .fmt-pdf{background:var(--red-500)}
 .fmt-word{background:var(--blue)}
-.fmt-epub{background:var(--green)}
-.fmt-read{background:var(--gold);color:#fff;min-width:52px}
 .fmt-btn-md{min-width:auto;padding:6px 12px;font-size:11.5px}
+
+/* إخفاء زر القراءة */
+.fmt-read, 
+.fmt-btn.fmt-read,
+button[onclick*="#/read/"] {
+  display: none !important;
+}
 
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
 .book-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:all var(--tr)}
@@ -553,6 +557,7 @@ footer .dua{margin-top:10px;opacity:.85;font-size:12px;max-width:760px;margin-in
     <div id="modalBody"></div>
   </div>
 </div>
+
 <script src="books-data.js"></script>
 <script>
 const htmlEl = document.documentElement;
@@ -601,10 +606,10 @@ const AUTHORS = [
     bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»." },
   { id:"shirazi-s",  name:"آية الله العظمى السيد صادق الحسيني الشيرازي",
     short:"السيد صادق الحسيني الشيرازي",
-    bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي." },
+    bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والعقائد وغيرها." },
   { id:"shirazi-mr", name:"آية الله الفقيه السيد محمد رضا الشيرازي",
     short:"السيد محمد رضا الشيرازي",
-    bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي." },
+    bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والتفسير وغيرها." },
   { id:"shirazi-mo", name:"آية الله السيد مرتضى الحسيني الشيرازي",
     short:"السيد مرتضى الحسيني الشيرازي",
     bio:"عالم دين ومؤلف، من أسرة آل الشيرازي." },
@@ -626,7 +631,7 @@ const SERIES = [
   { id:"taqrib-quran",
     name:"تقريب القرآن إلى الأذهان",
     author:"shirazi-m",
-    desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء، تُقدّم تفسيراً مبسطاً وواضحاً لآيات الذكر الحكيم.",
+    desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء.",
     formats: "pw"
   },
   { id:"fiqh-zahra",
@@ -659,7 +664,8 @@ const BOOKS_JSON_FILES = [
   ["books-mujtama.json", "mujtama"],
   ["books-languages.json", "languages"]
 ];
-  /* ============ حالة التطبيق ============ */
+
+/* ============ حالة التطبيق ============ */
 let BOOKS = [];
 const app = document.getElementById("app");
 const state = {view:"table", sort:"title-asc", q:"", cat:"all", author:"all", series:"all", searchType:"title"};
@@ -701,7 +707,8 @@ function jsonToBook(item, cat, prefix){
 
 async function loadJsonFile(path, cat, prefix){
   try{
-    const res = await fetch(path + "?t=" + Date.now());
+    // 🚀 تم إصلاح البطء هنا: حذف ?t=Date.now()
+    const res = await fetch(path);
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
@@ -878,7 +885,7 @@ function router(){
   else renderHome();
   updateSideActive();
 }
-  function buildSidebar(){
+function buildSidebar(){
   const cats = document.getElementById("sideCats");
   cats.innerHTML = `
     <li><a href="#/home" data-sc="home" onclick="closeSidebar()"><span>الرئيسية</span></a></li>
@@ -1019,7 +1026,8 @@ function renderFavorites(){
       ${favSeries.length ? `<div class="fav-section-title" style="margin-top:26px"><span>الموسوعات المحفوظة</span><span class="fst-count">${favSeries.length}</span></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">${favSeries.map(seriesMiniHtml).join("")}</div>` : ""}
     `}`;
 }
-  function renderHome(){
+
+function renderHome(){
   const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0,10);
   const dayIdx = Math.floor(Date.now()/(1000*60*60*24));
   const featured = BOOKS[dayIdx % BOOKS.length];
@@ -1033,7 +1041,7 @@ function renderFavorites(){
         <div class="stat"><strong>${BOOKS.length}</strong><span>كتاب في المكتبة</span></div>
         <div class="stat"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
         <div class="stat"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div>
-        <div class="stat"><strong>PDF · Word · epub</strong><span>صيغ التحميل</span></div>
+        <div class="stat"><strong>PDF · Word</strong><span>صيغ التحميل</span></div>
       </div>
     </section>
 
@@ -1049,7 +1057,6 @@ function renderFavorites(){
         <p style="color:var(--muted);font-size:13.5px;margin-bottom:5px"><strong style="color:var(--ink)">المؤلف:</strong> <a href="#/author/${featured.a}" style="color:var(--neutral-800);font-weight:600">${esc(fa?.name||"")}</a></p>
         <p style="color:var(--muted);font-size:13.5px;margin-bottom:12px"><strong style="color:var(--ink)">التصنيف:</strong> ${esc(fc?.name||"")}${featured.y?` — ${featured.y}هـ`:""}</p>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-          <button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/read/${featured.id}'">اقرأ الآن</button>
           ${featured.hasPdf?`<button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadBook('${featured.id}','pdf')">تحميل PDF</button>`:""}
           ${featured.hasWord?`<button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadBook('${featured.id}','word')">تحميل Word</button>`:""}
           ${favBtnHtml("book", featured.id, "large")}
@@ -1177,7 +1184,8 @@ function renderLibrary(){
   bindToolbar();
   renderList();
 }
-  function toolbarHtml(isSeriesPage){
+
+function toolbarHtml(isSeriesPage){
   const auths = authorsWithBooks();
   return `
     <div class="toolbar">
@@ -1274,10 +1282,8 @@ function tableInnerHtml(list){
               <span class="book-title" onclick="location.hash='#/read/${b.id}'">${esc(b.t)}</span>
               <span class="book-actions">
                 ${favBtnHtml("book", b.id)}
-                <button class="fmt-btn fmt-read" onclick="location.hash='#/read/${b.id}'">قراءة</button>
                 ${b.hasPdf?`<button class="fmt-btn fmt-pdf" onclick="downloadBook('${b.id}','pdf')">PDF</button>`:""}
                 ${b.hasWord?`<button class="fmt-btn fmt-word" onclick="downloadBook('${b.id}','word')">Word</button>`:""}
-                ${b.hasEpub?`<button class="fmt-btn fmt-epub" onclick="downloadBook('${b.id}','epub')">epub</button>`:""}
               </span>
             </div>
             <div class="book-row-bottom">
@@ -1304,7 +1310,6 @@ function gridInnerHtml(list){
           <div class="bi-title" onclick="openBook('${b.id}')">${esc(b.t)}</div>
           <div class="bi-meta">${esc(authorName(b.a))} • ${esc(c?.name||"")}${b.y?` • ${b.y}هـ`:""}</div>
           <div class="bi-formats">
-            <button class="fmt-btn fmt-read" onclick="event.stopPropagation();location.hash='#/read/${b.id}'">قراءة</button>
             ${b.hasPdf?`<button class="fmt-btn fmt-pdf" onclick="event.stopPropagation();downloadBook('${b.id}','pdf')">PDF</button>`:""}
             ${b.hasWord?`<button class="fmt-btn fmt-word" onclick="event.stopPropagation();downloadBook('${b.id}','word')">Word</button>`:""}
           </div>
@@ -1334,7 +1339,6 @@ function openBook(id){
           <div><strong>حالة الملف:</strong> ${b.archiveId ? `<span class="status-badge available">متوفر</span>` : `<span class="status-badge">قيد الإضافة</span>`}</div>
         </div>
         <div class="dl">
-          <button class="fmt-btn fmt-read fmt-btn-md" onclick="location.hash='#/read/${b.id}';closeModal()">اقرأ الآن</button>
           ${b.hasPdf?`<button class="fmt-btn fmt-pdf fmt-btn-md" onclick="downloadBook('${b.id}','pdf')">تحميل PDF</button>`:""}
           ${b.hasWord?`<button class="fmt-btn fmt-word fmt-btn-md" onclick="downloadBook('${b.id}','word')">تحميل ${wordLabel}</button>`:""}
           ${favBtnHtml("book", b.id, "large")}
@@ -1416,7 +1420,8 @@ function renderReader(id){
       <iframe src="https://archive.org/embed/${b.archiveId}" class="reader-iframe" allowfullscreen></iframe>
     </div>`;
 }
-  const q = document.getElementById("q");
+
+const q = document.getElementById("q");
 const sq = document.getElementById("sq");
 const sug = document.getElementById("sug");
 const searchTypeSel = document.getElementById("searchType");
@@ -1502,7 +1507,6 @@ function renderAbout(){
     </div>`;
 }
 
-/* Service Worker */
 if('serviceWorker' in navigator){
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js')
