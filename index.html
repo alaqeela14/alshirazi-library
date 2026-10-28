@@ -685,7 +685,7 @@ function jsonToBook(item, cat, prefix){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x === "pdf" ? "p" : x === "word" ? "w" : x === "epub" ? "e" : "").join("");
   return {
-    id: prefix + "_" + Math.random().toString(36).slice(2,8),
+    id: item.id || (cat + "_" + String(item.title||"").replace(/[^\w\u0600-\u06FF]+/g,"-").slice(0,40)),
     t: item.title || "",
     c: cat || item.category || "fiqh",
     y: parseInt(item.year) || 0,
@@ -1536,13 +1536,7 @@ function renderAbout(){
     </div>`;
 }
 
-if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('✅ Service Worker registered'))
-      .catch(err => console.error('❌ SW:', err));
-  });
-}
+/* Service Worker removed — using network-first to avoid stale cache */
 </script>
 </body>
 </html>
