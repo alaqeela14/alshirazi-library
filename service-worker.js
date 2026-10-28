@@ -1,36 +1,31 @@
-const CACHE_NAME = 'alshirazi-v1';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon.svg'
-];
+/* ============================================================
+   Kill Switch: هذا الملف يلغي نفسه ويمسح كل الكاش
+   ثم يعيد تحميل كل النوافذ المفتوحة بالنسخة الجديدة.
+   بعد أن ينتشر بين جميع الزوار، يمكن حذفه نهائياً.
+   ============================================================ */
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
-  );
+const CACHE_PREFIX = 'alshirazi-';
+
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(key => key !== CACHE_NAME)
-            .map(key => caches.delete(key))
-      )
-    )
+    (async () => {
+      // 1. امسح كل الكاشات
+      const keys = await caches.keys();
+      await Promise.all(
+        keys.filter(k => k.startsWith(CACHE_PREFIX) || k.includes('alshirazi'))
+            .map(k => caches.delete(k))
+      );
+      // 2. ألغِ تسجيل هذا الـ SW نهائياً
+      await self.registration.unregister();
+      // 3. أعد تحميل كل النوافذ المفتوحة
+      const clients = await self.clients.matchAll({ type: 'window' });
+      clients.forEach(client => client.navigate(client.url));
+    })()
   );
-  self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request).catch(() => {
-        return caches.match('./index.html');
-      });
-    })
-  );
-});
+// لا نتدخل في fetch إطلاقاً — الشبكة هي المصدر الوحيد
