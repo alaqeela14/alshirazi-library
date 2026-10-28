@@ -5,49 +5,10 @@ backend:
   base_url: https://sveltia-cms-auth.alaqeelafoundation.workers.dev
   auth_endpoint: auth
 
-media_folder: "books"
-public_folder: "/books"
+media_folder: "books-covers"
+public_folder: "/books-covers"
 
 collections:
-  # ========== 1. الموسوعات ==========
-  - name: "series"
-    label: "📚 الموسوعات"
-    files:
-      - name: "series-list"
-        label: "إدارة الموسوعات"
-        file: "series.json"
-        fields:
-          - label: "الموسوعات"
-            name: "items"
-            widget: "list"
-            add_to_top: true
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "اسم الموسوعة", name: "name", widget: "string" }
-              - { label: "المعرّف الإنجليزي", name: "id", widget: "string", hint: "مثال: fiqh-encyclopedia (بدون مسافات)" }
-              - { label: "الوصف", name: "desc", widget: "text" }
-              - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m" }
-
-  # ========== 2. المؤلفون ==========
-  - name: "authors"
-    label: "✍️ المؤلفون"
-    files:
-      - name: "authors-list"
-        label: "إدارة المؤلفين"
-        file: "authors.json"
-        fields:
-          - label: "المؤلفون"
-            name: "items"
-            widget: "list"
-            add_to_top: true
-            summary: "{{fields.short}}"
-            fields:
-              - { label: "المعرّف الإنجليزي", name: "id", widget: "string", hint: "مثال: shirazi-s" }
-              - { label: "الاسم الكامل", name: "name", widget: "string" }
-              - { label: "الاسم المختصر", name: "short", widget: "string" }
-              - { label: "نبذة", name: "bio", widget: "text", required: false }
-
-  # ========== 3. الكتب (مقسّمة) ==========
   - name: "books"
     label: "📖 الكتب"
     files:
@@ -62,9 +23,12 @@ collections:
             summary: "{{fields.title}}"
             fields: &book_fields
               - { label: "اسم الكتاب", name: "title", widget: "string" }
-              - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m", hint: "أضف مؤلفاً جديداً من قسم «✍️ المؤلفون»" }
+              - { label: "المؤلف", name: "author", widget: "string", default: "shirazi-m" }
               - { label: "السنة الهجرية", name: "year", widget: "number", default: 1420 }
-              - { label: "الموسوعة", name: "series", widget: "string", required: false, hint: "أضف موسوعة جديدة من قسم «📚 الموسوعات»" }
+              - { label: "عدد الصفحات", name: "pages", widget: "number", required: false }
+              - { label: "الموسوعة", name: "series", widget: "string", required: false }
+              - { label: "صورة الغلاف", name: "cover", widget: "image", required: false, media_folder: "books-covers", public_folder: "/books-covers" }
+              - { label: "وصف الكتاب", name: "description", widget: "text", required: false }
               - { label: "📦 مصدر الملف", name: "source_type", widget: "select", options: [{ label: "⬆️ رفع مباشر", value: "upload" }, { label: "📁 Google Drive", value: "drive" }, { label: "🌐 Archive.org", value: "archive" }], default: "upload" }
               - { label: "📄 ملف PDF", name: "pdf_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".pdf" }
               - { label: "📝 ملف Word", name: "word_file", widget: "file", required: false, media_folder: "books", public_folder: "/books", accept: ".doc,.docx" }
