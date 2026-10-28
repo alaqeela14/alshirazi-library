@@ -126,6 +126,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .suggestions li:hover{background:var(--bg)}
 .suggestions li .sug-auth{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 
+/* ===== سجل البحث والاقتراحات المحسّن ===== */
+.suggestions li.sug-header{
+  position:sticky;top:0;background:var(--bg);z-index:2;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:var(--muted);font-weight:700;
+  border-bottom:1px solid var(--line);cursor:default;
+}
+.suggestions li.sug-header:hover{background:var(--bg)}
+.suggestions li.sug-item{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.suggestions li.sug-item .sug-term{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.suggestions li.sug-item .sug-remove{color:var(--muted);font-size:13px;padding:2px 6px;flex-shrink:0;border-radius:4px;transition:all var(--tr)}
+.suggestions li.sug-item .sug-remove:hover{color:var(--red-600);background:var(--red-50)}
+.suggestions li .sug-clear-all{color:var(--red-600);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--paper);border:1px solid var(--line);transition:all var(--tr)}
+.suggestions li .sug-clear-all:hover{background:var(--red-50)}
+.suggestions li.sug-empty{text-align:center;color:var(--muted);font-size:12.5px;cursor:default;padding:16px}
+.suggestions li.sug-empty:hover{background:transparent}
+
 .sidebar{position:fixed;top:0;right:0;bottom:0;width:330px;max-width:88vw;background:var(--paper);z-index:98;overflow-y:auto;padding:20px 18px 30px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.14);border-inline-start:1px solid var(--line)}
 body.sidebar-open .sidebar{transform:translateX(0)}
 .sidebar-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)}
@@ -188,26 +205,20 @@ main{flex:1;padding:22px 0 70px}
 .books-table{background:transparent;border:none;box-shadow:none}
 .books-list{display:flex;flex-direction:column;gap:12px}
 
-.cover-placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--red-700), var(--red-900));
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  color: var(--gold-2); text-align: center; padding: 10px;
-  position: relative;
-}
-.cover-placeholder .cp-icon { font-size: 28px; margin-bottom: 8px; }
-.cover-placeholder .cp-title { font-family: 'Amiri', serif; font-size: 14px; font-weight: 700; line-height: 1.3; }
-.book-cover-img { width: 100%; height: 100%; object-fit: cover; }
+.cover-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--red-700),var(--red-900));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gold-2);text-align:center;padding:10px;position:relative}
+.cover-placeholder .cp-icon{font-size:28px;margin-bottom:8px}
+.cover-placeholder .cp-title{font-family:'Amiri',serif;font-size:14px;font-weight:700;line-height:1.3}
+.book-cover-img{width:100%;height:100%;object-fit:cover}
 
-.book-row-card { display: flex; gap: 15px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 15px; box-shadow: var(--shadow-sm); transition: all var(--tr); }
-.book-row-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--gold); }
-.book-row-img { width: 90px; height: 120px; border-radius: var(--radius); flex-shrink: 0; overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,.15); cursor: pointer; }
-.book-row-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
-.book-row-title { font-size: 16px; font-weight: 800; color: var(--ink); cursor: pointer; margin-bottom: 5px; }
-.book-row-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.book-row-meta span { display: flex; align-items: center; gap: 4px; }
-.book-row-desc { font-size: 12.5px; color: var(--ink-2); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
-.book-row-actions { display: flex; gap: 6px; align-items: center; margin-top: auto; }
+.book-row-card{display:flex;gap:15px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:15px;box-shadow:var(--shadow-sm);transition:all var(--tr)}
+.book-row-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--gold)}
+.book-row-img{width:90px;height:120px;border-radius:var(--radius);flex-shrink:0;overflow:hidden;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.15);cursor:pointer}
+.book-row-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.book-row-title{font-size:16px;font-weight:800;color:var(--ink);cursor:pointer;margin-bottom:5px}
+.book-row-meta{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.book-row-meta span{display:flex;align-items:center;gap:4px}
+.book-row-desc{font-size:12.5px;color:var(--ink-2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px}
+.book-row-actions{display:flex;gap:6px;align-items:center;margin-top:auto}
 
 .fav-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--bg);color:var(--muted);border:1px solid var(--line);transition:all var(--tr);flex-shrink:0;padding:0}
 .fav-btn:hover{background:#fffbee;color:var(--gold);border-color:var(--gold);transform:scale(1.08)}
@@ -225,19 +236,12 @@ main{flex:1;padding:22px 0 70px}
 .fmt-word{background:var(--blue)}
 .fmt-btn-md{min-width:auto;padding:6px 12px;font-size:11.5px}
 
-/* إخفاء زر القراءة */
-.fmt-read, 
-.fmt-btn.fmt-read,
-button[onclick*="#/read/"] {
-  display: none !important;
-}
+.fmt-read,.fmt-btn.fmt-read,button[onclick*="#/read/"]{display:none !important}
 
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
 .book-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:all var(--tr)}
 .book-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
 .book-cover{aspect-ratio:3/4;background:linear-gradient(135deg,var(--neutral-800),var(--neutral-900));padding:0;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;cursor:pointer;overflow:hidden}
-.book-cover .ct{font-family:'Amiri',serif;font-size:16px;font-weight:700;line-height:1.4;z-index:1;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.book-cover .ca{font-size:11px;opacity:.85;z-index:1}
 .book-cover .cbadge{position:absolute;top:8px;inset-inline-start:8px;z-index:2;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;background:var(--gold);color:#fff}
 .book-cover .cbadge.available{background:var(--green);color:#fff}
 .book-cover .cover-fav{position:absolute;top:8px;inset-inline-end:8px;z-index:3;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.25);color:#fff}
@@ -343,7 +347,7 @@ button[onclick*="#/read/"] {
 .modal-close{position:absolute;top:14px;inset-inline-end:14px;background:var(--bg);border:1px solid var(--line);width:36px;height:36px;border-radius:50%;font-size:14px;color:var(--neutral-700)}
 .modal-close:hover{background:var(--neutral-800);color:#fff}
 .detail{display:grid;grid-template-columns:160px 1fr;gap:20px}
-.detail .book-cover{border-radius:var(--radius);cursor:default; box-shadow:0 5px 15px rgba(0,0,0,.2); aspect-ratio:3/4; padding:0; background:transparent}
+.detail .book-cover{border-radius:var(--radius);cursor:default;box-shadow:0 5px 15px rgba(0,0,0,.2);aspect-ratio:3/4;padding:0;background:transparent}
 .detail h2{font-family:'Amiri',serif;font-size:21px;color:var(--ink);margin-bottom:12px;line-height:1.4}
 .detail .meta2{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted);margin-bottom:14px}
 .detail .meta2 strong{color:var(--ink)}
@@ -370,13 +374,11 @@ footer .dua{margin-top:10px;opacity:.85;font-size:12px;max-width:760px;margin-in
   .head-fav-btn .fav-count{font-size:9px;min-width:16px;height:16px}
   .books-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .reader-iframe{height:70vh}
-  .reader-head{padding:12px 14px}
-  .reader-head h1{font-size:16px}
-  .book-row-card{padding:12px; gap:10px;}
-  .book-row-img{width:70px; height:95px;}
-  .book-row-title{font-size:14px;}
-  .book-row-meta{font-size:11px;}
-  .book-row-desc{display:none;}
+  .book-row-card{padding:12px;gap:10px}
+  .book-row-img{width:70px;height:95px}
+  .book-row-title{font-size:14px}
+  .book-row-meta{font-size:11px}
+  .book-row-desc{display:none}
   .cat-head{padding:14px 16px}
   .cat-head .ch-txt h1{font-size:19px}
   .detail{grid-template-columns:1fr}
@@ -663,7 +665,6 @@ const BOOKS_JSON_FILES = [
   ["books-languages.json", "languages"]
 ];
 
-/* ============ حالة التطبيق ============ */
 let BOOKS = [];
 const app = document.getElementById("app");
 const state = {view:"table", sort:"title-asc", q:"", cat:"all", author:"all", series:"all", searchType:"title"};
@@ -680,7 +681,6 @@ const countBySeries = id => BOOKS.filter(b=>b.series===id).length;
 const authorName = id => getAuthor(id)?.short || "—";
 const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id) > 0);
 
-/* ============ تحميل الكتب ============ */
 function jsonToBook(item, cat, prefix){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x === "pdf" ? "p" : x === "word" ? "w" : x === "epub" ? "e" : "").join("");
@@ -747,7 +747,6 @@ function loadLegacyBooks(){
   });
 }
 
-/* ============ المفضلة ============ */
 let FAVORITES = { books: [], series: [] };
 try{
   const f = JSON.parse(localStorage.getItem("alsh_favorites")||"{}");
@@ -800,7 +799,6 @@ function favBtnHtml(type, id, extraClass=""){
   return `<button class="fav-btn ${active?'active':''} ${extraClass}" data-fav-type="${type}" data-fav-id="${id}" onclick="toggleFav('${type}','${id}',event)" aria-label="${active?'إزالة':'إضافة'}"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>`;
 }
 
-/* ============ التفضيلات ============ */
 try{
   const p = JSON.parse(localStorage.getItem("alsh_prefs")||"{}");
   if(p.view) state.view = p.view;
@@ -824,7 +822,6 @@ function matchBook(b, query, type){
   return title.includes(q) || authShort.includes(q) || authFull.includes(q) || catName.includes(q);
 }
 
-/* ============ السايدبار ============ */
 const sidebarBackdrop = document.getElementById("sidebarBackdrop");
 const menuBtn = document.getElementById("menuBtn");
 const sidebarClose = document.getElementById("sidebarClose");
@@ -836,7 +833,6 @@ sidebarClose.addEventListener("click", closeSidebar);
 sidebarBackdrop.addEventListener("click", closeSidebar);
 document.addEventListener("keydown", e=>{ if(e.key === "Escape"){ closeSidebar(); closeModal(); } });
 
-/* ============ التاريخ والوقت ============ */
 function updateDT(){
   const now = new Date();
   try{
@@ -853,7 +849,6 @@ function updateDT(){
 updateDT();
 setInterval(updateDT, 1000);
 
-/* ============ التهيئة والتنقل ============ */
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
@@ -1187,6 +1182,7 @@ function renderLibrary(){
     ${toolbarHtml()}
     <div id="list">${booksContainerHtml()}</div>`;
   bindToolbar();
+  if(state.q){ const qEl = document.getElementById("q"); if(qEl) qEl.value = state.q; }
   renderList();
 }
 
@@ -1457,6 +1453,76 @@ const searchTypeSel = document.getElementById("searchType");
 const sideSearchTypeSel = document.getElementById("sideSearchType");
 let timer;
 
+/* ============ سجل البحث ============ */
+let SEARCH_HISTORY = [];
+try{
+  const h = JSON.parse(localStorage.getItem("alsh_search_history")||"[]");
+  if(Array.isArray(h)) SEARCH_HISTORY = h.slice(0, 15);
+}catch(e){}
+
+const saveSearchHistory = () => {
+  try{ localStorage.setItem("alsh_search_history", JSON.stringify(SEARCH_HISTORY.slice(0, 15))); }catch(e){}
+};
+
+function addToHistory(term){
+  term = (term||"").trim();
+  if(!term || term.length < 2) return;
+  SEARCH_HISTORY = [term, ...SEARCH_HISTORY.filter(t => t !== term)].slice(0, 15);
+  saveSearchHistory();
+}
+
+function removeFromHistory(term){
+  SEARCH_HISTORY = SEARCH_HISTORY.filter(t => t !== term);
+  saveSearchHistory();
+}
+
+function clearSearchHistory(){
+  SEARCH_HISTORY = [];
+  saveSearchHistory();
+}
+
+function isListPage(){
+  const h = location.hash || "";
+  return h === "#/library"
+    || h.startsWith("#/category/")
+    || h.startsWith("#/author/")
+    || h.startsWith("#/series-one/");
+}
+
+function showSearchHistory(){
+  if(!SEARCH_HISTORY.length){
+    sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث بعد</li>`;
+    sug.classList.add("show");
+    return;
+  }
+  sug.innerHTML = `
+    <li class="sug-header">
+      <span>🔍 عمليات البحث السابقة</span>
+      <button class="sug-clear-all" onclick="event.stopPropagation();clearSearchHistory();showSearchHistory();">مسح الكل</button>
+    </li>
+    ${SEARCH_HISTORY.map(term => {
+      const safe = esc(term);
+      const safeForJs = term.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+      return `<li class="sug-item" data-history="${safe}">
+        <span class="sug-term">🕐 ${safe}</span>
+        <button class="sug-remove" data-remove="${safeForJs}" onclick="event.stopPropagation();removeFromHistory(this.dataset.remove);showSearchHistory();">✕</button>
+      </li>`;
+    }).join("")}
+  `;
+  sug.classList.add("show");
+}
+
+function showSearchSuggestions(query){
+  const results = BOOKS.filter(b => matchBook(b, query, state.searchType)).slice(0, 12);
+  if(!results.length){
+    sug.innerHTML = `<li class="sug-empty">لا توجد نتائج مطابقة</li>`;
+    sug.classList.add("show");
+    return;
+  }
+  sug.innerHTML = results.map(b=>`<li data-id="${b.id}">${esc(b.t)}<span class="sug-auth">${esc(authorName(b.a))}</span></li>`).join("");
+  sug.classList.add("show");
+}
+
 if(searchTypeSel) searchTypeSel.value = state.searchType;
 if(sideSearchTypeSel) sideSearchTypeSel.value = state.searchType;
 updateSearchPlaceholder();
@@ -1481,42 +1547,84 @@ sideSearchTypeSel?.addEventListener("change", ()=>{
   updateSearchPlaceholder();
 });
 
+/* ====== البحث الفوري + السجل ====== */
+q.addEventListener("focus", ()=>{
+  if(!q.value.trim()){
+    showSearchHistory();
+  } else {
+    showSearchSuggestions(q.value.trim());
+  }
+});
+
 q.addEventListener("input", ()=>{
   clearTimeout(timer);
   const v = q.value.trim();
-  if(!v){ sug.classList.remove("show"); return; }
+
+  // البحث الفوري في صفحات القوائم
+  if(isListPage()){
+    if(v){
+      state.q = v;
+      renderList();
+    } else if(state.q){
+      state.q = "";
+      renderList();
+    }
+  }
+
+  if(!v){
+    showSearchHistory();
+    return;
+  }
+
   timer = setTimeout(()=>{
-    const results = BOOKS.filter(b => matchBook(b, v, state.searchType)).slice(0,8);
-    if(!results.length){ sug.classList.remove("show"); return; }
-    sug.innerHTML = results.map(b=>`<li data-id="${b.id}">${esc(b.t)}<span class="sug-auth">${esc(authorName(b.a))}</span></li>`).join("");
-    sug.classList.add("show");
-  },180);
+    showSearchSuggestions(v);
+  }, 150);
 });
 
 sug.addEventListener("click", e=>{
+  // زر حذف عنصر من السجل (onclick يتكفل)
+  if(e.target.closest("[data-remove]")){
+    e.stopPropagation();
+    return;
+  }
+
+  // اختيار من السجل
+  const historyItem = e.target.closest("li[data-history]");
+  if(historyItem){
+    const term = historyItem.dataset.history;
+    q.value = term;
+    doSearch(term);
+    return;
+  }
+
+  // اختيار اقتراح كتاب
   const li = e.target.closest("li[data-id]");
   if(!li) return;
   sug.classList.remove("show");
   q.value = "";
+  state.q = "";
   location.hash = "#/read/" + li.dataset.id;
 });
 
 document.getElementById("qBtn").onclick = ()=>doSearch(q.value);
-q.addEventListener("keydown", e=>{ if(e.key==="Enter") doSearch(q.value); });
+q.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(q.value); } });
 document.getElementById("sqBtn").onclick = ()=>{ doSearch(sq.value); closeSidebar(); };
-sq.addEventListener("keydown", e=>{ if(e.key==="Enter"){ doSearch(sq.value); closeSidebar(); } });
+sq.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(sq.value); closeSidebar(); } });
 
 function doSearch(v){
   v = (v||"").trim();
   if(!v){ state.q = ""; renderList(); return; }
+  addToHistory(v);
   state.q = v;
   state.cat = "all";
   state.author = "all";
   state.series = "all";
   sug.classList.remove("show");
-  if(location.hash === "#/library" || location.hash === "#/home" || location.hash === "#/favorites"){
-    renderLibrary();
-  } else location.hash = "#/library";
+  if(isListPage()){
+    renderList();
+  } else {
+    location.hash = "#/library";
+  }
 }
 
 document.addEventListener("click", e=>{
