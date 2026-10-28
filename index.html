@@ -188,7 +188,6 @@ main{flex:1;padding:22px 0 70px}
 .books-table{background:transparent;border:none;box-shadow:none}
 .books-list{display:flex;flex-direction:column;gap:12px}
 
-/* تصميم صفحة الكتاب والبطاقات */
 .cover-placeholder {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, var(--red-700), var(--red-900));
@@ -560,7 +559,6 @@ footer .dua{margin-top:10px;opacity:.85;font-size:12px;max-width:760px;margin-in
 
 <script src="books-data.js"></script>
 <script>
-
 const htmlEl = document.documentElement;
 const themeBtn = document.getElementById("themeBtn");
 const themeIcon = document.getElementById("themeIcon");
@@ -889,7 +887,6 @@ function router(){
   else renderHome();
   updateSideActive();
 }
-
 function buildSidebar(){
   const cats = document.getElementById("sideCats");
   cats.innerHTML = `
@@ -990,7 +987,7 @@ function seriesMiniHtml(s){
 
 function showSoon(name){
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/authors'">→ كل المؤلفين</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="soon-box">
       <div class="soon-icon">✦</div>
       <h3>قريباً إن شاء الله</h3>
@@ -1003,7 +1000,7 @@ function renderFavorites(){
   const favSeries = FAVORITES.series.map(id => getSeries(id)).filter(Boolean);
   const total = favBooks.length + favSeries.length;
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ الرئيسية</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="fav-header">
       <div class="fh-info">
         <h1><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> المفضلة</h1>
@@ -1090,7 +1087,7 @@ function renderHome(){
 
 function renderAllCats(){
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>تصنيفات المكتبة</h1><p>${CATS.length} تصنيف رئيسي — ${BOOKS.length} كتاب</p></div></div>
     <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
       ${CATS.map(c=>`<a href="#/category/${c.id}" class="cat-card ${c.highlight?'highlight':''}"><div class="cc-info"><div class="cc-name">${esc(c.name)}</div><div class="cc-count">${countIn(c.id)} كتاب</div></div><div class="cc-badge">${countIn(c.id)}</div></a>`).join("")}
@@ -1099,7 +1096,7 @@ function renderAllCats(){
 
 function renderAllSeries(){
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>الموسوعات</h1><p>${SERIES.length} موسوعة</p></div></div>
     ${SERIES.length ? `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">${SERIES.map(seriesMiniHtml).join("")}</div>` : `<div class="soon-box"><div class="soon-icon">✦</div><h3>قريباً</h3><p>سيتم إضافة الموسوعات تباعاً بإذن الله.</p></div>`}`;
 }
@@ -1111,7 +1108,7 @@ function renderSeriesPage(id){
   state.cat = "all"; state.author = "all"; state.series = id; state.q = "";
   document.getElementById("q").value = "";
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/series'">→ كل الموسوعات</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head" style="position:relative">
       <span class="sc-tag" style="position:absolute;top:-10px;inset-inline-start:20px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--neutral-900);font-size:11px;font-weight:800;padding:3px 12px;border-radius:12px">موسوعة</span>
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
@@ -1141,7 +1138,7 @@ function renderSeriesPage(id){
 
 function renderAllAuthors(){
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>المؤلفون</h1><p>${AUTHORS.length} مؤلف من أسرة آل الشيرازي</p></div></div>
     <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">${AUTHORS.map(authorCardHtml).join("")}</div>`;
 }
@@ -1154,7 +1151,7 @@ function renderAuthorPage(id){
   state.cat = "all"; state.author = id; state.series = "all"; state.q = "";
   document.getElementById("q").value = "";
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/authors'">→ كل المؤلفين</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <div class="author-avatar" style="width:64px;height:64px;font-size:28px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--neutral-900)">${esc(a.short.charAt(0))}</div>
       <div class="ch-txt" style="flex:1;min-width:200px">
@@ -1175,7 +1172,7 @@ function renderCategory(id){
   state.cat = id; state.author = "all"; state.series = "all"; state.q = "";
   document.getElementById("q").value = "";
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع إلى الرئيسية</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>${esc(cat.name)}</h1><p>${countIn(cat.id)} كتاب في هذا التصنيف</p></div></div>
     ${toolbarHtml()}
     <div id="list">${booksContainerHtml()}</div>`;
@@ -1186,7 +1183,7 @@ function renderCategory(id){
 function renderLibrary(){
   state.cat = "all"; state.author = "all"; state.series = "all";
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ الرئيسية</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>كل الكتب</h1><p>${BOOKS.length} كتاب في المكتبة</p></div></div>
     ${toolbarHtml()}
     <div id="list">${booksContainerHtml()}</div>`;
@@ -1529,7 +1526,7 @@ document.addEventListener("click", e=>{
 
 function renderAbout(){
   app.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/home'">→ رجوع</button>
+    <button class="back-btn" onclick="history.back()">→ رجوع</button>
     <div class="cat-head"><div class="ch-txt"><h1>عن المكتبة</h1><p>تعريف بالمشروع وأهدافه</p></div></div>
     <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);line-height:2;font-size:14.5px">
       <p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح.</p>
