@@ -387,12 +387,24 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 
 <script src="books-data.js"></script>
 <script>
+// التقسيم الجديد الشامل (17 تصنيفاً)
 const CATS = [
-  {id:"quran",name:"القرآن والتفسير"},{id:"aqaid",name:"العقائد والكلام"},
-  {id:"fiqh",name:"الفقه والأصول"},{id:"akhlaq",name:"الحديث والأخلاق"},
-  {id:"seerah",name:"السيرة والتاريخ"},{id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"},
-  {id:"hussein",name:"الإمام الحسين وعاشوراء"},{id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"},
-  {id:"siyasah",name:"السياسة والاقتصاد"},{id:"mujtama",name:"المجتمع والأسرة والشباب"},
+  {id:"quran",name:"القرآن والتفسير"},
+  {id:"aqaid",name:"العقائد"},
+  {id:"seerah",name:"السيرة"},
+  {id:"fiqh",name:"الفقه"},
+  {id:"usul",name:"الأصول"},
+  {id:"hadith",name:"الحديث"},
+  {id:"akhlaq",name:"الأخلاق"},
+  {id:"tarikh",name:"التاريخ"},
+  {id:"kalam",name:"الكلام"},
+  {id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"},
+  {id:"hussein",name:"الإمام الحسين وعاشوراء"},
+  {id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"},
+  {id:"siyasah",name:"السياسة والاقتصاد"},
+  {id:"mujtama",name:"المجتمع والأسرة"},
+  {id:"youth",name:"الشباب"},
+  {id:"tibb",name:"الطب"},
   {id:"languages",name:"كتب بلغات أخرى"}
 ];
 
@@ -411,12 +423,24 @@ const SERIES = [
   {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
 ];
 
+// تحديث ملفات JSON لتشمل التصنيفات الجديدة
 const BOOKS_JSON_FILES = [
-  ["books-quran.json","quran"],["books-aqaid.json","aqaid"],
-  ["books-fiqh.json","fiqh"],["books-akhlaq.json","akhlaq"],
-  ["books-seerah.json","seerah"],["books-ahlulbayt.json","ahlulbayt"],
-  ["books-hussein.json","hussein"],["books-mahdi.json","mahdi"],
-  ["books-siyasah.json","siyasah"],["books-mujtama.json","mujtama"],
+  ["books-quran.json","quran"],
+  ["books-aqaid.json","aqaid"],
+  ["books-seerah.json","seerah"],
+  ["books-fiqh.json","fiqh"],
+  ["books-usul.json","usul"],
+  ["books-hadith.json","hadith"],
+  ["books-akhlaq.json","akhlaq"],
+  ["books-tarikh.json","tarikh"],
+  ["books-kalam.json","kalam"],
+  ["books-ahlulbayt.json","ahlulbayt"],
+  ["books-hussein.json","hussein"],
+  ["books-mahdi.json","mahdi"],
+  ["books-siyasah.json","siyasah"],
+  ["books-mujtama.json","mujtama"],
+  ["books-youth.json","youth"],
+  ["books-tibb.json","tibb"],
   ["books-languages.json","languages"]
 ];
 
@@ -1187,7 +1211,6 @@ async function downloadBook(id, format){
   const name = b.filename || b.id;
   const url = FILES_BASE + name + "." + ext;
 
-  // محاولة التحقق من وجود الملف قبل الفتح
   try {
     const res = await fetch(url, { method: "HEAD" });
     if(res.ok){
@@ -1201,7 +1224,6 @@ async function downloadBook(id, format){
       );
     }
   } catch(err){
-    // إذا لم يدعم المتصفح HEAD أو حدث خطأ CORS، نفتح الرابط مباشرة
     window.open(url, "_blank");
   }
 }
