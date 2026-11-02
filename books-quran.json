@@ -1,1 +1,13 @@
-{"items": []}
+{
+  "items": [
+    {
+      "title": "تقريب القرآن إلى الأذهان (تجربة)",
+      "author": "shirazi-m",
+      "description": "هذا كتاب تجريبي للتأكد من عمل روابط التحميل من GitHub Releases.",
+      "formats": ["word"],
+      "filename": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/default.docx",
+      "word_ext": "docx",
+      "year": 1420
+    }
+  ]
+}
