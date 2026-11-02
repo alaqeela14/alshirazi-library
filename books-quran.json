@@ -1,6 +1,7 @@
 {
   "items": [
     {
+      "id": "test-book-1",
       "title": "تقريب القرآن إلى الأذهان (تجربة)",
       "author": "shirazi-m",
       "description": "هذا كتاب تجريبي للتأكد من عمل روابط التحميل من GitHub Releases.",
