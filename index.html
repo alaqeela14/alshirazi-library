@@ -317,7 +317,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <header class="site-head">
   <div class="container head-row">
     <a href="#/home" class="brand">
-      <span class="brand-logo"></span>
+      <span class="brand-logo">ﷲ</span>
       <div class="brand-text">
         <strong>مكتبة آل الشيرازي</strong>
         <small>موسوعة تراث أسرة آل الشيرازي العلمي</small>
@@ -479,7 +479,7 @@ function jsonToBook(item, cat){
 
 async function loadJsonFile(path, cat){
   try{
-    const res = await fetch(path);
+    const res = await fetch(path + "?t=" + Date.now()); // إضافة كاسر التخزين المؤقت
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
@@ -651,19 +651,23 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 function router(){
   const raw = location.hash.replace(/^#\/?/,"") || "home";
   const [route, param] = raw.split("/");
+  
+  // فك تشفير الروابط العربية
+  const decodedParam = param ? decodeURIComponent(param) : param;
+
   window.scrollTo({top:0,behavior:"smooth"});
   closeSidebar();
   if(route==="home") renderHome();
   else if(route==="library") renderLibrary();
   else if(route==="cats") renderAllCats();
   else if(route==="series") renderAllSeries();
-  else if(route==="series-one") renderSeriesPage(param);
-  else if(route==="category") renderCategory(param);
+  else if(route==="series-one") renderSeriesPage(decodedParam);
+  else if(route==="category") renderCategory(decodedParam);
   else if(route==="authors") renderAllAuthors();
-  else if(route==="author") renderAuthor(param);
-  else if(route==="book") renderBookPage(param);
+  else if(route==="author") renderAuthor(decodedParam);
+  else if(route==="book") renderBookPage(decodedParam);
   else if(route==="favorites") renderFavorites();
-  else if(route==="read") renderReader(param);
+  else if(route==="read") renderReader(decodedParam);
   else if(route==="about") renderAbout();
   else renderHome();
 }
