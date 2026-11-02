@@ -1235,21 +1235,6 @@ async function downloadBook(id, format){
     window.open(url, "_blank");
   }
 }
-    const res = await fetch(url, { method: "HEAD" });
-    if(res.ok){
-      window.open(url, "_blank");
-    } else {
-      alert(
-        `⚠️ الملف غير موجود في المستودع.\n\n` +
-        `المسار المتوقع:\n` +
-        `files/${name}.${ext}\n\n` +
-        `يرجى رفع الملف إلى مجلد "files" في GitHub بهذا الاسم.`
-      );
-    }
-  } catch(err){
-    window.open(url, "_blank");
-  }
-}
 </script>
 </body>
 </html>
