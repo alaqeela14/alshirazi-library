@@ -1240,33 +1240,19 @@ async function downloadBook(id, format){
   const b = getBook(id);
   if(!b) return;
   
+  // تحديد الرابط المناسب
   let url = "";
   if(format === "pdf" && b.pdf_url) url = b.pdf_url;
   else if(format === "word" && b.word_url) url = b.word_url;
-  else if(b.filename && b.filename.startsWith("http")) url = b.filename;
-  else {
+  
+  // إذا لم يوجد رابط مباشر، استخدم المسار المحلي القديم
+  if(!url) {
     const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
     url = FILES_BASE + (b.filename || b.id) + "." + ext;
   }
 
-  if(!url) {
-    alert("⚠️ هذا الملف غير متوفر حالياً.");
-    return;
-  }
-
-  try {
-    const res = await fetch(url, { method: "HEAD" });
-    if(res.ok){
-      window.open(url, "_blank");
-    } else {
-      alert(
-        `⚠️ الملف غير موجود.\n\n` +
-        `يرجى التأكد من الرابط في ملف الـ JSON.`
-      );
-    }
-  } catch(err){
-    window.open(url, "_blank");
-  }
+  // فتح الرابط مباشرة لبدء التحميل
+  window.open(url, "_blank");
 }
 </script>
 </body>
