@@ -387,7 +387,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 
 <script src="books-data.js"></script>
 <script>
-// التقسيم الجديد الشامل (17 تصنيفاً)
 const CATS = [
   {id:"quran",name:"القرآن والتفسير"},
   {id:"aqaid",name:"العقائد"},
@@ -423,7 +422,6 @@ const SERIES = [
   {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
 ];
 
-// تحديث ملفات JSON لتشمل التصنيفات الجديدة
 const BOOKS_JSON_FILES = [
   ["books-quran.json","quran"],
   ["books-aqaid.json","aqaid"],
@@ -444,7 +442,7 @@ const BOOKS_JSON_FILES = [
   ["books-languages.json","languages"]
 ];
 
-const FILES_BASE = "./files/"; // ← مجلد الملفات المحلية في GitHub
+const FILES_BASE = "./files/"; 
 const DEFAULT_AUTH = "shirazi-m";
 let BOOKS = [];
 const app = document.getElementById("app");
@@ -479,7 +477,7 @@ function jsonToBook(item, cat){
 
 async function loadJsonFile(path, cat){
   try{
-    const res = await fetch(path + "?t=" + Date.now()); // إضافة كاسر التخزين المؤقت
+    const res = await fetch(path);
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
@@ -651,23 +649,19 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 function router(){
   const raw = location.hash.replace(/^#\/?/,"") || "home";
   const [route, param] = raw.split("/");
-  
-  // فك تشفير الروابط العربية
-  const decodedParam = param ? decodeURIComponent(param) : param;
-
   window.scrollTo({top:0,behavior:"smooth"});
   closeSidebar();
   if(route==="home") renderHome();
   else if(route==="library") renderLibrary();
   else if(route==="cats") renderAllCats();
   else if(route==="series") renderAllSeries();
-  else if(route==="series-one") renderSeriesPage(decodedParam);
-  else if(route==="category") renderCategory(decodedParam);
+  else if(route==="series-one") renderSeriesPage(param);
+  else if(route==="category") renderCategory(param);
   else if(route==="authors") renderAllAuthors();
-  else if(route==="author") renderAuthor(decodedParam);
-  else if(route==="book") renderBookPage(decodedParam);
+  else if(route==="author") renderAuthor(param);
+  else if(route==="book") renderBookPage(param);
   else if(route==="favorites") renderFavorites();
-  else if(route==="read") renderReader(decodedParam);
+  else if(route==="read") renderReader(param);
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -937,13 +931,18 @@ function renderBookPage(id){
           <div class="download-box">
             <div class="download-header">
               <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              تحميل الكتاب
+              تحميل ومشاركة الكتاب
             </div>
             <div class="download-body">
               ${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل PDF</button>`:""}
               ${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل Word</button>`:""}
               ${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة مباشرة</a>`:""}
-              ${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:13px">الملف غير متوفر حالياً.</span>`:""}
+              
+              <button class="dl-btn" style="background:var(--primary)" onclick="shareBook('${b.id}')">
+                <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                مشاركة الرابط
+              </button>
+              
               ${favBtnHtml("book",b.id)}
             </div>
           </div>
@@ -1207,6 +1206,34 @@ document.addEventListener("click", e=>{
   if(!e.target.closest(".search-wrap")) sug.classList.remove("show");
 });
 
+/* ============ دالة المشاركة المضافة ============ */
+async function shareBook(id) {
+  const b = getBook(id);
+  if(!b) return;
+  
+  const url = window.location.origin + window.location.pathname + "#/book/" + id;
+  const shareData = {
+    title: 'مكتبة آل الشيرازي',
+    text: 'تصفح كتاب: ' + b.t + ' من مكتبة آل الشيرازي',
+    url: url
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      console.log('تم إلغاء المشاركة', err);
+    }
+  } else {
+    try {
+      await navigator.clipboard.writeText(url);
+      alert('✅ تم نسخ رابط الكتاب بنجاح! يمكنك لصقه في أي مكان.');
+    } catch (err) {
+      alert('⚠️ تعذر نسخ الرابط. الرابط هو:\n' + url);
+    }
+  }
+}
+
 /* ============ التحميل من GitHub Pages مباشرة ============ */
 async function downloadBook(id, format){
   const b = getBook(id);
@@ -1214,16 +1241,13 @@ async function downloadBook(id, format){
   const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
   let url = "";
 
-  // إذا كان الرابط يبدأ بـ http (أي أنه رابط GitHub Releases)
   if(b.filename && b.filename.startsWith("http")) {
     url = b.filename;
   } else {
-    // الطريقة القديمة (البحث في مجلد files المحلي)
     const name = b.filename || b.id;
     url = FILES_BASE + name + "." + ext;
   }
 
-  // محاولة التحقق من وجود الملف قبل الفتح
   try {
     const res = await fetch(url, { method: "HEAD" });
     if(res.ok){
@@ -1235,7 +1259,6 @@ async function downloadBook(id, format){
       );
     }
   } catch(err){
-    // إذا لم يدعم المتصفح HEAD أو حدث خطأ CORS، نفتح الرابط مباشرة
     window.open(url, "_blank");
   }
 }
