@@ -461,16 +461,17 @@ const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id)>0);
 
 function jsonToBook(item, cat){
   const formats = item.formats || ["pdf"];
-  const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
   return {
     id: item.id || (cat + "_" + String(item.title||"").replace(/[^\w\u0600-\u06FF]+/g,"-").slice(0,40)),
     t: item.title||"", c: cat||"fiqh",
     y: parseInt(item.year)||0, pages: parseInt(item.pages)||0,
     desc: item.description||"", cover: item.cover||"",
-    f, a: item.author||DEFAULT_AUTH, series: item.series||"",
+    a: item.author||DEFAULT_AUTH, series: item.series||"",
+    pdf_url: item.pdf_url || "",
+    word_url: item.word_url || "",
     filename: item.filename||"",
-    wordExt: item.word_ext||"docx",
-    hasPdf: formats.includes("pdf"), hasWord: formats.includes("word"),
+    hasPdf: formats.includes("pdf") || !!item.pdf_url,
+    hasWord: formats.includes("word") || !!item.word_url,
     reads: Math.floor(Math.random()*1800)+80
   };
 }
@@ -1008,8 +1009,8 @@ function renderReader(id){
     location.hash = "#/book/" + id;
     return;
   }
-  const name = b.filename || b.id;
-  const url = FILES_BASE + name + ".pdf";
+  // استخدام الرابط المباشر إذا وجد
+  const url = b.pdf_url || (FILES_BASE + (b.filename || b.id) + ".pdf");
   app.innerHTML = `
     <div class="breadcrumbs"><a href="#/book/${b.id}">← العودة لصفحة الكتاب</a></div>
     <div class="reader-wrap">
@@ -1206,7 +1207,7 @@ document.addEventListener("click", e=>{
   if(!e.target.closest(".search-wrap")) sug.classList.remove("show");
 });
 
-/* ============ دالة المشاركة المضافة ============ */
+/* ============ دالة المشاركة ============ */
 async function shareBook(id) {
   const b = getBook(id);
   if(!b) return;
@@ -1234,18 +1235,23 @@ async function shareBook(id) {
   }
 }
 
-/* ============ التحميل من GitHub Pages مباشرة ============ */
+/* ============ دالة التحميل المحدثة للتعامل مع الروابط المباشرة ============ */
 async function downloadBook(id, format){
   const b = getBook(id);
   if(!b) return;
-  const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
+  
   let url = "";
+  if(format === "pdf" && b.pdf_url) url = b.pdf_url;
+  else if(format === "word" && b.word_url) url = b.word_url;
+  else if(b.filename && b.filename.startsWith("http")) url = b.filename;
+  else {
+    const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
+    url = FILES_BASE + (b.filename || b.id) + "." + ext;
+  }
 
-  if(b.filename && b.filename.startsWith("http")) {
-    url = b.filename;
-  } else {
-    const name = b.filename || b.id;
-    url = FILES_BASE + name + "." + ext;
+  if(!url) {
+    alert("⚠️ هذا الملف غير متوفر حالياً.");
+    return;
   }
 
   try {
