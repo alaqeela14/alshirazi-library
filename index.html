@@ -170,7 +170,6 @@ main{flex:1;padding:22px 0 60px}
 .book-row .actions{display:flex;gap:6px;align-items:center;margin-top:auto;flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none;}
 .book-row .actions::-webkit-scrollbar {display:none;}
 
-/* أزرار التحميل والقراءة (تم تصغيرها لتكون في صف واحد) */
 .fmt-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;transition:all var(--tr);border:none;line-height:1.4; white-space:nowrap; flex-shrink:0;}
 .fmt-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
 .fmt-pdf{background:var(--red)}
@@ -206,7 +205,6 @@ main{flex:1;padding:22px 0 60px}
 .meta-item strong{color:var(--primary-dark); font-weight:800;}
 [data-theme="dark"] .meta-item strong{color:var(--accent);}
 
-/* صندوق التحميل (تم تعديله ليكون صف واحد) */
 .download-box{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:18px;background:var(--paper)}
 .download-header{background:var(--paper-2);padding:11px 16px;font-size:13px;font-weight:700;color:var(--primary-dark);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
 [data-theme="dark"] .download-header{color:var(--accent)}
@@ -279,6 +277,22 @@ main{flex:1;padding:22px 0 60px}
 
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size:12px;max-width:740px;margin-inline:auto;line-height:1.9}
+
+/* تنسيقات المكتبة الصوتية */
+.audio-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); transition: all var(--tr); }
+.audio-card:hover { box-shadow: var(--shadow); border-color: var(--accent); }
+.audio-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.audio-title { font-family: 'Amiri', serif; font-size: 18px; color: var(--primary-dark); font-weight: 700; margin: 0; }
+[data-theme="dark"] .audio-title { color: var(--accent); }
+.audio-badge { background: var(--accent-light); color: var(--primary-dark); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.audio-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; display: flex; gap: 15px; flex-wrap: wrap; }
+.audio-meta strong { color: var(--ink-2); }
+.audio-player-wrap { width: 100%; border-radius: 8px; overflow: hidden; }
+.audio-player-wrap audio { width: 100%; display: block; outline: none; }
+.audio-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; scrollbar-width: none; }
+.audio-filters::-webkit-scrollbar { display: none; }
+.audio-filter-btn { background: var(--paper); border: 1px solid var(--line); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; cursor: pointer; transition: all var(--tr); }
+.audio-filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
 @media(max-width:768px){
   .head-row{gap:10px}
@@ -375,6 +389,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
       <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
       <li><a href="#/authors" onclick="closeSidebar()">قائمة المؤلفين</a></li>
       <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
+      <li><a href="#/audios" onclick="closeSidebar()">🎧 المكتبة الصوتية</a></li>
       <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>⭐ المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
       <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
     </ul>
@@ -392,7 +407,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 
 <script src="books-data.js"></script>
 <script>
-// التقسيم الجديد الشامل (17 تصنيفاً)
 const CATS = [
   {id:"quran",name:"القرآن والتفسير"},
   {id:"aqaid",name:"العقائد"},
@@ -428,7 +442,6 @@ const SERIES = [
   {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
 ];
 
-// تحديث ملفات JSON لتشمل التصنيفات الجديدة
 const BOOKS_JSON_FILES = [
   ["books-quran.json","quran"],
   ["books-aqaid.json","aqaid"],
@@ -449,9 +462,10 @@ const BOOKS_JSON_FILES = [
   ["books-languages.json","languages"]
 ];
 
-const FILES_BASE = "./files/"; // ← مجلد الملفات المحلية في GitHub
+const FILES_BASE = "./files/";
 const DEFAULT_AUTH = "shirazi-m";
 let BOOKS = [];
+let AUDIOS = [];
 const app = document.getElementById("app");
 const state = { view:"table", sort:"title-asc", q:"", cat:"all", author:"all", series:"all", searchType:"title" };
 
@@ -484,7 +498,7 @@ function jsonToBook(item, cat){
 
 async function loadJsonFile(path, cat){
   try{
-    const res = await fetch(path + "?t=" + Date.now()); // إضافة كاسر التخزين المؤقت
+    const res = await fetch(path + "?t=" + Date.now());
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
@@ -495,6 +509,15 @@ async function loadJsonFile(path, cat){
 async function loadAllJsonBooks(){
   const results = await Promise.all(BOOKS_JSON_FILES.map(([f,c])=>loadJsonFile(f,c)));
   return results.flat();
+}
+
+async function loadAudios() {
+  try {
+    const res = await fetch('audios.json?t=' + Date.now());
+    if(!res.ok) return [];
+    const json = await res.json();
+    return json.items || [];
+  } catch(e) { return []; }
 }
 
 function loadLegacyBooks(){
@@ -646,6 +669,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
   const legacy = loadLegacyBooks();
   const fromJson = await loadAllJsonBooks();
+  AUDIOS = await loadAudios();
   BOOKS = [...fromJson, ...legacy];
   console.log(`✅ ${fromJson.length} من JSON + ${legacy.length} من legacy`);
   buildSidebar();
@@ -656,8 +680,6 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 function router(){
   const raw = location.hash.replace(/^#\/?/,"") || "home";
   const [route, param] = raw.split("/");
-  
-  // فك تشفير الروابط العربية
   const decodedParam = param ? decodeURIComponent(param) : param;
 
   window.scrollTo({top:0,behavior:"smooth"});
@@ -673,6 +695,7 @@ function router(){
   else if(route==="book") renderBookPage(decodedParam);
   else if(route==="favorites") renderFavorites();
   else if(route==="read") renderReader(decodedParam);
+  else if(route==="audios") renderAudios();
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -1028,6 +1051,56 @@ function renderReader(id){
   `;
 }
 
+function renderAudios() {
+  let currentFilter = 'all';
+  const categories = [...new Set(AUDIOS.map(a => a.category))];
+  
+  const drawContent = () => {
+    let filtered = AUDIOS;
+    if(currentFilter !== 'all') filtered = AUDIOS.filter(a => a.category === currentFilter);
+    
+    let html = `
+      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المكتبة الصوتية</span></div>
+      <div class="sec-title">المكتبة الصوتية</div>
+      <div class="audio-filters">
+        <button class="audio-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="window.filterAudio('all')">الكل</button>
+        ${categories.map(c => `<button class="audio-filter-btn ${currentFilter === c ? 'active' : ''}" onclick="window.filterAudio('${c}')">${esc(c)}</button>`).join('')}
+      </div>
+      <div>
+        ${filtered.length === 0 ? '<div class="empty-state">لا توجد مقاطع صوتية في هذا التصنيف.</div>' : 
+          filtered.map(a => `
+            <div class="audio-card">
+              <div class="audio-head">
+                <h3 class="audio-title">${esc(a.title)}</h3>
+                ${a.category ? `<span class="audio-badge">${esc(a.category)}</span>` : ''}
+              </div>
+              <div class="audio-meta">
+                ${a.speaker ? `<span><strong>المتحدث:</strong> ${esc(a.speaker)}</span>` : ''}
+                ${a.date ? `<span><strong>التاريخ:</strong> ${esc(a.date)}</span>` : ''}
+              </div>
+              ${a.description ? `<p style="font-size:13px; color:var(--ink-2); margin-bottom:12px;">${esc(a.description)}</p>` : ''}
+              <div class="audio-player-wrap">
+                <audio controls preload="none">
+                  <source src="${a.url}" type="audio/mpeg">
+                  متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+              </div>
+            </div>
+          `).join('')
+        }
+      </div>
+    `;
+    app.innerHTML = html;
+  };
+
+  window.filterAudio = (cat) => {
+    currentFilter = cat;
+    drawContent();
+  };
+
+  drawContent();
+}
+
 function renderAbout(){
   app.innerHTML = `
     <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div>
@@ -1212,35 +1285,27 @@ document.addEventListener("click", e=>{
   if(!e.target.closest(".search-wrap")) sug.classList.remove("show");
 });
 
-/* ============ التحميل من GitHub Pages مباشرة ============ */
 async function downloadBook(id, format){
   const b = getBook(id);
   if(!b) return;
   const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
   let url = "";
 
-  // إذا كان الرابط يبدأ بـ http (أي أنه رابط GitHub Releases)
   if(b.filename && b.filename.startsWith("http")) {
     url = b.filename;
   } else {
-    // الطريقة القديمة (البحث في مجلد files المحلي)
     const name = b.filename || b.id;
     url = FILES_BASE + name + "." + ext;
   }
 
-  // محاولة التحقق من وجود الملف قبل الفتح
   try {
     const res = await fetch(url, { method: "HEAD" });
     if(res.ok){
       window.open(url, "_blank");
     } else {
-      alert(
-        `⚠️ الملف غير موجود.\n\n` +
-        `يرجى التأكد من الرابط في ملف الـ JSON.`
-      );
+      alert(`⚠️ الملف غير موجود.\n\nيرجى التأكد من الرابط في ملف الـ JSON.`);
     }
   } catch(err){
-    // إذا لم يدعم المتصفح HEAD أو حدث خطأ CORS، نفتح الرابط مباشرة
     window.open(url, "_blank");
   }
 }
