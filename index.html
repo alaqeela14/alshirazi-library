@@ -281,9 +281,11 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 /* تنسيقات المكتبة الصوتية */
 .audio-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); transition: all var(--tr); }
 .audio-card:hover { box-shadow: var(--shadow); border-color: var(--accent); }
-.audio-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.audio-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
 .audio-title { font-family: 'Amiri', serif; font-size: 18px; color: var(--primary-dark); font-weight: 700; margin: 0; }
 [data-theme="dark"] .audio-title { color: var(--accent); }
+.audio-speaker { font-size: 12px; color: var(--muted); display: block; margin-bottom: 12px; }
+.audio-speaker strong { color: var(--ink-2); font-weight: 600; }
 .audio-badge { background: var(--accent-light); color: var(--primary-dark); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
 .audio-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; display: flex; gap: 15px; flex-wrap: wrap; }
 .audio-meta strong { color: var(--ink-2); }
@@ -336,7 +338,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <header class="site-head">
   <div class="container head-row">
     <a href="#/home" class="brand">
-      <span class="brand-logo"> </span>
+      <span class="brand-logo">ﷲ</span>
       <div class="brand-text">
         <strong>مكتبة آل الشيرازي</strong>
         <small>موسوعة تراث أسرة آل الشيرازي العلمي</small>
@@ -349,9 +351,9 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   </div>
   <div class="date-strip">
     <div class="container">
-      <span> ـ  <strong id="clock">—</strong></span>
-      <span> ـ   <strong id="hijriDate">—</strong></span>
-      <span> ـ   <strong id="gregDate">—</strong></span>
+      <span>🕐 <strong id="clock">—</strong></span>
+      <span>🗓️ <strong id="hijriDate">—</strong></span>
+      <span>📅 <strong id="gregDate">—</strong></span>
     </div>
   </div>
 </header>
@@ -380,16 +382,31 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <h3>التصفح</h3>
     <button class="sidebar-close" id="sidebarClose">✕</button>
   </div>
+  
+  <!-- 1. التصنيفات -->
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
+  
+  <!-- 2. المكتبة الصوتية (تم نقلها قبل الموسوعات) -->
+  <div class="side-widget">
+    <h4>المكتبة الصوتية</h4>
+    <ul class="side-list">
+      <li><a href="#/audios" onclick="closeSidebar()">🎧 جميع المقاطع الصوتية</a></li>
+    </ul>
+  </div>
+
+  <!-- 3. الموسوعات -->
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
+  
+  <!-- 4. المؤلفون -->
   <div class="side-widget"><h4>المؤلفون</h4><ul class="side-list" id="sideAuthors"></ul></div>
+  
+  <!-- 5. روابط سريعة -->
   <div class="side-widget">
     <h4>روابط سريعة</h4>
     <ul class="side-list">
       <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
       <li><a href="#/authors" onclick="closeSidebar()">قائمة المؤلفين</a></li>
       <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
-      <li><a href="#/audios" onclick="closeSidebar()">🎧 المكتبة الصوتية</a></li>
       <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>⭐ المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
       <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
     </ul>
@@ -1053,7 +1070,10 @@ function renderReader(id){
 
 function renderAudios() {
   let currentFilter = 'all';
-  const categories = [...new Set(AUDIOS.map(a => a.category))];
+  // إضافة تصنيفات ثابتة + التصنيفات الموجودة في ملف JSON
+  const defaultCategories = ["تفسير", "أدعية وزيارات", "محاضرات", "دروس", "خطب"];
+  const jsonCategories = AUDIOS.map(a => a.category).filter(Boolean);
+  const categories = [...new Set([...defaultCategories, ...jsonCategories])];
   
   const drawContent = () => {
     let filtered = AUDIOS;
@@ -1074,8 +1094,8 @@ function renderAudios() {
                 <h3 class="audio-title">${esc(a.title)}</h3>
                 ${a.category ? `<span class="audio-badge">${esc(a.category)}</span>` : ''}
               </div>
+              ${a.speaker ? `<span class="audio-speaker"><strong>المتحدث:</strong> ${esc(a.speaker)}</span>` : ''}
               <div class="audio-meta">
-                ${a.speaker ? `<span><strong>المتحدث:</strong> ${esc(a.speaker)}</span>` : ''}
                 ${a.date ? `<span><strong>التاريخ:</strong> ${esc(a.date)}</span>` : ''}
               </div>
               ${a.description ? `<p style="font-size:13px; color:var(--ink-2); margin-bottom:12px;">${esc(a.description)}</p>` : ''}
