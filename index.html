@@ -217,7 +217,7 @@ main{flex:1;padding:22px 0 60px}
 .dl-pdf{background:var(--red)}
 .dl-word{background:var(--blue)}
 .dl-read{background:var(--green)}
-.dl-share{background:var(--accent)} /* لون زر المشاركة */
+.dl-share{background:var(--accent)}
 .dl-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 
 .book-desc-section{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
@@ -279,7 +279,6 @@ main{flex:1;padding:22px 0 60px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size:12px;max-width:740px;margin-inline:auto;line-height:1.9}
 
-/* تنسيقات المكتبة الصوتية */
 .audio-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); transition: all var(--tr); }
 .audio-card:hover { box-shadow: var(--shadow); border-color: var(--accent); }
 .audio-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
@@ -384,10 +383,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <button class="sidebar-close" id="sidebarClose">✕</button>
   </div>
   
-  <!-- 1. التصنيفات -->
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
   
-  <!-- 2. المكتبة الصوتية (قبل الموسوعات) -->
   <div class="side-widget">
     <h4>المكتبة الصوتية</h4>
     <ul class="side-list">
@@ -395,13 +392,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     </ul>
   </div>
 
-  <!-- 3. الموسوعات -->
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
   
-  <!-- 4. المؤلفون -->
   <div class="side-widget"><h4>المؤلفون</h4><ul class="side-list" id="sideAuthors"></ul></div>
   
-  <!-- 5. روابط سريعة -->
   <div class="side-widget">
     <h4>روابط سريعة</h4>
     <ul class="side-list">
@@ -501,6 +495,16 @@ const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id)>0);
 function jsonToBook(item, cat){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
+  
+  // التحقق من وجود روابط الملفات
+  const hasPdf = formats.includes("pdf") && (item.pdf_url || item.filename);
+  const hasWord = formats.includes("word") && (item.word_url || item.filename);
+
+  // إذا لم يكن هناك أي ملف، نعيد null لحذفه من القائمة
+  if (!hasPdf && !hasWord) {
+      return null; 
+  }
+
   return {
     id: item.id || (cat + "_" + String(item.title||"").replace(/[^\w\u0600-\u06FF]+/g,"-").slice(0,40)),
     t: item.title||"", c: cat||"fiqh",
@@ -511,7 +515,8 @@ function jsonToBook(item, cat){
     pdf_url: item.pdf_url || "",
     word_url: item.word_url || "",
     wordExt: item.word_ext||"docx",
-    hasPdf: formats.includes("pdf"), hasWord: formats.includes("word"),
+    hasPdf: hasPdf, 
+    hasWord: hasWord,
     reads: Math.floor(Math.random()*1800)+80
   };
 }
@@ -522,7 +527,12 @@ async function loadJsonFile(path, cat){
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
-    return json.items.map(item=>jsonToBook(item,cat));
+    
+    // تصفية الكتب وإزالة الكتب التي لا تحتوي على ملفات
+    return json.items
+      .map(item => jsonToBook(item, cat))
+      .filter(book => book !== null); // هذا السطر يقوم بحذف الكتب الفارغة
+      
   }catch(e){ return []; }
 }
 
@@ -992,7 +1002,6 @@ function renderBookPage(id){
               ${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}
               ${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}
               
-              <!-- زر المشاركة هنا -->
               <button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>
               
               ${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}
@@ -1333,7 +1342,6 @@ async function downloadBook(id, format){
   window.open(url, "_blank");
 }
 
-// دالة المشاركة
 async function shareBook(id) {
   const b = getBook(id);
   if (!b) return;
