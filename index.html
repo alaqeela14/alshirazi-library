@@ -496,11 +496,9 @@ function jsonToBook(item, cat){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
   
-  // التحقق من وجود روابط الملفات
   const hasPdf = formats.includes("pdf") && (item.pdf_url || item.filename);
   const hasWord = formats.includes("word") && (item.word_url || item.filename);
 
-  // إذا لم يكن هناك أي ملف، نعيد null لحذفه من القائمة
   if (!hasPdf && !hasWord) {
       return null; 
   }
@@ -528,10 +526,9 @@ async function loadJsonFile(path, cat){
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
     
-    // تصفية الكتب وإزالة الكتب التي لا تحتوي على ملفات
     return json.items
       .map(item => jsonToBook(item, cat))
-      .filter(book => book !== null); // هذا السطر يقوم بحذف الكتب الفارغة
+      .filter(book => book !== null); 
       
   }catch(e){ return []; }
 }
@@ -1070,8 +1067,17 @@ function renderReader(id){
     location.hash = "#/book/" + id;
     return;
   }
-  const name = b.filename || b.id;
-  const url = FILES_BASE + name + ".pdf";
+  
+  let url = "";
+  if (b.pdf_url && b.pdf_url.startsWith("http")) {
+      url = b.pdf_url;
+  } else if (b.filename && b.filename.startsWith("http")) {
+      url = b.filename;
+  } else {
+      const name = b.filename || b.id;
+      url = FILES_BASE + name + ".pdf";
+  }
+
   app.innerHTML = `
     <div class="breadcrumbs"><a href="#/book/${b.id}">← العودة لصفحة الكتاب</a></div>
     <div class="reader-wrap">
