@@ -217,6 +217,7 @@ main{flex:1;padding:22px 0 60px}
 .dl-pdf{background:var(--red)}
 .dl-word{background:var(--blue)}
 .dl-read{background:var(--green)}
+.dl-share{background:var(--accent)} /* لون زر المشاركة */
 .dl-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 
 .book-desc-section{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
@@ -383,8 +384,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <button class="sidebar-close" id="sidebarClose">✕</button>
   </div>
   
+  <!-- 1. التصنيفات -->
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
   
+  <!-- 2. المكتبة الصوتية (قبل الموسوعات) -->
   <div class="side-widget">
     <h4>المكتبة الصوتية</h4>
     <ul class="side-list">
@@ -392,10 +395,13 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     </ul>
   </div>
 
+  <!-- 3. الموسوعات -->
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
   
+  <!-- 4. المؤلفون -->
   <div class="side-widget"><h4>المؤلفون</h4><ul class="side-list" id="sideAuthors"></ul></div>
   
+  <!-- 5. روابط سريعة -->
   <div class="side-widget">
     <h4>روابط سريعة</h4>
     <ul class="side-list">
@@ -985,6 +991,10 @@ function renderBookPage(id){
               ${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}
               ${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}
               ${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}
+              
+              <!-- زر المشاركة هنا -->
+              <button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>
+              
               ${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}
               ${favBtnHtml("book",b.id)}
             </div>
@@ -1304,12 +1314,15 @@ document.addEventListener("click", e=>{
 async function downloadBook(id, format){
   const b = getBook(id);
   if(!b) return;
-  
+  const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
   let url = "";
-  if (format === "pdf") {
-    url = b.pdf_url || b.filename; 
+
+  if(b.filename && b.filename.startsWith("http")) {
+    url = b.filename;
+  } else if (format === "pdf") {
+    url = b.pdf_url;
   } else if (format === "word") {
-    url = b.word_url || b.filename;
+    url = b.word_url;
   }
 
   if (!url) {
@@ -1318,6 +1331,29 @@ async function downloadBook(id, format){
   }
 
   window.open(url, "_blank");
+}
+
+// دالة المشاركة
+async function shareBook(id) {
+  const b = getBook(id);
+  if (!b) return;
+  
+  const shareData = {
+    title: b.t,
+    text: `تصفح هذا الكتاب من مكتبة آل الشيرازي: ${b.t}`,
+    url: window.location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(shareData.url);
+      alert("✅ تم نسخ رابط الكتاب للمشاركة.");
+    }
+  } catch (err) {
+    console.log('Error sharing:', err);
+  }
 }
 </script>
 </body>
