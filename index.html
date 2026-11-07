@@ -497,7 +497,6 @@ function jsonToBook(item, cat){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
   
-  // فلتر قوي جداً: يجب أن يكون هناك رابط فعلي وليس مجرد مسافة فارغة
   const hasPdf = formats.includes("pdf") && item.pdf_url && item.pdf_url.trim() !== "" && item.pdf_url !== "#";
   const hasWord = formats.includes("word") && item.word_url && item.word_url.trim() !== "" && item.word_url !== "#";
 
@@ -1070,15 +1069,18 @@ function renderReader(id){
     return;
   }
   
-  let url = "";
+  let rawUrl = "";
   if (b.pdf_url && b.pdf_url.startsWith("http")) {
-      url = b.pdf_url;
+      rawUrl = b.pdf_url;
   } else if (b.filename && b.filename.startsWith("http")) {
-      url = b.filename;
+      rawUrl = b.filename;
   } else {
       const name = b.filename || b.id;
-      url = FILES_BASE + name + ".pdf";
+      rawUrl = FILES_BASE + name + ".pdf";
   }
+
+  // استخدام قارئ PDF مدمج لتجاوز قيود GitHub
+  const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
 
   // وضع القراءة الشاشة الكاملة
   app.innerHTML = `
@@ -1088,7 +1090,7 @@ function renderReader(id){
         <h1>${esc(b.t)}</h1>
         ${favBtnHtml("book",b.id)}
       </div>
-      <iframe src="${url}" class="reader-iframe" allowfullscreen></iframe>
+      <iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe>
     </div>
   `;
 }
