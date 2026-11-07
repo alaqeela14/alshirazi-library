@@ -383,10 +383,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <button class="sidebar-close" id="sidebarClose">✕</button>
   </div>
   
-  <!-- 1. التصنيفات -->
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
   
-  <!-- 2. المكتبة الصوتية (تم نقلها قبل الموسوعات) -->
   <div class="side-widget">
     <h4>المكتبة الصوتية</h4>
     <ul class="side-list">
@@ -394,13 +392,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     </ul>
   </div>
 
-  <!-- 3. الموسوعات -->
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
   
-  <!-- 4. المؤلفون -->
   <div class="side-widget"><h4>المؤلفون</h4><ul class="side-list" id="sideAuthors"></ul></div>
   
-  <!-- 5. روابط سريعة -->
   <div class="side-widget">
     <h4>روابط سريعة</h4>
     <ul class="side-list">
@@ -506,7 +501,9 @@ function jsonToBook(item, cat){
     y: parseInt(item.year)||0, pages: parseInt(item.pages)||0,
     desc: item.description||"", cover: item.cover||"",
     f, a: item.author||DEFAULT_AUTH, series: item.series||"",
-    filename: item.filename||"",
+    filename: item.filename || "",
+    pdf_url: item.pdf_url || "",
+    word_url: item.word_url || "",
     wordExt: item.word_ext||"docx",
     hasPdf: formats.includes("pdf"), hasWord: formats.includes("word"),
     reads: Math.floor(Math.random()*1800)+80
@@ -1070,7 +1067,6 @@ function renderReader(id){
 
 function renderAudios() {
   let currentFilter = 'all';
-  // إضافة تصنيفات ثابتة + التصنيفات الموجودة في ملف JSON
   const defaultCategories = ["تفسير", "أدعية وزيارات", "محاضرات", "دروس", "خطب"];
   const jsonCategories = AUDIOS.map(a => a.category).filter(Boolean);
   const categories = [...new Set([...defaultCategories, ...jsonCategories])];
@@ -1308,26 +1304,20 @@ document.addEventListener("click", e=>{
 async function downloadBook(id, format){
   const b = getBook(id);
   if(!b) return;
-  const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
+  
   let url = "";
-
-  if(b.filename && b.filename.startsWith("http")) {
-    url = b.filename;
-  } else {
-    const name = b.filename || b.id;
-    url = FILES_BASE + name + "." + ext;
+  if (format === "pdf") {
+    url = b.pdf_url || b.filename; 
+  } else if (format === "word") {
+    url = b.word_url || b.filename;
   }
 
-  try {
-    const res = await fetch(url, { method: "HEAD" });
-    if(res.ok){
-      window.open(url, "_blank");
-    } else {
-      alert(`⚠️ الملف غير موجود.\n\nيرجى التأكد من الرابط في ملف الـ JSON.`);
-    }
-  } catch(err){
-    window.open(url, "_blank");
+  if (!url) {
+    alert("⚠️ رابط الملف غير متوفر لهذه الصيغة.");
+    return;
   }
+
+  window.open(url, "_blank");
 }
 </script>
 </body>
