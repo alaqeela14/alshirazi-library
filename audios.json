@@ -1,13 +1,11 @@
 {
   "items": [
     {
-      "id": "test-audio-1",
-      "title": "مقطع تجريبي (سيتم حذفه لاحقاً)",
-      "speaker": "منصة مشكاة",
-      "category": "محاضرات",
-      "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      "date": "1445-01-01",
-      "description": "هذا مجرد ملف صوتي تجريبي للتأكد من عمل المشغل."
+      "title": "اسم الدرس الأول هنا",
+      "speaker": "السيد مهدي الحسيني الشيرازي",
+      "category": "خارج الفقه",
+      "url": "الرابط_المباشر_للصوت.mp3",
+      "download_url": "الرابط_المباشر_للصوت.mp3"
     }
   ]
 }
