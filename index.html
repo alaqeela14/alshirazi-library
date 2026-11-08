@@ -58,7 +58,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .head-btn .fav-cnt{background:var(--accent);color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-grid;place-items:center;padding:0 5px}
 
-/* تصغير شريط التاريخ والوقت */
 .date-strip{background:var(--primary);color:var(--accent-light);font-size:9.5px;padding:3px 0;border-top:1px solid rgba(0,0,0,.1);font-family:'Noto Naskh Arabic',serif}
 .date-strip .container{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .date-strip span{display:flex;align-items:center;gap:4px}
@@ -125,7 +124,6 @@ main{flex:1;padding:22px 0 60px}
 .sec-title::before{content:"";display:block;width:4px;height:24px;background:var(--accent);border-radius:2px}
 [data-theme="dark"] .sec-title{color:var(--accent)}
 
-/* تصغير قسم الترحيب (المربع الأحمر) */
 .hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .hero h1{font-family:'Amiri',serif;font-size:20px;margin-bottom:6px;line-height:1.3;color:#fff}
 .hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px}
@@ -261,7 +259,6 @@ main{flex:1;padding:22px 0 60px}
 .empty-box{background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;color:var(--muted)}
 .empty-box .ef-icon{width:64px;height:64px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;margin:0 auto 14px;font-size:28px}
 
-/* وضع القراءة (Full Screen) */
 .reader-wrap{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;flex-direction:column;}
 .reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
@@ -281,45 +278,38 @@ main{flex:1;padding:22px 0 60px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size:12px;max-width:740px;margin-inline:auto;line-height:1.9}
 
-.audio-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); transition: all var(--tr); }
-.audio-card:hover { box-shadow: var(--shadow); border-color: var(--accent); }
-.audio-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
-.audio-title { font-family: 'Amiri', serif; font-size: 18px; color: var(--primary-dark); font-weight: 700; margin: 0; }
-[data-theme="dark"] .audio-title { color: var(--accent); }
-.audio-speaker { font-size: 12px; color: var(--muted); display: block; margin-bottom: 12px; }
-.audio-speaker strong { color: var(--ink-2); font-weight: 600; }
-.audio-badge { background: var(--accent-light); color: var(--primary-dark); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-.audio-meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; display: flex; gap: 15px; flex-wrap: wrap; }
-.audio-meta strong { color: var(--ink-2); }
-.audio-player-wrap { width: 100%; border-radius: 8px; overflow: hidden; }
-.audio-player-wrap audio { width: 100%; display: block; outline: none; }
-.audio-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; scrollbar-width: none; }
-.audio-filters::-webkit-scrollbar { display: none; }
-.audio-filter-btn { background: var(--paper); border: 1px solid var(--line); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; cursor: pointer; transition: all var(--tr); }
-.audio-filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+/* تصميم المكتبة الصوتية والمرئية (الجدول) */
+.lib-controls { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 12px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow-sm); }
+.lib-search-box { display: flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; padding: 0 12px; }
+.lib-search-box input { flex: 1; border: none; background: transparent; padding: 10px; outline: none; font-family: inherit; color: var(--ink); }
+.lib-search-box svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
+.lib-filter-box { display: flex; align-items: center; justify-content: space-between; background: var(--primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; }
+.lib-filter-box select { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 4px 8px; border-radius: 6px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; }
+.lib-filter-box select option { color: #000; }
 
-/* تصغير حجم الخطوط والأزرار داخل صفحة الموسوعة فقط */
-.series-page-layout .book-row .title { font-size: 13.5px; }
-.series-page-layout .book-row .meta { font-size: 11px; margin-bottom: 5px; }
-.series-page-layout .book-row .meta span { gap: 2px; }
-.series-page-layout .book-row .desc { font-size: 11px; }
-.series-page-layout .book-row .cover { width: 70px; height: 95px; }
-.series-page-layout .fmt-btn { font-size: 9px; padding: 3px 8px; }
-.series-page-layout .dl-btn { font-size: 10.5px; padding: 6px 12px; }
-.series-page-layout .fav-btn { width: 26px; height: 26px; }
-.series-page-layout .fav-btn svg { width: 12px; height: 12px; }
+.lib-table { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 30px; }
+.lib-thead { display: grid; grid-template-columns: 2fr 1fr 100px; background: var(--primary); color: #fff; padding: 12px 16px; font-weight: 700; font-size: 13px; text-align: center; }
+.lib-thead div:first-child { text-align: right; }
+.lib-row { display: grid; grid-template-columns: 2fr 1fr 100px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line-2); transition: background var(--tr); }
+.lib-row:last-child { border-bottom: none; }
+.lib-row:hover { background: var(--paper-2); }
+.lib-title { font-weight: 700; font-size: 13.5px; color: var(--ink); line-height: 1.4; text-align: right; }
+.lib-auth { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.4; }
+.lib-actions { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
 
-/* تصغير حجم الخطوط والأزرار داخل صفحة الكتاب */
-.book-page .book-title { font-size: 20px !important; margin-bottom: 10px; }
-.book-page .author-chip { padding: 4px 12px 4px 4px; margin-bottom: 12px; }
-.book-page .author-chip span { font-size: 11.5px; }
-.book-page .author-chip .avatar-letter { width: 28px; height: 28px; font-size: 12px; }
-.book-page .book-meta-grid { padding: 10px; gap: 8px; margin-bottom: 15px; }
-.book-page .meta-item { font-size: 11.5px; }
-.book-page .download-header { padding: 8px 12px; font-size: 12px; }
-.book-page .download-body { padding: 10px 12px; gap: 5px; }
-.book-page .dl-btn { font-size: 10.5px; padding: 6px 10px; }
-.book-page .fav-btn { width: 26px; height: 26px; }
+.lib-btn { width: 32px; height: 32px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink-2); transition: all var(--tr); cursor: pointer; }
+.lib-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.lib-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* مشغل الصوت السفلي الثابت */
+.sticky-player { position: fixed; bottom: 0; left: 0; right: 0; background: var(--paper); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(0,0,0,0.1); padding: 10px 16px; display: none; align-items: center; gap: 12px; z-index: 100; }
+.sticky-player.show { display: flex; }
+.sticky-player .sp-info { flex: 1; min-width: 0; }
+.sticky-player .sp-title { font-weight: 700; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--primary-dark); }
+.sticky-player .sp-auth { font-size: 11px; color: var(--muted); }
+.sticky-player audio { flex: 1; max-width: 400px; height: 36px; }
+.sticky-player .sp-close { background: var(--paper-2); border: 1px solid var(--line); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.sticky-player .sp-close:hover { background: var(--red); color: #fff; border-color: var(--red); }
 
 @media(max-width:768px){
   .head-row{gap:10px}
@@ -329,7 +319,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .head-btn{padding:6px 11px;font-size:11.5px}
   .head-btn .txt{display:none}
   
-  /* تصغير شريط التاريخ في الجوال */
   .date-strip{font-size:8.5px; padding:2px 0;}
   .date-strip .container{justify-content:center}
   
@@ -354,6 +343,17 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .sec-title{font-size:19px}
   .fav-header{padding:16px 18px}
   .fav-header h1{font-size:20px}
+  
+  .lib-thead { grid-template-columns: 1.5fr 1fr 90px; padding: 10px; font-size: 12px; }
+  .lib-row { grid-template-columns: 1.5fr 1fr 90px; padding: 10px; }
+  .lib-title { font-size: 12px; }
+  .lib-auth { font-size: 10.5px; }
+  .lib-btn { width: 28px; height: 28px; }
+  .lib-btn svg { width: 14px; height: 14px; }
+  .sticky-player { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; }
+  .sticky-player .sp-info { text-align: center; }
+  .sticky-player audio { max-width: 100%; }
+  .sticky-player .sp-close { position: absolute; top: -15px; right: 10px; background: var(--red); color: #fff; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 }
 </style>
 </head>
@@ -366,7 +366,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <header class="site-head">
   <div class="container head-row">
     <a href="#/home" class="brand">
-      <!-- تم استبدال المربع البني بصورة الشعار logo.png -->
       <img src="logo.png" alt="شعار المكتبة" style="width: 46px; height: 46px; border-radius: 12px; object-fit: cover; box-shadow: var(--shadow); border: 2px solid var(--gold);">
       <div class="brand-text">
         <strong>مكتبة آل الشيرازي</strong>
@@ -415,9 +414,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
   
   <div class="side-widget">
-    <h4>المكتبة الصوتية</h4>
+    <h4>الوسائط المتعددة</h4>
     <ul class="side-list">
-      <li><a href="#/audios" onclick="closeSidebar()">🎧 جميع المقاطع الصوتية</a></li>
+      <li><a href="#/audios" onclick="closeSidebar()">🎧 المكتبة الصوتية</a></li>
+      <li><a href="#/videos" onclick="closeSidebar()">🎬 المكتبة المرئية</a></li>
     </ul>
   </div>
 
@@ -445,6 +445,16 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <p class="dua-line">اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين.</p>
   </div>
 </footer>
+
+<!-- مشغل الصوت الثابت -->
+<div class="sticky-player" id="stickyPlayer">
+  <div class="sp-info">
+    <div class="sp-title" id="spTitle">—</div>
+    <div class="sp-auth" id="spAuth">—</div>
+  </div>
+  <audio id="spAudio" controls preload="none"></audio>
+  <button class="sp-close" onclick="document.getElementById('stickyPlayer').classList.remove('show'); document.getElementById('spAudio').pause();">✕</button>
+</div>
 
 <script src="books-data.js"></script>
 <script>
@@ -507,6 +517,7 @@ const FILES_BASE = "./files/";
 const DEFAULT_AUTH = "shirazi-m";
 let BOOKS = [];
 let AUDIOS = [];
+let VIDEOS = [];
 const app = document.getElementById("app");
 const state = { view:"table", sort:"title-asc", q:"", cat:"all", author:"all", series:"all", searchType:"title" };
 
@@ -570,6 +581,15 @@ async function loadAllJsonBooks(){
 async function loadAudios() {
   try {
     const res = await fetch('audios.json?t=' + Date.now());
+    if(!res.ok) return [];
+    const json = await res.json();
+    return json.items || [];
+  } catch(e) { return []; }
+}
+
+async function loadVideos() {
+  try {
+    const res = await fetch('videos.json?t=' + Date.now());
     if(!res.ok) return [];
     const json = await res.json();
     return json.items || [];
@@ -726,6 +746,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   const legacy = loadLegacyBooks();
   const fromJson = await loadAllJsonBooks();
   AUDIOS = await loadAudios();
+  VIDEOS = await loadVideos();
   BOOKS = [...fromJson, ...legacy];
   console.log(`✅ ${fromJson.length} من JSON + ${legacy.length} من legacy`);
   buildSidebar();
@@ -751,7 +772,8 @@ function router(){
   else if(route==="book") renderBookPage(decodedParam);
   else if(route==="favorites") renderFavorites();
   else if(route==="read") renderReader(decodedParam);
-  else if(route==="audios") renderAudios();
+  else if(route==="audios") renderMediaLibrary("audio");
+  else if(route==="videos") renderMediaLibrary("video");
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -967,7 +989,6 @@ function renderSeriesPage(id){
   state.series = id; state.cat = "all"; state.author = "all"; state.q = "";
   const count = countBySeries(id);
   
-  // إضافة أزرار تحميل الموسوعة كاملة إذا كانت موسوعة الفقه
   let bulkDownloadHtml = "";
   if (id === "fiqh-encyclopedia") {
     bulkDownloadHtml = `
@@ -1130,17 +1151,14 @@ function renderReader(id){
       rawUrl = FILES_BASE + name + ".pdf";
   }
 
-  // استخدام قارئ جوجل لتجاوز قيود GitHub
   const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
 
-  // وضع القراءة الشاشة الكاملة
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
         <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
         
-        <!-- زر فتح الملف في نافذة جديدة للبحث -->
         <a href="${rawUrl}" target="_blank" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--primary); color:#fff; border-color:var(--primary); display:flex; align-items:center; gap:4px;">
           <i class="fa-solid fa-magnifying-glass"></i> فتح للبحث
         </a>
@@ -1152,41 +1170,84 @@ function renderReader(id){
   `;
 }
 
-function renderAudios() {
-  let currentFilter = 'all';
-  const defaultCategories = ["تفسير", "أدعية وزيارات", "محاضرات", "دروس", "خطب"];
-  const jsonCategories = AUDIOS.map(a => a.category).filter(Boolean);
-  const categories = [...new Set([...defaultCategories, ...jsonCategories])];
+// دالة عرض المكتبة الصوتية والمرئية (الجدول)
+function renderMediaLibrary(type) {
+  const isAudio = type === "audio";
+  const data = isAudio ? AUDIOS : VIDEOS;
+  const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
+  const iconType = isAudio ? "🎧" : "🎬";
   
+  // استخراج التصنيفات الفريدة
+  const defaultCategories = isAudio ? ["دروس الحوزة العلمية", "محاضرات", "خطب", "أدعية وزيارات"] : ["دروس مرئية", "محاضرات", "مقابلات", "وثائقيات"];
+  const jsonCategories = data.map(a => a.category).filter(Boolean);
+  const categories = [...new Set([...defaultCategories, ...jsonCategories])];
+
+  let currentFilter = 'all';
+  let searchQuery = '';
+
   const drawContent = () => {
-    let filtered = AUDIOS;
-    if(currentFilter !== 'all') filtered = AUDIOS.filter(a => a.category === currentFilter);
+    let filtered = data;
+    if(currentFilter !== 'all') filtered = filtered.filter(a => a.category === currentFilter);
+    if(searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q));
+    }
     
     let html = `
-      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المكتبة الصوتية</span></div>
-      <div class="sec-title">المكتبة الصوتية</div>
-      <div class="audio-filters">
-        <button class="audio-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="window.filterAudio('all')">الكل</button>
-        ${categories.map(c => `<button class="audio-filter-btn ${currentFilter === c ? 'active' : ''}" onclick="window.filterAudio('${c}')">${esc(c)}</button>`).join('')}
+      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div>
+      <div class="sec-title">${iconType} ${pageTitle}</div>
+      
+      <div class="lib-controls">
+        <div class="lib-search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="بحث..." value="${searchQuery}" oninput="window.mediaSearch(this.value)">
+        </div>
+        <div class="lib-filter-box">
+          <span>تصنيف:</span>
+          <select onchange="window.mediaFilter(this.value)">
+            <option value="all">الكل</option>
+            ${categories.map(c => `<option value="${c}" ${currentFilter === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+          </select>
+        </div>
       </div>
-      <div>
-        ${filtered.length === 0 ? '<div class="empty-state">لا توجد مقاطع صوتية في هذا التصنيف.</div>' : 
+
+      <div class="lib-table">
+        <div class="lib-thead">
+          <div>العنوان</div>
+          <div>الأستاذ</div>
+          <div>الخدمات</div>
+        </div>
+        ${filtered.length === 0 ? '<div style="padding: 20px; text-align: center; color: var(--muted);">لا توجد عناصر مطابقة.</div>' : 
           filtered.map(a => `
-            <div class="audio-card">
-              <div class="audio-head">
-                <h3 class="audio-title">${esc(a.title)}</h3>
-                ${a.category ? `<span class="audio-badge">${esc(a.category)}</span>` : ''}
-              </div>
-              ${a.speaker ? `<span class="audio-speaker"><strong>المتحدث:</strong> ${esc(a.speaker)}</span>` : ''}
-              <div class="audio-meta">
-                ${a.date ? `<span><strong>التاريخ:</strong> ${esc(a.date)}</span>` : ''}
-              </div>
-              ${a.description ? `<p style="font-size:13px; color:var(--ink-2); margin-bottom:12px;">${esc(a.description)}</p>` : ''}
-              <div class="audio-player-wrap">
-                <audio controls preload="none">
-                  <source src="${a.url}" type="audio/mpeg">
-                  متصفحك لا يدعم تشغيل الصوت.
-                </audio>
+            <div class="lib-row">
+              <div class="lib-title">${esc(a.title)}</div>
+              <div class="lib-auth">${esc(a.speaker || a.author || '—')}</div>
+              <div class="lib-actions">
+                ${isAudio ? `
+                  <button class="lib-btn" title="تشغيل" onclick="playAudio('${a.url}', '${esc(a.title)}', '${esc(a.speaker||'')}')">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </button>
+                ` : `
+                  <a href="${a.url}" target="_blank" class="lib-btn" title="مشاهدة">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </a>
+                `}
+                
+                ${a.download_url ? `
+                  <a href="${a.download_url}" target="_blank" class="lib-btn" title="تحميل">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </a>
+                ` : ''}
+                
+                ${a.doc_url ? `
+                  <a href="${a.doc_url}" target="_blank" class="lib-btn" title="الملف النصي">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  </a>
+                ` : ''}
+                
+                <button class="lib-btn" title="مشاركة" onclick="shareMedia('${esc(a.title)}')">
+                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </button>
               </div>
             </div>
           `).join('')
@@ -1196,13 +1257,31 @@ function renderAudios() {
     app.innerHTML = html;
   };
 
-  window.filterAudio = (cat) => {
-    currentFilter = cat;
-    drawContent();
+  window.mediaFilter = (cat) => { currentFilter = cat; drawContent(); };
+  window.mediaSearch = (val) => { searchQuery = val; drawContent(); };
+  window.shareMedia = async (title) => {
+    try {
+      if (navigator.share) { await navigator.share({ title: title, url: window.location.href }); }
+      else { await navigator.clipboard.writeText(window.location.href); alert("✅ تم نسخ الرابط"); }
+    } catch(e) {}
   };
 
   drawContent();
 }
+
+// دالة تشغيل الصوت في المشغل السفلي
+window.playAudio = function(url, title, author) {
+  const player = document.getElementById('stickyPlayer');
+  const audio = document.getElementById('spAudio');
+  document.getElementById('spTitle').textContent = title;
+  document.getElementById('spAuth').textContent = author;
+  
+  if (audio.src !== url) {
+    audio.src = url;
+  }
+  player.classList.add('show');
+  audio.play().catch(e => alert("تعذر تشغيل الصوت، تأكد من الرابط."));
+};
 
 function renderAbout(){
   app.innerHTML = `
@@ -1264,7 +1343,6 @@ function getFiltered(){
   if(state.series!=="all") list = list.filter(b=>b.series===state.series);
   if(state.q) list = list.filter(b=>matchBook(b,state.q,state.searchType));
 
-  // دالة مساعدة لاستخراج الرقم من المعرف (id)
   const parseId = (id) => {
       const match = String(id).match(/\d+/);
       return match ? parseInt(match[0], 10) : 0;
@@ -1453,7 +1531,6 @@ async function shareBook(id) {
   }
 }
 
-// دالة مشاركة الموسوعة
 async function shareSeries(id) {
   const s = getSeries(id);
   if (!s) return;
