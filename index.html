@@ -58,9 +58,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .head-btn .fav-cnt{background:var(--accent);color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-grid;place-items:center;padding:0 5px}
 
-.date-strip{background:var(--primary);color:var(--accent-light);font-size:11.5px;padding:6px 0;border-top:1px solid rgba(0,0,0,.1);font-family:'Noto Naskh Arabic',serif}
-.date-strip .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.date-strip span{display:flex;align-items:center;gap:5px}
+/* تصغير شريط التاريخ والوقت */
+.date-strip{background:var(--primary);color:var(--accent-light);font-size:9.5px;padding:3px 0;border-top:1px solid rgba(0,0,0,.1);font-family:'Noto Naskh Arabic',serif}
+.date-strip .container{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
 .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;box-shadow:var(--shadow-sm)}
@@ -327,8 +328,11 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .brand-text small{display:none}
   .head-btn{padding:6px 11px;font-size:11.5px}
   .head-btn .txt{display:none}
-  .date-strip{font-size:10.5px}
+  
+  /* تصغير شريط التاريخ في الجوال */
+  .date-strip{font-size:8.5px; padding:2px 0;}
   .date-strip .container{justify-content:center}
+  
   .topbar-inner{flex-wrap:wrap}
   .search-wrap{max-width:100%;margin:0}
   .topbar-btn .txt{display:none}
