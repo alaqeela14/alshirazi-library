@@ -132,6 +132,28 @@ main{flex:1;padding:22px 0 60px}
 .hero .stat strong{display:block;font-size:16px;color:var(--accent-light);font-weight:800;line-height:1.2}
 .hero .stat span{font-size:9.5px;opacity:.9;display:block;margin-top:2px}
 
+/* تصميم قسم الحوزة الالكترونية */
+.hawza-banner { background: var(--paper); border: 1px solid var(--accent); border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: var(--shadow); margin-bottom: 26px; transition: all var(--tr); }
+.hawza-banner:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.hawza-banner .hb-text h2 { font-family: 'Amiri', serif; font-size: 22px; color: var(--primary-dark); margin-bottom: 6px; }
+[data-theme="dark"] .hawza-banner .hb-text h2 { color: var(--accent); }
+.hawza-banner .hb-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.hawza-banner .hb-icon { font-size: 40px; background: var(--paper-2); width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; border: 2px solid var(--line); }
+
+.hawza-section-title { font-family: 'Amiri', serif; font-size: 20px; color: var(--primary-dark); margin: 20px 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+[data-theme="dark"] .hawza-section-title { color: var(--accent); }
+.hawza-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 26px; }
+.hawza-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm); transition: all var(--tr); display: flex; flex-direction: column; gap: 10px; }
+.hawza-card:hover { box-shadow: var(--shadow); border-color: var(--primary); }
+.hawza-card-head { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line-2); padding-bottom: 10px; }
+.hawza-card-head .hc-icon { font-size: 28px; }
+.hawza-card-head .hc-title { font-family: 'Amiri', serif; font-size: 18px; font-weight: 700; color: var(--primary-dark); }
+[data-theme="dark"] .hawza-card-head .hc-title { color: var(--accent); }
+.hawza-sub-list { display: flex; flex-direction: column; gap: 6px; }
+.hawza-sub-btn { display: block; width: 100%; text-align: right; padding: 8px 12px; background: var(--paper-2); border-radius: 6px; font-size: 13px; color: var(--ink-2); border: 1px solid transparent; transition: all var(--tr); cursor: pointer; }
+.hawza-sub-btn:hover { background: var(--accent-light); color: var(--primary-dark); border-color: var(--accent); }
+.hawza-sub-btn::before { content: "↳ "; color: var(--accent); font-weight: bold; }
+
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:10px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
 .results{font-size:13px;color:var(--muted)}
 .results strong{color:var(--ink);font-weight:800}
@@ -284,8 +306,9 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .lib-search-box input { flex: 1; border: none; background: transparent; padding: 10px; outline: none; font-family: inherit; color: var(--ink); }
 .lib-search-box svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
 .lib-filter-box { display: flex; align-items: center; justify-content: space-between; background: var(--primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; }
-.lib-filter-box select { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 4px 8px; border-radius: 6px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; }
-.lib-filter-box select option { color: #000; }
+.lib-filter-box select { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 4px 8px; border-radius: 6px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; max-width: 60%; }
+.lib-filter-box select option { color: #000; background: #fff; }
+.lib-filter-box select optgroup { color: #000; font-weight: bold; background: #eee; }
 
 .lib-table { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 30px; }
 .lib-thead { display: grid; grid-template-columns: 2fr 1fr 100px; background: var(--primary); color: #fff; padding: 12px 16px; font-weight: 700; font-size: 13px; text-align: center; }
@@ -354,6 +377,9 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .sticky-player .sp-info { text-align: center; }
   .sticky-player audio { max-width: 100%; }
   .sticky-player .sp-close { position: absolute; top: -15px; right: 10px; background: var(--red); color: #fff; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+
+  .hawza-banner { flex-direction: column; text-align: center; }
+  .hawza-banner .hb-icon { width: 50px; height: 50px; font-size: 28px; }
 }
 </style>
 </head>
@@ -416,6 +442,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   <div class="side-widget">
     <h4>الوسائط المتعددة</h4>
     <ul class="side-list">
+      <li><a href="#/hawza" onclick="closeSidebar()">🏛️ الحوزة الالكترونية</a></li>
       <li><a href="#/audios" onclick="closeSidebar()">🎧 المكتبة الصوتية</a></li>
       <li><a href="#/videos" onclick="closeSidebar()">🎬 المكتبة المرئية</a></li>
     </ul>
@@ -774,6 +801,7 @@ function router(){
   else if(route==="read") renderReader(decodedParam);
   else if(route==="audios") renderMediaLibrary("audio");
   else if(route==="videos") renderMediaLibrary("video");
+  else if(route==="hawza") renderHawza();
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -880,6 +908,15 @@ function renderHome(){
       </div>
     </section>
 
+    <!-- قسم الحوزة الالكترونية في الرئيسية -->
+    <div class="hawza-banner" onclick="location.hash='#/hawza'" style="cursor:pointer">
+      <div class="hb-text">
+        <h2>🏛️ الحوزة الالكترونية</h2>
+        <p>بوابة الدروس الحوزوية الصوتية والمرئية، تضم المباحث الفقهية والأصولية بأحدث التقنيات.</p>
+      </div>
+      <div class="hb-icon">🎧</div>
+    </div>
+
     ${featured?`
     <div class="sec-title">كتاب اليوم</div>
     <a href="#/book/${featured.id}" class="book-row" style="margin-bottom:26px">
@@ -911,6 +948,62 @@ function renderHome(){
     ${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
   `;
 }
+
+// صفحة الحوزة الالكترونية (مع التسلسل الهرمي)
+function renderHawza(){
+  app.innerHTML = `
+    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الحوزة الالكترونية</span></div>
+    <div class="sec-title">🏛️ الحوزة الالكترونية</div>
+    
+    <div class="hawza-banner">
+      <div class="hb-text">
+        <h2>مرحباً بك في الحوزة الالكترونية</h2>
+        <p>هنا تجد الدروس الحوزوية مقسمة حسب المباحث الرئيسية والفرعية. اختر المبحث الذي تريد دراسته، وستنتقل مباشرة إلى الدروس الصوتية الخاصة به.</p>
+      </div>
+      <div class="hb-icon">🎓</div>
+    </div>
+
+    <div class="hawza-section-title">📚 الفقه</div>
+    <div class="hawza-grid">
+      <!-- بطاقة خارج الفقه -->
+      <div class="hawza-card">
+        <div class="hawza-card-head">
+          <div class="hc-icon">📜</div>
+          <div class="hc-title">خارج الفقه</div>
+        </div>
+        <div class="hawza-sub-list">
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'المكاسب المحرمة')">المكاسب المحرمة</button>
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'كتاب الطهارة')">كتاب الطهارة</button>
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'كتاب الصلاة')">كتاب الصلاة</button>
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', '')">جميع دروس خارج الفقه</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hawza-section-title">🧠 الأصول</div>
+    <div class="hawza-grid">
+      <!-- بطاقة خارج الأصول -->
+      <div class="hawza-card">
+        <div class="hawza-card-head">
+          <div class="hc-icon">📖</div>
+          <div class="hc-title">خارج الأصول</div>
+        </div>
+        <div class="hawza-sub-list">
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', 'مباحث الألفاظ')">مباحث الألفاظ</button>
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', 'المباحث العقلية')">المباحث العقلية</button>
+          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', '')">جميع دروس خارج الأصول</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// دالة الانتقال للمكتبة الصوتية مع الفلترة
+window.filterAudios = function(mainCat, subCat) {
+  window._hawzaFilterCat = mainCat;
+  window._hawzaFilterSub = subCat;
+  location.hash = '#/audios';
+};
 
 function renderLibrary(){
   state.cat = "all"; state.author = "all"; state.series = "all";
@@ -1177,17 +1270,31 @@ function renderMediaLibrary(type) {
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
   const iconType = isAudio ? "🎧" : "🎬";
   
-  // استخراج التصنيفات الفريدة
-  const defaultCategories = isAudio ? ["دروس الحوزة العلمية", "محاضرات", "خطب", "أدعية وزيارات"] : ["دروس مرئية", "محاضرات", "مقابلات", "وثائقيات"];
-  const jsonCategories = data.map(a => a.category).filter(Boolean);
-  const categories = [...new Set([...defaultCategories, ...jsonCategories])];
+  // استخراج التصنيفات الرئيسية والفرعية
+  const mainCats = [...new Set(data.map(a => a.category).filter(Boolean))];
+  const subCats = [...new Set(data.map(a => a.subcategory).filter(Boolean))];
 
-  let currentFilter = 'all';
+  // التحقق من وجود فلتر قادم من صفحة الحوزة
+  let currentMain = window._hawzaFilterCat || 'all';
+  let currentSub = window._hawzaFilterSub || 'all';
+  
+  // تصفير الفلتر بعد استخدامه
+  window._hawzaFilterCat = null;
+  window._hawzaFilterSub = null;
+
   let searchQuery = '';
 
   const drawContent = () => {
     let filtered = data;
-    if(currentFilter !== 'all') filtered = filtered.filter(a => a.category === currentFilter);
+    
+    // الفلترة بناءً على التصنيف
+    if (currentSub && currentSub !== 'all') {
+      filtered = filtered.filter(a => a.subcategory === currentSub);
+    } else if (currentMain && currentMain !== 'all') {
+      filtered = filtered.filter(a => a.category === currentMain);
+    }
+
+    // البحث النصي
     if(searchQuery) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q));
@@ -1205,8 +1312,18 @@ function renderMediaLibrary(type) {
         <div class="lib-filter-box">
           <span>تصنيف:</span>
           <select onchange="window.mediaFilter(this.value)">
-            <option value="all">الكل</option>
-            ${categories.map(c => `<option value="${c}" ${currentFilter === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+            <option value="all" ${currentMain === 'all' ? 'selected' : ''}>الكل</option>
+            ${mainCats.map(mc => {
+              const relatedSubs = subCats.filter(sc => data.some(a => a.category === mc && a.subcategory === sc));
+              if (relatedSubs.length > 0) {
+                return `<optgroup label="${esc(mc)}">
+                  <option value="${esc(mc)}" ${currentMain === mc && (!currentSub || currentSub==='all') ? 'selected' : ''}>جميع دروس ${esc(mc)}</option>
+                  ${relatedSubs.map(sc => `<option value="${esc(sc)}" ${currentSub === sc ? 'selected' : ''}>&nbsp;&nbsp;└ ${esc(sc)}</option>`).join('')}
+                </optgroup>`;
+              } else {
+                return `<option value="${esc(mc)}" ${currentMain === mc ? 'selected' : ''}>${esc(mc)}</option>`;
+              }
+            }).join('')}
           </select>
         </div>
       </div>
@@ -1220,7 +1337,11 @@ function renderMediaLibrary(type) {
         ${filtered.length === 0 ? '<div style="padding: 20px; text-align: center; color: var(--muted);">لا توجد عناصر مطابقة.</div>' : 
           filtered.map(a => `
             <div class="lib-row">
-              <div class="lib-title">${esc(a.title)}</div>
+              <div class="lib-title">
+                ${a.subcategory ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.category)} ↳ ${esc(a.subcategory)}</div>` : ''}
+                ${esc(a.title)}
+                ${a.description ? `<div style="font-size:11px; font-weight:normal; color:var(--muted); margin-top:4px;">${esc(a.description)}</div>` : ''}
+              </div>
               <div class="lib-auth">${esc(a.speaker || a.author || '—')}</div>
               <div class="lib-actions">
                 ${isAudio ? `
@@ -1257,7 +1378,17 @@ function renderMediaLibrary(type) {
     app.innerHTML = html;
   };
 
-  window.mediaFilter = (cat) => { currentFilter = cat; drawContent(); };
+  window.mediaFilter = (val) => {
+    // إذا كانت القيمة المختارة هي تصنيف فرعي
+    if (subCats.includes(val)) {
+      currentSub = val;
+      currentMain = data.find(a => a.subcategory === val)?.category || 'all';
+    } else {
+      currentMain = val;
+      currentSub = 'all';
+    }
+    drawContent();
+  };
   window.mediaSearch = (val) => { searchQuery = val; drawContent(); };
   window.shareMedia = async (title) => {
     try {
