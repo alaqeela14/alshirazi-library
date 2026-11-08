@@ -132,28 +132,6 @@ main{flex:1;padding:22px 0 60px}
 .hero .stat strong{display:block;font-size:16px;color:var(--accent-light);font-weight:800;line-height:1.2}
 .hero .stat span{font-size:9.5px;opacity:.9;display:block;margin-top:2px}
 
-/* تصميم قسم الحوزة الالكترونية */
-.hawza-banner { background: var(--paper); border: 1px solid var(--accent); border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: var(--shadow); margin-bottom: 26px; transition: all var(--tr); }
-.hawza-banner:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.hawza-banner .hb-text h2 { font-family: 'Amiri', serif; font-size: 22px; color: var(--primary-dark); margin-bottom: 6px; }
-[data-theme="dark"] .hawza-banner .hb-text h2 { color: var(--accent); }
-.hawza-banner .hb-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.hawza-banner .hb-icon { font-size: 40px; background: var(--paper-2); width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; border: 2px solid var(--line); }
-
-.hawza-section-title { font-family: 'Amiri', serif; font-size: 20px; color: var(--primary-dark); margin: 20px 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-[data-theme="dark"] .hawza-section-title { color: var(--accent); }
-.hawza-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 26px; }
-.hawza-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm); transition: all var(--tr); display: flex; flex-direction: column; gap: 10px; }
-.hawza-card:hover { box-shadow: var(--shadow); border-color: var(--primary); }
-.hawza-card-head { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line-2); padding-bottom: 10px; }
-.hawza-card-head .hc-icon { font-size: 28px; }
-.hawza-card-head .hc-title { font-family: 'Amiri', serif; font-size: 18px; font-weight: 700; color: var(--primary-dark); }
-[data-theme="dark"] .hawza-card-head .hc-title { color: var(--accent); }
-.hawza-sub-list { display: flex; flex-direction: column; gap: 6px; }
-.hawza-sub-btn { display: block; width: 100%; text-align: right; padding: 8px 12px; background: var(--paper-2); border-radius: 6px; font-size: 13px; color: var(--ink-2); border: 1px solid transparent; transition: all var(--tr); cursor: pointer; }
-.hawza-sub-btn:hover { background: var(--accent-light); color: var(--primary-dark); border-color: var(--accent); }
-.hawza-sub-btn::before { content: "↳ "; color: var(--accent); font-weight: bold; }
-
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:10px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
 .results{font-size:13px;color:var(--muted)}
 .results strong{color:var(--ink);font-weight:800}
@@ -328,15 +306,19 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .lib-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 .lib-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* مشغل الصوت السفلي الثابت */
-.sticky-player { position: fixed; bottom: 0; left: 0; right: 0; background: var(--paper); border-top: 1px solid var(--line); box-shadow: 0 -4px 20px rgba(0,0,0,0.1); padding: 10px 16px; display: none; align-items: center; gap: 12px; z-index: 100; }
-.sticky-player.show { display: flex; }
-.sticky-player .sp-info { flex: 1; min-width: 0; }
-.sticky-player .sp-title { font-weight: 700; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--primary-dark); }
-.sticky-player .sp-auth { font-size: 11px; color: var(--muted); }
-.sticky-player audio { flex: 1; max-width: 400px; height: 36px; }
-.sticky-player .sp-close { background: var(--paper-2); border: 1px solid var(--line); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
-.sticky-player .sp-close:hover { background: var(--red); color: #fff; border-color: var(--red); }
+/* مشغل الصوت المدمج (Inline Player) */
+.inline-player-container { display: none; background: var(--paper-2); border-bottom: 1px solid var(--line-2); padding: 12px 16px; }
+.inline-player-container.show { display: block; }
+.ip-inner { display: flex; align-items: center; gap: 12px; background: var(--paper); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.ip-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; border: none; transition: background var(--tr); }
+.ip-btn:hover { background: var(--primary-dark); }
+.ip-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.ip-progress-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
+.ip-time { font-size: 11px; color: var(--muted); font-family: monospace; direction: ltr; flex-shrink: 0; min-width: 75px; text-align: center; }
+.ip-range { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; background: var(--line); border-radius: 3px; outline: none; cursor: pointer; }
+.ip-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); cursor: pointer; transition: transform 0.1s; }
+.ip-range::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.ip-range::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--primary); cursor: pointer; border: none; }
 
 @media(max-width:768px){
   .head-row{gap:10px}
@@ -378,13 +360,11 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .lib-auth { font-size: 10.5px; }
   .lib-btn { width: 28px; height: 28px; }
   .lib-btn svg { width: 14px; height: 14px; }
-  .sticky-player { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; }
-  .sticky-player .sp-info { text-align: center; }
-  .sticky-player audio { max-width: 100%; }
-  .sticky-player .sp-close { position: absolute; top: -15px; right: 10px; background: var(--red); color: #fff; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-
-  .hawza-banner { flex-direction: column; text-align: center; }
-  .hawza-banner .hb-icon { width: 50px; height: 50px; font-size: 28px; }
+  
+  .ip-inner { flex-wrap: wrap; gap: 8px; }
+  .ip-btn { width: 32px; height: 32px; }
+  .ip-progress-wrap { flex-basis: 100%; order: 3; }
+  .ip-time { order: 2; }
 }
 </style>
 </head>
@@ -447,7 +427,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   <div class="side-widget">
     <h4>الوسائط المتعددة</h4>
     <ul class="side-list">
-      <li><a href="#/hawza" onclick="closeSidebar()">🏛️ الحوزة الالكترونية</a></li>
       <li><a href="#/audios" onclick="closeSidebar()">🎧 المكتبة الصوتية</a></li>
       <li><a href="#/videos" onclick="closeSidebar()">🎬 المكتبة المرئية</a></li>
     </ul>
@@ -477,16 +456,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <p class="dua-line">اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين.</p>
   </div>
 </footer>
-
-<!-- مشغل الصوت الثابت -->
-<div class="sticky-player" id="stickyPlayer">
-  <div class="sp-info">
-    <div class="sp-title" id="spTitle">—</div>
-    <div class="sp-auth" id="spAuth">—</div>
-  </div>
-  <audio id="spAudio" controls preload="none"></audio>
-  <button class="sp-close" onclick="document.getElementById('stickyPlayer').classList.remove('show'); document.getElementById('spAudio').pause();">✕</button>
-</div>
 
 <script src="books-data.js"></script>
 <script>
@@ -531,7 +500,8 @@ const BOOKS_JSON_FILES = [
   ["books-akhlaq.json","akhlaq"], ["books-tarikh.json","tarikh"], ["books-kalam.json","kalam"],
   ["books-ahlulbayt.json","ahlulbayt"], ["books-hussein.json","hussein"], ["books-mahdi.json","mahdi"],
   ["books-siyasah.json","siyasah"], ["books-mujtama.json","mujtama"], ["books-youth.json","youth"],
-  ["books-tibb.json","tibb"], ["books-languages.json","languages"]
+  ["books-tibb.json","tibb"], ["books-languages.json","languages"],
+  ["books-all.json","ahlulbayt"]
 ];
 
 const FILES_BASE = "./files/";
@@ -752,7 +722,6 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   AUDIOS = await loadAudios();
   VIDEOS = await loadVideos();
   BOOKS = [...fromJson, ...legacy];
-  console.log(`✅ ${fromJson.length} من JSON + ${legacy.length} من legacy`);
   buildSidebar();
   updateFavUI();
   router();
@@ -778,7 +747,6 @@ function router(){
   else if(route==="read") renderReader(decodedParam);
   else if(route==="audios") renderMediaLibrary("audio");
   else if(route==="videos") renderMediaLibrary("video");
-  else if(route==="hawza") renderHawza();
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -829,11 +797,6 @@ function renderHome(){
       </div>
     </section>
 
-    <div class="hawza-banner" onclick="location.hash='#/hawza'" style="cursor:pointer">
-      <div class="hb-text"><h2>🏛️ الحوزة الالكترونية</h2><p>بوابة الدروس الحوزوية الصوتية والمرئية، تضم المباحث الفقهية والأصولية بأحدث التقنيات.</p></div>
-      <div class="hb-icon">🎧</div>
-    </div>
-
     ${featured?`<div class="sec-title">كتاب اليوم</div><a href="#/book/${featured.id}" class="book-row" style="margin-bottom:26px"><div class="cover">${coverHtmlSmall(featured,false)}</div><div class="info"><div><div class="title" style="font-size:18px;font-family:'Amiri',serif;color:var(--primary-dark)">${esc(featured.t)}</div><div class="meta"><span><strong>المؤلف:</strong> ${esc(fa?.short||"")}</span><span><strong>التصنيف:</strong> ${esc(fc?.name||"")}</span>${featured.y?`<span><strong>التاريخ:</strong> ${featured.y}هـ</span>`:""}</div>${featured.desc?`<div class="desc" style="-webkit-line-clamp:3">${esc(featured.desc)}</div>`:""}</div></div></a>`:""}
 
     ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
@@ -842,37 +805,6 @@ function renderHome(){
     <div class="sec-title">أحدث الإضافات</div>${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
   `;
 }
-
-// صفحة الحوزة الالكترونية
-function renderHawza(){
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الحوزة الالكترونية</span></div>
-    <div class="sec-title">🏛️ الحوزة الالكترونية</div>
-    
-    <div class="hawza-banner">
-      <div class="hb-text">
-        <h2>مرحباً بك في الحوزة الالكترونية</h2>
-        <p>هنا تجد الدروس الحوزوية مقسمة حسب المباحث. اختر المبحث الذي تريد دراسته، وستنتقل مباشرة إلى الدروس الصوتية الخاصة به.</p>
-      </div>
-      <div class="hb-icon">🎓</div>
-    </div>
-
-    <div class="hawza-section-title">📚 دروس السادة (بحث الخارج)</div>
-    <div class="hawza-grid">
-      <div class="hawza-card">
-        <div class="hawza-card-head"><div class="hc-icon">⚖️</div><div class="hc-title">المكاسب المحرمة</div></div>
-        <div class="hawza-sub-list">
-          <button class="hawza-sub-btn" onclick="applyHawzaFilter('دروس', 'السيد مهدي الحسيني الشيرازي', 'بحث الخارج', 'المكاسب المحرمة')">دروس السيد مهدي الشيرازي</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-window.applyHawzaFilter = function(cat, speaker, topic, subtopic) {
-  window.pendingFilter = { cat, speaker, topic, subtopic };
-  location.hash = '#/audios';
-};
 
 function renderLibrary(){
   state.cat = "all"; state.author = "all"; state.series = "all";
@@ -965,21 +897,17 @@ function renderMediaLibrary(type) {
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
   const iconType = isAudio ? "🎧" : "🎬";
   
-  // استخراج البيانات الفريدة
   const allCats = [...new Set(data.map(a => a.category).filter(Boolean))];
-  const allSpeakers = [...new Set(data.map(a => a.speaker).filter(Boolean))];
   
-  // التحقق من وجود فلتر قادم من صفحة الحوزة
   let fCat = window.pendingFilter?.cat || 'all';
   let fSpeaker = window.pendingFilter?.speaker || 'all';
   let fTopic = window.pendingFilter?.topic || 'all';
   let fSubtopic = window.pendingFilter?.subtopic || 'all';
-  window.pendingFilter = null; // تصفير الفلتر
+  window.pendingFilter = null; 
 
   let searchQuery = '';
 
   const drawContent = () => {
-    // 1. الفلترة بناءً على الاختيارات
     let filtered = data;
     if (fCat !== 'all') filtered = filtered.filter(a => a.category === fCat);
     if (fSpeaker !== 'all') filtered = filtered.filter(a => a.speaker === fSpeaker);
@@ -991,16 +919,10 @@ function renderMediaLibrary(type) {
       filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q));
     }
 
-    // 2. تجهيز خيارات الفلاتر بناءً على ما تم اختياره
-    // فلتر المتحدثين: يظهر فقط إذا كان القسم دروس أو محاضرات
     const speakersInCat = [...new Set(data.filter(a => fCat === 'all' || a.category === fCat).map(a => a.speaker).filter(Boolean))];
     const showSpeakerFilter = (fCat === 'دروس' || fCat === 'محاضرات' || fCat === 'all') && speakersInCat.length > 0;
-
-    // فلتر المباحث (بحث الخارج): يظهر فقط إذا تم اختيار متحدث
     const topicsInSpeaker = [...new Set(data.filter(a => (fCat === 'all' || a.category === fCat) && (fSpeaker === 'all' || a.speaker === fSpeaker)).map(a => a.topic).filter(Boolean))];
     const showTopicFilter = fSpeaker !== 'all' && topicsInSpeaker.length > 0;
-
-    // فلتر الموضوعات الفرعية (المكاسب): يظهر فقط إذا تم اختيار مبحث
     const subtopicsInTopic = [...new Set(data.filter(a => (fCat === 'all' || a.category === fCat) && (fSpeaker === 'all' || a.speaker === fSpeaker) && (fTopic === 'all' || a.topic === fTopic)).map(a => a.subtopic).filter(Boolean))];
     const showSubtopicFilter = fTopic !== 'all' && subtopicsInTopic.length > 0;
 
@@ -1015,7 +937,6 @@ function renderMediaLibrary(type) {
         </div>
         
         <div class="lib-filters-grid">
-          <!-- القسم الرئيسي -->
           <div class="lib-filter-group">
             <label>القسم الرئيسي</label>
             <select class="lib-filter-select" onchange="window.updateFilter('cat', this.value)">
@@ -1024,7 +945,6 @@ function renderMediaLibrary(type) {
             </select>
           </div>
 
-          <!-- المتحدث -->
           ${showSpeakerFilter ? `
           <div class="lib-filter-group">
             <label>المتحدث / الأستاذ</label>
@@ -1034,7 +954,6 @@ function renderMediaLibrary(type) {
             </select>
           </div>` : ''}
 
-          <!-- المبحث -->
           ${showTopicFilter ? `
           <div class="lib-filter-group">
             <label>المبحث</label>
@@ -1044,7 +963,6 @@ function renderMediaLibrary(type) {
             </select>
           </div>` : ''}
 
-          <!-- الموضوع الفرعي -->
           ${showSubtopicFilter ? `
           <div class="lib-filter-group">
             <label>الموضوع</label>
@@ -1059,8 +977,8 @@ function renderMediaLibrary(type) {
       <div class="lib-table">
         <div class="lib-thead"><div>العنوان</div><div>الأستاذ</div><div>الخدمات</div></div>
         ${filtered.length === 0 ? '<div style="padding: 20px; text-align: center; color: var(--muted);">لا توجد عناصر مطابقة.</div>' : 
-          filtered.map(a => `
-            <div class="lib-row">
+          filtered.map((a, idx) => `
+            <div class="lib-row" id="row-${idx}">
               <div class="lib-title">
                 ${a.subtopic ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.topic)} ↳ ${esc(a.subtopic)}</div>` : (a.topic ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.topic)}</div>` : '')}
                 ${esc(a.title)}
@@ -1068,12 +986,25 @@ function renderMediaLibrary(type) {
               </div>
               <div class="lib-auth">${esc(a.speaker || a.author || '—')}</div>
               <div class="lib-actions">
-                ${isAudio ? `<button class="lib-btn" title="تشغيل" onclick="playAudio('${a.url}', '${esc(a.title)}', '${esc(a.speaker||'')}')"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>` : `<a href="${a.url}" target="_blank" class="lib-btn" title="مشاهدة"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>`}
+                ${isAudio ? `<button class="lib-btn" title="تشغيل" onclick="window.toggleInlineAudio(${idx}, '${a.url}')"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>` : `<a href="${a.url}" target="_blank" class="lib-btn" title="مشاهدة"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>`}
                 ${a.download_url ? `<a href="${a.download_url}" target="_blank" class="lib-btn" title="تحميل"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>` : ''}
                 ${a.doc_url ? `<a href="${a.doc_url}" target="_blank" class="lib-btn" title="الملف النصي"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>` : ''}
                 <button class="lib-btn" title="مشاركة" onclick="shareMedia('${esc(a.title)}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
               </div>
             </div>
+            ${isAudio ? `
+            <div class="inline-player-container" id="ip-${idx}">
+              <div class="ip-inner">
+                <button class="ip-btn" onclick="window.toggleInlineAudio(${idx}, '${a.url}')" id="btn-${idx}">
+                  <svg id="icon-play-${idx}" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <svg id="icon-pause-${idx}" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                </button>
+                <div class="ip-progress-wrap">
+                  <div class="ip-time" id="time-${idx}">0:00 / 0:00</div>
+                  <input type="range" class="ip-range" id="progress-${idx}" value="0" max="100" step="0.1" oninput="window.seekInlineAudio(${idx}, this.value)">
+                </div>
+              </div>
+            </div>` : ''}
           `).join('')
         }
       </div>
@@ -1081,7 +1012,6 @@ function renderMediaLibrary(type) {
     app.innerHTML = html;
   };
 
-  // دوال تحديث الفلاتر
   window.updateFilter = (type, val) => {
     if (type === 'cat') { fCat = val; fSpeaker = 'all'; fTopic = 'all'; fSubtopic = 'all'; }
     if (type === 'speaker') { fSpeaker = val; fTopic = 'all'; fSubtopic = 'all'; }
@@ -1101,15 +1031,84 @@ function renderMediaLibrary(type) {
   drawContent();
 }
 
-window.playAudio = function(url, title, author) {
-  const player = document.getElementById('stickyPlayer');
-  const audio = document.getElementById('spAudio');
-  document.getElementById('spTitle').textContent = title;
-  document.getElementById('spAuth').textContent = author;
-  if (audio.src !== url) { audio.src = url; }
-  player.classList.add('show');
-  audio.play().catch(e => alert("تعذر تشغيل الصوت، تأكد من الرابط."));
+// المشغل المدمج
+let inlineAudio = new Audio();
+let currentIdx = null;
+
+window.toggleInlineAudio = function(idx, url) {
+  const container = document.getElementById(`ip-${idx}`);
+  if (!container) return;
+
+  const iconPlay = document.getElementById(`icon-play-${idx}`);
+  const iconPause = document.getElementById(`icon-pause-${idx}`);
+
+  if (currentIdx === idx) {
+    // نفس المقطع
+    if (inlineAudio.paused) {
+      inlineAudio.play();
+      iconPlay.style.display = 'none';
+      iconPause.style.display = 'block';
+    } else {
+      inlineAudio.pause();
+      iconPlay.style.display = 'block';
+      iconPause.style.display = 'none';
+    }
+  } else {
+    // مقطع جديد
+    if (currentIdx !== null) {
+      // إخفاء المشغل السابق
+      const prevContainer = document.getElementById(`ip-${currentIdx}`);
+      if (prevContainer) prevContainer.classList.remove('show');
+      const prevPlay = document.getElementById(`icon-play-${currentIdx}`);
+      const prevPause = document.getElementById(`icon-pause-${currentIdx}`);
+      if (prevPlay) prevPlay.style.display = 'block';
+      if (prevPause) prevPause.style.display = 'none';
+    }
+
+    currentIdx = idx;
+    inlineAudio.src = url;
+    inlineAudio.play();
+    
+    container.classList.add('show');
+    iconPlay.style.display = 'none';
+    iconPause.style.display = 'block';
+  }
 };
+
+inlineAudio.addEventListener('timeupdate', () => {
+  if (currentIdx === null) return;
+  const progress = document.getElementById(`progress-${currentIdx}`);
+  const timeDisplay = document.getElementById(`time-${currentIdx}`);
+  if (progress && timeDisplay) {
+    const cur = inlineAudio.currentTime;
+    const dur = inlineAudio.duration || 0;
+    progress.value = dur ? (cur / dur) * 100 : 0;
+    timeDisplay.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+  }
+});
+
+inlineAudio.addEventListener('ended', () => {
+  if (currentIdx === null) return;
+  const iconPlay = document.getElementById(`icon-play-${currentIdx}`);
+  const iconPause = document.getElementById(`icon-pause-${currentIdx}`);
+  if (iconPlay) iconPlay.style.display = 'block';
+  if (iconPause) iconPause.style.display = 'none';
+  const progress = document.getElementById(`progress-${currentIdx}`);
+  if (progress) progress.value = 0;
+});
+
+window.seekInlineAudio = function(idx, value) {
+  if (currentIdx === idx && inlineAudio.duration) {
+    inlineAudio.currentTime = (value / 100) * inlineAudio.duration;
+  }
+};
+
+function formatTime(seconds) {
+  if (isNaN(seconds)) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
 
 function renderAbout(){
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div><div class="sec-title">عن المكتبة</div><div class="about-box"><p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p><p>تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> و<strong>تقريب القرآن إلى الأذهان</strong> و<strong>من فقه الزهراء (عليها السلام)</strong>.</p><p>يمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي.</p><p>ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة.</p><p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) قابلة للتوسيع عبر لوحة التحكم.</p></div>`;
