@@ -4,7 +4,7 @@
       "id": "book-001",
       "title": "من حياة الرسول الاعظم صلى الله عليه واله",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -76,7 +76,7 @@
       "id": "book-007",
       "title": "من حياة الإمام الحسين (عليه السلام)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -88,7 +88,7 @@
       "id": "book-008",
       "title": "موجز عن النهضة الحسينية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -100,7 +100,7 @@
       "id": "book-009",
       "title": "قتلة الامام الحسين (عليه السلام) والجزاء الدنيوى",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -112,7 +112,7 @@
       "id": "book-010",
       "title": "رؤى عن نهضة الامام الحسين (عليه السلام)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -124,7 +124,7 @@
       "id": "book-011",
       "title": "الحسين (عليه السلام) مصباح هدى",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -196,7 +196,7 @@
       "id": "book-017",
       "title": "حقائق عن الامام المهدي (عليه السلام)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mahdi",
       "formats": [
         "pdf",
         "word"
@@ -208,7 +208,7 @@
       "id": "book-018",
       "title": "الامام المهدي (عجل الله تعالى فرجه الشريف)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mahdi",
       "formats": [
         "pdf",
         "word"
@@ -220,7 +220,7 @@
       "id": "book-019",
       "title": "في مولد الامام الحجة (عجل الله فرجه الشريف)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mahdi",
       "formats": [
         "pdf",
         "word"
@@ -280,7 +280,7 @@
       "id": "book-024",
       "title": "البقيع الغرقد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -304,7 +304,7 @@
       "id": "book-026",
       "title": "اول حكومة اسلامية في المدينة المنورة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -340,7 +340,7 @@
       "id": "book-029",
       "title": "هكذا حج رسول الله (صلى الله عليه واله)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -376,7 +376,7 @@
       "id": "book-032",
       "title": "من المساجد والمزارات في الحرمين الشريفين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -388,7 +388,7 @@
       "id": "book-033",
       "title": "عاشوراء والعودة الى الاسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -400,7 +400,7 @@
       "id": "book-034",
       "title": "عاشوراء والقران المهجور",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -436,7 +436,7 @@
       "id": "book-037",
       "title": "الفقه العولمة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -448,7 +448,7 @@
       "id": "book-038",
       "title": "الفقه القانون",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -460,7 +460,7 @@
       "id": "book-039",
       "title": "الفقه المرور",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -472,7 +472,7 @@
       "id": "book-040",
       "title": "الفقه النظافة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -484,7 +484,7 @@
       "id": "book-041",
       "title": "الفقه من الاداب الطبية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -508,7 +508,7 @@
       "id": "book-043",
       "title": "الفقه العقائد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -532,7 +532,7 @@
       "id": "book-045",
       "title": "المقدمة العقائدية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -556,7 +556,7 @@
       "id": "book-047",
       "title": "مسائل في العقائد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -568,7 +568,7 @@
       "id": "book-048",
       "title": "هل تحب معرفة الله",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -580,7 +580,7 @@
       "id": "book-049",
       "title": "العقائد الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -604,7 +604,7 @@
       "id": "book-051",
       "title": "الزهد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -616,7 +616,7 @@
       "id": "book-052",
       "title": "اعرف الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -628,7 +628,7 @@
       "id": "book-053",
       "title": "افكار الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -640,7 +640,7 @@
       "id": "book-054",
       "title": "الشيعة والتشيع",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -652,7 +652,7 @@
       "id": "book-055",
       "title": "الشيعة والشريعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -664,7 +664,7 @@
       "id": "book-056",
       "title": "قصة الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -676,7 +676,7 @@
       "id": "book-057",
       "title": "قضية الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -688,7 +688,7 @@
       "id": "book-058",
       "title": "مقالة الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -700,7 +700,7 @@
       "id": "book-059",
       "title": "من هم الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -712,7 +712,7 @@
       "id": "book-060",
       "title": "مناظرة الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -724,7 +724,7 @@
       "id": "book-061",
       "title": "نهج الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -736,7 +736,7 @@
       "id": "book-062",
       "title": "هكذا الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -748,7 +748,7 @@
       "id": "book-063",
       "title": "هوية الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -760,7 +760,7 @@
       "id": "book-064",
       "title": "واقع الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -772,7 +772,7 @@
       "id": "book-065",
       "title": "الأخلاق الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -784,7 +784,7 @@
       "id": "book-066",
       "title": "الفضيلة الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -796,7 +796,7 @@
       "id": "book-067",
       "title": "الامراض والاعراض سببا ووقاية و علاجا",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tibb",
       "formats": [
         "pdf",
         "word"
@@ -820,7 +820,7 @@
       "id": "book-069",
       "title": "اذا قام الاسلام في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -844,7 +844,7 @@
       "id": "book-071",
       "title": "الاقتصاد الاسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -856,7 +856,7 @@
       "id": "book-072",
       "title": "الحجاب الدرع الواقي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -868,7 +868,7 @@
       "id": "book-073",
       "title": "الحرية الاسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -892,7 +892,7 @@
       "id": "book-075",
       "title": "الشورى في الاسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -904,7 +904,7 @@
       "id": "book-076",
       "title": "العدالة الاسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -952,7 +952,7 @@
       "id": "book-080",
       "title": "المرجعية الاسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1060,7 +1060,7 @@
       "id": "book-089",
       "title": "حكم الاسلام بعد نجاة العراق وافغانستان",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1096,7 +1096,7 @@
       "id": "book-092",
       "title": "خطط الغرب في بلاد الاسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1204,7 +1204,7 @@
       "id": "book-101",
       "title": "لماذا يحاربون القران؟؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -1288,7 +1288,7 @@
       "id": "book-108",
       "title": "هذا هو النظام الاسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1336,7 +1336,7 @@
       "id": "book-112",
       "title": "الشباب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "formats": [
         "pdf",
         "word"
@@ -1456,7 +1456,7 @@
       "id": "book-122",
       "title": "طريقنا الى الحضارة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -1480,7 +1480,7 @@
       "id": "book-124",
       "title": "كيف نزوج العازبات",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -1492,7 +1492,7 @@
       "id": "book-125",
       "title": "كيف يمكن نجاة الغرب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1540,7 +1540,7 @@
       "id": "book-129",
       "title": "مؤتمرات الانقاذ",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1552,7 +1552,7 @@
       "id": "book-130",
       "title": "اسئلة حول ايران والحكومة المترقبة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1588,7 +1588,7 @@
       "id": "book-133",
       "title": "من قصص التاريخ",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -1624,7 +1624,7 @@
       "id": "book-136",
       "title": "تلخيص الحضارة الاسلامية ج1",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -1636,7 +1636,7 @@
       "id": "book-137",
       "title": "تلخيص الحضارة الاسلامية ج2",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -1648,7 +1648,7 @@
       "id": "book-138",
       "title": "قم المقدسة رائدة الحضارة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -1660,7 +1660,7 @@
       "id": "book-139",
       "title": "مقتطفات من تاريخ المدينة المنورة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -1684,7 +1684,7 @@
       "id": "book-141",
       "title": "بعض ما فعله الشيوعيون في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1696,7 +1696,7 @@
       "id": "book-142",
       "title": "نقد نظريات فرويد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -1708,7 +1708,7 @@
       "id": "book-143",
       "title": "وقفة مع الوجوديين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -1780,7 +1780,7 @@
       "id": "book-149",
       "title": "كيف ولماذا اخرجنا من العراق؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1804,7 +1804,7 @@
       "id": "book-151",
       "title": "الأمراض والأعراض",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tibb",
       "formats": [
         "pdf",
         "word"
@@ -1816,7 +1816,7 @@
       "id": "book-152",
       "title": "الصياغة الجديدة لعالم الإيمان والحرية والرفاه والسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1852,7 +1852,7 @@
       "id": "book-155",
       "title": "ممارسة التغيير لإنقاذ المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1876,7 +1876,7 @@
       "id": "book-157",
       "title": "اجوبة المسائل الفرنسية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1888,7 +1888,7 @@
       "id": "book-158",
       "title": "اجوبة المسائل اللبنانية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1912,7 +1912,7 @@
       "id": "book-160",
       "title": "احكام المراة في الحج والعمرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1936,7 +1936,7 @@
       "id": "book-162",
       "title": "استفتائات في الصوم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1948,7 +1948,7 @@
       "id": "book-163",
       "title": "استفتائات في القران الكريم والشعائر الحسينية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -1984,7 +1984,7 @@
       "id": "book-166",
       "title": "المسائل الاسلامية المختصرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1996,7 +1996,7 @@
       "id": "book-167",
       "title": "المسائل الاسلامية المفصلة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2020,7 +2020,7 @@
       "id": "book-169",
       "title": "رسالة احكام الصوم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2032,7 +2032,7 @@
       "id": "book-170",
       "title": "رسالة في ابعاد الفقه",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2056,7 +2056,7 @@
       "id": "book-172",
       "title": "مسائل حديثة في الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2080,7 +2080,7 @@
       "id": "book-174",
       "title": "مسائل شرعية تهم الشباب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "formats": [
         "pdf",
         "word"
@@ -2092,7 +2092,7 @@
       "id": "book-175",
       "title": "من استفتائات الحج 1421هـ",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2104,7 +2104,7 @@
       "id": "book-176",
       "title": "من مسائل الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2116,7 +2116,7 @@
       "id": "book-177",
       "title": "مناسك الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2128,7 +2128,7 @@
       "id": "book-178",
       "title": "منتخب المسائل الاسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2140,7 +2140,7 @@
       "id": "book-179",
       "title": "استفتائات حول الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2152,7 +2152,7 @@
       "id": "book-180",
       "title": "أجوبة المسائل العلوية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2164,7 +2164,7 @@
       "id": "book-181",
       "title": "أجوبة المسائل الكندية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2176,7 +2176,7 @@
       "id": "book-182",
       "title": "أجوبة المسائل المالكية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2188,7 +2188,7 @@
       "id": "book-183",
       "title": "إستفتاءات حول السياسة الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2200,7 +2200,7 @@
       "id": "book-184",
       "title": "الإرث في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2224,7 +2224,7 @@
       "id": "book-186",
       "title": "القواعد الفقهية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2236,7 +2236,7 @@
       "id": "book-187",
       "title": "جامع المسائل الشرعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2248,7 +2248,7 @@
       "id": "book-188",
       "title": "مناسك الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2344,7 +2344,7 @@
       "id": "book-196",
       "title": "متى جمع القران؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -2356,7 +2356,7 @@
       "id": "book-197",
       "title": "إذا قام الإسلام في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2368,7 +2368,7 @@
       "id": "book-198",
       "title": "التيار الإصلاحي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2380,7 +2380,7 @@
       "id": "book-199",
       "title": "حكم الإسلام بعد نجاة العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2428,7 +2428,7 @@
       "id": "book-203",
       "title": "أثر النشاط والحكمة في تقدم المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2452,7 +2452,7 @@
       "id": "book-205",
       "title": "احذروا اليهود",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2488,7 +2488,7 @@
       "id": "book-208",
       "title": "استفتاءات حول الحجاب والنظر",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2500,7 +2500,7 @@
       "id": "book-209",
       "title": "اعداد الأجيال",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -2548,7 +2548,7 @@
       "id": "book-213",
       "title": "الأخلاق المثالية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -2572,7 +2572,7 @@
       "id": "book-215",
       "title": "الارتباط بالله وجهاد النفس",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -2584,7 +2584,7 @@
       "id": "book-216",
       "title": "الاستفادة من عاشوراء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -2596,7 +2596,7 @@
       "id": "book-217",
       "title": "الإصلاح الاجتماعي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2632,7 +2632,7 @@
       "id": "book-220",
       "title": "الأكثرية الشيعية في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2644,7 +2644,7 @@
       "id": "book-221",
       "title": "الأمة الواحدة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2656,7 +2656,7 @@
       "id": "book-222",
       "title": "الإنسان والمحبة الاجتماعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -2680,7 +2680,7 @@
       "id": "book-224",
       "title": "البلاد الإسلامية بين الحاجة والاستعمار",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2752,7 +2752,7 @@
       "id": "book-230",
       "title": "التواصي والمواساة طريقا الإصلاح",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2800,7 +2800,7 @@
       "id": "book-234",
       "title": "الحزب في النظرية الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2824,7 +2824,7 @@
       "id": "book-236",
       "title": "الدولة الإسلامية رؤى وآفاق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2860,7 +2860,7 @@
       "id": "book-239",
       "title": "الزواج وتشكيل الأسرة في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -2872,7 +2872,7 @@
       "id": "book-240",
       "title": "السبيل إلى الوحدة الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2896,7 +2896,7 @@
       "id": "book-242",
       "title": "الشيعة والحكم في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2908,7 +2908,7 @@
       "id": "book-243",
       "title": "الصلح مع اليهود استسلام لا سلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2920,7 +2920,7 @@
       "id": "book-244",
       "title": "الطريق إلى الغيب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -2932,7 +2932,7 @@
       "id": "book-245",
       "title": "العباس ع والعصمة الصغرى",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -2944,7 +2944,7 @@
       "id": "book-246",
       "title": "العراق بعد حزب البعث العراق بعد التغيير",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2956,7 +2956,7 @@
       "id": "book-247",
       "title": "العراق.. ماضيه ومستقبله",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2968,7 +2968,7 @@
       "id": "book-248",
       "title": "العمل الصالح طريق التغيير",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -2980,7 +2980,7 @@
       "id": "book-249",
       "title": "الغرب والحصار الاقتصادي على المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3004,7 +3004,7 @@
       "id": "book-251",
       "title": "الفئات الاجتماعية بين الحق والباطل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -3016,7 +3016,7 @@
       "id": "book-252",
       "title": "القرآن منهج وسلوك",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3028,7 +3028,7 @@
       "id": "book-253",
       "title": "القرآن يتحدى",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3052,7 +3052,7 @@
       "id": "book-255",
       "title": "المرأة المسلمة والوصايا الأخيرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -3064,7 +3064,7 @@
       "id": "book-256",
       "title": "المرأة في المجتمع المعاصر",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -3076,7 +3076,7 @@
       "id": "book-257",
       "title": "المرأة في المنظار الاسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -3088,7 +3088,7 @@
       "id": "book-258",
       "title": "المرأة في ظل الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -3100,7 +3100,7 @@
       "id": "book-259",
       "title": "المسائل الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -3124,7 +3124,7 @@
       "id": "book-261",
       "title": "المولد النبوي الشريف",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3136,7 +3136,7 @@
       "id": "book-262",
       "title": "النازحون من العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3184,7 +3184,7 @@
       "id": "book-266",
       "title": "إلى المجاهدين في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3196,7 +3196,7 @@
       "id": "book-267",
       "title": "إلى الهيئات الحسينية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -3208,7 +3208,7 @@
       "id": "book-268",
       "title": "إلى حكومة شيعية في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3256,7 +3256,7 @@
       "id": "book-272",
       "title": "بين المسلمين واليهود",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3268,7 +3268,7 @@
       "id": "book-273",
       "title": "تبيين القرآن ج1",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3280,7 +3280,7 @@
       "id": "book-274",
       "title": "تبيين القرآن ج2",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3292,7 +3292,7 @@
       "id": "book-275",
       "title": "تبيين القرآن ج3",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3328,7 +3328,7 @@
       "id": "book-278",
       "title": "تقريب القرآن إلى الأذهان الجزء 1",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3340,7 +3340,7 @@
       "id": "book-279",
       "title": "تقريب القرآن إلى الأذهان الجزء 2",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3352,7 +3352,7 @@
       "id": "book-280",
       "title": "تقريب القرآن إلى الأذهان الجزء 3",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3364,7 +3364,7 @@
       "id": "book-281",
       "title": "تقريب القرآن إلى الأذهان الجزء 4",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3376,7 +3376,7 @@
       "id": "book-282",
       "title": "تقريب القرآن إلى الأذهان الجزء 5",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3388,7 +3388,7 @@
       "id": "book-283",
       "title": "تقريب القرآن إلى الأذهان الجزء 6",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3400,7 +3400,7 @@
       "id": "book-284",
       "title": "تقريب القرآن إلى الأذهان الجزء 7",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3412,7 +3412,7 @@
       "id": "book-285",
       "title": "تقريب القرآن إلى الأذهان الجزء 8",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3424,7 +3424,7 @@
       "id": "book-286",
       "title": "تقريب القرآن إلى الأذهان الجزء 9",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3436,7 +3436,7 @@
       "id": "book-287",
       "title": "تقريب القرآن إلى الأذهان الجزء 10",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3484,7 +3484,7 @@
       "id": "book-291",
       "title": "حديث مع الناشئين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "formats": [
         "pdf",
         "word"
@@ -3532,7 +3532,7 @@
       "id": "book-295",
       "title": "دروس من الهجرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3544,7 +3544,7 @@
       "id": "book-296",
       "title": "دعاة التغيير ومستقبل العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3556,7 +3556,7 @@
       "id": "book-297",
       "title": "دور الاستعمار في تفكيك الأمة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3568,7 +3568,7 @@
       "id": "book-298",
       "title": "دور الشباب في إنهاض الأمة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3580,7 +3580,7 @@
       "id": "book-299",
       "title": "رسول الإسلام ص في المدينة ج1",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3592,7 +3592,7 @@
       "id": "book-300",
       "title": "رسول الإسلام ص في المدينة ج2",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3604,7 +3604,7 @@
       "id": "book-301",
       "title": "رسول الإسلام ص في المدينة ج3",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3616,7 +3616,7 @@
       "id": "book-302",
       "title": "رسول الإسلام ص في مكة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -3676,7 +3676,7 @@
       "id": "book-307",
       "title": "صلاح الدين والتعصب الطائفي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tarikh",
       "formats": [
         "pdf",
         "word"
@@ -3688,7 +3688,7 @@
       "id": "book-308",
       "title": "ضرورة التفرغ للعمل في سبيل الله",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -3748,7 +3748,7 @@
       "id": "book-313",
       "title": "فلسفة الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -3772,7 +3772,7 @@
       "id": "book-315",
       "title": "قبس من شعاع الإمام الحسين عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -3784,7 +3784,7 @@
       "id": "book-316",
       "title": "قصص من اليهود",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3832,7 +3832,7 @@
       "id": "book-320",
       "title": "محنة العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3856,7 +3856,7 @@
       "id": "book-322",
       "title": "مستقبل العراق بين الدعاء والعمل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3868,7 +3868,7 @@
       "id": "book-323",
       "title": "مع الإمام موسى بن جعفر عليه السلام والتغيير في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -3892,7 +3892,7 @@
       "id": "book-325",
       "title": "معالجة الأمراض النفسية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tibb",
       "formats": [
         "pdf",
         "word"
@@ -3904,7 +3904,7 @@
       "id": "book-326",
       "title": "مكانة القرآن الكريم في المجتمع الإسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -3916,7 +3916,7 @@
       "id": "book-327",
       "title": "من أخلاق الرسول ص وإرشاداته",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -4036,7 +4036,7 @@
       "id": "book-337",
       "title": "من مكارم الأخلاق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -4060,7 +4060,7 @@
       "id": "book-339",
       "title": "موجز عن الدولة العثمانية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4096,7 +4096,7 @@
       "id": "book-342",
       "title": "نحو التغيير",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4108,7 +4108,7 @@
       "id": "book-343",
       "title": "نظرة الشيعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -4132,7 +4132,7 @@
       "id": "book-345",
       "title": "هكذا الزواج في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -4144,7 +4144,7 @@
       "id": "book-346",
       "title": "هؤلاء اليهود",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4156,7 +4156,7 @@
       "id": "book-347",
       "title": "وإلى الشباب نقول",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "formats": [
         "pdf",
         "word"
@@ -4168,7 +4168,7 @@
       "id": "book-348",
       "title": "وصايا إلى الشباب المسلم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "formats": [
         "pdf",
         "word"
@@ -4180,7 +4180,7 @@
       "id": "book-349",
       "title": "وصايا إلى الكوادر العراقية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4216,7 +4216,7 @@
       "id": "book-352",
       "title": "ولكم في رسول الله ص أسوة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -4228,7 +4228,7 @@
       "id": "book-353",
       "title": "يوم الحسين عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4264,7 +4264,7 @@
       "id": "book-356",
       "title": "الرأي العام ودوره في المجتمع",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -4288,7 +4288,7 @@
       "id": "book-358",
       "title": "الطموح في حياة الإنسان والمجتمع",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -4324,7 +4324,7 @@
       "id": "book-361",
       "title": "الفقه الزرع والزراعة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4336,7 +4336,7 @@
       "id": "book-362",
       "title": "الفقه السلم والسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4348,7 +4348,7 @@
       "id": "book-363",
       "title": "الفقه حقوق الحيوان وأحكامه",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4372,7 +4372,7 @@
       "id": "book-365",
       "title": "انتهاء أمد اليهود في اغتصاب فلسطين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4444,7 +4444,7 @@
       "id": "book-371",
       "title": "هل تعرف الصلاة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4468,7 +4468,7 @@
       "id": "book-373",
       "title": "أسبوع المولد الشريف",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -4516,7 +4516,7 @@
       "id": "book-377",
       "title": "الاقتصاد عصب الحياة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4564,7 +4564,7 @@
       "id": "book-381",
       "title": "الحسن والحسين عليهما السلام إمامان قاما أو قعدا",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4576,7 +4576,7 @@
       "id": "book-382",
       "title": "الحسين عليه السلام أسوة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4588,7 +4588,7 @@
       "id": "book-383",
       "title": "الغرب يتغير",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4600,7 +4600,7 @@
       "id": "book-384",
       "title": "الفقه طريق النجاة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4612,7 +4612,7 @@
       "id": "book-385",
       "title": "الفقه التجارة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4624,7 +4624,7 @@
       "id": "book-386",
       "title": "الفقه الحريات",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4660,7 +4660,7 @@
       "id": "book-389",
       "title": "المرجع والأمة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4672,7 +4672,7 @@
       "id": "book-390",
       "title": "المسائل المقدادية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -4684,7 +4684,7 @@
       "id": "book-391",
       "title": "النظام الإسلامي والأنظمة المعاصرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -4744,7 +4744,7 @@
       "id": "book-396",
       "title": "بين الإسلام ودارون",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -4768,7 +4768,7 @@
       "id": "book-398",
       "title": "دور الحوزات العلمية في بناء المجتمع",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -4780,7 +4780,7 @@
       "id": "book-399",
       "title": "رسالة المساجد والحسينيات",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4792,7 +4792,7 @@
       "id": "book-400",
       "title": "رسالة عاشوراء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4828,7 +4828,7 @@
       "id": "book-403",
       "title": "عشت في كربلاء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "hussein",
       "formats": [
         "pdf",
         "word"
@@ -4852,7 +4852,7 @@
       "id": "book-405",
       "title": "فضائل آل الرسول عليهم السلام من الصواعق المحرقة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -4888,7 +4888,7 @@
       "id": "book-408",
       "title": "كيف عرفت الله",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -4936,7 +4936,7 @@
       "id": "book-412",
       "title": "مائة سؤال حول الثالوث",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -4960,7 +4960,7 @@
       "id": "book-414",
       "title": "مبادئ الطب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "tibb",
       "formats": [
         "pdf",
         "word"
@@ -5008,7 +5008,7 @@
       "id": "book-418",
       "title": "من عوامل الاستقرار في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -5056,7 +5056,7 @@
       "id": "book-422",
       "title": "نظام الحوزات العلمية في العراق",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -5080,7 +5080,7 @@
       "id": "book-424",
       "title": "هل تريد الحج؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
