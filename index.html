@@ -297,6 +297,24 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .audio-filter-btn { background: var(--paper); border: 1px solid var(--line); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; cursor: pointer; transition: all var(--tr); }
 .audio-filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
+/* ========================================= */
+/* تصغير حجم الخطوط والأزرار داخل صفحة الموسوعة فقط */
+/* ========================================= */
+.series-page-layout .book-row .title { font-size: 13.5px; }
+.series-page-layout .book-row .meta { font-size: 11px; margin-bottom: 5px; }
+.series-page-layout .book-row .meta span { gap: 2px; }
+.series-page-layout .book-row .desc { font-size: 11px; }
+.series-page-layout .book-row .cover { width: 70px; height: 95px; }
+.series-page-layout .fmt-btn { font-size: 9px; padding: 3px 8px; }
+.series-page-layout .dl-btn { font-size: 10.5px; padding: 6px 12px; }
+.series-page-layout .fav-btn { width: 26px; height: 26px; }
+.series-page-layout .fav-btn svg { width: 12px; height: 12px; }
+
+/* تصغير البطاقات في وضع (الشبكة) داخل الموسوعة */
+.series-page-layout .card-title { font-size: 12.5px; }
+.series-page-layout .card-cat { font-size: 9.5px; padding: 2px 8px; }
+.series-page-layout .card-meta { font-size: 11px; }
+
 @media(max-width:768px){
   .head-row{gap:10px}
   .brand-logo{width:40px;height:40px;font-size:20px}
@@ -957,22 +975,24 @@ function renderSeriesPage(id){
   }
 
   app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div>
-    <div class="author-header">
-      <div class="author-avatar-big">${esc(s.name.charAt(0))}</div>
-      <h1>${esc(s.name)}</h1>
-      <p>${esc(s.desc)}</p>
-      <div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div>
-      <div style="margin-top: 15px;">
-        <button class="btn-primary" onclick="shareSeries('${s.id}')" style="padding: 8px 20px; font-size: 13px;">
-          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; margin-left: 5px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          مشاركة الموسوعة
-        </button>
+    <div class="series-page-layout">
+      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div>
+      <div class="author-header">
+        <div class="author-avatar-big">${esc(s.name.charAt(0))}</div>
+        <h1>${esc(s.name)}</h1>
+        <p>${esc(s.desc)}</p>
+        <div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div>
+        <div style="margin-top: 15px;">
+          <button class="btn-primary" onclick="shareSeries('${s.id}')" style="padding: 8px 20px; font-size: 13px;">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; margin-left: 5px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            مشاركة الموسوعة
+          </button>
+        </div>
       </div>
+      ${bulkDownloadHtml}
+      ${toolbarHtml()}
+      <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>
     </div>
-    ${bulkDownloadHtml}
-    ${toolbarHtml()}
-    <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>
   `;
   bindToolbar();
   renderList();
@@ -1111,6 +1131,12 @@ function renderReader(id){
       <div class="reader-header">
         <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
+        
+        <!-- زر فتح الملف في نافذة جديدة للبحث -->
+        <a href="${rawUrl}" target="_blank" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--primary); color:#fff; border-color:var(--primary); display:flex; align-items:center; gap:4px;">
+          <i class="fa-solid fa-magnifying-glass"></i> فتح للبحث
+        </a>
+        
         ${favBtnHtml("book",b.id)}
       </div>
       <iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe>
@@ -1241,7 +1267,6 @@ function getFiltered(){
         list.sort((a,b) => {
             const numA = parseId(a.id);
             const numB = parseId(b.id);
-            // الترتيب الرقمي إذا كان كلا العنصرين يملكان أرقاماً في المعرف
             if (numA !== numB && numA !== 0 && numB !== 0) return numA - numB;
             return a.t.localeCompare(b.t, "ar"); 
         }); 
