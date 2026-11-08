@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أداة توزيع الكتب تلقائياً</title>
+<style>
+  body { font-family: sans-serif; background: #1e1e1e; color: #fff; padding: 20px; }
+  textarea { width: 100%; height: 200px; padding: 10px; margin-bottom: 15px; background: #2d2d2d; color: #fff; border: 1px solid #444; border-radius: 8px; direction: ltr; font-family: monospace; font-size: 12px; }
+  button { background: #4CAF50; color: white; padding: 15px 20px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 15px; }
+  button:hover { background: #45a049; }
+  h3 { margin-bottom: 10px; font-size: 16px; color: #aaa; }
+  #summary { background: #333; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; line-height: 1.8; display: none; }
+  .success { color: #4CAF50; }
+</style>
+</head>
+<body>
+  <h2>أداة توزيع الكتب على الأقسام</h2>
+  
+  <h3>1. الصق كود ملف books-all.json هنا:</h3>
+  <textarea id="jsonInput" placeholder="الصق الكود هنا..."></textarea>
+  
+  <button onclick="sortBooks()">توزيع الكتب تلقائياً</button>
+  
+  <div id="summary"></div>
+
+  <h3>2. الكود الجديد (انسخه وضعه في books-all.json):</h3>
+  <textarea id="jsonOutput" readonly></textarea>
+
+  <script>
+    function sortBooks() {
+      const input = document.getElementById('jsonInput').value.trim();
+      if(!input) { alert('الرجاء لصق الكود أولاً'); return; }
+
+      try {
+        const data = JSON.parse(input);
+        if(!data.items) throw new Error("لا يوجد مصفوفة items");
+
+        // قواعد التوزيع (الكلمات المفتاحية لكل قسم)
+        const rules = [
+          { cat: "hussein", keywords: ["الحسين", "عاشوراء", "كربلاء", "العباس"] },
+          { cat: "mahdi", keywords: ["المهدي", "الحجة", "الغيبة"] },
+          { cat: "ahlulbayt", keywords: ["الزهراء", "فاطمة", "الحسن", "السجاد", "الباقر", "الصادق", "الكاظم", "الرضا", "الجواد", "الهادي", "العسكري", "المعصومين", "أمير المؤمنين", "زينب", "أم البنين", "المعصومة"] },
+          { cat: "quran", keywords: ["القرآن", "القران", "التفسير", "تقريب", "تبيين", "جمع القران"] },
+          { cat: "fiqh", keywords: ["الفقه", "المسائل", "الاستفتاءات", "استفتاءات", "الحج", "الصوم", "الصلاة", "الطهارة", "الزكاة", "الخمس", "النكاح", "الطلاق", "الإرث", "مناسك", "أحكام", "احكام", "المرور", "النظافة", "القواعد الفقهية"] },
+          { cat: "siyasah", keywords: ["السياسة", "الاقتصاد", "الحكومة", "الحكم", "الدولة", "النظام", "العراق", "الشورى", "العدالة", "الحرية", "اليهود", "فلسطين", "الاستعمار", "الغرب", "الشيوعيون", "الحزب", "المرجعية", "الأمة", "الوحدة", "التغيير", "الإصلاح", "الانقاذ", "الاستقرار"] },
+          { cat: "mujtama", keywords: ["المجتمع", "الأسرة", "الزواج", "المرأة", "الأجيال", "العازبات", "الاجتماعي"] },
+          { cat: "akhlaq", keywords: ["الأخلاق", "الفضيلة", "الزهد", "الإخلاص", "الحسد", "مكارم", "الآداب", "الاداب"] },
+          { cat: "aqaid", keywords: ["العقائد", "العقيدة", "التوحيد", "الله", "الثالوث", "دارون", "فرويد", "الوجوديين", "الإيمان", "الغيب"] },
+          { cat: "tarikh", keywords: ["التاريخ", "العثمانية", "صلاح الدين", "الحضارة", "قم المقدسة", "البقيع", "المساجد"] },
+          { cat: "seerah", keywords: ["الرسول", "النبي", "السيرة", "مكة", "المدينة", "الهجرة", "المولد"] },
+          { cat: "kalam", keywords: ["الشيعة", "التشيع", "أفكار"] },
+          { cat: "youth", keywords: ["الشباب", "الناشئين"] },
+          { cat: "tibb", keywords: ["الطب", "الأمراض", "الاعراض", "الصحة", "النفسية"] },
+          { cat: "usul", keywords: ["الأصول", "الاصولي", "الاجتهاد", "التقليد"] }
+        ];
+
+        const counts = {};
+
+        data.items.forEach(book => {
+          let assigned = false;
+          const title = book.title;
+
+          for(let rule of rules) {
+            if(rule.keywords.some(kw => title.includes(kw))) {
+              book.category = rule.cat;
+              counts[rule.cat] = (counts[rule.cat] || 0) + 1;
+              assigned = true;
+              break;
+            }
+          }
+
+          // إذا لم يجد كلمة مفتاحية، يبقى في قسم أهل البيت كافتراضي
+          if(!assigned) {
+            book.category = "ahlulbayt";
+            counts["ahlulbayt"] = (counts["ahlulbayt"] || 0) + 1;
+          }
+        });
+
+        const catNames = {
+          "quran": "القرآن والتفسير", "aqaid": "العقائد", "seerah": "السيرة", "fiqh": "الفقه",
+          "usul": "الأصول", "hadith": "الحديث", "akhlaq": "الأخلاق", "tarikh": "التاريخ",
+          "kalam": "الكلام", "ahlulbayt": "أهل البيت (عليهم السلام)", "hussein": "الإمام الحسين",
+          "mahdi": "الإمام المهدي", "siyasah": "السياسة والاقتصاد", "mujtama": "المجتمع والأسرة",
+          "youth": "الشباب", "tibb": "الطب", "languages": "لغات أخرى"
+        };
+
+        let summaryHtml = `<h4 class="success">تم التوزيع بنجاح!</h4>`;
+        for(const [key, count] of Object.entries(counts)) {
+          summaryHtml += `<div>• ${catNames[key] || key}: <b>${count}</b> كتاب</div>`;
+        }
+
+        document.getElementById('summary').innerHTML = summaryHtml;
+        document.getElementById('summary').style.display = 'block';
+        document.getElementById('jsonOutput').value = JSON.stringify(data, null, 2);
+
+      } catch(e) {
+        alert('خطأ في قراءة الكود: ' + e.message);
+      }
+    }
+  </script>
+</body>
+</html>
