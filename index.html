@@ -305,10 +305,14 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .lib-search-box { display: flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; padding: 0 12px; }
 .lib-search-box input { flex: 1; border: none; background: transparent; padding: 10px; outline: none; font-family: inherit; color: var(--ink); }
 .lib-search-box svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
-.lib-filter-box { display: flex; align-items: center; justify-content: space-between; background: var(--primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; }
-.lib-filter-box select { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 4px 8px; border-radius: 6px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; max-width: 60%; }
-.lib-filter-box select option { color: #000; background: #fff; }
-.lib-filter-box select optgroup { color: #000; font-weight: bold; background: #eee; }
+
+/* الفلاتر المتسلسلة */
+.lib-filters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 5px; }
+.lib-filter-group { display: flex; flex-direction: column; gap: 4px; }
+.lib-filter-group label { font-size: 11px; font-weight: 700; color: var(--primary-dark); padding-right: 4px; }
+[data-theme="dark"] .lib-filter-group label { color: var(--accent); }
+.lib-filter-select { width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); font-family: inherit; font-size: 13px; color: var(--ink); cursor: pointer; outline: none; transition: border-color var(--tr); }
+.lib-filter-select:focus { border-color: var(--primary); }
 
 .lib-table { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 30px; }
 .lib-thead { display: grid; grid-template-columns: 2fr 1fr 100px; background: var(--primary); color: #fff; padding: 12px 16px; font-weight: 700; font-size: 13px; text-align: center; }
@@ -367,6 +371,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .fav-header{padding:16px 18px}
   .fav-header h1{font-size:20px}
   
+  .lib-filters-grid { grid-template-columns: 1fr; }
   .lib-thead { grid-template-columns: 1.5fr 1fr 90px; padding: 10px; font-size: 12px; }
   .lib-row { grid-template-columns: 1.5fr 1fr 90px; padding: 10px; }
   .lib-title { font-size: 12px; }
@@ -521,23 +526,12 @@ const SERIES = [
 ];
 
 const BOOKS_JSON_FILES = [
-  ["books-quran.json","quran"],
-  ["books-aqaid.json","aqaid"],
-  ["books-seerah.json","seerah"],
-  ["books-fiqh.json","fiqh"],
-  ["books-usul.json","usul"],
-  ["books-hadith.json","hadith"],
-  ["books-akhlaq.json","akhlaq"],
-  ["books-tarikh.json","tarikh"],
-  ["books-kalam.json","kalam"],
-  ["books-ahlulbayt.json","ahlulbayt"],
-  ["books-hussein.json","hussein"],
-  ["books-mahdi.json","mahdi"],
-  ["books-siyasah.json","siyasah"],
-  ["books-mujtama.json","mujtama"],
-  ["books-youth.json","youth"],
-  ["books-tibb.json","tibb"],
-  ["books-languages.json","languages"]
+  ["books-quran.json","quran"], ["books-aqaid.json","aqaid"], ["books-seerah.json","seerah"],
+  ["books-fiqh.json","fiqh"], ["books-usul.json","usul"], ["books-hadith.json","hadith"],
+  ["books-akhlaq.json","akhlaq"], ["books-tarikh.json","tarikh"], ["books-kalam.json","kalam"],
+  ["books-ahlulbayt.json","ahlulbayt"], ["books-hussein.json","hussein"], ["books-mahdi.json","mahdi"],
+  ["books-siyasah.json","siyasah"], ["books-mujtama.json","mujtama"], ["books-youth.json","youth"],
+  ["books-tibb.json","tibb"], ["books-languages.json","languages"]
 ];
 
 const FILES_BASE = "./files/";
@@ -562,27 +556,16 @@ const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id)>0);
 function jsonToBook(item, cat){
   const formats = item.formats || ["pdf"];
   const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
-  
   const hasPdf = formats.includes("pdf") && item.pdf_url && item.pdf_url.trim() !== "" && item.pdf_url !== "#";
   const hasWord = formats.includes("word") && item.word_url && item.word_url.trim() !== "" && item.word_url !== "#";
-
-  if (!hasPdf && !hasWord) {
-      return null; 
-  }
+  if (!hasPdf && !hasWord) return null; 
 
   return {
     id: item.id || (cat + "_" + String(item.title||"").replace(/[^\w\u0600-\u06FF]+/g,"-").slice(0,40)),
-    t: item.title||"", c: cat||"fiqh",
-    y: parseInt(item.year)||0, pages: parseInt(item.pages)||0,
-    desc: item.description||"", cover: item.cover||"",
-    f, a: item.author||DEFAULT_AUTH, series: item.series||"",
-    filename: item.filename || "",
-    pdf_url: item.pdf_url || "",
-    word_url: item.word_url || "",
-    wordExt: item.word_ext||"docx",
-    hasPdf: hasPdf, 
-    hasWord: hasWord,
-    reads: Math.floor(Math.random()*1800)+80
+    t: item.title||"", c: cat||"fiqh", y: parseInt(item.year)||0, pages: parseInt(item.pages)||0,
+    desc: item.description||"", cover: item.cover||"", f, a: item.author||DEFAULT_AUTH, series: item.series||"",
+    filename: item.filename || "", pdf_url: item.pdf_url || "", word_url: item.word_url || "", wordExt: item.word_ext||"docx",
+    hasPdf: hasPdf, hasWord: hasWord, reads: Math.floor(Math.random()*1800)+80
   };
 }
 
@@ -592,11 +575,7 @@ async function loadJsonFile(path, cat){
     if(!res.ok) return [];
     const json = await res.json();
     if(!json.items || !Array.isArray(json.items)) return [];
-    
-    return json.items
-      .map(item => jsonToBook(item, cat))
-      .filter(book => book !== null); 
-      
+    return json.items.map(item => jsonToBook(item, cat)).filter(book => book !== null); 
   }catch(e){ return []; }
 }
 
@@ -629,10 +608,8 @@ function loadLegacyBooks(){
     const p = line.split("|").map(s=>s.trim());
     const [t,c,y,f="pw",a,s="",arc="",wExt=""] = p;
     return {
-      id:"b"+i, t, c, y:parseInt(y)||0, pages:0, desc:"", cover:"",
-      f, a:a||DEFAULT_AUTH, series:s||"", filename:"", wordExt:wExt||"docx",
-      hasPdf:f.includes("p"), hasWord:f.includes("w"),
-      reads: Math.floor(Math.random()*1800)+80
+      id:"b"+i, t, c, y:parseInt(y)||0, pages:0, desc:"", cover:"", f, a:a||DEFAULT_AUTH, series:s||"", filename:"", wordExt:wExt||"docx",
+      hasPdf:f.includes("p"), hasWord:f.includes("w"), reads: Math.floor(Math.random()*1800)+80
     };
   });
 }
@@ -808,85 +785,29 @@ function router(){
 
 function coverHtmlSmall(b, showAuth=true){
   if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}">`;
-  return `<div class="cover-ph">
-    <div class="cp-icon">📖</div>
-    ${showAuth?`<div class="cp-auth">${esc(authorName(b.a))}</div>`:""}
-  </div>`;
+  return `<div class="cover-ph"><div class="cp-icon">📖</div>${showAuth?`<div class="cp-auth">${esc(authorName(b.a))}</div>`:""}</div>`;
 }
-
 function coverHtmlBig(b){
   if(b.cover) return `<img src="${b.cover}" class="book-cover-img" alt="${esc(b.t)}">`;
-  return `<div class="book-cover-big">
-    <div class="icon">📖</div>
-  </div>`;
+  return `<div class="book-cover-big"><div class="icon">📖</div></div>`;
 }
-
 function bookCardHtml(b){
-  return `<a href="#/book/${b.id}" class="book-card">
-    <div class="cover">${coverHtmlSmall(b,false)}</div>
-    <div class="info">
-      <div class="title">${esc(b.t)}</div>
-      <div class="auth">${esc(authorName(b.a))}</div>
-    </div>
-  </a>`;
+  return `<a href="#/book/${b.id}" class="book-card"><div class="cover">${coverHtmlSmall(b,false)}</div><div class="info"><div class="title">${esc(b.t)}</div><div class="auth">${esc(authorName(b.a))}</div></div></a>`;
 }
-
 function bookRowHtml(b){
   const c = getCat(b.c);
-  return `<div class="book-row">
-    <a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a>
-    <div class="info">
-      <div>
-        <a href="#/book/${b.id}" class="title">${esc(b.t)}</a>
-        <div class="meta">
-          <span><strong>المؤلف:</strong> ${esc(authorName(b.a))}</span>
-          <span><strong>التصنيف:</strong> ${esc(c?.name||"")}</span>
-          ${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}
-        </div>
-        ${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}
-      </div>
-      <div class="actions">
-        ${favBtnHtml("book",b.id)}
-        ${b.hasPdf?`<a href="#/book/${b.id}" class="fmt-btn fmt-pdf">PDF</a>`:""}
-        ${b.hasWord?`<a href="#/book/${b.id}" class="fmt-btn fmt-word">Word</a>`:""}
-      </div>
-    </div>
-  </div>`;
+  return `<div class="book-row"><a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a><div class="info"><div><a href="#/book/${b.id}" class="title">${esc(b.t)}</a><div class="meta"><span><strong>المؤلف:</strong> ${esc(authorName(b.a))}</span><span><strong>التصنيف:</strong> ${esc(c?.name||"")}</span>${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}</div>${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}</div><div class="actions">${favBtnHtml("book",b.id)}${b.hasPdf?`<a href="#/book/${b.id}" class="fmt-btn fmt-pdf">PDF</a>`:""}${b.hasWord?`<a href="#/book/${b.id}" class="fmt-btn fmt-word">Word</a>`:""}</div></div></div>`;
 }
-
 function authorCardHtml(a){
   const c = countByAuthor(a.id);
-  return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px">
-    <div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">
-      <div class="avatar-letter" style="width:44px;height:44px;font-size:18px">${esc(a.short.charAt(0))}</div>
-    </div>
-    <div style="flex:1;min-width:0">
-      <div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div>
-      <div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div>
-    </div>
-  </a>`;
+  return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0"><div class="avatar-letter" style="width:44px;height:44px;font-size:18px">${esc(a.short.charAt(0))}</div></div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
 }
-
 function seriesCardHtml(s){
   const c = countBySeries(s.id);
-  return `<a href="#/series-one/${s.id}" class="series-card">
-    <div style="flex:1;min-width:0">
-      <div class="sc-name">${esc(s.name)}</div>
-      <div class="sc-desc">${esc(s.desc)}</div>
-      <div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div>
-    </div>
-    <div class="sc-badge">${c}<small>كتاب</small></div>
-  </a>`;
+  return `<a href="#/series-one/${s.id}" class="series-card"><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
 }
-
 function catCardHtml(c){
-  return `<a href="#/category/${c.id}" class="cat-card">
-    <div>
-      <div class="cc-name">${esc(c.name)}</div>
-      <div class="cc-count">${countIn(c.id)} كتاب</div>
-    </div>
-    <div class="cc-badge">${countIn(c.id)}</div>
-  </a>`;
+  return `<a href="#/category/${c.id}" class="cat-card"><div><div class="cc-name">${esc(c.name)}</div><div class="cc-count">${countIn(c.id)} كتاب</div></div><div class="cc-badge">${countIn(c.id)}</div></a>`;
 }
 
 function renderHome(){
@@ -908,48 +829,21 @@ function renderHome(){
       </div>
     </section>
 
-    <!-- قسم الحوزة الالكترونية في الرئيسية -->
     <div class="hawza-banner" onclick="location.hash='#/hawza'" style="cursor:pointer">
-      <div class="hb-text">
-        <h2>🏛️ الحوزة الالكترونية</h2>
-        <p>بوابة الدروس الحوزوية الصوتية والمرئية، تضم المباحث الفقهية والأصولية بأحدث التقنيات.</p>
-      </div>
+      <div class="hb-text"><h2>🏛️ الحوزة الالكترونية</h2><p>بوابة الدروس الحوزوية الصوتية والمرئية، تضم المباحث الفقهية والأصولية بأحدث التقنيات.</p></div>
       <div class="hb-icon">🎧</div>
     </div>
 
-    ${featured?`
-    <div class="sec-title">كتاب اليوم</div>
-    <a href="#/book/${featured.id}" class="book-row" style="margin-bottom:26px">
-      <div class="cover">${coverHtmlSmall(featured,false)}</div>
-      <div class="info">
-        <div>
-          <div class="title" style="font-size:18px;font-family:'Amiri',serif;color:var(--primary-dark)">${esc(featured.t)}</div>
-          <div class="meta">
-            <span><strong>المؤلف:</strong> ${esc(fa?.short||"")}</span>
-            <span><strong>التصنيف:</strong> ${esc(fc?.name||"")}</span>
-            ${featured.y?`<span><strong>التاريخ:</strong> ${featured.y}هـ</span>`:""}
-          </div>
-          ${featured.desc?`<div class="desc" style="-webkit-line-clamp:3">${esc(featured.desc)}</div>`:""}
-        </div>
-      </div>
-    </a>`:""}
+    ${featured?`<div class="sec-title">كتاب اليوم</div><a href="#/book/${featured.id}" class="book-row" style="margin-bottom:26px"><div class="cover">${coverHtmlSmall(featured,false)}</div><div class="info"><div><div class="title" style="font-size:18px;font-family:'Amiri',serif;color:var(--primary-dark)">${esc(featured.t)}</div><div class="meta"><span><strong>المؤلف:</strong> ${esc(fa?.short||"")}</span><span><strong>التصنيف:</strong> ${esc(fc?.name||"")}</span>${featured.y?`<span><strong>التاريخ:</strong> ${featured.y}هـ</span>`:""}</div>${featured.desc?`<div class="desc" style="-webkit-line-clamp:3">${esc(featured.desc)}</div>`:""}</div></div></a>`:""}
 
-    ${SERIES.length?`
-    <div class="sec-title">الموسوعات</div>
-    <div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
-
-    <div class="sec-title">التصنيفات</div>
-    <div class="cat-grid" style="margin-bottom:26px">${CATS.map(catCardHtml).join("")}</div>
-
-    <div class="sec-title">المؤلفون</div>
-    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-bottom:26px">${AUTHORS.map(authorCardHtml).join("")}</div>
-
-    <div class="sec-title">أحدث الإضافات</div>
-    ${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
+    ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
+    <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${CATS.map(catCardHtml).join("")}</div>
+    <div class="sec-title">المؤلفون</div><div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-bottom:26px">${AUTHORS.map(authorCardHtml).join("")}</div>
+    <div class="sec-title">أحدث الإضافات</div>${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
   `;
 }
 
-// صفحة الحوزة الالكترونية (مع التسلسل الهرمي)
+// صفحة الحوزة الالكترونية
 function renderHawza(){
   app.innerHTML = `
     <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الحوزة الالكترونية</span></div>
@@ -958,61 +852,31 @@ function renderHawza(){
     <div class="hawza-banner">
       <div class="hb-text">
         <h2>مرحباً بك في الحوزة الالكترونية</h2>
-        <p>هنا تجد الدروس الحوزوية مقسمة حسب المباحث الرئيسية والفرعية. اختر المبحث الذي تريد دراسته، وستنتقل مباشرة إلى الدروس الصوتية الخاصة به.</p>
+        <p>هنا تجد الدروس الحوزوية مقسمة حسب المباحث. اختر المبحث الذي تريد دراسته، وستنتقل مباشرة إلى الدروس الصوتية الخاصة به.</p>
       </div>
       <div class="hb-icon">🎓</div>
     </div>
 
-    <div class="hawza-section-title">📚 الفقه</div>
+    <div class="hawza-section-title">📚 دروس السادة (بحث الخارج)</div>
     <div class="hawza-grid">
-      <!-- بطاقة خارج الفقه -->
       <div class="hawza-card">
-        <div class="hawza-card-head">
-          <div class="hc-icon">📜</div>
-          <div class="hc-title">خارج الفقه</div>
-        </div>
+        <div class="hawza-card-head"><div class="hc-icon">⚖️</div><div class="hc-title">المكاسب المحرمة</div></div>
         <div class="hawza-sub-list">
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'المكاسب المحرمة')">المكاسب المحرمة</button>
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'كتاب الطهارة')">كتاب الطهارة</button>
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', 'كتاب الصلاة')">كتاب الصلاة</button>
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الفقه', '')">جميع دروس خارج الفقه</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="hawza-section-title">🧠 الأصول</div>
-    <div class="hawza-grid">
-      <!-- بطاقة خارج الأصول -->
-      <div class="hawza-card">
-        <div class="hawza-card-head">
-          <div class="hc-icon">📖</div>
-          <div class="hc-title">خارج الأصول</div>
-        </div>
-        <div class="hawza-sub-list">
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', 'مباحث الألفاظ')">مباحث الألفاظ</button>
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', 'المباحث العقلية')">المباحث العقلية</button>
-          <button class="hawza-sub-btn" onclick="filterAudios('خارج الأصول', '')">جميع دروس خارج الأصول</button>
+          <button class="hawza-sub-btn" onclick="applyHawzaFilter('دروس', 'السيد مهدي الحسيني الشيرازي', 'بحث الخارج', 'المكاسب المحرمة')">دروس السيد مهدي الشيرازي</button>
         </div>
       </div>
     </div>
   `;
 }
 
-// دالة الانتقال للمكتبة الصوتية مع الفلترة
-window.filterAudios = function(mainCat, subCat) {
-  window._hawzaFilterCat = mainCat;
-  window._hawzaFilterSub = subCat;
+window.applyHawzaFilter = function(cat, speaker, topic, subtopic) {
+  window.pendingFilter = { cat, speaker, topic, subtopic };
   location.hash = '#/audios';
 };
 
 function renderLibrary(){
   state.cat = "all"; state.author = "all"; state.series = "all";
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>كل الكتب</span></div>
-    <div class="sec-title">كل الكتب</div>
-    ${toolbarHtml()}
-    <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>كل الكتب</span></div><div class="sec-title">كل الكتب</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar();
   if(state.q){ const el = document.getElementById("q"); if(el) el.value = state.q; }
   renderList();
@@ -1022,32 +886,17 @@ function renderCategory(id){
   const cat = getCat(id);
   if(!cat){ location.hash = "#/home"; return; }
   state.cat = id; state.author = "all"; state.series = "all"; state.q = "";
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div>
-    <div class="sec-title">${esc(cat.name)}</div>
-    ${toolbarHtml()}
-    <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div><div class="sec-title">${esc(cat.name)}</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar();
   renderList();
 }
 
 function renderAllCats(){
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>التصنيفات</span></div>
-    <div class="sec-title">جميع التصنيفات</div>
-    <div class="cat-grid">${CATS.map(catCardHtml).join("")}</div>
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>التصنيفات</span></div><div class="sec-title">جميع التصنيفات</div><div class="cat-grid">${CATS.map(catCardHtml).join("")}</div>`;
 }
 
 function renderAllAuthors(){
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المؤلفون</span></div>
-    <div class="sec-title">المؤلفون</div>
-    <div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-      ${AUTHORS.map(authorCardHtml).join("")}
-    </div>
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المؤلفون</span></div><div class="sec-title">المؤلفون</div><div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${AUTHORS.map(authorCardHtml).join("")}</div>`;
 }
 
 function renderAuthor(id){
@@ -1055,25 +904,12 @@ function renderAuthor(id){
   if(!a){ location.hash = "#/authors"; return; }
   state.author = id; state.cat = "all"; state.series = "all"; state.q = "";
   const count = countByAuthor(id);
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div>
-    <div class="author-header">
-      <div class="author-avatar-big">${esc(a.short.charAt(0))}</div>
-      <h1>${esc(a.name)}</h1>
-      <p>${esc(a.bio)}</p>
-      <div class="author-stats"><span>عدد الكتب: ${count}</span></div>
-    </div>
-    ${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header"><div class="author-avatar-big">${esc(a.short.charAt(0))}</div><h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
   if(count){ bindToolbar(); renderList(); }
 }
 
 function renderAllSeries(){
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الموسوعات</span></div>
-    <div class="sec-title">الموسوعات</div>
-    ${SERIES.length?`<div class="series-grid">${SERIES.map(seriesCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد موسوعات بعد.</div>`}
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الموسوعات</span></div><div class="sec-title">الموسوعات</div>${SERIES.length?`<div class="series-grid">${SERIES.map(seriesCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد موسوعات بعد.</div>`}`;
 }
 
 function renderSeriesPage(id){
@@ -1081,41 +917,11 @@ function renderSeriesPage(id){
   if(!s){ location.hash = "#/series"; return; }
   state.series = id; state.cat = "all"; state.author = "all"; state.q = "";
   const count = countBySeries(id);
-  
   let bulkDownloadHtml = "";
   if (id === "fiqh-encyclopedia") {
-    bulkDownloadHtml = `
-      <div style="background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius-lg); padding:16px; margin-bottom:20px; display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;">
-        <h3 style="font-family:'Amiri',serif; font-size:18px; color:var(--primary-dark); margin:0;">تحميل الموسوعة كاملة</h3>
-        <p style="font-size:12px; color:var(--muted); margin:0;">يمكنك تحميل جميع الأجزاء الـ 121 دفعة واحدة عبر الملفات المضغوطة (ZIP)</p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px;">
-          <a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل الكل (PDF)</a>
-          <a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل الكل (Word)</a>
-        </div>
-      </div>
-    `;
+    bulkDownloadHtml = `<div style="background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius-lg); padding:16px; margin-bottom:20px; display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;"><h3 style="font-family:'Amiri',serif; font-size:18px; color:var(--primary-dark); margin:0;">تحميل الموسوعة كاملة</h3><p style="font-size:12px; color:var(--muted); margin:0;">يمكنك تحميل جميع الأجزاء الـ 121 دفعة واحدة عبر الملفات المضغوطة (ZIP)</p><div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px;"><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل الكل (PDF)</a><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>تحميل الكل (Word)</a></div></div>`;
   }
-
-  app.innerHTML = `
-    <div class="series-page-layout">
-      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div>
-      <div class="author-header">
-        <div class="author-avatar-big">${esc(s.name.charAt(0))}</div>
-        <h1>${esc(s.name)}</h1>
-        <p>${esc(s.desc)}</p>
-        <div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div>
-        <div style="margin-top: 15px;">
-          <button class="btn-primary" onclick="shareSeries('${s.id}')" style="padding: 8px 20px; font-size: 13px;">
-            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; margin-left: 5px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            مشاركة الموسوعة
-          </button>
-        </div>
-      </div>
-      ${bulkDownloadHtml}
-      ${toolbarHtml()}
-      <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>
-    </div>
-  `;
+  app.innerHTML = `<div class="series-page-layout"><div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div><div class="author-header"><div class="author-avatar-big">${esc(s.name.charAt(0))}</div><h1>${esc(s.name)}</h1><p>${esc(s.desc)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div><div style="margin-top: 15px;"><button class="btn-primary" onclick="shareSeries('${s.id}')" style="padding: 8px 20px; font-size: 13px;"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; margin-left: 5px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة الموسوعة</button></div></div>${bulkDownloadHtml}${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div></div>`;
   bindToolbar();
   renderList();
 }
@@ -1125,65 +931,10 @@ function renderBookPage(id){
   if(!b){ location.hash = "#/home"; return; }
   const c = getCat(b.c);
   const a = getAuthor(b.a);
-
   let related = BOOKS.filter(x=>x.c===b.c && x.id!==b.id).slice(0,6);
-  if(related.length<3){
-    related = [...related, ...BOOKS.filter(x=>x.a===b.a && x.id!==b.id && x.c!==b.c)].slice(0,6);
-  }
+  if(related.length<3){ related = [...related, ...BOOKS.filter(x=>x.a===b.a && x.id!==b.id && x.c!==b.c)].slice(0,6); }
 
-  app.innerHTML = `
-    <div class="breadcrumbs">
-      <a href="#/home">الرئيسية</a> <span>/</span>
-      <a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span>
-      <span>${esc(b.t)}</span>
-    </div>
-    <div class="book-page">
-      <div class="book-main">
-        <div class="book-cover-wrap">${coverHtmlBig(b)}</div>
-        <div class="book-info">
-          <h1 class="book-title">${esc(b.t)}</h1>
-          <a href="#/author/${b.a}" class="author-chip">
-            <div class="avatar-letter">${esc((a?.short||"م").charAt(0))}</div>
-            <span>${esc(a?.name||"غير محدد")}</span>
-          </a>
-          <div class="book-meta-grid">
-            <div class="meta-item">
-              <strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}
-            </div>
-            ${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}
-            ${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}
-            ${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}
-          </div>
-
-          <div class="download-box">
-            <div class="download-header">
-              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              تحميل الكتاب
-            </div>
-            <div class="download-body">
-              ${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}
-              ${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}
-              ${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}
-              
-              <button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>
-              
-              ${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}
-              ${favBtnHtml("book",b.id)}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="book-desc-section">
-        <div class="sec-title">عن الكتاب</div>
-        <div class="book-desc ${b.desc?'':'book-desc-empty'}">${b.desc?esc(b.desc):'لا يوجد وصف مضاف لهذا الكتاب حتى الآن. يمكن إضافته من لوحة التحكم.'}</div>
-      </div>
-    </div>
-
-    ${related.length?`
-    <div class="sec-title">كتب مشابهة</div>
-    <div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip"><div class="avatar-letter">${esc((a?.short||"م").charAt(0))}</div><span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item"><strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}${favBtnHtml("book",b.id)}</div></div></div></div><div class="book-desc-section"><div class="sec-title">عن الكتاب</div><div class="book-desc ${b.desc?'':'book-desc-empty'}">${b.desc?esc(b.desc):'لا يوجد وصف مضاف لهذا الكتاب حتى الآن. يمكن إضافته من لوحة التحكم.'}</div></div></div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
 }
 
 function renderFavorites(){
@@ -1191,115 +942,68 @@ function renderFavorites(){
   const favSeries = FAVORITES.series.map(getSeries).filter(Boolean);
   const total = favBooks.length + favSeries.length;
 
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المفضلة</span></div>
-    <div class="fav-header">
-      <div style="flex:1;min-width:200px">
-        <h1>⭐ المفضلة</h1>
-        <p>جميع الكتب والموسوعات التي حفظتها في مكان واحد</p>
-        <div class="fh-stats">
-          <span class="fh-stat">الكتب: <strong>${favBooks.length}</strong></span>
-          <span class="fh-stat">الموسوعات: <strong>${favSeries.length}</strong></span>
-          <span class="fh-stat">الإجمالي: <strong>${total}</strong></span>
-        </div>
-      </div>
-      ${total?`<button class="fav-clear-btn" onclick="clearAllFavs()">🗑️ حذف الكل</button>`:""}
-    </div>
-    ${total===0?`
-      <div class="empty-box">
-        <div class="ef-icon">⭐</div>
-        <h3 style="font-family:'Amiri',serif;font-size:20px;color:var(--ink);margin-bottom:8px">لا توجد عناصر محفوظة بعد</h3>
-        <p>اضغط على أيقونة النجمة (⭐) في صفحة أي كتاب أو موسوعة لإضافته هنا.</p>
-      </div>
-    `:`
-      ${favBooks.length?`<div class="sec-title">الكتب (${favBooks.length})</div><div class="books-grid">${favBooks.map(bookCardHtml).join("")}</div>`:""}
-      ${favSeries.length?`<div class="sec-title" style="margin-top:26px">الموسوعات (${favSeries.length})</div><div class="series-grid">${favSeries.map(s=>`
-        <a href="#/series-one/${s.id}" class="series-card" style="background:var(--paper);color:var(--ink);border:1px solid var(--line);border-inline-start:4px solid var(--accent);box-shadow:var(--shadow-sm)">
-          <div style="flex:1;min-width:0">
-            <div style="font-family:'Amiri',serif;font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:6px">${esc(s.name)}</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.6">${esc(s.desc)}</div>
-          </div>
-          ${favBtnHtml("series",s.id)}
-        </a>`).join("")}</div>`:""}
-    `}
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المفضلة</span></div><div class="fav-header"><div style="flex:1;min-width:200px"><h1>⭐ المفضلة</h1><p>جميع الكتب والموسوعات التي حفظتها في مكان واحد</p><div class="fh-stats"><span class="fh-stat">الكتب: <strong>${favBooks.length}</strong></span><span class="fh-stat">الموسوعات: <strong>${favSeries.length}</strong></span><span class="fh-stat">الإجمالي: <strong>${total}</strong></span></div></div>${total?`<button class="fav-clear-btn" onclick="clearAllFavs()">🗑️ حذف الكل</button>`:""}</div>${total===0?`<div class="empty-box"><div class="ef-icon">⭐</div><h3 style="font-family:'Amiri',serif;font-size:20px;color:var(--ink);margin-bottom:8px">لا توجد عناصر محفوظة بعد</h3><p>اضغط على أيقونة النجمة (⭐) في صفحة أي كتاب أو موسوعة لإضافته هنا.</p></div>`:`${favBooks.length?`<div class="sec-title">الكتب (${favBooks.length})</div><div class="books-grid">${favBooks.map(bookCardHtml).join("")}</div>`:""}${favSeries.length?`<div class="sec-title" style="margin-top:26px">الموسوعات (${favSeries.length})</div><div class="series-grid">${favSeries.map(s=>`<a href="#/series-one/${s.id}" class="series-card" style="background:var(--paper);color:var(--ink);border:1px solid var(--line);border-inline-start:4px solid var(--accent);box-shadow:var(--shadow-sm)"><div style="flex:1;min-width:0"><div style="font-family:'Amiri',serif;font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:6px">${esc(s.name)}</div><div style="font-size:12px;color:var(--muted);line-height:1.6">${esc(s.desc)}</div></div>${favBtnHtml("series",s.id)}</a>`).join("")}</div>`:""}`}`;
 }
 
 function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
-  if(!b.hasPdf){
-    alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة.");
-    location.hash = "#/book/" + id;
-    return;
-  }
-  
+  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
   let rawUrl = "";
-  if (b.pdf_url && b.pdf_url.startsWith("http")) {
-      rawUrl = b.pdf_url;
-  } else if (b.filename && b.filename.startsWith("http")) {
-      rawUrl = b.filename;
-  } else {
-      const name = b.filename || b.id;
-      rawUrl = FILES_BASE + name + ".pdf";
-  }
-
+  if (b.pdf_url && b.pdf_url.startsWith("http")) { rawUrl = b.pdf_url; } 
+  else if (b.filename && b.filename.startsWith("http")) { rawUrl = b.filename; } 
+  else { const name = b.filename || b.id; rawUrl = FILES_BASE + name + ".pdf"; }
   const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
 
-  app.innerHTML = `
-    <div class="reader-wrap">
-      <div class="reader-header">
-        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
-        <h1>${esc(b.t)}</h1>
-        
-        <a href="${rawUrl}" target="_blank" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--primary); color:#fff; border-color:var(--primary); display:flex; align-items:center; gap:4px;">
-          <i class="fa-solid fa-magnifying-glass"></i> فتح للبحث
-        </a>
-        
-        ${favBtnHtml("book",b.id)}
-      </div>
-      <iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe>
-    </div>
-  `;
+  app.innerHTML = `<div class="reader-wrap"><div class="reader-header"><a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a><h1>${esc(b.t)}</h1><a href="${rawUrl}" target="_blank" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--primary); color:#fff; border-color:var(--primary); display:flex; align-items:center; gap:4px;"><i class="fa-solid fa-magnifying-glass"></i> فتح للبحث</a>${favBtnHtml("book",b.id)}</div><iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe></div>`;
 }
 
-// دالة عرض المكتبة الصوتية والمرئية (الجدول)
+// دالة عرض المكتبة الصوتية والمرئية (نظام الفلاتر المتسلسلة)
 function renderMediaLibrary(type) {
   const isAudio = type === "audio";
   const data = isAudio ? AUDIOS : VIDEOS;
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
   const iconType = isAudio ? "🎧" : "🎬";
   
-  // استخراج التصنيفات الرئيسية والفرعية
-  const mainCats = [...new Set(data.map(a => a.category).filter(Boolean))];
-  const subCats = [...new Set(data.map(a => a.subcategory).filter(Boolean))];
-
-  // التحقق من وجود فلتر قادم من صفحة الحوزة
-  let currentMain = window._hawzaFilterCat || 'all';
-  let currentSub = window._hawzaFilterSub || 'all';
+  // استخراج البيانات الفريدة
+  const allCats = [...new Set(data.map(a => a.category).filter(Boolean))];
+  const allSpeakers = [...new Set(data.map(a => a.speaker).filter(Boolean))];
   
-  // تصفير الفلتر بعد استخدامه
-  window._hawzaFilterCat = null;
-  window._hawzaFilterSub = null;
+  // التحقق من وجود فلتر قادم من صفحة الحوزة
+  let fCat = window.pendingFilter?.cat || 'all';
+  let fSpeaker = window.pendingFilter?.speaker || 'all';
+  let fTopic = window.pendingFilter?.topic || 'all';
+  let fSubtopic = window.pendingFilter?.subtopic || 'all';
+  window.pendingFilter = null; // تصفير الفلتر
 
   let searchQuery = '';
 
   const drawContent = () => {
+    // 1. الفلترة بناءً على الاختيارات
     let filtered = data;
+    if (fCat !== 'all') filtered = filtered.filter(a => a.category === fCat);
+    if (fSpeaker !== 'all') filtered = filtered.filter(a => a.speaker === fSpeaker);
+    if (fTopic !== 'all') filtered = filtered.filter(a => a.topic === fTopic);
+    if (fSubtopic !== 'all') filtered = filtered.filter(a => a.subtopic === fSubtopic);
     
-    // الفلترة بناءً على التصنيف
-    if (currentSub && currentSub !== 'all') {
-      filtered = filtered.filter(a => a.subcategory === currentSub);
-    } else if (currentMain && currentMain !== 'all') {
-      filtered = filtered.filter(a => a.category === currentMain);
-    }
-
-    // البحث النصي
     if(searchQuery) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q));
     }
-    
+
+    // 2. تجهيز خيارات الفلاتر بناءً على ما تم اختياره
+    // فلتر المتحدثين: يظهر فقط إذا كان القسم دروس أو محاضرات
+    const speakersInCat = [...new Set(data.filter(a => fCat === 'all' || a.category === fCat).map(a => a.speaker).filter(Boolean))];
+    const showSpeakerFilter = (fCat === 'دروس' || fCat === 'محاضرات' || fCat === 'all') && speakersInCat.length > 0;
+
+    // فلتر المباحث (بحث الخارج): يظهر فقط إذا تم اختيار متحدث
+    const topicsInSpeaker = [...new Set(data.filter(a => (fCat === 'all' || a.category === fCat) && (fSpeaker === 'all' || a.speaker === fSpeaker)).map(a => a.topic).filter(Boolean))];
+    const showTopicFilter = fSpeaker !== 'all' && topicsInSpeaker.length > 0;
+
+    // فلتر الموضوعات الفرعية (المكاسب): يظهر فقط إذا تم اختيار مبحث
+    const subtopicsInTopic = [...new Set(data.filter(a => (fCat === 'all' || a.category === fCat) && (fSpeaker === 'all' || a.speaker === fSpeaker) && (fTopic === 'all' || a.topic === fTopic)).map(a => a.subtopic).filter(Boolean))];
+    const showSubtopicFilter = fTopic !== 'all' && subtopicsInTopic.length > 0;
+
     let html = `
       <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div>
       <div class="sec-title">${iconType} ${pageTitle}</div>
@@ -1307,68 +1011,67 @@ function renderMediaLibrary(type) {
       <div class="lib-controls">
         <div class="lib-search-box">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="بحث..." value="${searchQuery}" oninput="window.mediaSearch(this.value)">
+          <input type="text" placeholder="بحث بالعنوان أو المتحدث..." value="${searchQuery}" oninput="window.mediaSearch(this.value)">
         </div>
-        <div class="lib-filter-box">
-          <span>تصنيف:</span>
-          <select onchange="window.mediaFilter(this.value)">
-            <option value="all" ${currentMain === 'all' ? 'selected' : ''}>الكل</option>
-            ${mainCats.map(mc => {
-              const relatedSubs = subCats.filter(sc => data.some(a => a.category === mc && a.subcategory === sc));
-              if (relatedSubs.length > 0) {
-                return `<optgroup label="${esc(mc)}">
-                  <option value="${esc(mc)}" ${currentMain === mc && (!currentSub || currentSub==='all') ? 'selected' : ''}>جميع دروس ${esc(mc)}</option>
-                  ${relatedSubs.map(sc => `<option value="${esc(sc)}" ${currentSub === sc ? 'selected' : ''}>&nbsp;&nbsp;└ ${esc(sc)}</option>`).join('')}
-                </optgroup>`;
-              } else {
-                return `<option value="${esc(mc)}" ${currentMain === mc ? 'selected' : ''}>${esc(mc)}</option>`;
-              }
-            }).join('')}
-          </select>
+        
+        <div class="lib-filters-grid">
+          <!-- القسم الرئيسي -->
+          <div class="lib-filter-group">
+            <label>القسم الرئيسي</label>
+            <select class="lib-filter-select" onchange="window.updateFilter('cat', this.value)">
+              <option value="all" ${fCat === 'all' ? 'selected' : ''}>الكل</option>
+              ${allCats.map(c => `<option value="${c}" ${fCat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+            </select>
+          </div>
+
+          <!-- المتحدث -->
+          ${showSpeakerFilter ? `
+          <div class="lib-filter-group">
+            <label>المتحدث / الأستاذ</label>
+            <select class="lib-filter-select" onchange="window.updateFilter('speaker', this.value)">
+              <option value="all" ${fSpeaker === 'all' ? 'selected' : ''}>كل المتحدثين</option>
+              ${speakersInCat.map(s => `<option value="${s}" ${fSpeaker === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}
+            </select>
+          </div>` : ''}
+
+          <!-- المبحث -->
+          ${showTopicFilter ? `
+          <div class="lib-filter-group">
+            <label>المبحث</label>
+            <select class="lib-filter-select" onchange="window.updateFilter('topic', this.value)">
+              <option value="all" ${fTopic === 'all' ? 'selected' : ''}>كل المباحث</option>
+              ${topicsInSpeaker.map(t => `<option value="${t}" ${fTopic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}
+            </select>
+          </div>` : ''}
+
+          <!-- الموضوع الفرعي -->
+          ${showSubtopicFilter ? `
+          <div class="lib-filter-group">
+            <label>الموضوع</label>
+            <select class="lib-filter-select" onchange="window.updateFilter('subtopic', this.value)">
+              <option value="all" ${fSubtopic === 'all' ? 'selected' : ''}>كل المواضيع</option>
+              ${subtopicsInTopic.map(st => `<option value="${st}" ${fSubtopic === st ? 'selected' : ''}>${esc(st)}</option>`).join('')}
+            </select>
+          </div>` : ''}
         </div>
       </div>
 
       <div class="lib-table">
-        <div class="lib-thead">
-          <div>العنوان</div>
-          <div>الأستاذ</div>
-          <div>الخدمات</div>
-        </div>
+        <div class="lib-thead"><div>العنوان</div><div>الأستاذ</div><div>الخدمات</div></div>
         ${filtered.length === 0 ? '<div style="padding: 20px; text-align: center; color: var(--muted);">لا توجد عناصر مطابقة.</div>' : 
           filtered.map(a => `
             <div class="lib-row">
               <div class="lib-title">
-                ${a.subcategory ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.category)} ↳ ${esc(a.subcategory)}</div>` : ''}
+                ${a.subtopic ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.topic)} ↳ ${esc(a.subtopic)}</div>` : (a.topic ? `<div style="font-size:10px; color:var(--accent); font-weight:bold; margin-bottom:2px;">${esc(a.topic)}</div>` : '')}
                 ${esc(a.title)}
                 ${a.description ? `<div style="font-size:11px; font-weight:normal; color:var(--muted); margin-top:4px;">${esc(a.description)}</div>` : ''}
               </div>
               <div class="lib-auth">${esc(a.speaker || a.author || '—')}</div>
               <div class="lib-actions">
-                ${isAudio ? `
-                  <button class="lib-btn" title="تشغيل" onclick="playAudio('${a.url}', '${esc(a.title)}', '${esc(a.speaker||'')}')">
-                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                ` : `
-                  <a href="${a.url}" target="_blank" class="lib-btn" title="مشاهدة">
-                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </a>
-                `}
-                
-                ${a.download_url ? `
-                  <a href="${a.download_url}" target="_blank" class="lib-btn" title="تحميل">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  </a>
-                ` : ''}
-                
-                ${a.doc_url ? `
-                  <a href="${a.doc_url}" target="_blank" class="lib-btn" title="الملف النصي">
-                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                  </a>
-                ` : ''}
-                
-                <button class="lib-btn" title="مشاركة" onclick="shareMedia('${esc(a.title)}')">
-                  <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                </button>
+                ${isAudio ? `<button class="lib-btn" title="تشغيل" onclick="playAudio('${a.url}', '${esc(a.title)}', '${esc(a.speaker||'')}')"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>` : `<a href="${a.url}" target="_blank" class="lib-btn" title="مشاهدة"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></a>`}
+                ${a.download_url ? `<a href="${a.download_url}" target="_blank" class="lib-btn" title="تحميل"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>` : ''}
+                ${a.doc_url ? `<a href="${a.doc_url}" target="_blank" class="lib-btn" title="الملف النصي"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>` : ''}
+                <button class="lib-btn" title="مشاركة" onclick="shareMedia('${esc(a.title)}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
               </div>
             </div>
           `).join('')
@@ -1378,17 +1081,15 @@ function renderMediaLibrary(type) {
     app.innerHTML = html;
   };
 
-  window.mediaFilter = (val) => {
-    // إذا كانت القيمة المختارة هي تصنيف فرعي
-    if (subCats.includes(val)) {
-      currentSub = val;
-      currentMain = data.find(a => a.subcategory === val)?.category || 'all';
-    } else {
-      currentMain = val;
-      currentSub = 'all';
-    }
+  // دوال تحديث الفلاتر
+  window.updateFilter = (type, val) => {
+    if (type === 'cat') { fCat = val; fSpeaker = 'all'; fTopic = 'all'; fSubtopic = 'all'; }
+    if (type === 'speaker') { fSpeaker = val; fTopic = 'all'; fSubtopic = 'all'; }
+    if (type === 'topic') { fTopic = val; fSubtopic = 'all'; }
+    if (type === 'subtopic') { fSubtopic = val; }
     drawContent();
   };
+
   window.mediaSearch = (val) => { searchQuery = val; drawContent(); };
   window.shareMedia = async (title) => {
     try {
@@ -1400,55 +1101,23 @@ function renderMediaLibrary(type) {
   drawContent();
 }
 
-// دالة تشغيل الصوت في المشغل السفلي
 window.playAudio = function(url, title, author) {
   const player = document.getElementById('stickyPlayer');
   const audio = document.getElementById('spAudio');
   document.getElementById('spTitle').textContent = title;
   document.getElementById('spAuth').textContent = author;
-  
-  if (audio.src !== url) {
-    audio.src = url;
-  }
+  if (audio.src !== url) { audio.src = url; }
   player.classList.add('show');
   audio.play().catch(e => alert("تعذر تشغيل الصوت، تأكد من الرابط."));
 };
 
 function renderAbout(){
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div>
-    <div class="sec-title">عن المكتبة</div>
-    <div class="about-box">
-      <p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p>
-      <p>تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> و<strong>تقريب القرآن إلى الأذهان</strong> و<strong>من فقه الزهراء (عليها السلام)</strong>.</p>
-      <p>يمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي.</p>
-      <p>ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة.</p>
-      <p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) قابلة للتوسيع عبر لوحة التحكم.</p>
-    </div>
-  `;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div><div class="sec-title">عن المكتبة</div><div class="about-box"><p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p><p>تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> و<strong>تقريب القرآن إلى الأذهان</strong> و<strong>من فقه الزهراء (عليها السلام)</strong>.</p><p>يمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي.</p><p>ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة.</p><p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) قابلة للتوسيع عبر لوحة التحكم.</p></div>`;
 }
 
 function toolbarHtml(){
   const auths = authorsWithBooks();
-  return `<div class="toolbar">
-    <div class="results" id="resCount"></div>
-    <div class="tools">
-      ${auths.length>1?`<select id="authorFilter">
-        <option value="all">كل المؤلفين</option>
-        ${auths.map(a=>`<option value="${a.id}">${esc(a.short)}</option>`).join("")}
-      </select>`:""}
-      <select id="sort">
-        <option value="title-asc">أبجدي (أ – ي)</option>
-        <option value="title-desc">أبجدي (ي – أ)</option>
-        <option value="year-desc">الأحدث أولاً</option>
-        <option value="year-asc">الأقدم أولاً</option>
-      </select>
-      <div class="view-toggle">
-        <button data-view="table" class="${state.view==='table'?'active':''}">قائمة</button>
-        <button data-view="grid" class="${state.view==='grid'?'active':''}">بطاقات</button>
-      </div>
-    </div>
-  </div>`;
+  return `<div class="toolbar"><div class="results" id="resCount"></div><div class="tools">${auths.length>1?`<select id="authorFilter"><option value="all">كل المؤلفين</option>${auths.map(a=>`<option value="${a.id}">${esc(a.short)}</option>`).join("")}</select>`:""}<select id="sort"><option value="title-asc">أبجدي (أ – ي)</option><option value="title-desc">أبجدي (ي – أ)</option><option value="year-desc">الأحدث أولاً</option><option value="year-asc">الأقدم أولاً</option></select><div class="view-toggle"><button data-view="table" class="${state.view==='table'?'active':''}">قائمة</button><button data-view="grid" class="${state.view==='grid'?'active':''}">بطاقات</button></div></div></div>`;
 }
 
 function bindToolbar(){
@@ -1480,22 +1149,8 @@ function getFiltered(){
   };
 
   switch(state.sort){
-    case "title-asc": 
-        list.sort((a,b) => {
-            const numA = parseId(a.id);
-            const numB = parseId(b.id);
-            if (numA !== numB && numA !== 0 && numB !== 0) return numA - numB;
-            return a.t.localeCompare(b.t, "ar"); 
-        }); 
-        break;
-    case "title-desc": 
-        list.sort((a,b) => {
-            const numA = parseId(a.id);
-            const numB = parseId(b.id);
-            if (numA !== numB && numA !== 0 && numB !== 0) return numB - numA;
-            return b.t.localeCompare(a.t, "ar"); 
-        }); 
-        break;
+    case "title-asc": list.sort((a,b) => { const nA = parseId(a.id); const nB = parseId(b.id); if (nA !== nB && nA !== 0 && nB !== 0) return nA - nB; return a.t.localeCompare(b.t, "ar"); }); break;
+    case "title-desc": list.sort((a,b) => { const nA = parseId(a.id); const nB = parseId(b.id); if (nA !== nB && nA !== 0 && nB !== 0) return nB - nA; return b.t.localeCompare(a.t, "ar"); }); break;
     case "year-desc": list.sort((a,b)=>(b.y||0)-(a.y||0)); break;
     case "year-asc": list.sort((a,b)=>(a.y||0)-(b.y||0)); break;
   }
@@ -1508,14 +1163,8 @@ function renderList(){
   const res = document.getElementById("resCount");
   if(!box) return;
   if(res) res.innerHTML = `عدد النتائج: <strong>${list.length}</strong> كتاب`;
-  if(!list.length){
-    box.className = "";
-    box.innerHTML = `<div class="empty-state">لا توجد نتائج مطابقة.</div>`;
-    return;
-  }
-  box.innerHTML = state.view==="table"
-    ? list.map(bookRowHtml).join("")
-    : list.map(bookCardHtml).join("");
+  if(!list.length){ box.className = ""; box.innerHTML = `<div class="empty-state">لا توجد نتائج مطابقة.</div>`; return; }
+  box.innerHTML = state.view==="table" ? list.map(bookRowHtml).join("") : list.map(bookCardHtml).join("");
 }
 
 const q = document.getElementById("q");
@@ -1524,164 +1173,61 @@ const searchTypeSel = document.getElementById("searchType");
 let timer;
 if(searchTypeSel) searchTypeSel.value = state.searchType;
 
-function isListPage(){
-  const h = location.hash || "";
-  return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/");
-}
+function isListPage(){ const h = location.hash || ""; return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/"); }
 
 function showHistory(){
-  if(!SEARCH_HISTORY.length){
-    sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث بعد</li>`;
-    sug.classList.add("show");
-    return;
-  }
-  sug.innerHTML = `
-    <li class="sug-head">
-      <span>🔍 عمليات البحث السابقة</span>
-      <button class="sug-clear" onclick="event.stopPropagation();clearHistory();showHistory();">مسح الكل</button>
-    </li>
-    ${SEARCH_HISTORY.map(t=>{
-      const safe = esc(t);
-      const js = t.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
-      return `<li data-history="${safe}">
-        <span class="sug-term">🕐 ${safe}</span>
-        <button class="sug-remove" data-remove="${js}" onclick="event.stopPropagation();removeFromHistory(this.dataset.remove);showHistory();">✕</button>
-      </li>`;
-    }).join("")}
-  `;
+  if(!SEARCH_HISTORY.length){ sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث بعد</li>`; sug.classList.add("show"); return; }
+  sug.innerHTML = `<li class="sug-head"><span>🔍 عمليات البحث السابقة</span><button class="sug-clear" onclick="event.stopPropagation();clearHistory();showHistory();">مسح الكل</button></li>${SEARCH_HISTORY.map(t=>{ const safe = esc(t); const js = t.replace(/\\/g,"\\\\").replace(/'/g,"\\'"); return `<li data-history="${safe}"><span class="sug-term">🕐 ${safe}</span><button class="sug-remove" data-remove="${js}" onclick="event.stopPropagation();removeFromHistory(this.dataset.remove);showHistory();">✕</button></li>`; }).join("")}`;
   sug.classList.add("show");
 }
 
 function showSuggestions(v){
   const results = BOOKS.filter(b=>matchBook(b,v,state.searchType)).slice(0,10);
-  if(!results.length){
-    sug.innerHTML = `<li class="sug-empty">لا توجد نتائج مطابقة</li>`;
-    sug.classList.add("show");
-    return;
-  }
+  if(!results.length){ sug.innerHTML = `<li class="sug-empty">لا توجد نتائج مطابقة</li>`; sug.classList.add("show"); return; }
   sug.innerHTML = results.map(b=>`<li data-id="${b.id}">${esc(b.t)}<span class="sug-auth">${esc(authorName(b.a))}</span></li>`).join("");
   sug.classList.add("show");
 }
 
-q.addEventListener("focus", ()=>{
-  if(!q.value.trim()) showHistory();
-  else showSuggestions(q.value.trim());
-});
-
-q.addEventListener("input", ()=>{
-  clearTimeout(timer);
-  const v = q.value.trim();
-  if(isListPage()){
-    if(v){ state.q = v; renderList(); }
-    else if(state.q){ state.q = ""; renderList(); }
-  }
-  if(!v){ showHistory(); return; }
-  timer = setTimeout(()=>showSuggestions(v), 150);
-});
+q.addEventListener("focus", ()=>{ if(!q.value.trim()) showHistory(); else showSuggestions(q.value.trim()); });
+q.addEventListener("input", ()=>{ clearTimeout(timer); const v = q.value.trim(); if(isListPage()){ if(v){ state.q = v; renderList(); } else if(state.q){ state.q = ""; renderList(); } } if(!v){ showHistory(); return; } timer = setTimeout(()=>showSuggestions(v), 150); });
 
 sug.addEventListener("click", e=>{
   if(e.target.closest("[data-remove]")){ e.stopPropagation(); return; }
-  const h = e.target.closest("li[data-history]");
-  if(h){
-    q.value = h.dataset.history;
-    doSearch(h.dataset.history);
-    return;
-  }
-  const li = e.target.closest("li[data-id]");
-  if(!li) return;
-  sug.classList.remove("show");
-  q.value = "";
-  state.q = "";
-  location.hash = "#/book/" + li.dataset.id;
+  const h = e.target.closest("li[data-history]"); if(h){ q.value = h.dataset.history; doSearch(h.dataset.history); return; }
+  const li = e.target.closest("li[data-id]"); if(!li) return;
+  sug.classList.remove("show"); q.value = ""; state.q = ""; location.hash = "#/book/" + li.dataset.id;
 });
 
-searchTypeSel.addEventListener("change", ()=>{
-  state.searchType = searchTypeSel.value;
-  if(q.value.trim()) showSuggestions(q.value.trim());
-});
-
+searchTypeSel.addEventListener("change", ()=>{ state.searchType = searchTypeSel.value; if(q.value.trim()) showSuggestions(q.value.trim()); });
 document.getElementById("qBtn").onclick = ()=>doSearch(q.value);
 q.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(q.value); } });
 
 function doSearch(v){
-  v = (v||"").trim();
-  if(!v){ state.q = ""; renderList(); return; }
-  addToHistory(v);
-  state.q = v;
-  state.cat = "all"; state.author = "all"; state.series = "all";
-  sug.classList.remove("show");
-  if(isListPage()) renderList();
-  else location.hash = "#/library";
+  v = (v||"").trim(); if(!v){ state.q = ""; renderList(); return; }
+  addToHistory(v); state.q = v; state.cat = "all"; state.author = "all"; state.series = "all";
+  sug.classList.remove("show"); if(isListPage()) renderList(); else location.hash = "#/library";
 }
 
-document.addEventListener("click", e=>{
-  if(!e.target.closest(".search-wrap")) sug.classList.remove("show");
-});
+document.addEventListener("click", e=>{ if(!e.target.closest(".search-wrap")) sug.classList.remove("show"); });
 
 async function downloadBook(id, format){
-  const b = getBook(id);
-  if(!b) return;
-  const ext = (format === "word") ? (b.wordExt || "docx") : "pdf";
-  let url = "";
-
-  if(b.filename && b.filename.startsWith("http")) {
-    url = b.filename;
-  } else if (format === "pdf") {
-    url = b.pdf_url;
-  } else if (format === "word") {
-    url = b.word_url;
-  }
-
-  if (!url) {
-    alert("⚠️ رابط الملف غير متوفر لهذه الصيغة.");
-    return;
-  }
-
+  const b = getBook(id); if(!b) return;
+  const ext = (format === "word") ? (b.wordExt || "docx") : "pdf"; let url = "";
+  if(b.filename && b.filename.startsWith("http")) { url = b.filename; } else if (format === "pdf") { url = b.pdf_url; } else if (format === "word") { url = b.word_url; }
+  if (!url) { alert("⚠️ رابط الملف غير متوفر لهذه الصيغة."); return; }
   window.open(url, "_blank");
 }
 
 async function shareBook(id) {
-  const b = getBook(id);
-  if (!b) return;
-  
-  const shareData = {
-    title: b.t,
-    text: `تصفح هذا الكتاب من مكتبة آل الشيرازي: ${b.t}`,
-    url: window.location.href
-  };
-
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(shareData.url);
-      alert("✅ تم نسخ رابط الكتاب للمشاركة.");
-    }
-  } catch (err) {
-    console.log('Error sharing:', err);
-  }
+  const b = getBook(id); if (!b) return;
+  const shareData = { title: b.t, text: `تصفح هذا الكتاب من مكتبة آل الشيرازي: ${b.t}`, url: window.location.href };
+  try { if (navigator.share) { await navigator.share(shareData); } else { await navigator.clipboard.writeText(shareData.url); alert("✅ تم نسخ رابط الكتاب للمشاركة."); } } catch (err) { console.log('Error sharing:', err); }
 }
 
 async function shareSeries(id) {
-  const s = getSeries(id);
-  if (!s) return;
-  
-  const shareData = {
-    title: s.name,
-    text: `تصفح هذه الموسوعة من مكتبة آل الشيرازي: ${s.name}`,
-    url: window.location.href
-  };
-
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(shareData.url);
-      alert("✅ تم نسخ رابط الموسوعة للمشاركة.");
-    }
-  } catch (err) {
-    console.log('Error sharing:', err);
-  }
+  const s = getSeries(id); if (!s) return;
+  const shareData = { title: s.name, text: `تصفح هذه الموسوعة من مكتبة آل الشيرازي: ${s.name}`, url: window.location.href };
+  try { if (navigator.share) { await navigator.share(shareData); } else { await navigator.clipboard.writeText(shareData.url); alert("✅ تم نسخ رابط الموسوعة للمشاركة."); } } catch (err) { console.log('Error sharing:', err); }
 }
 </script>
 </body>
