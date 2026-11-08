@@ -1229,9 +1229,31 @@ function getFiltered(){
   if(state.author!=="all") list = list.filter(b=>b.a===state.author);
   if(state.series!=="all") list = list.filter(b=>b.series===state.series);
   if(state.q) list = list.filter(b=>matchBook(b,state.q,state.searchType));
+
+  // دالة مساعدة لاستخراج الرقم من المعرف (id)
+  const parseId = (id) => {
+      const match = String(id).match(/\d+/);
+      return match ? parseInt(match[0], 10) : 0;
+  };
+
   switch(state.sort){
-    case "title-asc": list.sort((a,b)=>a.t.localeCompare(b.t,"ar")); break;
-    case "title-desc": list.sort((a,b)=>b.t.localeCompare(a.t,"ar")); break;
+    case "title-asc": 
+        list.sort((a,b) => {
+            const numA = parseId(a.id);
+            const numB = parseId(b.id);
+            // الترتيب الرقمي إذا كان كلا العنصرين يملكان أرقاماً في المعرف
+            if (numA !== numB && numA !== 0 && numB !== 0) return numA - numB;
+            return a.t.localeCompare(b.t, "ar"); 
+        }); 
+        break;
+    case "title-desc": 
+        list.sort((a,b) => {
+            const numA = parseId(a.id);
+            const numB = parseId(b.id);
+            if (numA !== numB && numA !== 0 && numB !== 0) return numB - numA;
+            return b.t.localeCompare(a.t, "ar"); 
+        }); 
+        break;
     case "year-desc": list.sort((a,b)=>(b.y||0)-(a.y||0)); break;
     case "year-asc": list.sort((a,b)=>(a.y||0)-(b.y||0)); break;
   }
