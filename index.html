@@ -1177,21 +1177,14 @@ function bindToolbar(){
 function getFiltered(){
   let list = [...BOOKS];
   
-  // إخفاء كتب المعصومين من قسم أهل البيت
-  if(state.cat === 'ahlulbayt') {
-     list = list.filter(b => !b.t.startsWith('من حياة') && b.c !== 'masoomeen');
-  }
-
-  // إخفاء كتب تقريب القرآن القديمة المكررة (من 278 إلى 287) لتظهر النسخة الجديدة فقط
-  if(state.cat === 'quran' || state.cat === 'all') {
-     list = list.filter(b => {
-        if(b.id.startsWith('book-')) {
-           const num = parseInt(b.id.replace('book-',''));
-           if (num >= 278 && num <= 287) return false;
-        }
-        return true;
-     });
-  }
+  // فلتر ذكي: إخفاء أي كتاب مكرر لا يملك غلاف
+  list = list.filter(b => {
+     if (!b.cover) {
+        if (state.cat === 'ahlulbayt' && b.t.startsWith('من حياة')) return false;
+        if ((state.cat === 'quran' || state.cat === 'all') && b.t.includes('تقريب القرآن')) return false;
+     }
+     return true;
+  });
   
   if(state.cat!=="all") list = list.filter(b=>b.c===state.cat);
   if(state.author!=="all") list = list.filter(b=>b.a===state.author);
