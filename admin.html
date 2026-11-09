@@ -4,60 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>لوحة تحكم مكتبة آل الشيرازي</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #1a1815; --paper: #242019; --paper-2: #2d2822;
-  --ink: #f0ebe2; --ink-2: #d8d0c0; --muted: #9a8e7d;
-  --line: #38312a; --primary: #a8916a; --primary-dark: #8a7658;
-  --accent: #c9b896; --green: #4a6b4a; --red: #8b3a3a;
+  --bg: #f5f2eb; --paper: #ffffff; --paper-2: #faf8f3;
+  --ink: #2b2520; --muted: #8a7e6f; --line: #e5ddd0;
+  --primary: #5a4a35; --primary-dark: #3d3122; --accent: #a8916a; --green: #4a6b4a; --red: #8b3a3a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); padding: 20px; line-height: 1.6; }
-.container { max-width: 800px; margin: 0 auto; }
-h1 { text-align: center; color: var(--primary); margin-bottom: 20px; font-size: 24px; }
-.card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
-.card h2 { font-size: 18px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.container { max-width: 1000px; margin: 0 auto; }
+h1 { text-align: center; color: var(--primary-dark); margin-bottom: 20px; font-size: 24px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(90,74,53,0.08); }
+.card h2 { font-size: 18px; color: var(--primary); margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 @media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
-.form-group { display: flex; flex-direction: column; gap: 5px; }
-label { font-size: 13px; font-weight: 700; color: var(--muted); }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+label { font-size: 13px; font-weight: 700; color: var(--primary-dark); }
 input, select, textarea { width: 100%; padding: 10px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-family: inherit; font-size: 14px; outline: none; }
 input:focus, select:focus, textarea:focus { border-color: var(--primary); }
 textarea { resize: vertical; height: 80px; }
-button { width: 100%; padding: 12px; border: none; border-radius: 8px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
-.btn-load { background: var(--primary); color: #fff; }
-.btn-save { background: var(--green); color: #fff; }
-.btn-download { background: var(--accent); color: #1a1815; }
+button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
+.btn-load { background: var(--paper-2); color: var(--primary-dark); border: 1px solid var(--primary); }
+.btn-save { background: var(--primary); color: #fff; }
+.btn-download { background: var(--green); color: #fff; }
 button:hover { opacity: 0.9; transform: translateY(-2px); }
-.file-info { font-size: 12px; color: var(--green); margin-top: 5px; display: none; }
-#statusMsg { text-align: center; margin-top: 15px; font-weight: bold; }
+.file-info { font-size: 13px; color: var(--green); margin-top: 10px; font-weight: bold; display: none; text-align: center; }
+#statusMsg { text-align: center; margin-top: 15px; font-weight: bold; font-size: 14px; }
+
+/* تنسيق جدول الكتب في قسم التعديل */
+.books-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+.books-table th, .books-table td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: right; }
+.books-table th { background: var(--paper-2); color: var(--primary-dark); font-weight: 700; position: sticky; top: 0; }
+.books-table select { padding: 6px; font-size: 12px; width: 100%; }
+.books-table-wrapper { max-height: 400px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>🛠️ لوحة تحكم مكتبة آل الشيرازي</h1>
+  <h1>🛠️ لوحة تحكم المكتبة</h1>
 
   <!-- الخطوة 1: رفع الملف -->
   <div class="card">
     <h2>1. تحميل ملف الكتب (JSON)</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">اختر الملف الذي تريد إضافة الكتاب إليه (مثلاً: books-all.json أو books-fiqh.json).</p>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">اختر الملف الذي تريد التعديل عليه (مثلاً: books-all.json).</p>
     <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="loadFile(event)">
-    <button class="btn-load" onclick="document.getElementById('fileInput').click()">📁 اختر ملف JSON</button>
+    <button class="btn-load" onclick="document.getElementById('fileInput').click()">📁 اختر ملف JSON من هاتفك</button>
     <div id="fileInfo" class="file-info"></div>
   </div>
 
-  <!-- الخطوة 2: إضافة البيانات -->
-  <div class="card">
-    <h2>2. بيانات الكتاب الجديد</h2>
+  <!-- الخطوة 2: إضافة كتاب -->
+  <div class="card" id="addBookCard" style="display:none;">
+    <h2>2. إضافة كتاب جديد</h2>
+    <div class="form-group">
+      <label>عنوان الكتاب (مطلوب)</label>
+      <input type="text" id="bookTitle" placeholder="مثال: كتاب الطهارة">
+    </div>
+    
     <div class="form-grid">
       <div class="form-group">
-        <label>عنوان الكتاب (مطلوب)</label>
-        <input type="text" id="bookTitle" placeholder="مثال: كتاب الطهارة">
-      </div>
-      <div class="form-group">
-        <label>المؤلف (مطلوب)</label>
+        <label>المؤلف</label>
         <select id="bookAuthor">
           <option value="shirazi-m">السيد محمد الحسيني الشيرازي</option>
           <option value="shirazi-h">السيد حسن الحسيني الشيرازي</option>
@@ -69,7 +76,7 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
         </select>
       </div>
       <div class="form-group">
-        <label>التصنيف (مطلوب)</label>
+        <label>التصنيف</label>
         <select id="bookCategory">
           <option value="quran">القرآن والتفسير</option>
           <option value="aqaid">العقائد</option>
@@ -90,10 +97,9 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
           <option value="languages">كتب بلغات أخرى</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>الموسوعة (اختياري)</label>
-        <input type="text" id="bookSeries" placeholder="مثال: fiqh-encyclopedia">
-      </div>
+    </div>
+
+    <div class="form-grid">
       <div class="form-group">
         <label>عدد الصفحات (اختياري)</label>
         <input type="number" id="bookPages" placeholder="مثال: 350">
@@ -103,20 +109,26 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
         <input type="number" id="bookYear" placeholder="مثال: 1420">
       </div>
     </div>
+
+    <div class="form-group">
+      <label>اسم الموسوعة (اختياري)</label>
+      <input type="text" id="bookSeries" placeholder="مثال: fiqh-encyclopedia أو taqrib-quran">
+    </div>
     
-    <div class="form-group" style="margin-top:15px;">
+    <div class="form-group">
       <label>رابط ملف PDF (اختياري)</label>
       <input type="url" id="bookPdf" placeholder="https://github.com/...">
     </div>
-    <div class="form-group" style="margin-top:15px;">
+    <div class="form-group">
       <label>رابط ملف Word (اختياري)</label>
       <input type="url" id="bookWord" placeholder="https://github.com/...">
     </div>
-    <div class="form-group" style="margin-top:15px;">
+    <div class="form-group">
       <label>رابط صورة الغلاف (اختياري)</label>
-      <input type="url" id="bookCover" placeholder="https://github.com/.../001.jpg">
+      <input type="url" id="bookCover" placeholder="https://github.com/.../book-covers/001.jpg">
     </div>
-    <div class="form-group" style="margin-top:15px;">
+    
+    <div class="form-group">
       <label>وصف الكتاب (اختياري)</label>
       <textarea id="bookDesc" placeholder="وصف مختصر للكتاب..."></textarea>
     </div>
@@ -125,10 +137,31 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
     <div id="statusMsg"></div>
   </div>
 
-  <!-- الخطوة 3: تحميل الملف -->
+  <!-- الخطوة 3: تعديل التصنيفات -->
+  <div class="card" id="editCatsCard" style="display:none;">
+    <h2>3. تعديل تصنيفات الكتب الحالية</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">ابحث عن الكتاب المطلوب، ثم غيّر تصنيفه من القائمة المنسدلة.</p>
+    <input type="text" id="searchBook" placeholder="🔍 ابحث عن كتاب..." oninput="filterTable()" style="margin-bottom:10px;">
+    
+    <div class="books-table-wrapper">
+      <table class="books-table" id="booksTable">
+        <thead>
+          <tr>
+            <th>عنوان الكتاب</th>
+            <th>التصنيف الحالي</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- سيتم تعبئتها عبر JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- الخطوة 4: تحميل الملف -->
   <div class="card" id="downloadCard" style="display:none;">
-    <h2>3. تحميل الملف المحدث</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">تمت الإضافة بنجاح! قم بتحميل الملف الجديد وارفعه إلى GitHub ليظهر التغيير في الموقع.</p>
+    <h2>4. تحميل الملف المحدث</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">تمت التعديلات بنجاح! قم بتحميل الملف الجديد وارفعه إلى GitHub ليظهر التغيير في الموقع.</p>
     <button class="btn-download" onclick="downloadJson()">⬇️ تحميل الملف المحدث</button>
   </div>
 
@@ -138,6 +171,16 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
 let currentJsonData = null;
 let currentFileName = "";
 let modifiedData = null;
+
+const catOptions = [
+  {id:"quran", name:"القرآن والتفسير"}, {id:"aqaid", name:"العقائد"}, {id:"seerah", name:"السيرة"},
+  {id:"fiqh", name:"الفقه"}, {id:"usul", name:"الأصول"}, {id:"hadith", name:"الحديث"},
+  {id:"akhlaq", name:"الأخلاق"}, {id:"tarikh", name:"التاريخ"}, {id:"kalam", name:"الكلام"},
+  {id:"ahlulbayt", name:"أهل البيت (عليهم السلام)"}, {id:"hussein", name:"الإمام الحسين وعاشوراء"},
+  {id:"mahdi", name:"الإمام المهدي"}, {id:"siyasah", name:"السياسة والاقتصاد"},
+  {id:"mujtama", name:"المجتمع والأسرة"}, {id:"youth", name:"الشباب"}, {id:"tibb", name:"الطب"},
+  {id:"languages", name:"كتب بلغات أخرى"}
+];
 
 function loadFile(event) {
   const file = event.target.files[0];
@@ -151,10 +194,16 @@ function loadFile(event) {
       currentJsonData = JSON.parse(content);
       if (!currentJsonData.items) throw new Error("الملف لا يحتوي على مصفوفة items");
       
-      modifiedData = JSON.parse(JSON.stringify(currentJsonData)); // نسخة للعمل عليها
+      modifiedData = JSON.parse(JSON.stringify(currentJsonData));
       
-      document.getElementById('fileInfo').textContent = `✅ تم تحميل: ${file.name} (يحتوي على ${modifiedData.items.length} عنصر)`;
+      document.getElementById('fileInfo').textContent = `✅ تم تحميل: ${file.name} (يحتوي على ${modifiedData.items.length} كتاب)`;
       document.getElementById('fileInfo').style.display = 'block';
+      
+      document.getElementById('addBookCard').style.display = 'block';
+      document.getElementById('editCatsCard').style.display = 'block';
+      document.getElementById('downloadCard').style.display = 'none';
+      
+      renderTable();
     } catch (err) {
       alert('خطأ في قراءة الملف. تأكد أنه ملف JSON صحيح.\n' + err.message);
     }
@@ -163,18 +212,11 @@ function loadFile(event) {
 }
 
 function addBook() {
-  if (!modifiedData) {
-    alert('الرجاء تحميل ملف JSON أولاً!');
-    return;
-  }
+  if (!modifiedData) return;
 
   const title = document.getElementById('bookTitle').value.trim();
-  if (!title) {
-    alert('عنوان الكتاب مطلوب!');
-    return;
-  }
+  if (!title) { alert('عنوان الكتاب مطلوب!'); return; }
 
-  // توليد ID فريد
   const count = modifiedData.items.length + 1;
   const newId = "book-" + String(count).padStart(3, '0');
 
@@ -183,41 +225,98 @@ function addBook() {
     title: title,
     author: document.getElementById('bookAuthor').value,
     category: document.getElementById('bookCategory').value,
-    series: document.getElementById('bookSeries').value.trim(),
-    pages: parseInt(document.getElementById('bookPages').value) || 0,
-    year: parseInt(document.getElementById('bookYear').value) || 0,
-    description: document.getElementById('bookDesc').value.trim(),
-    cover: document.getElementById('bookCover').value.trim(),
-    pdf_url: document.getElementById('bookPdf').value.trim(),
-    word_url: document.getElementById('bookWord').value.trim(),
     formats: []
   };
 
-  if (newBook.pdf_url) newBook.formats.push("pdf");
-  if (newBook.word_url) newBook.formats.push("word");
+  const series = document.getElementById('bookSeries').value.trim();
+  if (series) newBook.series = series;
+
+  const pages = parseInt(document.getElementById('bookPages').value);
+  if (pages) newBook.pages = pages;
+
+  const year = parseInt(document.getElementById('bookYear').value);
+  if (year) newBook.year = year;
+
+  const pdf = document.getElementById('bookPdf').value.trim();
+  if (pdf) { newBook.pdf_url = pdf; newBook.formats.push("pdf"); }
+
+  const word = document.getElementById('bookWord').value.trim();
+  if (word) { newBook.word_url = word; newBook.formats.push("word"); }
+
+  const cover = document.getElementById('bookCover').value.trim();
+  if (cover) newBook.cover = cover;
+
+  const desc = document.getElementById('bookDesc').value.trim();
+  if (desc) newBook.description = desc;
 
   if (newBook.formats.length === 0) {
     alert('يجب إدخال رابط PDF أو Word على الأقل!');
     return;
   }
 
-  // إزالة الحقول الفارغة لتنظيف الملف
-  if (!newBook.series) delete newBook.series;
-  if (!newBook.description) delete newBook.description;
-  if (!newBook.cover) delete newBook.cover;
-
   modifiedData.items.push(newBook);
+  
+  // إضافة الصف الجديد للجدول فوراً
+  renderTable();
 
   document.getElementById('statusMsg').innerHTML = `<span style="color:var(--green)">✅ تم إضافة "${title}" برقم ${newId} بنجاح!</span>`;
   document.getElementById('downloadCard').style.display = 'block';
   
   // تصفير الحقول
-  document.getElementById('bookTitle').value = '';
-  document.getElementById('bookPdf').value = '';
-  document.getElementById('bookWord').value = '';
-  document.getElementById('bookDesc').value = '';
-  document.getElementById('bookCover').value = '';
-  document.getElementById('bookPages').value = '';
+  ['bookTitle','bookPdf','bookWord','bookDesc','bookCover','bookPages','bookYear','bookSeries'].forEach(id => document.getElementById(id).value = '');
+}
+
+function renderTable() {
+  if(!modifiedData) return;
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  
+  modifiedData.items.forEach((book, index) => {
+    const tr = document.createElement('tr');
+    
+    // عمود العنوان
+    const tdTitle = document.createElement('td');
+    tdTitle.textContent = book.title;
+    tdTitle.style.fontWeight = '700';
+    
+    // عمود التصنيف
+    const tdCat = document.createElement('td');
+    const select = document.createElement('select');
+    
+    catOptions.forEach(opt => {
+      const option = document.createElement('option');
+      option.value = opt.id;
+      option.textContent = opt.name;
+      if(book.category === opt.id) option.selected = true;
+      select.appendChild(option);
+    });
+    
+    // عند تغيير التصنيف، قم بتحديث البيانات في الذاكرة
+    select.onchange = (e) => {
+      modifiedData.items[index].category = e.target.value;
+      document.getElementById('downloadCard').style.display = 'block';
+    };
+    
+    tdCat.appendChild(select);
+    
+    tr.appendChild(tdTitle);
+    tr.appendChild(tdCat);
+    tbody.appendChild(tr);
+  });
+}
+
+function filterTable() {
+  const query = document.getElementById('searchBook').value.toLowerCase();
+  const rows = document.querySelectorAll('#tableBody tr');
+  
+  rows.forEach(row => {
+    const title = row.cells[0].textContent.toLowerCase();
+    if(title.includes(query)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
 }
 
 function downloadJson() {
@@ -227,11 +326,11 @@ function downloadJson() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentFileName; // يحمل نفس اسم الملف الأصلي
+  a.download = currentFileName; 
   a.click();
   URL.revokeObjectURL(url);
   
-  document.getElementById('statusMsg').innerHTML = `<span style="color:var(--accent)">⬇️ تم تحميل الملف، الآن ارفعه إلى GitHub!</span>`;
+  document.getElementById('statusMsg').innerHTML = `<span style="color:var(--primary)">⬇️ تم تحميل الملف، الآن ارفعه إلى GitHub!</span>`;
 }
 </script>
 
