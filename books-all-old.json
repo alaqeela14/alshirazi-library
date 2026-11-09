@@ -4,7 +4,7 @@
       "id": "book-001",
       "title": "من حياة الرسول الاعظم صلى الله عليه واله",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "ahlulbayt",
       "formats": [
         "pdf",
         "word"
@@ -316,7 +316,7 @@
       "id": "book-027",
       "title": "ولأول مرة في تاريخ العالم (1)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -328,7 +328,7 @@
       "id": "book-028",
       "title": "ولأول مرة في تاريخ العالم (2)",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -340,7 +340,7 @@
       "id": "book-029",
       "title": "هكذا حج رسول الله (صلى الله عليه واله)",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -364,7 +364,7 @@
       "id": "book-031",
       "title": "من كرامات الاولياء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "languages",
       "formats": [
         "pdf",
         "word"
@@ -424,7 +424,7 @@
       "id": "book-036",
       "title": "الإنسان الحقيقي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "languages",
       "formats": [
         "pdf",
         "word"
@@ -544,7 +544,7 @@
       "id": "book-046",
       "title": "لماذا نزور الامام عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "aqaid",
       "formats": [
         "pdf",
         "word"
@@ -592,7 +592,7 @@
       "id": "book-050",
       "title": "الاخلاص سر التقدم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -808,7 +808,7 @@
       "id": "book-068",
       "title": "المنصورية في النحو والصرف",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "kalam",
       "formats": [
         "pdf",
         "word"
@@ -832,7 +832,7 @@
       "id": "book-070",
       "title": "الاسلام وشهر رمضان",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "languages",
       "formats": [
         "pdf",
         "word"
@@ -856,7 +856,7 @@
       "id": "book-072",
       "title": "الحجاب الدرع الواقي",
       "author": "shirazi-m",
-      "category": "fiqh",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -880,7 +880,7 @@
       "id": "book-074",
       "title": "السبيل الى انهاض المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -916,7 +916,7 @@
       "id": "book-077",
       "title": "العدل اساس الملك",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -928,7 +928,7 @@
       "id": "book-078",
       "title": "اللاعنف في الاسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -940,7 +940,7 @@
       "id": "book-079",
       "title": "المتخلفون مليارا مسلم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -976,7 +976,7 @@
       "id": "book-082",
       "title": "الى ابنائنا في البلاد الاجنبية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "mujtama",
       "formats": [
         "pdf",
         "word"
@@ -988,7 +988,7 @@
       "id": "book-083",
       "title": "الى الحوزات العلمية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -1000,7 +1000,7 @@
       "id": "book-084",
       "title": "الى الوكلاء في البلاد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -1024,7 +1024,7 @@
       "id": "book-086",
       "title": "بقايا حضارة الاسلام كما رأيت",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "seerah",
       "formats": [
         "pdf",
         "word"
@@ -1036,7 +1036,7 @@
       "id": "book-087",
       "title": "تحطم الحكومات الاسلامية بمحاربة العلماء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1048,7 +1048,7 @@
       "id": "book-088",
       "title": "تحويل المعنويات الاسلامية من القوة الى الفعل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1084,7 +1084,7 @@
       "id": "book-091",
       "title": "حكم حول العدل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -1132,7 +1132,7 @@
       "id": "book-095",
       "title": "كلمات حول نهضة المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1144,7 +1144,7 @@
       "id": "book-096",
       "title": "كيف نجمع شمل المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1156,7 +1156,7 @@
       "id": "book-097",
       "title": "كيف ولماذا اسلموا؟؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1168,7 +1168,7 @@
       "id": "book-098",
       "title": "كيف ينظر الاسلام الى السجين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1180,7 +1180,7 @@
       "id": "book-099",
       "title": "لكي لا تتنازعوا",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1192,7 +1192,7 @@
       "id": "book-100",
       "title": "لماذا تأخر المسلمون؟؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1216,7 +1216,7 @@
       "id": "book-102",
       "title": "لنبدأ من جديد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "formats": [
         "pdf",
         "word"
@@ -1228,7 +1228,7 @@
       "id": "book-103",
       "title": "ليحج خمسون مليونا كل عام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1264,7 +1264,7 @@
       "id": "book-106",
       "title": "من اسباب ضعف المسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1828,7 +1828,7 @@
       "id": "book-153",
       "title": "اللاعنف في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1840,7 +1840,7 @@
       "id": "book-154",
       "title": "حوار حول تطبيق الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1864,7 +1864,7 @@
       "id": "book-156",
       "title": "من التمدن الإسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "formats": [
         "pdf",
         "word"
@@ -1900,7 +1900,7 @@
       "id": "book-159",
       "title": "اجوبة مسائل القطيف",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -1924,7 +1924,7 @@
       "id": "book-161",
       "title": "استفتائات في التجويد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -1948,7 +1948,7 @@
       "id": "book-163",
       "title": "استفتائات في القران الكريم والشعائر الحسينية",
       "author": "shirazi-m",
-      "category": "hussein",
+      "category": "quran",
       "formats": [
         "pdf",
         "word"
@@ -1972,7 +1972,7 @@
       "id": "book-165",
       "title": "اسئلة واجوبة شرعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2008,7 +2008,7 @@
       "id": "book-168",
       "title": "توجيهات شرعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
@@ -2068,7 +2068,7 @@
       "id": "book-173",
       "title": "مسائل حديثة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "formats": [
         "pdf",
         "word"
