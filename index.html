@@ -55,7 +55,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .dua-track{display:inline-block;white-space:nowrap;animation:marquee 55s linear infinite;padding-inline-start:100%}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
-/* الهيدر المخصص بالصورة */
 .site-head {
   background-image: url('header-bg.jpg');
   background-size: cover;
@@ -781,10 +780,13 @@ sidebarBackdrop.onclick = closeSidebar;
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSidebar(); });
 
 function buildSidebar(){
+  // جلب التصنيفات التي تحتوي على كتب فقط
+  const activeCats = CATS.filter(c => countIn(c.id) > 0);
+
   document.getElementById("sideCats").innerHTML = `
     <li><a href="#/home" onclick="closeSidebar()">الرئيسية</a></li>
     <li><a href="#/library" onclick="closeSidebar()">كل الكتب <span class="side-cnt">${BOOKS.length}</span></a></li>
-    ${CATS.map(c=>`<li><a href="#/category/${c.id}" onclick="closeSidebar()">${esc(c.name)} <span class="side-cnt">${countIn(c.id)}</span></a></li>`).join("")}
+    ${activeCats.map(c=>`<li><a href="#/category/${c.id}" onclick="closeSidebar()">${esc(c.name)} <span class="side-cnt">${countIn(c.id)}</span></a></li>`).join("")}
   `;
   document.getElementById("sideSeries").innerHTML = SERIES.map(s=>`
     <li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>
@@ -881,6 +883,9 @@ function renderHome(){
   
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
+  
+  // جلب التصنيفات النشطة فقط للصفحة الرئيسية
+  const activeCats = CATS.filter(c => countIn(c.id) > 0);
 
   app.innerHTML = `
     <section class="hero">
@@ -907,7 +912,7 @@ function renderHome(){
     ${featured?`<div class="sec-title">كتاب اليوم</div><a href="#/book/${featured.id}" class="book-row" style="margin-bottom:26px"><div class="cover">${coverHtmlSmall(featured,false)}</div><div class="info"><div><div class="title" style="font-size:18px;font-family:'Amiri',serif;color:var(--primary-dark)">${esc(featured.t)}</div><div class="meta"><span><strong>المؤلف:</strong> ${esc(fa?.short||"")}</span><span><strong>التصنيف:</strong> ${esc(fc?.name||"")}</span>${featured.y?`<span><strong>التاريخ:</strong> ${featured.y}هـ</span>`:""}</div>${featured.desc?`<div class="desc" style="-webkit-line-clamp:3">${esc(featured.desc)}</div>`:""}</div></div></a>`:""}
 
     ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
-    <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${CATS.map(catCardHtml).join("")}</div>
+    <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${activeCats.map(catCardHtml).join("")}</div>
     <div class="sec-title">المؤلفون</div><div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-bottom:26px">${AUTHORS.map(authorCardHtml).join("")}</div>
     <div class="sec-title">أحدث الإضافات</div>${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
   `;
@@ -958,7 +963,8 @@ function renderMasoomeenPage() {
 }
 
 function renderAllCats(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>التصنيفات</span></div><div class="sec-title">جميع التصنيفات</div><div class="cat-grid">${CATS.map(catCardHtml).join("")}</div>`;
+  const activeCats = CATS.filter(c => countIn(c.id) > 0);
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>التصنيفات</span></div><div class="sec-title">جميع التصنيفات</div><div class="cat-grid">${activeCats.map(catCardHtml).join("")}</div>`;
 }
 
 function renderAllAuthors(){
@@ -1339,15 +1345,6 @@ function bindToolbar(){
 
 function getFiltered(){
   let list = [...BOOKS];
-  
-  // فلتر ذكي: إخفاء أي كتاب مكرر لا يملك غلاف
-  list = list.filter(b => {
-     if (!b.cover) {
-        if (state.cat === 'ahlulbayt' && b.t.startsWith('من حياة')) return false;
-        if ((state.cat === 'quran' || state.cat === 'all') && b.t.includes('تقريب القرآن')) return false;
-     }
-     return true;
-  });
   
   if(state.cat!=="all") list = list.filter(b=>b.c===state.cat);
   if(state.author!=="all") list = list.filter(b=>b.a===state.author);
