@@ -10,7 +10,6 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ... (نفس أكواد التصميم السابقة دون تغيير) ... */
 :root{
   --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
   --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
@@ -51,8 +50,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .head-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--accent-light);box-shadow:var(--shadow);font-family:'Amiri',serif}
-.brand-text strong{display:block;font-size:17px;font-weight:800;line-height:1.2;color:var(--primary-dark)}
-.brand-text small{font-size:11px;color:var(--muted)}
+.brand-text strong{display:block;font-size:18px;font-weight:800;line-height:1.2;color:var(--primary-dark)}
+.brand-text small{font-size:12px;color:var(--muted)}
 [data-theme="dark"] .brand-text strong{color:var(--accent)}
 .head-actions{display:flex;align-items:center;gap:8px}
 .head-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--paper-2);color:var(--ink);font-size:12.5px;font-weight:600;border:1px solid var(--line);transition:all var(--tr);position:relative}
@@ -326,8 +325,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 
 @media(max-width:768px){
   .head-row{gap:10px}
-  .brand-logo{width:40px;height:40px;font-size:20px}
-  .brand-text strong{font-size:15px}
+  .brand-logo{width:55px;height:55px;font-size:22px}
+  .brand-text strong{font-size:16px}
   .brand-text small{display:none}
   .head-btn{padding:6px 11px;font-size:11.5px}
   .head-btn .txt{display:none}
@@ -389,7 +388,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <header class="site-head">
   <div class="container head-row">
     <a href="#/home" class="brand">
-      <img src="logo.png" alt="شعار المكتبة" style="width: 46px; height: 46px; border-radius: 12px; object-fit: cover; box-shadow: var(--shadow); border: 2px solid var(--gold);">
+      <!-- تم تكبير حجم الصورة هنا إلى 70px -->
+      <img src="logo.png" alt="شعار المكتبة" style="width: 70px; height: 70px; border-radius: 16px; object-fit: cover; box-shadow: var(--shadow); border: 2px solid var(--gold);">
       <div class="brand-text">
         <strong>مكتبة آل الشيرازي</strong>
         <small>موسوعة تراث أسرة آل الشيرازي العلمي</small>
@@ -491,7 +491,6 @@ const CATS = [
   {id:"languages",name:"كتب بلغات أخرى"}
 ];
 
-// إضافة السيد حسن الشيرازي إلى قائمة المؤلفين
 const AUTHORS = [
   {id:"shirazi-m",name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
   {id:"shirazi-h",name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
@@ -502,7 +501,6 @@ const AUTHORS = [
   {id:"shirazi-me",name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
 ];
 
-// إضافة موسوعة الكلمة إلى قائمة الموسوعات
 const SERIES = [
   {id:"fiqh-encyclopedia",name:"موسوعة الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
   {id:"taqrib-quran",name:"تقريب القرآن إلى الأذهان",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
@@ -510,7 +508,6 @@ const SERIES = [
   {id:"kalima-encyclopedia",name:"موسوعة الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."}
 ];
 
-// إضافة ملف books-kalima.json إلى قائمة الملفات
 const BOOKS_JSON_FILES = [
   ["books-quran.json","quran"], ["books-aqaid.json","aqaid"], ["books-seerah.json","seerah"],
   ["books-fiqh.json","fiqh"], ["books-usul.json","usul"], ["books-hadith.json","hadith"],
@@ -520,7 +517,8 @@ const BOOKS_JSON_FILES = [
   ["books-tibb.json","tibb"], ["books-languages.json","languages"],
   ["books-all.json","ahlulbayt"],
   ["books-masoomeen.json","masoomeen"],
-  ["books-kalima.json","ahlulbayt"] // <--- إضافة ملف الموسوعة
+  ["books-kalima.json","ahlulbayt"],
+  ["books-taqrib.json","quran"] // <--- تمت إضافة ملف أغلفة تقريب القرآن هنا
 ];
 
 const FILES_BASE = "./files/";
