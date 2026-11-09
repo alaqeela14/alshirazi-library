@@ -534,7 +534,8 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const CATS = [
+// التصنيفات الافتراضية (سيتم استبدالها إذا تم العثور على ملف categories.json)
+let CATS = [
   {id:"quran",name:"القرآن والتفسير"},
   {id:"aqaid",name:"العقائد"},
   {id:"seerah",name:"السيرة"},
@@ -553,6 +554,20 @@ const CATS = [
   {id:"tibb",name:"الطب"},
   {id:"languages",name:"كتب بلغات أخرى"}
 ];
+
+async function loadCategories() {
+  try {
+    const res = await fetch('categories.json?t=' + Date.now());
+    if(res.ok) {
+      const data = await res.json();
+      if(Array.isArray(data) && data.length > 0) {
+        CATS = data;
+      }
+    }
+  } catch(e) {
+    console.log('Using default categories');
+  }
+}
 
 const AUTHORS = [
   {id:"shirazi-m",name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
@@ -780,7 +795,6 @@ sidebarBackdrop.onclick = closeSidebar;
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSidebar(); });
 
 function buildSidebar(){
-  // جلب التصنيفات التي تحتوي على كتب فقط
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
 
   document.getElementById("sideCats").innerHTML = `
@@ -800,6 +814,10 @@ function buildSidebar(){
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
+  
+  // تحميل التصنيفات قبل أي شيء
+  await loadCategories();
+  
   const legacy = loadLegacyBooks();
   const fromJson = await loadAllJsonBooks();
   AUDIOS = await loadAudios();
@@ -884,7 +902,6 @@ function renderHome(){
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
   
-  // جلب التصنيفات النشطة فقط للصفحة الرئيسية
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
 
   app.innerHTML = `
