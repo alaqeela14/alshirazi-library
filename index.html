@@ -181,6 +181,13 @@ main{flex:1;padding:22px 0 60px}
 .fav-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .fav-btn.active svg{fill:currentColor}
 
+/* تصميم بطاقة السلسلة (Banner) */
+.series-banner { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-lg); padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; box-shadow: var(--shadow); margin-bottom: 24px; cursor: pointer; transition: all var(--tr); text-decoration: none; }
+.series-banner:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.series-banner .sb-text h2 { font-family: 'Amiri', serif; font-size: 22px; margin-bottom: 6px; color: #fff; }
+.series-banner .sb-text p { font-size: 13px; opacity: 0.9; }
+.series-banner .sb-icon { font-size: 40px; background: rgba(255,255,255,0.1); width: 70px; height: 70px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.2); }
+
 .book-page{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:26px; max-width: 100%; overflow: hidden;}
 .book-main{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap; max-width: 100%;}
 .book-cover-wrap{width:220px;flex-shrink:0;position:relative}
@@ -211,7 +218,6 @@ main{flex:1;padding:22px 0 60px}
 .download-body{padding:10px 14px;display:flex;gap:6px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; align-items:center; max-width: 100%;}
 .download-body::-webkit-scrollbar {display:none;}
 
-/* تصغير أزرار التحميل والقراءة والمشاركة */
 .dl-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;transition:all var(--tr);border:none;cursor:pointer; white-space:nowrap; flex-shrink:0;}
 .dl-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
 .dl-pdf{background:var(--red)}
@@ -340,7 +346,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .book-row .desc{display:none}
   .book-row .title{font-size:14px}
   
-  /* إصلاحات صفحة الكتاب للجوال */
   .book-page { padding: 15px; }
   .book-main{flex-direction:column;align-items:center; width: 100%;}
   .book-cover-wrap{width:170px}
@@ -358,6 +363,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .sec-title{font-size:19px}
   .fav-header{padding:16px 18px}
   .fav-header h1{font-size:20px}
+
+  .series-banner { flex-direction: column; text-align: center; padding: 15px; }
+  .series-banner .sb-icon { width: 50px; height: 50px; font-size: 28px; }
+  .series-banner .sb-text h2 { font-size: 18px; }
   
   .lib-filters-grid { grid-template-columns: 1fr; }
   .lib-thead { grid-template-columns: 1.5fr 1fr 90px; padding: 10px; font-size: 12px; }
@@ -507,7 +516,8 @@ const BOOKS_JSON_FILES = [
   ["books-ahlulbayt.json","ahlulbayt"], ["books-hussein.json","hussein"], ["books-mahdi.json","mahdi"],
   ["books-siyasah.json","siyasah"], ["books-mujtama.json","mujtama"], ["books-youth.json","youth"],
   ["books-tibb.json","tibb"], ["books-languages.json","languages"],
-  ["books-all.json","ahlulbayt"]
+  ["books-all.json","ahlulbayt"],
+  ["books-masoomeen.json","masoomeen"] // قسم المعصومين
 ];
 
 const FILES_BASE = "./files/";
@@ -753,6 +763,7 @@ function router(){
   else if(route==="read") renderReader(decodedParam);
   else if(route==="audios") renderMediaLibrary("audio");
   else if(route==="videos") renderMediaLibrary("video");
+  else if(route==="masoomeen") renderMasoomeenPage();
   else if(route==="about") renderAbout();
   else renderHome();
 }
@@ -824,9 +835,38 @@ function renderCategory(id){
   const cat = getCat(id);
   if(!cat){ location.hash = "#/home"; return; }
   state.cat = id; state.author = "all"; state.series = "all"; state.q = "";
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div><div class="sec-title">${esc(cat.name)}</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
+  
+  // إضافة بطاقة سلسلة المعصومين داخل قسم أهل البيت
+  let specialBanner = "";
+  if (id === 'ahlulbayt') {
+    specialBanner = `
+      <a href="#/masoomeen" class="series-banner">
+        <div class="sb-text">
+          <h2>📚 سلسلة من حياة المعصومين عليهم السلام</h2>
+          <p>مجموعة مباركة من 13 كتاباً تروي سير أهل البيت (عليهم السلام) مرتبة حسب التسلسل العقائدي.</p>
+        </div>
+        <div class="sb-icon">🕌</div>
+      </a>
+    `;
+  }
+
+  app.innerHTML = `${specialBanner}<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div><div class="sec-title">${esc(cat.name)}</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar();
   renderList();
+}
+
+function renderMasoomeenPage() {
+  // جلب كتب قسم المعصومين
+  const masoomeenBooks = BOOKS.filter(b => b.c === 'masoomeen');
+  
+  app.innerHTML = `
+    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/category/ahlulbayt">أهل البيت (عليهم السلام)</a> <span>/</span> <span>من حياة المعصومين</span></div>
+    <div class="sec-title" style="color:var(--primary-dark)">📚 من حياة المعصومين عليهم السلام</div>
+    <div style="background:var(--paper); padding:20px; border-radius:var(--radius-lg); margin-bottom:20px; border:1px solid var(--line); text-align:center;">
+      <p style="font-size:14px; color:var(--ink-2); line-height:1.8;">هذه السلسلة المباركة تعرض سيرة أهل البيت (عليهم السلام) بالترتيب العقائدي، بدءاً من الرسول الأكرم (صلى الله عليه وآله) وحتى الإمام العسكري (عليه السلام).</p>
+    </div>
+    ${masoomeenBooks.length ? `<div class="books-grid">${masoomeenBooks.map(bookCardHtml).join("")}</div>` : `<div class="empty-state">جاري تحميل الكتب...</div>`}
+  `;
 }
 
 function renderAllCats(){
@@ -1049,7 +1089,6 @@ window.toggleInlineAudio = function(idx, url) {
   const iconPause = document.getElementById(`icon-pause-${idx}`);
 
   if (currentIdx === idx) {
-    // نفس المقطع
     if (inlineAudio.paused) {
       inlineAudio.play();
       iconPlay.style.display = 'none';
@@ -1060,9 +1099,7 @@ window.toggleInlineAudio = function(idx, url) {
       iconPause.style.display = 'none';
     }
   } else {
-    // مقطع جديد
     if (currentIdx !== null) {
-      // إخفاء المشغل السابق
       const prevContainer = document.getElementById(`ip-${currentIdx}`);
       if (prevContainer) prevContainer.classList.remove('show');
       const prevPlay = document.getElementById(`icon-play-${currentIdx}`);
@@ -1143,6 +1180,12 @@ function bindToolbar(){
 
 function getFiltered(){
   let list = [...BOOKS];
+  
+  // إخفاء كتب "من حياة..." من قسم أهل البيت العام (لأنها في قسم المعصومين)
+  if(state.cat === 'ahlulbayt') {
+     list = list.filter(b => !b.t.startsWith('من حياة') && b.c !== 'masoomeen');
+  }
+  
   if(state.cat!=="all") list = list.filter(b=>b.c===state.cat);
   if(state.author!=="all") list = list.filter(b=>b.a===state.author);
   if(state.series!=="all") list = list.filter(b=>b.series===state.series);
