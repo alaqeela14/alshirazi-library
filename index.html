@@ -158,7 +158,7 @@ main{flex:1;padding:22px 0 60px}
 .books-list{display:flex;flex-direction:column;gap:12px}
 .book-row{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:14px;transition:all var(--tr);box-shadow:var(--shadow-sm);color:inherit}
 .book-row:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent)}
-.book-row .cover{width:85px;height:115px;border-radius:8px;flex-shrink:0;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.book-row .cover{width:85px;height:115px;border-radius:8px;flex-shrink:0;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.1); background: linear-gradient(135deg,var(--primary),var(--primary-dark));}
 .book-row .cover img{width:100%;height:100%;object-fit:cover}
 .book-row .info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .book-row .title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.4}
@@ -737,7 +737,18 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   const fromJson = await loadAllJsonBooks();
   AUDIOS = await loadAudios();
   VIDEOS = await loadVideos();
-  BOOKS = [...fromJson, ...legacy];
+  
+  const allBooks = [...fromJson, ...legacy];
+  
+  // فلترة الكتب المكررة القديمة (التي لا تحتوي على أغلفة) قبل تحميلها في الذاكرة
+  BOOKS = allBooks.filter(b => {
+     if (!b.cover) {
+        if (b.t.startsWith('من حياة')) return false;
+        if (b.t.includes('تقريب القرآن')) return false;
+     }
+     return true;
+  });
+  
   buildSidebar();
   updateFavUI();
   router();
@@ -769,11 +780,12 @@ function router(){
 }
 
 function coverHtmlSmall(b, showAuth=true){
-  if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}">`;
+  // تمت إضافة onerror هنا: إذا لم يجد صورة الغلاف، سيعرض المربع البني
+  if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'cover-ph\\' style=\\'position:absolute; inset:0\\'><div class=\\'cp-icon\\'>📖</div></div>';">`;
   return `<div class="cover-ph"><div class="cp-icon">📖</div>${showAuth?`<div class="cp-auth">${esc(authorName(b.a))}</div>`:""}</div>`;
 }
 function coverHtmlBig(b){
-  if(b.cover) return `<img src="${b.cover}" class="book-cover-img" alt="${esc(b.t)}">`;
+  if(b.cover) return `<img src="${b.cover}" class="book-cover-img" alt="${esc(b.t)}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'book-cover-big\\'><div class=\\'icon\\'>📖</div></div>';">`;
   return `<div class="book-cover-big"><div class="icon">📖</div></div>`;
 }
 function bookCardHtml(b){
@@ -1176,15 +1188,6 @@ function bindToolbar(){
 
 function getFiltered(){
   let list = [...BOOKS];
-  
-  // فلتر ذكي: إخفاء أي كتاب مكرر لا يملك غلاف
-  list = list.filter(b => {
-     if (!b.cover) {
-        if (state.cat === 'ahlulbayt' && b.t.startsWith('من حياة')) return false;
-        if ((state.cat === 'quran' || state.cat === 'all') && b.t.includes('تقريب القرآن')) return false;
-     }
-     return true;
-  });
   
   if(state.cat!=="all") list = list.filter(b=>b.c===state.cat);
   if(state.author!=="all") list = list.filter(b=>b.a===state.author);
