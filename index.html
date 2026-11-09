@@ -10,6 +10,7 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ... (نفس أكواد التصميم السابقة دون تغيير) ... */
 :root{
   --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
   --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
@@ -181,7 +182,6 @@ main{flex:1;padding:22px 0 60px}
 .fav-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .fav-btn.active svg{fill:currentColor}
 
-/* تصميم بطاقة السلسلة (Banner) */
 .series-banner { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; border-radius: var(--radius-lg); padding: 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; box-shadow: var(--shadow); margin-bottom: 24px; cursor: pointer; transition: all var(--tr); text-decoration: none; }
 .series-banner:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 .series-banner .sb-text h2 { font-family: 'Amiri', serif; font-size: 22px; margin-bottom: 6px; color: #fff; }
@@ -285,13 +285,11 @@ main{flex:1;padding:22px 0 60px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size:12px;max-width:740px;margin-inline:auto;line-height:1.9}
 
-/* تصميم المكتبة الصوتية والمرئية (الجدول) */
 .lib-controls { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 12px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow-sm); }
 .lib-search-box { display: flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; padding: 0 12px; }
 .lib-search-box input { flex: 1; border: none; background: transparent; padding: 10px; outline: none; font-family: inherit; color: var(--ink); }
 .lib-search-box svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
 
-/* الفلاتر المتسلسلة */
 .lib-filters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 5px; }
 .lib-filter-group { display: flex; flex-direction: column; gap: 4px; }
 .lib-filter-group label { font-size: 11px; font-weight: 700; color: var(--primary-dark); padding-right: 4px; }
@@ -313,7 +311,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .lib-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 .lib-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* مشغل الصوت المدمج (Inline Player) */
 .inline-player-container { display: none; background: var(--paper-2); border-bottom: 1px solid var(--line-2); padding: 12px 16px; }
 .inline-player-container.show { display: block; }
 .ip-inner { display: flex; align-items: center; gap: 12px; background: var(--paper); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
@@ -494,8 +491,10 @@ const CATS = [
   {id:"languages",name:"كتب بلغات أخرى"}
 ];
 
+// إضافة السيد حسن الشيرازي إلى قائمة المؤلفين
 const AUTHORS = [
   {id:"shirazi-m",name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
+  {id:"shirazi-h",name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
   {id:"shirazi-s",name:"آية الله العظمى السيد صادق الحسيني الشيرازي",short:"السيد صادق الحسيني الشيرازي",bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والعقائد."},
   {id:"shirazi-mr",name:"آية الله الفقيه السيد محمد رضا الشيرازي",short:"السيد محمد رضا الشيرازي",bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والتفسير."},
   {id:"shirazi-mo",name:"آية الله السيد مرتضى الحسيني الشيرازي",short:"السيد مرتضى الحسيني الشيرازي",bio:"عالم دين ومؤلف، من أسرة آل الشيرازي."},
@@ -503,12 +502,15 @@ const AUTHORS = [
   {id:"shirazi-me",name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
 ];
 
+// إضافة موسوعة الكلمة إلى قائمة الموسوعات
 const SERIES = [
   {id:"fiqh-encyclopedia",name:"موسوعة الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
   {id:"taqrib-quran",name:"تقريب القرآن إلى الأذهان",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
-  {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
+  {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."},
+  {id:"kalima-encyclopedia",name:"موسوعة الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."}
 ];
 
+// إضافة ملف books-kalima.json إلى قائمة الملفات
 const BOOKS_JSON_FILES = [
   ["books-quran.json","quran"], ["books-aqaid.json","aqaid"], ["books-seerah.json","seerah"],
   ["books-fiqh.json","fiqh"], ["books-usul.json","usul"], ["books-hadith.json","hadith"],
@@ -517,7 +519,8 @@ const BOOKS_JSON_FILES = [
   ["books-siyasah.json","siyasah"], ["books-mujtama.json","mujtama"], ["books-youth.json","youth"],
   ["books-tibb.json","tibb"], ["books-languages.json","languages"],
   ["books-all.json","ahlulbayt"],
-  ["books-masoomeen.json","masoomeen"] // قسم المعصومين
+  ["books-masoomeen.json","masoomeen"],
+  ["books-kalima.json","ahlulbayt"] // <--- إضافة ملف الموسوعة
 ];
 
 const FILES_BASE = "./files/";
@@ -836,7 +839,6 @@ function renderCategory(id){
   if(!cat){ location.hash = "#/home"; return; }
   state.cat = id; state.author = "all"; state.series = "all"; state.q = "";
   
-  // إضافة بطاقة سلسلة المعصومين داخل قسم أهل البيت
   let specialBanner = "";
   if (id === 'ahlulbayt') {
     specialBanner = `
@@ -856,7 +858,6 @@ function renderCategory(id){
 }
 
 function renderMasoomeenPage() {
-  // جلب كتب قسم المعصومين
   const masoomeenBooks = BOOKS.filter(b => b.c === 'masoomeen');
   
   app.innerHTML = `
@@ -936,7 +937,6 @@ function renderReader(id){
   app.innerHTML = `<div class="reader-wrap"><div class="reader-header"><a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a><h1>${esc(b.t)}</h1>${favBtnHtml("book",b.id)}</div><iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe></div>`;
 }
 
-// دالة عرض المكتبة الصوتية والمرئية (نظام الفلاتر المتسلسلة)
 function renderMediaLibrary(type) {
   const isAudio = type === "audio";
   const data = isAudio ? AUDIOS : VIDEOS;
@@ -1077,7 +1077,6 @@ function renderMediaLibrary(type) {
   drawContent();
 }
 
-// المشغل المدمج
 let inlineAudio = new Audio();
 let currentIdx = null;
 
@@ -1181,7 +1180,6 @@ function bindToolbar(){
 function getFiltered(){
   let list = [...BOOKS];
   
-  // إخفاء كتب "من حياة..." من قسم أهل البيت العام (لأنها في قسم المعصومين)
   if(state.cat === 'ahlulbayt') {
      list = list.filter(b => !b.t.startsWith('من حياة') && b.c !== 'masoomeen');
   }
