@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم مكتبة آل الشيرازي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a1815; --paper: #242019; --paper-2: #2d2822;
+  --ink: #f0ebe2; --ink-2: #d8d0c0; --muted: #9a8e7d;
+  --line: #38312a; --primary: #a8916a; --primary-dark: #8a7658;
+  --accent: #c9b896; --green: #4a6b4a; --red: #8b3a3a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); padding: 20px; line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { text-align: center; color: var(--primary); margin-bottom: 20px; font-size: 24px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+.card h2 { font-size: 18px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+@media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 13px; font-weight: 700; color: var(--muted); }
+input, select, textarea { width: 100%; padding: 10px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-family: inherit; font-size: 14px; outline: none; }
+input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+textarea { resize: vertical; height: 80px; }
+button { width: 100%; padding: 12px; border: none; border-radius: 8px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
+.btn-load { background: var(--primary); color: #fff; }
+.btn-save { background: var(--green); color: #fff; }
+.btn-download { background: var(--accent); color: #1a1815; }
+button:hover { opacity: 0.9; transform: translateY(-2px); }
+.file-info { font-size: 12px; color: var(--green); margin-top: 5px; display: none; }
+#statusMsg { text-align: center; margin-top: 15px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🛠️ لوحة تحكم مكتبة آل الشيرازي</h1>
+
+  <!-- الخطوة 1: رفع الملف -->
+  <div class="card">
+    <h2>1. تحميل ملف الكتب (JSON)</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">اختر الملف الذي تريد إضافة الكتاب إليه (مثلاً: books-all.json أو books-fiqh.json).</p>
+    <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="loadFile(event)">
+    <button class="btn-load" onclick="document.getElementById('fileInput').click()">📁 اختر ملف JSON</button>
+    <div id="fileInfo" class="file-info"></div>
+  </div>
+
+  <!-- الخطوة 2: إضافة البيانات -->
+  <div class="card">
+    <h2>2. بيانات الكتاب الجديد</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>عنوان الكتاب (مطلوب)</label>
+        <input type="text" id="bookTitle" placeholder="مثال: كتاب الطهارة">
+      </div>
+      <div class="form-group">
+        <label>المؤلف (مطلوب)</label>
+        <select id="bookAuthor">
+          <option value="shirazi-m">السيد محمد الحسيني الشيرازي</option>
+          <option value="shirazi-h">السيد حسن الحسيني الشيرازي</option>
+          <option value="shirazi-s">السيد صادق الحسيني الشيرازي</option>
+          <option value="shirazi-mr">السيد محمد رضا الشيرازي</option>
+          <option value="shirazi-mo">السيد مرتضى الحسيني الشيرازي</option>
+          <option value="shirazi-j">السيد جعفر الحسيني الشيرازي</option>
+          <option value="shirazi-me">السيد مهدي الحسيني الشيرازي</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>التصنيف (مطلوب)</label>
+        <select id="bookCategory">
+          <option value="quran">القرآن والتفسير</option>
+          <option value="aqaid">العقائد</option>
+          <option value="seerah">السيرة</option>
+          <option value="fiqh">الفقه</option>
+          <option value="usul">الأصول</option>
+          <option value="hadith">الحديث</option>
+          <option value="akhlaq">الأخلاق</option>
+          <option value="tarikh">التاريخ</option>
+          <option value="kalam">الكلام</option>
+          <option value="ahlulbayt">أهل البيت (عليهم السلام)</option>
+          <option value="hussein">الإمام الحسين وعاشوراء</option>
+          <option value="mahdi">الإمام المهدي (عجل الله فرجه)</option>
+          <option value="siyasah">السياسة والاقتصاد</option>
+          <option value="mujtama">المجتمع والأسرة</option>
+          <option value="youth">الشباب</option>
+          <option value="tibb">الطب</option>
+          <option value="languages">كتب بلغات أخرى</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>الموسوعة (اختياري)</label>
+        <input type="text" id="bookSeries" placeholder="مثال: fiqh-encyclopedia">
+      </div>
+      <div class="form-group">
+        <label>عدد الصفحات (اختياري)</label>
+        <input type="number" id="bookPages" placeholder="مثال: 350">
+      </div>
+      <div class="form-group">
+        <label>سنة النشر (اختياري)</label>
+        <input type="number" id="bookYear" placeholder="مثال: 1420">
+      </div>
+    </div>
+    
+    <div class="form-group" style="margin-top:15px;">
+      <label>رابط ملف PDF (اختياري)</label>
+      <input type="url" id="bookPdf" placeholder="https://github.com/...">
+    </div>
+    <div class="form-group" style="margin-top:15px;">
+      <label>رابط ملف Word (اختياري)</label>
+      <input type="url" id="bookWord" placeholder="https://github.com/...">
+    </div>
+    <div class="form-group" style="margin-top:15px;">
+      <label>رابط صورة الغلاف (اختياري)</label>
+      <input type="url" id="bookCover" placeholder="https://github.com/.../001.jpg">
+    </div>
+    <div class="form-group" style="margin-top:15px;">
+      <label>وصف الكتاب (اختياري)</label>
+      <textarea id="bookDesc" placeholder="وصف مختصر للكتاب..."></textarea>
+    </div>
+
+    <button class="btn-save" onclick="addBook()">💾 إضافة الكتاب للقائمة</button>
+    <div id="statusMsg"></div>
+  </div>
+
+  <!-- الخطوة 3: تحميل الملف -->
+  <div class="card" id="downloadCard" style="display:none;">
+    <h2>3. تحميل الملف المحدث</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">تمت الإضافة بنجاح! قم بتحميل الملف الجديد وارفعه إلى GitHub ليظهر التغيير في الموقع.</p>
+    <button class="btn-download" onclick="downloadJson()">⬇️ تحميل الملف المحدث</button>
+  </div>
+
+</div>
+
+<script>
+let currentJsonData = null;
+let currentFileName = "";
+let modifiedData = null;
+
+function loadFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  currentFileName = file.name;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const content = e.target.result;
+      currentJsonData = JSON.parse(content);
+      if (!currentJsonData.items) throw new Error("الملف لا يحتوي على مصفوفة items");
+      
+      modifiedData = JSON.parse(JSON.stringify(currentJsonData)); // نسخة للعمل عليها
+      
+      document.getElementById('fileInfo').textContent = `✅ تم تحميل: ${file.name} (يحتوي على ${modifiedData.items.length} عنصر)`;
+      document.getElementById('fileInfo').style.display = 'block';
+    } catch (err) {
+      alert('خطأ في قراءة الملف. تأكد أنه ملف JSON صحيح.\n' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function addBook() {
+  if (!modifiedData) {
+    alert('الرجاء تحميل ملف JSON أولاً!');
+    return;
+  }
+
+  const title = document.getElementById('bookTitle').value.trim();
+  if (!title) {
+    alert('عنوان الكتاب مطلوب!');
+    return;
+  }
+
+  // توليد ID فريد
+  const count = modifiedData.items.length + 1;
+  const newId = "book-" + String(count).padStart(3, '0');
+
+  const newBook = {
+    id: newId,
+    title: title,
+    author: document.getElementById('bookAuthor').value,
+    category: document.getElementById('bookCategory').value,
+    series: document.getElementById('bookSeries').value.trim(),
+    pages: parseInt(document.getElementById('bookPages').value) || 0,
+    year: parseInt(document.getElementById('bookYear').value) || 0,
+    description: document.getElementById('bookDesc').value.trim(),
+    cover: document.getElementById('bookCover').value.trim(),
+    pdf_url: document.getElementById('bookPdf').value.trim(),
+    word_url: document.getElementById('bookWord').value.trim(),
+    formats: []
+  };
+
+  if (newBook.pdf_url) newBook.formats.push("pdf");
+  if (newBook.word_url) newBook.formats.push("word");
+
+  if (newBook.formats.length === 0) {
+    alert('يجب إدخال رابط PDF أو Word على الأقل!');
+    return;
+  }
+
+  // إزالة الحقول الفارغة لتنظيف الملف
+  if (!newBook.series) delete newBook.series;
+  if (!newBook.description) delete newBook.description;
+  if (!newBook.cover) delete newBook.cover;
+
+  modifiedData.items.push(newBook);
+
+  document.getElementById('statusMsg').innerHTML = `<span style="color:var(--green)">✅ تم إضافة "${title}" برقم ${newId} بنجاح!</span>`;
+  document.getElementById('downloadCard').style.display = 'block';
+  
+  // تصفير الحقول
+  document.getElementById('bookTitle').value = '';
+  document.getElementById('bookPdf').value = '';
+  document.getElementById('bookWord').value = '';
+  document.getElementById('bookDesc').value = '';
+  document.getElementById('bookCover').value = '';
+  document.getElementById('bookPages').value = '';
+}
+
+function downloadJson() {
+  if (!modifiedData) return;
+  const jsonString = JSON.stringify(modifiedData, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = currentFileName; // يحمل نفس اسم الملف الأصلي
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  document.getElementById('statusMsg').innerHTML = `<span style="color:var(--accent)">⬇️ تم تحميل الملف، الآن ارفعه إلى GitHub!</span>`;
+}
+</script>
+
+</body>
+</html>
