@@ -388,7 +388,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <header class="site-head">
   <div class="container head-row">
     <a href="#/home" class="brand">
-      <!-- تم تكبير حجم الصورة هنا إلى 70px -->
       <img src="logo.png" alt="شعار المكتبة" style="width: 70px; height: 70px; border-radius: 16px; object-fit: cover; box-shadow: var(--shadow); border: 2px solid var(--gold);">
       <div class="brand-text">
         <strong>مكتبة آل الشيرازي</strong>
@@ -518,7 +517,7 @@ const BOOKS_JSON_FILES = [
   ["books-all.json","ahlulbayt"],
   ["books-masoomeen.json","masoomeen"],
   ["books-kalima.json","ahlulbayt"],
-  ["books-taqrib.json","quran"] // <--- تمت إضافة ملف أغلفة تقريب القرآن هنا
+  ["books-taqrib.json","quran"]
 ];
 
 const FILES_BASE = "./files/";
@@ -1151,7 +1150,7 @@ function formatTime(seconds) {
 }
 
 function renderAbout(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div><div class="sec-title">عن المكتبة</div><div class="about-box"><p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p><p>تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> و<strong>تقريب القرآن إلى الأذهان</strong> و<strong>من فقه الزهراء (عليها السلام)</strong>.</p><p>يمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي.</p><p>ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة.</p><p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) ويتم التحديث لإضافة جميع المؤلفات المتوفرة.</p></div>`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div><div class="sec-title">عن المكتبة</div><div class="about-box"><p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p><p>تضم المكتبة قسمًا خاصًا بـ<strong>الموسوعات</strong> الكبرى، ومنها <strong>موسوعة الفقه</strong> و<strong>تقريب القرآن إلى الأذهان</strong> و<strong>من فقه الزهراء (عليها السلام)</strong>.</p><p>يمكن تصفح المكتبة <strong>حسب المؤلف</strong> عبر قسم مخصص لجميع أعلام أسرة آل الشيرازي.</p><p>ميزة <strong>المفضلة</strong> تتيح لك حفظ أي كتاب أو موسوعة، والرجوع إليها بسهولة.</p><p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتابًا) قابلة للتوسيع عبر لوحة التحكم.</p></div>`;
 }
 
 function toolbarHtml(){
@@ -1178,8 +1177,20 @@ function bindToolbar(){
 function getFiltered(){
   let list = [...BOOKS];
   
+  // إخفاء كتب المعصومين من قسم أهل البيت
   if(state.cat === 'ahlulbayt') {
      list = list.filter(b => !b.t.startsWith('من حياة') && b.c !== 'masoomeen');
+  }
+
+  // إخفاء كتب تقريب القرآن القديمة المكررة (من 278 إلى 287) لتظهر النسخة الجديدة فقط
+  if(state.cat === 'quran' || state.cat === 'all') {
+     list = list.filter(b => {
+        if(b.id.startsWith('book-')) {
+           const num = parseInt(b.id.replace('book-',''));
+           if (num >= 278 && num <= 287) return false;
+        }
+        return true;
+     });
   }
   
   if(state.cat!=="all") list = list.filter(b=>b.c===state.cat);
