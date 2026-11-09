@@ -38,6 +38,11 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
 .books-table th { background: var(--paper-2); color: var(--primary-dark); font-weight: 700; position: sticky; top: 0; }
 .books-table select { padding: 6px; font-size: 12px; width: 100%; }
 .books-table-wrapper { max-height: 400px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; }
+
+/* تنسيق إدارة التصنيفات */
+.cat-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+.cat-row input[type="text"] { flex: 1; }
+.cat-row button { width: 40px; padding: 10px 0; margin-top: 0; background: var(--red); color: #fff; font-size: 18px; line-height: 1; }
 </style>
 </head>
 <body>
@@ -48,7 +53,7 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
   <!-- الخطوة 1: رفع الملف -->
   <div class="card">
     <h2>1. تحميل ملف الكتب (JSON)</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">اختر الملف الذي تريد التعديل عليه (مثلاً: books-all.json).</p>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">اختر الملف الذي تريد التعديل عليه (مثلاً: books-all.json). <strong style="color:var(--red)">تنبيه: لا تختر ملفات PDF، فقط ملفات JSON.</strong></p>
     <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="loadFile(event)">
     <button class="btn-load" onclick="document.getElementById('fileInput').click()">📁 اختر ملف JSON من هاتفك</button>
     <div id="fileInfo" class="file-info"></div>
@@ -78,23 +83,7 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
       <div class="form-group">
         <label>التصنيف</label>
         <select id="bookCategory">
-          <option value="quran">القرآن والتفسير</option>
-          <option value="aqaid">العقائد</option>
-          <option value="seerah">السيرة</option>
-          <option value="fiqh">الفقه</option>
-          <option value="usul">الأصول</option>
-          <option value="hadith">الحديث</option>
-          <option value="akhlaq">الأخلاق</option>
-          <option value="tarikh">التاريخ</option>
-          <option value="kalam">الكلام</option>
-          <option value="ahlulbayt">أهل البيت (عليهم السلام)</option>
-          <option value="hussein">الإمام الحسين وعاشوراء</option>
-          <option value="mahdi">الإمام المهدي (عجل الله فرجه)</option>
-          <option value="siyasah">السياسة والاقتصاد</option>
-          <option value="mujtama">المجتمع والأسرة</option>
-          <option value="youth">الشباب</option>
-          <option value="tibb">الطب</option>
-          <option value="languages">كتب بلغات أخرى</option>
+          <!-- سيتم تعبئتها ديناميكياً -->
         </select>
       </div>
     </div>
@@ -112,7 +101,7 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
 
     <div class="form-group">
       <label>اسم الموسوعة (اختياري)</label>
-      <input type="text" id="bookSeries" placeholder="مثال: fiqh-encyclopedia أو taqrib-quran">
+      <input type="text" id="bookSeries" placeholder="مثال: fiqh-encyclopedia">
     </div>
     
     <div class="form-group">
@@ -125,7 +114,7 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
     </div>
     <div class="form-group">
       <label>رابط صورة الغلاف (اختياري)</label>
-      <input type="url" id="bookCover" placeholder="https://github.com/.../book-covers/001.jpg">
+      <input type="url" id="bookCover" placeholder="https://github.com/...">
     </div>
     
     <div class="form-group">
@@ -137,9 +126,27 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
     <div id="statusMsg"></div>
   </div>
 
-  <!-- الخطوة 3: تعديل التصنيفات -->
+  <!-- الخطوة 3: إدارة التصنيفات -->
+  <div class="card">
+    <h2>3. إدارة التصنيفات (تغيير الأسماء وإضافة أقسام جديدة)</h2>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">يمكنك تغيير اسم أي تصنيف أو إضافة تصنيف جديد. اضغط على "تحميل ملف التصنيفات" في النهاية وارفعه إلى GitHub باسم <code>categories.json</code>.</p>
+    
+    <div id="categoriesContainer">
+      <!-- سيتم تعبئتها عبر JS -->
+    </div>
+    
+    <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap; background:var(--paper-2); padding:10px; border-radius:8px; border:1px dashed var(--line);">
+      <input type="text" id="newCatId" placeholder="معرف القسم (بالإنجليزي، مثال: philosophy)" style="flex:1; min-width:150px;">
+      <input type="text" id="newCatName" placeholder="اسم القسم (بالعربي، مثال: الفلسفة)" style="flex:1; min-width:150px;">
+      <button class="btn-load" onclick="addCategory()" style="width:auto; margin:0; background:var(--green); color:#fff; border:none;">إضافة قسم</button>
+    </div>
+    
+    <button class="btn-download" onclick="downloadCategories()" style="margin-top:20px;">⬇️ تحميل ملف التصنيفات (categories.json)</button>
+  </div>
+
+  <!-- الخطوة 4: تعديل تصنيفات الكتب -->
   <div class="card" id="editCatsCard" style="display:none;">
-    <h2>3. تعديل تصنيفات الكتب الحالية</h2>
+    <h2>4. تعديل تصنيفات الكتب الحالية</h2>
     <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">ابحث عن الكتاب المطلوب، ثم غيّر تصنيفه من القائمة المنسدلة.</p>
     <input type="text" id="searchBook" placeholder="🔍 ابحث عن كتاب..." oninput="filterTable()" style="margin-bottom:10px;">
     
@@ -158,11 +165,11 @@ button:hover { opacity: 0.9; transform: translateY(-2px); }
     </div>
   </div>
 
-  <!-- الخطوة 4: تحميل الملف -->
+  <!-- الخطوة 5: تحميل الملف -->
   <div class="card" id="downloadCard" style="display:none;">
-    <h2>4. تحميل الملف المحدث</h2>
+    <h2>5. تحميل ملف الكتب المحدث</h2>
     <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">تمت التعديلات بنجاح! قم بتحميل الملف الجديد وارفعه إلى GitHub ليظهر التغيير في الموقع.</p>
-    <button class="btn-download" onclick="downloadJson()">⬇️ تحميل الملف المحدث</button>
+    <button class="btn-download" onclick="downloadJson()">⬇️ تحميل الملف المحدث (Books JSON)</button>
   </div>
 
 </div>
@@ -172,19 +179,33 @@ let currentJsonData = null;
 let currentFileName = "";
 let modifiedData = null;
 
-const catOptions = [
-  {id:"quran", name:"القرآن والتفسير"}, {id:"aqaid", name:"العقائد"}, {id:"seerah", name:"السيرة"},
-  {id:"fiqh", name:"الفقه"}, {id:"usul", name:"الأصول"}, {id:"hadith", name:"الحديث"},
-  {id:"akhlaq", name:"الأخلاق"}, {id:"tarikh", name:"التاريخ"}, {id:"kalam", name:"الكلام"},
-  {id:"ahlulbayt", name:"أهل البيت (عليهم السلام)"}, {id:"hussein", name:"الإمام الحسين وعاشوراء"},
-  {id:"mahdi", name:"الإمام المهدي"}, {id:"siyasah", name:"السياسة والاقتصاد"},
-  {id:"mujtama", name:"المجتمع والأسرة"}, {id:"youth", name:"الشباب"}, {id:"tibb", name:"الطب"},
-  {id:"languages", name:"كتب بلغات أخرى"}
+// التصنيفات الافتراضية
+let currentCategories = [
+  {id:"quran",name:"القرآن والتفسير"}, {id:"aqaid",name:"العقائد"}, {id:"seerah",name:"السيرة"},
+  {id:"fiqh",name:"الفقه"}, {id:"usul",name:"الأصول"}, {id:"hadith",name:"الحديث"},
+  {id:"akhlaq",name:"الأخلاق"}, {id:"tarikh",name:"التاريخ"}, {id:"kalam",name:"الكلام"},
+  {id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"}, {id:"hussein",name:"الإمام الحسين وعاشوراء"},
+  {id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"}, {id:"siyasah",name:"السياسة والاقتصاد"},
+  {id:"mujtama",name:"المجتمع والأسرة"}, {id:"youth",name:"الشباب"}, {id:"tibb",name:"الطب"},
+  {id:"languages",name:"كتب بلغات أخرى"}
 ];
+let catOptions = [...currentCategories];
+
+// تهيئة الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategories();
+  updateCatOptions();
+});
 
 function loadFile(event) {
   const file = event.target.files[0];
   if (!file) return;
+
+  if (!file.name.endsWith('.json')) {
+    alert('⚠️ خطأ: يجب اختيار ملف ينتهي بـ .json');
+    event.target.value = '';
+    return;
+  }
 
   currentFileName = file.name;
   const reader = new FileReader();
@@ -205,7 +226,7 @@ function loadFile(event) {
       
       renderTable();
     } catch (err) {
-      alert('خطأ في قراءة الملف. تأكد أنه ملف JSON صحيح.\n' + err.message);
+      alert('خطأ في قراءة الملف: ' + err.message);
     }
   };
   reader.readAsText(file);
@@ -256,13 +277,11 @@ function addBook() {
 
   modifiedData.items.push(newBook);
   
-  // إضافة الصف الجديد للجدول فوراً
   renderTable();
 
   document.getElementById('statusMsg').innerHTML = `<span style="color:var(--green)">✅ تم إضافة "${title}" برقم ${newId} بنجاح!</span>`;
   document.getElementById('downloadCard').style.display = 'block';
   
-  // تصفير الحقول
   ['bookTitle','bookPdf','bookWord','bookDesc','bookCover','bookPages','bookYear','bookSeries'].forEach(id => document.getElementById(id).value = '');
 }
 
@@ -274,12 +293,10 @@ function renderTable() {
   modifiedData.items.forEach((book, index) => {
     const tr = document.createElement('tr');
     
-    // عمود العنوان
     const tdTitle = document.createElement('td');
     tdTitle.textContent = book.title;
     tdTitle.style.fontWeight = '700';
     
-    // عمود التصنيف
     const tdCat = document.createElement('td');
     const select = document.createElement('select');
     
@@ -291,7 +308,6 @@ function renderTable() {
       select.appendChild(option);
     });
     
-    // عند تغيير التصنيف، قم بتحديث البيانات في الذاكرة
     select.onchange = (e) => {
       modifiedData.items[index].category = e.target.value;
       document.getElementById('downloadCard').style.display = 'block';
@@ -311,11 +327,7 @@ function filterTable() {
   
   rows.forEach(row => {
     const title = row.cells[0].textContent.toLowerCase();
-    if(title.includes(query)) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
+    row.style.display = title.includes(query) ? '' : 'none';
   });
 }
 
@@ -331,6 +343,95 @@ function downloadJson() {
   URL.revokeObjectURL(url);
   
   document.getElementById('statusMsg').innerHTML = `<span style="color:var(--primary)">⬇️ تم تحميل الملف، الآن ارفعه إلى GitHub!</span>`;
+}
+
+/* --- إدارة التصنيفات --- */
+
+function renderCategories() {
+  const container = document.getElementById('categoriesContainer');
+  container.innerHTML = '';
+  
+  currentCategories.forEach((cat, index) => {
+    const div = document.createElement('div');
+    div.className = 'cat-row';
+    
+    const idInput = document.createElement('input');
+    idInput.type = 'text';
+    idInput.value = cat.id;
+    idInput.disabled = true;
+    idInput.style.width = '120px';
+    idInput.style.background = '#f0f0f0';
+    idInput.title = 'المعرف لا يمكن تغييره';
+    
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.value = cat.name;
+    nameInput.style.flex = '1';
+    nameInput.onchange = (e) => {
+      currentCategories[index].name = e.target.value;
+    };
+    
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '✕';
+    delBtn.onclick = () => {
+      if(confirm('هل أنت متأكد من حذف هذا القسم؟ الكتب التي تنتمي إليه ستصبح غير مصنفة.')) {
+        currentCategories.splice(index, 1);
+        renderCategories();
+        updateCatOptions();
+      }
+    };
+    
+    div.appendChild(idInput);
+    div.appendChild(nameInput);
+    div.appendChild(delBtn);
+    container.appendChild(div);
+  });
+}
+
+function addCategory() {
+  const id = document.getElementById('newCatId').value.trim().toLowerCase();
+  const name = document.getElementById('newCatName').value.trim();
+  
+  if(!id || !name) {
+    alert('يرجى إدخال معرف واسم للقسم الجديد.');
+    return;
+  }
+  
+  if(currentCategories.some(c => c.id === id)) {
+    alert('هذا المعرف موجود بالفعل!');
+    return;
+  }
+  
+  currentCategories.push({ id, name });
+  renderCategories();
+  updateCatOptions();
+  
+  document.getElementById('newCatId').value = '';
+  document.getElementById('newCatName').value = '';
+}
+
+function downloadCategories() {
+  const jsonString = JSON.stringify(currentCategories, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'categories.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function updateCatOptions() {
+  catOptions = [...currentCategories];
+  
+  // تحديث القائمة المنسدلة في قسم إضافة كتاب
+  const bookCatSelect = document.getElementById('bookCategory');
+  if (bookCatSelect) {
+    bookCatSelect.innerHTML = catOptions.map(opt => `<option value="${opt.id}">${opt.name}</option>`).join('');
+  }
+  
+  // تحديث جدول الكتب إذا كان مفتوحاً
+  if(modifiedData) renderTable();
 }
 </script>
 
