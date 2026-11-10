@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
-<title>مكتبة آل الشيرازي | موسوعة تراث الأسرة العلمي</title>
+<title>مكتبة آل الشيرازي | موسوعة تراث أسرة آل الشيرازي العلمي</title>
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#5a4a35">
@@ -78,12 +78,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
-.head-actions {position: absolute;top: 15px;left: 15px;display: flex;align-items: center;gap: 8px;z-index: 10;}
-.head-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;}
+.head-actions {position: absolute;top: 15px;left: 15px;display: flex;align-items: center;gap: 6px;z-index: 10;}
+.head-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;}
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .head-btn{background:rgba(0,0,0,0.4);color:var(--ink);border-color:rgba(255,255,255,0.1)}
 [data-theme="dark"] .head-btn:hover{background:var(--primary-dark);color:#fff;}
-.head-btn .fav-cnt{background:var(--accent);color:#fff;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-grid;place-items:center;padding:0 5px}
+.head-btn .fav-cnt{background:var(--accent);color:#fff;font-size:9px;font-weight:800;min-width:15px;height:15px;border-radius:9px;display:inline-grid;place-items:center;padding:0 4px}
 
 .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;box-shadow:var(--shadow-sm)}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
@@ -147,9 +147,10 @@ main{flex:1;padding:22px 0 60px}
 .sec-title::before{content:"";display:block;width:4px;height:24px;background:var(--accent);border-radius:2px}
 [data-theme="dark"] .sec-title{color:var(--accent)}
 
-.hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.hero h1{font-family:'Amiri',serif;font-size:20px;margin-bottom:6px;line-height:1.3;color:#fff}
-.hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow);position:relative;overflow:hidden; text-align: center;}
+.hero h1{font-family:'Amiri',serif;font-size:22px;margin-bottom:4px;line-height:1.3;color:#fff}
+.hero .subtitle{font-family:'Amiri',serif; font-size:15px; margin-bottom:10px; color:var(--accent-light); font-weight:700;}
+.hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px; margin-inline: auto;}
 .hero .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);position:relative;z-index:1}
 .hero .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 8px;backdrop-filter:blur(4px)}
 .hero .stat strong{display:block;font-size:16px;color:var(--accent-light);font-weight:800;line-height:1.2}
@@ -380,16 +381,15 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .qt-footer { border-top: 1px solid #e5ddd0; padding: 15px; text-align: center; font-size: 12px; color: #8a7e6f; }
 .qt-footer strong { color: #5a4a35; }
 
-/* تنسيق صورة المؤلف في القائمة الجانبية */
 .side-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; margin-left: 8px; vertical-align: middle; border: 1px solid var(--line); }
 
 @media(max-width:768px){
   .site-head{ height: 160px; }
-  .head-actions{ top: 10px; left: 10px; }
-  .head-btn{padding:6px 11px;font-size:11.5px}
+  .head-actions{ top: 5px; left: 5px; gap: 4px; }
+  .head-btn{padding:3px 6px;font-size:10px}
   .head-btn .txt{display:none}
   .date-strip{font-size:8.5px; padding:4px 0;}
-  .date-strip .container{justify-content:center; gap: 10px;}
+  .date-strip .container{justify-content:space-between; gap: 10px; padding: 0 10px;}
   
   .topbar-inner{flex-wrap:wrap}
   .search-wrap{max-width:100%;margin:0}
@@ -411,6 +411,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .author-header h1{font-size:22px}
   .author-avatar-big{width:80px;height:80px;font-size:32px}
   .hero{padding:16px 18px}
+  .hero h1{font-size:18px}
+  .hero .subtitle{font-size:13px}
   .sec-title{font-size:19px}
   .fav-header{padding:16px 18px}
   .fav-header h1{font-size:20px}
@@ -446,9 +448,8 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   </div>
   <div class="date-strip">
     <div class="container">
-      <span>🕐 <strong id="clock">—</strong></span>
-      <span>🗓️ <strong id="hijriDate">—</strong></span>
-      <span>📅 <strong id="gregDate">—</strong></span>
+      <span><strong id="clock">—</strong></span>
+      <span><strong id="gregDate">—</strong></span>
     </div>
   </div>
 </header>
@@ -560,7 +561,6 @@ async function loadCategories() {
   } catch(e) {}
 }
 
-// تمت إضافة حقل img للصور
 const AUTHORS = [
   {id:"shirazi-m", img:"shirazi-m.jpg", name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
   {id:"shirazi-h", img:"shirazi-h.jpg", name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
@@ -763,10 +763,6 @@ themeBtn.addEventListener("click", ()=>{
 function updateDateTime(){
   const now = new Date();
   try{
-    const h = new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(now);
-    document.getElementById('hijriDate').textContent = h + " هـ";
-  }catch(e){ document.getElementById('hijriDate').textContent = "—"; }
-  try{
     const g = new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
     document.getElementById('gregDate').textContent = g + " م";
   }catch(e){ document.getElementById('gregDate').textContent = "—"; }
@@ -797,7 +793,6 @@ function buildSidebar(){
     <li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>
   `).join("");
   
-  // تحديث القائمة الجانبية للمؤلفين لإظهار الصور
   document.getElementById("sideAuthors").innerHTML = AUTHORS.map(a=>{
     const c = countByAuthor(a.id);
     const imgHtml = a.img ? `<img src="${a.img}" class="side-avatar" onerror="this.style.display='none'">` : '';
@@ -912,6 +907,7 @@ function renderHome(){
   app.innerHTML = `
     <section class="hero">
       <h1>مكتبة آل الشيرازي</h1>
+      <div class="subtitle">موسوعة تراث أسرة آل الشيرازي العلمي</div>
       <p>موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات.</p>
       <div class="random-btn" onclick="goToRandomBook()">• اكتشف كتاباً عشوائياً</div>
       <div class="stats">
@@ -1048,7 +1044,6 @@ function renderBookPage(id){
   
   localStorage.setItem("alsh_last_read", b.id);
 
-  // الصورة داخل صفحة الكتاب
   const chipImg = a && a.img 
       ? `<img src="${a.img}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` 
       : '';
