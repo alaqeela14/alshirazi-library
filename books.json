@@ -5304,4 +5304,125 @@
       "formats": ["pdf", "word"]
     }
   ]
+},
+{
+  "items": [
+    {
+      "id": "masoomeen-01",
+      "title": "من حياة الرسول الاعظم صلى الله عليه واله",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.doc"
+    },
+    {
+      "id": "masoomeen-02",
+      "title": "من حياة الإمام أمير المؤمنين (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.doc"
+    },
+    {
+      "id": "masoomeen-03",
+      "title": "من حياة فاطمة الزهراء عليها السلام",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.doc"
+    },
+    {
+      "id": "masoomeen-04",
+      "title": "من حياة الامام الحسن (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.doc"
+    },
+    {
+      "id": "masoomeen-05",
+      "title": "من حياة الإمام الحسين (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.doc"
+    },
+    {
+      "id": "masoomeen-06",
+      "title": "من حياة الإمام السجاد عليه السلام",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.doc"
+    },
+    {
+      "id": "masoomeen-07",
+      "title": "من حياة الإمام الباقر عليه السلام",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.doc"
+    },
+    {
+      "id": "masoomeen-08",
+      "title": "من حياة الإمام الصادق عليه السلام",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.doc"
+    },
+    {
+      "id": "masoomeen-09",
+      "title": "من حياة الإمام الكاظم (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/013.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/013.doc"
+    },
+    {
+      "id": "masoomeen-10",
+      "title": "من حياة الإمام الرضا (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/014.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/014.doc"
+    },
+    {
+      "id": "masoomeen-11",
+      "title": "من حياة الإمام الجواد عليه السلام",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/330.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/330.doc"
+    },
+    {
+      "id": "masoomeen-12",
+      "title": "من حياة الإمام الهادي (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/015.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/015.doc"
+    },
+    {
+      "id": "masoomeen-13",
+      "title": "من حياة الإمام العسكري (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "masoomeen",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.doc"
+    }
+  ]
 }
