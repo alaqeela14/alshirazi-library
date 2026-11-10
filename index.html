@@ -9,13 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#5a4a35">
 <link rel="icon" href="logo.png" type="image/png">
-<link rel="apple-touch-icon" href="logo.png">
-
-<meta property="og:title" content="مكتبة آل الشيرازي">
-<meta property="og:description" content="موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي العلمي">
-<meta property="og:image" content="https://shirazilib.dpdns.org/logo.png">
-<meta property="og:url" content="https://shirazilib.dpdns.org">
-<meta property="og:type" content="website">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -80,40 +74,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   border-top: none;
   z-index: 10;
 }
-.date-strip .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.date-strip .container {display: flex;justify-content: space-between;align-items: center;flex-wrap: wrap;gap: 8px;}
 .date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
-.head-actions {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 10;
-}
-.head-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:8px 14px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.2); 
-  backdrop-filter:blur(4px);
-  color:#fff;
-  font-size:12.5px;
-  font-weight:600;
-  border:1px solid rgba(255,255,255,0.3);
-  transition:all var(--tr);
-  position:relative;
-}
+.head-actions {position: absolute;top: 15px;left: 15px;display: flex;align-items: center;gap: 8px;z-index: 10;}
+.head-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;}
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .head-btn{background:rgba(0,0,0,0.4);color:var(--ink);border-color:rgba(255,255,255,0.1)}
 [data-theme="dark"] .head-btn:hover{background:var(--primary-dark);color:#fff;}
@@ -126,13 +92,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 [data-theme="dark"] .topbar-btn{color:var(--accent)}
 
 .search-wrap{flex:1;max-width:600px;position:relative}
-.search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color var(--tr)}
+.search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color var(--tr);align-items: center;}
 .search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(90,74,53,.08)}
 .search-box select{border:none;background:transparent;padding:0 12px;color:var(--muted);font:inherit;font-size:12px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
 .search-box input{flex:1;padding:10px 14px;border:none;background:transparent;font:inherit;font-size:13.5px;outline:none;color:var(--ink);min-width:0}
 .search-box input::placeholder{color:var(--muted)}
-.search-box button{padding:0 18px;background:var(--primary);color:#fff;font-weight:700;font-size:13px;transition:background var(--tr);flex-shrink:0}
+.search-box button{padding:0 18px;background:var(--primary);color:#fff;font-weight:700;font-size:13px;transition:background var(--tr);flex-shrink:0; height: 100%; min-height: 40px;}
 .search-box button:hover{background:var(--primary-dark)}
+.voice-btn{background: transparent !important; color: var(--muted) !important; padding: 0 10px !important; font-size: 18px;}
 
 .suggestions{position:absolute;top:calc(100% + 6px);inset-inline:0;background:var(--paper);border-radius:12px;box-shadow:var(--shadow-lg);list-style:none;max-height:420px;overflow-y:auto;z-index:70;display:none;border:1px solid var(--line)}
 .suggestions.show{display:block}
@@ -187,6 +154,8 @@ main{flex:1;padding:22px 0 60px}
 .hero .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 8px;backdrop-filter:blur(4px)}
 .hero .stat strong{display:block;font-size:16px;color:var(--accent-light);font-weight:800;line-height:1.2}
 .hero .stat span{font-size:9.5px;opacity:.9;display:block;margin-top:2px}
+.random-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-light); color: var(--primary-dark); padding: 8px 16px; border-radius: 20px; font-weight: 800; font-size: 13px; margin-top: 15px; cursor: pointer; transition: all 0.2s; }
+.random-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
 .continue-reading { background: var(--paper); border: 2px solid var(--accent); border-radius: var(--radius-lg); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 24px; box-shadow: var(--shadow); text-decoration: none; color: inherit; transition: all var(--tr); }
 .continue-reading:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
@@ -263,7 +232,7 @@ main{flex:1;padding:22px 0 60px}
 
 .author-chip{display:inline-flex;align-items:center;gap:10px;background:var(--paper-2);padding:6px 16px 6px 6px;border-radius:30px;margin-bottom:18px;border:1px solid var(--line);transition:all var(--tr); max-width: 100%;}
 .author-chip:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.author-chip .avatar-letter{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;font-family:'Amiri',serif; flex-shrink: 0;}
+.author-chip .avatar-letter{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;font-family:'Amiri',serif; flex-shrink: 0; overflow: hidden;}
 .author-chip:hover .avatar-letter{background:var(--accent-light);color:var(--primary-dark)}
 .author-chip span{font-size:13px;font-weight:700; white-space: normal; word-break: break-word; line-height: 1.4;}
 
@@ -291,7 +260,7 @@ main{flex:1;padding:22px 0 60px}
 .book-desc{font-size:14.5px;line-height:2;color:var(--ink-2);text-align:justify; word-break: break-word;}
 
 .author-header{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;text-align:center;margin-bottom:26px;box-shadow:var(--shadow-sm)}
-.author-avatar-big{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--accent-light);font-size:40px;font-family:'Amiri',serif;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 8px 20px rgba(90,74,53,.25)}
+.author-avatar-big{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--accent-light);font-size:40px;font-family:'Amiri',serif;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 8px 20px rgba(90,74,53,.25); overflow: hidden;}
 .author-header h1{font-family:'Amiri',serif;font-size:26px;color:var(--primary-dark);margin-bottom:10px}
 [data-theme="dark"] .author-header h1{color:var(--accent)}
 .author-header p{font-size:13.5px;color:var(--muted);max-width:640px;margin:0 auto 14px;line-height:1.9}
@@ -330,7 +299,8 @@ main{flex:1;padding:22px 0 60px}
 .reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 [data-theme="dark"] .reader-header h1{color:var(--accent)}
-.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1;}
+.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1; transition: filter 0.3s;}
+.reader-iframe.dark-pdf { filter: invert(1) hue-rotate(180deg); background: #000; }
 
 .about-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);font-size:14.5px;line-height:2;color:var(--ink-2)}
 .about-box p{margin-bottom:14px}
@@ -382,15 +352,36 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .lib-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .inline-player-container { display: none; background: var(--paper-2); border-bottom: 1px solid var(--line-2); padding: 12px 16px; }
 .inline-player-container.show { display: block; }
-.ip-inner { display: flex; align-items: center; gap: 12px; background: var(--paper); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+.ip-inner { display: flex; align-items: center; gap: 12px; background: var(--paper); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); flex-wrap: wrap; }
 .ip-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; border: none; transition: background var(--tr); }
 .ip-btn:hover { background: var(--primary-dark); }
 .ip-btn svg { width: 18px; height: 18px; fill: currentColor; }
-.ip-progress-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
+.ip-progress-wrap { flex: 1; display: flex; align-items: center; gap: 8px; min-width: 150px;}
 .ip-time { font-size: 11px; color: var(--muted); font-family: monospace; direction: ltr; flex-shrink: 0; min-width: 75px; text-align: center; }
 .ip-range { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; background: var(--line); border-radius: 3px; outline: none; cursor: pointer; }
 .ip-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); cursor: pointer; transition: transform 0.1s; }
 .ip-range::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.ip-controls-extra { display: flex; gap: 6px; align-items: center; }
+.ip-select { padding: 4px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); font-family: inherit; font-size: 11px; color: var(--ink); }
+.ip-timer-btn { padding: 4px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; font-size: 11px; cursor: pointer; color: var(--ink);}
+.ip-timer-btn:hover { background: var(--primary); color: #fff; }
+
+#quote-template {
+  position: fixed; top: -9999px; left: -9999px;
+  width: 500px; background: #faf8f3; border-radius: 16px; overflow: hidden;
+  font-family: 'Cairo', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.qt-head { background: linear-gradient(135deg, #5a4a35, #3d3122); color: #fff; padding: 25px 30px; text-align: center; }
+.qt-head h2 { font-family: 'Amiri', serif; font-size: 26px; margin-bottom: 5px; }
+.qt-head p { font-size: 14px; opacity: 0.8; }
+.qt-body { padding: 30px; text-align: center; }
+.qt-title { font-family: 'Amiri', serif; font-size: 22px; color: #3d3122; margin-bottom: 15px; font-weight: 700; }
+.qt-desc { font-size: 15px; color: #4a4034; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
+.qt-footer { border-top: 1px solid #e5ddd0; padding: 15px; text-align: center; font-size: 12px; color: #8a7e6f; }
+.qt-footer strong { color: #5a4a35; }
+
+/* تنسيق صورة المؤلف في القائمة الجانبية */
+.side-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; margin-left: 8px; vertical-align: middle; border: 1px solid var(--line); }
 
 @media(max-width:768px){
   .site-head{ height: 160px; }
@@ -435,10 +426,10 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .lib-auth { font-size: 10.5px; }
   .lib-btn { width: 28px; height: 28px; }
   .lib-btn svg { width: 14px; height: 14px; }
-  .ip-inner { flex-wrap: wrap; gap: 8px; }
+  .ip-inner { gap: 8px; }
   .ip-btn { width: 32px; height: 32px; }
   .ip-progress-wrap { flex-basis: 100%; order: 3; }
-  .ip-time { order: 2; }
+  .ip-controls-extra { order: 2; width: 100%; justify-content: space-between;}
 }
 </style>
 </head>
@@ -473,6 +464,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
           <option value="all">كل الحقول</option>
         </select>
         <input id="q" type="search" placeholder="ابحث في المكتبة..." autocomplete="off">
+        <button class="voice-btn" id="voiceBtn" title="البحث الصوتي">🎤</button>
         <button id="qBtn">بحث</button>
       </div>
       <ul id="sug" class="suggestions"></ul>
@@ -524,6 +516,20 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   </div>
 </footer>
 
+<div id="quote-template">
+  <div class="qt-head">
+    <h2>مكتبة آل الشيرازي</h2>
+    <p>موسوعة تراث أسرة آل الشيرازي العلمي</p>
+  </div>
+  <div class="qt-body">
+    <div class="qt-title" id="qt-title">اسم الكتاب</div>
+    <div class="qt-desc" id="qt-desc">وصف الكتاب...</div>
+  </div>
+  <div class="qt-footer">
+    للمزيد من الكتب، تفضل بزيارة: <strong>shirazilib.dpdns.org</strong>
+  </div>
+</div>
+
 <script src="books-data.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -535,23 +541,13 @@ if ('serviceWorker' in navigator) {
 }
 
 let CATS = [
-  {id:"quran",name:"القرآن والتفسير"},
-  {id:"aqaid",name:"العقائد"},
-  {id:"seerah",name:"السيرة"},
-  {id:"fiqh",name:"الفقه"},
-  {id:"usul",name:"الأصول"},
-  {id:"hadith",name:"الحديث"},
-  {id:"akhlaq",name:"الأخلاق"},
-  {id:"tarikh",name:"التاريخ"},
-  {id:"kalam",name:"الكلام"},
-  {id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"},
-  {id:"hussein",name:"الإمام الحسين وعاشوراء"},
-  {id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"},
-  {id:"siyasah",name:"السياسة والاقتصاد"},
-  {id:"mujtama",name:"المجتمع والأسرة"},
-  {id:"youth",name:"الشباب"},
-  {id:"tibb",name:"الطب"},
-  {id:"languages",name:"كتب بلغات أخرى"}
+  {id:"quran",name:"القرآن والتفسير"}, {id:"aqaid",name:"العقائد"}, {id:"seerah",name:"السيرة"},
+  {id:"fiqh",name:"الفقه"}, {id:"usul",name:"الأصول"}, {id:"hadith",name:"الحديث"},
+  {id:"akhlaq",name:"الأخلاق"}, {id:"tarikh",name:"التاريخ"}, {id:"kalam",name:"الكلام"},
+  {id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"}, {id:"hussein",name:"الإمام الحسين وعاشوراء"},
+  {id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"}, {id:"siyasah",name:"السياسة والاقتصاد"},
+  {id:"mujtama",name:"المجتمع والأسرة"}, {id:"youth",name:"الشباب"}, {id:"tibb",name:"الطب"},
+  {id:"languages",name:"كتب بلغات أخرى"}, {id:"culture",name:"ثقافية"}
 ];
 
 async function loadCategories() {
@@ -559,23 +555,20 @@ async function loadCategories() {
     const res = await fetch('categories.json?t=' + Date.now());
     if(res.ok) {
       const data = await res.json();
-      if(Array.isArray(data) && data.length > 0) {
-        CATS = data;
-      }
+      if(Array.isArray(data) && data.length > 0) { CATS = data; }
     }
-  } catch(e) {
-    console.log('Using default categories');
-  }
+  } catch(e) {}
 }
 
+// تمت إضافة حقل img للصور
 const AUTHORS = [
-  {id:"shirazi-m",name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
-  {id:"shirazi-h",name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
-  {id:"shirazi-s",name:"آية الله العظمى السيد صادق الحسيني الشيرازي",short:"السيد صادق الحسيني الشيرازي",bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والعقائد."},
-  {id:"shirazi-mr",name:"آية الله الفقيه السيد محمد رضا الشيرازي",short:"السيد محمد رضا الشيرازي",bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والتفسير."},
-  {id:"shirazi-mo",name:"آية الله السيد مرتضى الحسيني الشيرازي",short:"السيد مرتضى الحسيني الشيرازي",bio:"عالم دين ومؤلف، من أسرة آل الشيرازي."},
-  {id:"shirazi-j",name:"السيد جعفر الحسيني الشيرازي",short:"السيد جعفر الحسيني الشيرازي",bio:"باحث ومؤلف إسلامي، من أسرة آل الشيرازي."},
-  {id:"shirazi-me",name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
+  {id:"shirazi-m", img:"shirazi-m.jpg", name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
+  {id:"shirazi-h", img:"shirazi-h.jpg", name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
+  {id:"shirazi-s", img:"shirazi-s.jpg", name:"آية الله العظمى السيد صادق الحسيني الشيرازي",short:"السيد صادق الحسيني الشيرازي",bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والعقائد."},
+  {id:"shirazi-mr", img:"shirazi-mr.jpg", name:"آية الله الفقيه السيد محمد رضا الشيرازي",short:"السيد محمد رضا الشيرازي",bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والتفسير."},
+  {id:"shirazi-mo", img:"shirazi-mo.jpg", name:"آية الله السيد مرتضى الحسيني الشيرازي",short:"السيد مرتضى الحسيني الشيرازي",bio:"عالم دين ومؤلف، من أسرة آل الشيرازي."},
+  {id:"shirazi-j", img:"shirazi-j.jpg", name:"السيد جعفر الحسيني الشيرازي",short:"السيد جعفر الحسيني الشيرازي",bio:"باحث ومؤلف إسلامي، من أسرة آل الشيرازي."},
+  {id:"shirazi-me", img:"shirazi-me.jpg", name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
 ];
 
 const SERIES = [
@@ -795,7 +788,6 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSidebar(); }
 
 function buildSidebar(){
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
-
   document.getElementById("sideCats").innerHTML = `
     <li><a href="#/home" onclick="closeSidebar()">الرئيسية</a></li>
     <li><a href="#/library" onclick="closeSidebar()">كل الكتب <span class="side-cnt">${BOOKS.length}</span></a></li>
@@ -804,34 +796,31 @@ function buildSidebar(){
   document.getElementById("sideSeries").innerHTML = SERIES.map(s=>`
     <li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>
   `).join("");
+  
+  // تحديث القائمة الجانبية للمؤلفين لإظهار الصور
   document.getElementById("sideAuthors").innerHTML = AUTHORS.map(a=>{
     const c = countByAuthor(a.id);
-    return `<li><a href="#/author/${a.id}" onclick="closeSidebar()">${esc(a.short)} <span class="side-cnt">${c}</span></a></li>`;
+    const imgHtml = a.img ? `<img src="${a.img}" class="side-avatar" onerror="this.style.display='none'">` : '';
+    return `<li><a href="#/author/${a.id}" onclick="closeSidebar()" style="display:flex; align-items:center;"><span style="display:flex; align-items:center;">${imgHtml}${esc(a.short)}</span> <span class="side-cnt">${c}</span></a></li>`;
   }).join("");
 }
 
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
-  
   await loadCategories();
-  
   const legacy = loadLegacyBooks();
   const fromJson = await loadAllJsonBooks();
   AUDIOS = await loadAudios();
   VIDEOS = await loadVideos();
-  
   const allBooks = [...fromJson, ...legacy];
   
-  // فلترة دقيقة ومضمونة لإزالة التكرار
   BOOKS = allBooks.filter(b => {
-      // إخفاء الكتب المكررة القديمة من books-all.json
-      if (b.id.startsWith('book-')) {
-          const num = parseInt(b.id.replace('book-', ''));
-          if (num >= 278 && num <= 287) return false; // تقريب القرآن
-          if (b.t.startsWith('من حياة')) return false; // من حياة المعصومين
-      }
-      return true;
+     if (!b.cover) {
+        if (b.t.startsWith('من حياة')) return false;
+        if (b.t.includes('تقريب القرآن')) return false;
+     }
+     return true;
   });
   
   buildSidebar();
@@ -881,10 +870,25 @@ function bookRowHtml(b){
   const c = getCat(b.c);
   return `<div class="book-row"><a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a><div class="info"><div><a href="#/book/${b.id}" class="title">${esc(b.t)}</a><div class="meta"><span><strong>المؤلف:</strong> ${esc(authorName(b.a))}</span><span><strong>التصنيف:</strong> ${esc(c?.name||"")}</span>${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}</div>${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}</div><div class="actions">${favBtnHtml("book",b.id)}${b.hasPdf?`<a href="#/book/${b.id}" class="fmt-btn fmt-pdf">PDF</a>`:""}${b.hasWord?`<a href="#/book/${b.id}" class="fmt-btn fmt-word">Word</a>`:""}</div></div></div>`;
 }
+
 function authorCardHtml(a){
   const c = countByAuthor(a.id);
-  return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0"><div class="avatar-letter" style="width:44px;height:44px;font-size:18px">${esc(a.short.charAt(0))}</div></div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
+  const imgHtml = a.img 
+      ? `<img src="${a.img}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--line);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` 
+      : '';
+  const fallbackHtml = `<div class="avatar-letter" style="width:44px;height:44px;font-size:18px;display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
+
+  return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px">
+    <div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">
+      ${imgHtml}${fallbackHtml}
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div>
+      <div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div>
+    </div>
+  </a>`;
 }
+
 function seriesCardHtml(s){
   const c = countBySeries(s.id);
   return `<a href="#/series-one/${s.id}" class="series-card"><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
@@ -909,6 +913,7 @@ function renderHome(){
     <section class="hero">
       <h1>مكتبة آل الشيرازي</h1>
       <p>موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات.</p>
+      <div class="random-btn" onclick="goToRandomBook()">🎲 اكتشف كتاباً عشوائياً</div>
       <div class="stats">
         <div class="stat"><strong>${BOOKS.length}</strong><span>كتاب</span></div>
         <div class="stat"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
@@ -935,6 +940,12 @@ function renderHome(){
     <div class="sec-title">أحدث الإضافات</div>${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
   `;
 }
+
+window.goToRandomBook = () => {
+  if(BOOKS.length === 0) return;
+  const randomBook = BOOKS[Math.floor(Math.random() * BOOKS.length)];
+  location.hash = '#/book/' + randomBook.id;
+};
 
 function renderLibrary(){
   state.cat = "all"; state.author = "all"; state.series = "all";
@@ -994,7 +1005,18 @@ function renderAuthor(id){
   if(!a){ location.hash = "#/authors"; return; }
   state.author = id; state.cat = "all"; state.series = "all"; state.q = "";
   const count = countByAuthor(id);
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header"><div class="author-avatar-big">${esc(a.short.charAt(0))}</div><h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
+  
+  const imgBig = a.img 
+      ? `<img src="${a.img}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(90,74,53,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` 
+      : '';
+  const fallbackBig = `<div class="author-avatar-big" style="display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
+
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div>
+  <div class="author-header">
+    ${imgBig}${fallbackBig}
+    <h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div>
+  </div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
+  
   if(count){ bindToolbar(); renderList(); }
 }
 
@@ -1026,6 +1048,12 @@ function renderBookPage(id){
   
   localStorage.setItem("alsh_last_read", b.id);
 
+  // الصورة داخل صفحة الكتاب
+  const chipImg = a && a.img 
+      ? `<img src="${a.img}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` 
+      : '';
+  const chipFallback = `<div class="avatar-letter" style="display:${a && a.img ? 'none' : 'grid'}">${esc((a?.short||"م").charAt(0))}</div>`;
+
   const descHtml = b.desc ? `
     <div class="book-desc-section">
       <div class="sec-title">عن الكتاب</div>
@@ -1033,8 +1061,41 @@ function renderBookPage(id){
     </div>
   ` : '';
 
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip"><div class="avatar-letter">${esc((a?.short||"م").charAt(0))}</div><span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item"><strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}${favBtnHtml("book",b.id)}</div></div></div></div>${descHtml}</div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip">${chipImg}${chipFallback}<span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item"><strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button><button class="dl-btn" style="background:#4a6b4a;" onclick="shareAsQuote('${b.id}')">🖼️ اقتباس</button>${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}${favBtnHtml("book",b.id)}</div></div></div></div>${descHtml}</div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
 }
+
+window.shareAsQuote = async function(id) {
+  const b = getBook(id);
+  if(!b) return;
+  
+  document.getElementById('qt-title').textContent = b.t;
+  document.getElementById('qt-desc').textContent = b.desc || "كتاب من إصدارات مكتبة آل الشيرازي. تصفحه الآن عبر موقعنا.";
+  
+  const element = document.getElementById('quote-template');
+  
+  try {
+    const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+    canvas.toBlob(async (blob) => {
+      const file = new File([blob], 'quote.png', { type: 'image/png' });
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: 'اقتباس من مكتبة آل الشيرازي',
+          text: 'شارك هذا الكتاب الرائع'
+        });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${b.t}-quote.png`;
+        a.click();
+        alert('تم تحميل الصورة إلى معرض هاتفك!');
+      }
+    }, 'image/png');
+  } catch (err) {
+    alert("حدث خطأ أثناء إنشاء الصورة: " + err.message);
+  }
+};
 
 function renderPrintedBooks() {
   const locations = [
@@ -1118,10 +1179,19 @@ function renderReader(id){
   else if (b.filename && b.filename.startsWith("http")) { rawUrl = b.filename; } 
   else { const name = b.filename || b.id; rawUrl = FILES_BASE + name + ".pdf"; }
   
-  // استبدال قارئ جوجل بقارئ Mozilla PDF.js
   const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
 
-  app.innerHTML = `<div class="reader-wrap"><div class="reader-header"><a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a><h1>${esc(b.t)}</h1>${favBtnHtml("book",b.id)}</div><iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe></div>`;
+  app.innerHTML = `
+    <div class="reader-wrap">
+      <div class="reader-header">
+        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
+        <h1>${esc(b.t)}</h1>
+        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
+        ${favBtnHtml("book",b.id)}
+      </div>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe>
+    </div>
+  `;
 }
 
 function renderMediaLibrary(type) {
@@ -1236,6 +1306,17 @@ function renderMediaLibrary(type) {
                   <div class="ip-time" id="time-${idx}">0:00 / 0:00</div>
                   <input type="range" class="ip-range" id="progress-${idx}" value="0" max="100" step="0.1" oninput="window.seekInlineAudio(${idx}, this.value)">
                 </div>
+                <div class="ip-controls-extra">
+                   <select class="ip-select" onchange="window.changeAudioSpeed(this.value)">
+                     <option value="1">1x سرعة</option>
+                     <option value="1.25">1.25x</option>
+                     <option value="1.5">1.5x</option>
+                     <option value="2">2x</option>
+                   </select>
+                   <button class="ip-timer-btn" onclick="window.setSleepTimer(15)">⏱️ 15د</button>
+                   <button class="ip-timer-btn" onclick="window.setSleepTimer(30)">⏱️ 30د</button>
+                   <button class="ip-timer-btn" onclick="window.setSleepTimer(0)" style="color:var(--red)">إلغاء</button>
+                </div>
               </div>
             </div>` : ''}
           `).join('')
@@ -1266,6 +1347,7 @@ function renderMediaLibrary(type) {
 
 let inlineAudio = new Audio();
 let currentIdx = null;
+let sleepTimeout = null;
 
 window.toggleInlineAudio = function(idx, url) {
   const container = document.getElementById(`ip-${idx}`);
@@ -1302,6 +1384,27 @@ window.toggleInlineAudio = function(idx, url) {
     iconPlay.style.display = 'none';
     iconPause.style.display = 'block';
   }
+};
+
+window.changeAudioSpeed = (speed) => {
+  inlineAudio.playbackRate = parseFloat(speed);
+};
+
+window.setSleepTimer = (minutes) => {
+  if(sleepTimeout) clearTimeout(sleepTimeout);
+  if(minutes === 0) {
+    alert("تم إلغاء مؤقت النوم.");
+    return;
+  }
+  sleepTimeout = setTimeout(() => {
+    inlineAudio.pause();
+    if(currentIdx !== null) {
+       document.getElementById(`icon-play-${currentIdx}`).style.display = 'block';
+       document.getElementById(`icon-pause-${currentIdx}`).style.display = 'none';
+    }
+    alert("تم إيقاف الصوت تلقائياً بسبب مؤقت النوم.");
+  }, minutes * 60 * 1000);
+  alert(`تم ضبط مؤقت النوم: سيتوقف الصوت بعد ${minutes} دقيقة.`);
 };
 
 inlineAudio.addEventListener('timeupdate', () => {
@@ -1438,6 +1541,37 @@ function doSearch(v){
 }
 
 document.addEventListener("click", e=>{ if(!e.target.closest(".search-wrap")) sug.classList.remove("show"); });
+
+const voiceBtn = document.getElementById("voiceBtn");
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'ar-SA';
+  recognition.interimResults = false;
+  
+  voiceBtn.onclick = () => {
+    voiceBtn.style.color = '#8b3a3a';
+    recognition.start();
+  };
+  
+  recognition.onresult = (event) => {
+    const speechToText = event.results[0][0].transcript;
+    q.value = speechToText;
+    doSearch(speechToText);
+    voiceBtn.style.color = 'var(--muted)';
+  };
+  
+  recognition.onerror = () => {
+    voiceBtn.style.color = 'var(--muted)';
+    alert('لم يتم التعرف على الصوت. تأكد من السماح للمتصفح باستخدام الميكروفون.');
+  };
+  
+  recognition.onend = () => {
+    voiceBtn.style.color = 'var(--muted)';
+  };
+} else {
+  voiceBtn.style.display = 'none';
+}
 
 async function downloadBook(id, format){
   const b = getBook(id); if(!b) return;
