@@ -415,27 +415,14 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .btn-submit { width: 100%; padding: 12px; background: var(--primary); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background var(--tr); margin-top: 10px; }
 .btn-submit:hover { background: var(--primary-dark); }
 
-.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
-.link-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; text-align: center; text-decoration: none; color: inherit; transition: all var(--tr); box-shadow: var(--shadow-sm); }
-.link-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
-.link-card .icon { font-size: 32px; margin-bottom: 12px; }
-.link-card .title { font-weight: 700; font-size: 16px; color: var(--primary-dark); margin-bottom: 6px; }
+/* تم تعديل تصميم البطاقات لتكون أنيقة بدون إيموجي */
+.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.link-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 20px; text-decoration: none; color: inherit; transition: all var(--tr); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 3px solid var(--line); }
+.link-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); border-bottom-color: var(--accent); }
+.link-card .title { font-weight: 800; font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
 [data-theme="dark"] .link-card .title { color: var(--accent); }
-.link-card .desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-.donate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
-.donate-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: all var(--tr); }
-.donate-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-.donate-card h3 { font-size: 17px; font-family: 'Amiri', serif; color: var(--primary-dark); margin-bottom: 8px; }
-[data-theme="dark"] .donate-card h3 { color: var(--accent); }
-.donate-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; flex: 1; }
-.btn-donate { display: block; text-align: center; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; transition: background var(--tr); }
-.btn-donate:hover { background: var(--primary-dark); }
-.payment-methods { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
-.payment-methods h3 { font-family: 'Amiri', serif; font-size: 20px; margin-bottom: 16px; color: var(--primary-dark); border-bottom: 1px solid var(--line); padding-bottom: 10px; }
-[data-theme="dark"] .payment-methods h3 { color: var(--accent); }
-.pay-item { margin-bottom: 12px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
-.pay-item strong { color: var(--primary); }
+.link-card .desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+.link-card .url { font-size: 12px; color: var(--primary); font-family: monospace; direction: ltr; background: var(--paper-2); padding: 4px 10px; border-radius: 20px; font-weight: 600; border: 1px dashed var(--line); }
 /* ------------------------------------------------------------- */
 
 @media(max-width:768px){
@@ -1241,25 +1228,25 @@ function renderIstifta() {
 
 function renderUsefulLinks() {
   const links = [
-    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "https://alshirazi.com", icon: "" },
-    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "http://arabic.shirazi.ir", icon: "" },
-    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "http://m-alshirazi.com/", icon: "" },
-    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "https://mahdialshirazi.com", icon: "" },
-    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تطبيق تيليجرام (Telegram)", url: "https://t.me/shirazi_lib", icon: "" },
-    { title: "قنوات القرآن والعترة", desc: "دليل قنوات السيد مهدي الشيرازي (Linktree)", url: "https://linktr.ee/S_Mahdi_Shirazi", icon: "" },
-    { title: "قناة الشجرة الطيبة", desc: "قناة تيليجرام (Telegram) مختصة بآل البيت (عليهم السلام)", url: "https://t.me/shajara14", icon: "" },
-    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "http://m.annabaa.org", icon: "" }
+    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "alshirazi.com", link: "https://alshirazi.com" },
+    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "arabic.shirazi.ir", link: "http://arabic.shirazi.ir" },
+    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "m-alshirazi.com", link: "http://m-alshirazi.com/" },
+    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "mahdialshirazi.com", link: "https://mahdialshirazi.com" },
+    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تطبيق تيليجرام", url: "t.me/shirazi_lib", link: "https://t.me/shirazi_lib" },
+    { title: "قنوات القرآن والعترة", desc: "دليل قنوات السيد مهدي الشيرازي", url: "linktr.ee/S_Mahdi_Shirazi", link: "https://linktr.ee/S_Mahdi_Shirazi" },
+    { title: "قناة الشجرة الطيبة", desc: "قناة تيليجرام مختصة بآل البيت (عليهم السلام)", url: "t.me/shajara14", link: "https://t.me/shajara14" },
+    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "m.annabaa.org", link: "http://m.annabaa.org" }
   ];
 
   app.innerHTML = `
     <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>مواقع مفيدة</span></div>
-    <div class="sec-title">🔗 مواقع مفيدة</div>
+    <div class="sec-title">مواقع مفيدة</div>
     <div class="links-grid">
       ${links.map(l => `
-        <a href="${l.url}" target="_blank" class="link-card">
-          <div class="icon">${l.icon}</div>
+        <a href="${l.link}" target="_blank" class="link-card">
           <div class="title">${esc(l.title)}</div>
           <div class="desc">${esc(l.desc)}</div>
+          <div class="url">${esc(l.url)}</div>
         </a>
       `).join("")}
     </div>
@@ -1325,9 +1312,11 @@ function renderReader(id){
   }
   
   let viewerUrl = "";
-  if (rawUrl.includes("drive.google.com")) {
+  // استخدام Google Docs Viewer للروابط الخارجية (GitHub وغيرها) لتجاوز مشكلة CORS
+  if (rawUrl.startsWith("http")) {
      viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
   } else {
+     // استخدام PDF.js للروابط المحلية فقط (داخل مجلد files)
      viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
   }
 
