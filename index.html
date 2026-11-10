@@ -429,9 +429,6 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 .donate-card h3 { font-size: 17px; font-family: 'Amiri', serif; color: var(--primary-dark); margin-bottom: 8px; }
 [data-theme="dark"] .donate-card h3 { color: var(--accent); }
 .donate-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; flex: 1; }
-.progress-info { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 6px; color: var(--ink-2); }
-.progress-bar-wrap { background: var(--line); height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
-.progress-bar { background: var(--green); height: 100%; border-radius: 4px; transition: width 0.5s ease-in-out; }
 .btn-donate { display: block; text-align: center; padding: 10px; background: var(--primary); color: #fff; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; transition: background var(--tr); }
 .btn-donate:hover { background: var(--primary-dark); }
 .payment-methods { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
@@ -633,12 +630,12 @@ const SERIES = [
 ];
 
 const DONATION_PROJECTS = [
-  { id: 1, title: "طباعة كتاب: موسوعة الفقه", desc: "طباعة ونشر نسخ ورقية من الكتاب لتوزيعها على المكتبات والمراكز العلمية.", target: 5000, collected: 2500, currency: "$" },
-  { id: 2, title: "رقمنة مخطوطات ووثائق نادرة", desc: "تصوير وفهرسة المخطوطات والوثائق وحفظها رقمياً وإتاحتها للباحثين.", target: 3000, collected: 1200, currency: "$" },
-  { id: 3, title: "ترجمة كتاب إلى الإنجليزية", desc: "ترجمة ومراجعة ونشر أحد مؤلفات المكتبة لغير الناطقين بالعربية.", target: 2000, collected: 500, currency: "$" },
-  { id: 4, title: "إنشاء مكتبة صوتية", desc: "تسجيل الكتب والمحاضرات بصوت واضح وإتاحتها للمكفوفين وذوي الاحتياجات.", target: 4000, collected: 1000, currency: "$" },
-  { id: 5, title: "ترميم الكتب التالفة", desc: "تجليد وترميم الكتب القديمة والتالفة للحفاظ عليها في المكتبة.", target: 1500, collected: 1500, currency: "$" },
-  { id: 6, title: "استضافة الموقع وصيانته", desc: "تغطية تكاليف الاستضافة والدومين والصيانة التقنية السنوية.", target: 500, collected: 200, currency: "$" }
+  { id: 1, title: "طباعة كتاب: موسوعة الفقه", desc: "طباعة ونشر نسخ ورقية من الكتاب لتوزيعها على المكتبات والمراكز العلمية." },
+  { id: 2, title: "رقمنة مخطوطات ووثائق نادرة", desc: "تصوير وفهرسة المخطوطات والوثائق وحفظها رقمياً وإتاحتها للباحثين." },
+  { id: 3, title: "ترجمة كتاب إلى الإنجليزية", desc: "ترجمة ومراجعة ونشر أحد مؤلفات المكتبة لغير الناطقين بالعربية." },
+  { id: 4, title: "إنشاء مكتبة صوتية", desc: "تسجيل الكتب والمحاضرات بصوت واضح وإتاحتها للمكفوفين وذوي الاحتياجات." },
+  { id: 5, title: "ترميم الكتب التالفة", desc: "تجليد وترميم الكتب القديمة والتالفة للحفاظ عليها في المكتبة." },
+  { id: 6, title: "استضافة الموقع وصيانته", desc: "تغطية تكاليف الاستضافة والدومين والصيانة التقنية السنوية." }
 ];
 
 const BOOKS_JSON_FILES = [
@@ -1244,10 +1241,14 @@ function renderIstifta() {
 
 function renderUsefulLinks() {
   const links = [
-    { title: "موقع مكتبة آل الشيرازي الرسمي", desc: "الموقع الرسمي للمكتبة والتراث العلمي.", url: "#", icon: "🌐" },
-    { title: "مؤسسة الإمام الشيرازي", desc: "الموقع الرسمي للمؤسسة الثقافية.", url: "https://example.com", icon: "🏛️" },
-    { title: "المكتبة الشاملة", desc: "أكبر مكتبة إلكترونية للكتب العربية.", url: "https://shamela.ws", icon: "📚" },
-    { title: "مركز النور للدراسات", desc: "دراسات وبحوث إسلامية.", url: "https://example.com", icon: "📖" }
+    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "https://alshirazi.com", icon: "🌐" },
+    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "http://arabic.shirazi.ir", icon: "🏛️" },
+    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "http://m-alshirazi.com/", icon: "📖" },
+    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "https://mahdialshirazi.com", icon: "🕌" },
+    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تطبيق تيليجرام (Telegram)", url: "https://t.me/shirazi_lib", icon: "📱" },
+    { title: "قنوات القرآن والعترة", desc: "دليل قنوات السيد مهدي الشيرازي (Linktree)", url: "https://linktr.ee/S_Mahdi_Shirazi", icon: "🔗" },
+    { title: "قناة الشجرة الطيبة", desc: "قناة تيليجرام (Telegram) مختصة بآل البيت (عليهم السلام)", url: "https://t.me/shajara14", icon: "🌳" },
+    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "http://m.annabaa.org", icon: "📰" }
   ];
 
   app.innerHTML = `
@@ -1275,24 +1276,13 @@ function renderDonate() {
     </div>
 
     <div class="donate-grid">
-      ${DONATION_PROJECTS.map(p => {
-        const percent = Math.min(100, Math.round((p.collected / p.target) * 100));
-        return `
-          <div class="donate-card">
-            <h3>${esc(p.title)}</h3>
-            <p>${esc(p.desc)}</p>
-            <div class="progress-info">
-              <span>الهدف: ${p.target} ${p.currency}</span>
-              <span>المجمع: ${p.collected} ${p.currency}</span>
-            </div>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" style="width: ${percent}%;"></div>
-            </div>
-            <div style="text-align: left; font-size: 11px; margin-bottom: 10px; font-weight: bold; color: var(--green);">${percent}% مكتمل</div>
-            <a href="#/contact" class="btn-donate">ساهم الآن</a>
-          </div>
-        `;
-      }).join("")}
+      ${DONATION_PROJECTS.map(p => `
+        <div class="donate-card">
+          <h3>${esc(p.title)}</h3>
+          <p>${esc(p.desc)}</p>
+          <a href="#/contact" class="btn-donate">ساهم الآن</a>
+        </div>
+      `).join("")}
     </div>
 
     <div class="payment-methods">
