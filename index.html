@@ -534,7 +534,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// التصنيفات الافتراضية (سيتم استبدالها إذا تم العثور على ملف categories.json)
 let CATS = [
   {id:"quran",name:"القرآن والتفسير"},
   {id:"aqaid",name:"العقائد"},
@@ -815,7 +814,6 @@ window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
   
-  // تحميل التصنيفات قبل أي شيء
   await loadCategories();
   
   const legacy = loadLegacyBooks();
@@ -825,12 +823,15 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   
   const allBooks = [...fromJson, ...legacy];
   
+  // فلترة دقيقة ومضمونة لإزالة التكرار
   BOOKS = allBooks.filter(b => {
-     if (!b.cover) {
-        if (b.t.startsWith('من حياة')) return false;
-        if (b.t.includes('تقريب القرآن')) return false;
-     }
-     return true;
+      // إخفاء الكتب المكررة القديمة من books-all.json
+      if (b.id.startsWith('book-')) {
+          const num = parseInt(b.id.replace('book-', ''));
+          if (num >= 278 && num <= 287) return false; // تقريب القرآن
+          if (b.t.startsWith('من حياة')) return false; // من حياة المعصومين
+      }
+      return true;
   });
   
   buildSidebar();
@@ -1111,11 +1112,14 @@ function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
   if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
+  
   let rawUrl = "";
   if (b.pdf_url && b.pdf_url.startsWith("http")) { rawUrl = b.pdf_url; } 
   else if (b.filename && b.filename.startsWith("http")) { rawUrl = b.filename; } 
   else { const name = b.filename || b.id; rawUrl = FILES_BASE + name + ".pdf"; }
-  const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
+  
+  // استبدال قارئ جوجل بقارئ Mozilla PDF.js
+  const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
 
   app.innerHTML = `<div class="reader-wrap"><div class="reader-header"><a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a><h1>${esc(b.t)}</h1>${favBtnHtml("book",b.id)}</div><iframe src="${viewerUrl}" class="reader-iframe" allowfullscreen></iframe></div>`;
 }
