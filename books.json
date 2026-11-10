@@ -5559,4 +5559,108 @@
       "year": 1420
     }
   ]
+},
+{
+  "items": [
+    {
+      "id": "taqrib-quran-vol-1",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 1",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-1.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-2",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 2",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-2.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-2.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-3",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 3",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-3.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-3.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-4",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 4",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-4.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-4.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-5",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 5",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-5.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-5.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-6",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 6",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-6.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-6.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-7",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 7",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-7.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-7.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-8",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 8",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-8.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-8.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-9",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 9",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-9.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-9.doc"
+    },
+    {
+      "id": "taqrib-quran-vol-10",
+      "title": "تقريب القرآن إلى الأذهان - الجزء 10",
+      "author": "shirazi-m",
+      "category": "quran",
+      "series": "taqrib-quran",
+      "formats": ["pdf", "word"],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-10.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-10.doc"
+    }
+  ]
 }
