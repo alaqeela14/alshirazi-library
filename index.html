@@ -93,6 +93,34 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
+/* شريط النص المتحرك الجديد أسفل الترويسة */
+.moving-text-bar {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.moving-text-content {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Amiri', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  animation: scrollLeftToRight 40s linear infinite;
+  padding-inline-start: 100%;
+}
+[data-theme="dark"] .moving-text-content {
+  color: var(--accent-light);
+}
+@keyframes scrollLeftToRight {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 .head-actions {position: absolute;top: 15px;left: 15px;display: flex;align-items: center;gap: 6px;z-index: 10;}
 .head-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;}
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
@@ -106,13 +134,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .topbar-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .topbar-btn{color:var(--accent)}
 
-.search-wrap{flex:1;max-width:600px;position:relative}
+/* تصغير مربع البحث */
+.search-wrap{flex:1;max-width:450px;margin: 0 auto;position:relative}
 .search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color var(--tr);align-items: center;}
 .search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(90,74,53,.08)}
-.search-box select{border:none;background:transparent;padding:0 12px;color:var(--muted);font:inherit;font-size:12px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
-.search-box input{flex:1;padding:10px 14px;border:none;background:transparent;font:inherit;font-size:13.5px;outline:none;color:var(--ink);min-width:0}
+.search-box select{border:none;background:transparent;padding:0 10px;color:var(--muted);font:inherit;font-size:11.5px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
+.search-box input{flex:1;padding:8px 12px;border:none;background:transparent;font:inherit;font-size:13px;outline:none;color:var(--ink);min-width:0}
 .search-box input::placeholder{color:var(--muted)}
-.search-box button{padding:0 18px;background:var(--primary);color:#fff;font-weight:700;font-size:13px;transition:background var(--tr);flex-shrink:0; height: 100%; min-height: 40px;}
+.search-box button{padding:0 14px;background:var(--primary);color:#fff;font-weight:700;font-size:12.5px;transition:background var(--tr);flex-shrink:0; height: 100%; min-height: 36px;}
 .search-box button:hover{background:var(--primary-dark)}
 
 .suggestions{position:absolute;top:calc(100% + 6px);inset-inline:0;background:var(--paper);border-radius:12px;box-shadow:var(--shadow-lg);list-style:none;max-height:420px;overflow-y:auto;z-index:70;display:none;border:1px solid var(--line)}
@@ -339,7 +368,6 @@ main{flex:1;padding:22px 0 60px}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
 
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
-footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size:12px;max-width:740px;margin-inline:auto;line-height:1.9}
 
 .lib-controls { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 12px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow-sm); }
 .lib-search-box { display: flex; align-items: center; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; padding: 0 12px; }
@@ -379,20 +407,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 .ip-timer-btn { padding: 4px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; font-size: 11px; cursor: pointer; color: var(--ink);}
 .ip-timer-btn:hover { background: var(--primary); color: #fff; }
 
-#quote-template {
-  position: fixed; top: -9999px; left: -9999px;
-  width: 500px; background: #faf8f3; border-radius: 16px; overflow: hidden;
-  font-family: 'Cairo', sans-serif; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-.qt-head { background: linear-gradient(135deg, #5a4a35, #3d3122); color: #fff; padding: 25px 30px; text-align: center; }
-.qt-head h2 { font-family: 'Amiri', serif; font-size: 26px; margin-bottom: 5px; }
-.qt-head p { font-size: 14px; opacity: 0.8; }
-.qt-body { padding: 30px; text-align: center; }
-.qt-title { font-family: 'Amiri', serif; font-size: 22px; color: #3d3122; margin-bottom: 15px; font-weight: 700; }
-.qt-desc { font-size: 15px; color: #4a4034; line-height: 1.8; text-align: justify; margin-bottom: 20px; }
-.qt-footer { border-top: 1px solid #e5ddd0; padding: 15px; text-align: center; font-size: 12px; color: #8a7e6f; }
-.qt-footer strong { color: #5a4a35; }
-
 .side-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; margin-left: 8px; vertical-align: middle; border: 1px solid var(--line); }
 
 @media(max-width:768px){
@@ -403,6 +417,9 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .head-btn .txt{display:none}
   .date-strip{font-size:8.5px; padding:4px 0;}
   .date-strip .container{justify-content:space-between; gap: 10px; padding: 0 10px;}
+  
+  .moving-text-bar { padding: 6px 0; }
+  .moving-text-content { font-size: 14px; }
   
   .topbar-inner{flex-wrap:nowrap; padding: 8px 0; gap: 8px;}
   .search-wrap{flex:1; max-width:100%; margin:0;}
@@ -450,10 +467,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 </head>
 <body>
 
-<div class="dua-bar">
-  <div class="dua-track">﷽ &nbsp;•&nbsp; اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين &nbsp;•&nbsp; ﷽</div>
-</div>
-
 <header class="site-head">
   <div class="head-actions">
     <a href="#/favorites" class="head-btn">⭐ <span class="txt">المفضلة</span><span class="fav-cnt" id="favCountTop">0</span></a>
@@ -467,6 +480,13 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     </div>
   </div>
 </header>
+
+<!-- شريط النص المتحرك الجديد -->
+<div class="moving-text-bar">
+  <div class="moving-text-content">
+    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ اللَّهُمَّ كُنْ لِوَلِيِّكَ الْحُجَّة ابْن الحَسَن صَلَوَاتُكَ عَلَيْهِ وَعَلَى آبَائِهِ فِي هَذِهِ السَّاعَةِ وَفِي كُلِّ سَاعَة وَلِيَّاً وَحَافِظَاً وَقَائِدَاً وَنَاصِرَاً وَدَلِيلَاً وَعَيْنَاً حَتَّى تُسْكِنهُ أَرْضَكَ طَوْعَاً وَتُمَتِّعَهُ فِيهَا طَوِيلاً بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينْ.
+  </div>
+</div>
 
 <div class="topbar">
   <div class="container topbar-inner">
@@ -526,7 +546,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 <footer>
   <div class="container">
     <p>© <span id="yr"></span> مكتبة آل الشيرازي — جميع الحقوق محفوظة</p>
-    <p class="dua-line">اللهم كن لوليّك الحجة بن الحسن صلواتك عليه وعلى آبائه في هذه الساعة وفي كل ساعة ولياً وحافظاً وقائداً وناصراً ودليلاً وعيناً حتى تسكنه أرضك طوعاً وتمتعه فيها طويلاً برحمتك يا أرحم الراحمين.</p>
   </div>
 </footer>
 
