@@ -61,6 +61,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   align-items: center;
   justify-content: center;
 }
+
+.header-subtitle {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  text-align: center;
+  color: var(--accent-light);
+  font-family: 'Amiri', serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  z-index: 5;
+}
+
 .date-strip {
   position: absolute;
   bottom: 0;
@@ -99,7 +113,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .search-box input::placeholder{color:var(--muted)}
 .search-box button{padding:0 18px;background:var(--primary);color:#fff;font-weight:700;font-size:13px;transition:background var(--tr);flex-shrink:0; height: 100%; min-height: 40px;}
 .search-box button:hover{background:var(--primary-dark)}
-.voice-btn{background: transparent !important; color: var(--muted) !important; padding: 0 10px !important; font-size: 18px;}
 
 .suggestions{position:absolute;top:calc(100% + 6px);inset-inline:0;background:var(--paper);border-radius:12px;box-shadow:var(--shadow-lg);list-style:none;max-height:420px;overflow-y:auto;z-index:70;display:none;border:1px solid var(--line)}
 .suggestions.show{display:block}
@@ -148,9 +161,7 @@ main{flex:1;padding:22px 0 60px}
 [data-theme="dark"] .sec-title{color:var(--accent)}
 
 .hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow);position:relative;overflow:hidden; text-align: center;}
-.hero h1{font-family:'Amiri',serif;font-size:22px;margin-bottom:4px;line-height:1.3;color:#fff}
-.hero .subtitle{font-family:'Amiri',serif; font-size:15px; margin-bottom:10px; color:var(--accent-light); font-weight:700;}
-.hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px; margin-inline: auto;}
+.hero p{font-size:14px;line-height:1.6;opacity:.95;max-width:800px; margin-inline: auto;}
 .hero .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);position:relative;z-index:1}
 .hero .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 8px;backdrop-filter:blur(4px)}
 .hero .stat strong{display:block;font-size:16px;color:var(--accent-light);font-weight:800;line-height:1.2}
@@ -385,6 +396,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
 
 @media(max-width:768px){
   .site-head{ height: 160px; }
+  .header-subtitle{ font-size: 14px; bottom: 30px; }
   .head-actions{ top: 5px; left: 5px; gap: 4px; }
   .head-btn{padding:3px 6px;font-size:10px}
   .head-btn .txt{display:none}
@@ -411,8 +423,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   .author-header h1{font-size:22px}
   .author-avatar-big{width:80px;height:80px;font-size:32px}
   .hero{padding:16px 18px}
-  .hero h1{font-size:18px}
-  .hero .subtitle{font-size:13px}
   .sec-title{font-size:19px}
   .fav-header{padding:16px 18px}
   .fav-header h1{font-size:20px}
@@ -446,6 +456,7 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
     <a href="#/favorites" class="head-btn">⭐ <span class="txt">المفضلة</span><span class="fav-cnt" id="favCountTop">0</span></a>
     <button class="head-btn" id="themeBtn">🌙 <span class="txt" id="themeText">ليلي</span></button>
   </div>
+  <div class="header-subtitle">موسوعة تراث أسرة آل الشيرازي العلمي</div>
   <div class="date-strip">
     <div class="container">
       <span><strong id="clock">—</strong></span>
@@ -465,7 +476,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
           <option value="all">كل الحقول</option>
         </select>
         <input id="q" type="search" placeholder="ابحث في المكتبة..." autocomplete="off">
-        <button class="voice-btn" id="voiceBtn" title="البحث الصوتي">🎤</button>
         <button id="qBtn">بحث</button>
       </div>
       <ul id="sug" class="suggestions"></ul>
@@ -517,20 +527,6 @@ footer .dua-line{font-family:'Amiri',serif;margin-top:10px;opacity:.85;font-size
   </div>
 </footer>
 
-<div id="quote-template">
-  <div class="qt-head">
-    <h2>مكتبة آل الشيرازي</h2>
-    <p>موسوعة تراث أسرة آل الشيرازي العلمي</p>
-  </div>
-  <div class="qt-body">
-    <div class="qt-title" id="qt-title">اسم الكتاب</div>
-    <div class="qt-desc" id="qt-desc">وصف الكتاب...</div>
-  </div>
-  <div class="qt-footer">
-    للمزيد من الكتب، تفضل بزيارة: <strong>shirazilib.dpdns.org</strong>
-  </div>
-</div>
-
 <script src="books-data.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -571,11 +567,13 @@ const AUTHORS = [
   {id:"shirazi-me", img:"shirazi-me.jpg", name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
 ];
 
+// تم الترتيب والتعديل هنا بناء على طلبك
 const SERIES = [
-  {id:"fiqh-encyclopedia",name:"موسوعة الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
-  {id:"taqrib-quran",name:"تقريب القرآن إلى الأذهان",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
-  {id:"fiqh-zahra",name:"من فقه الزهراء (عليها السلام)",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."},
-  {id:"kalima-encyclopedia",name:"موسوعة الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."}
+  {id:"taqrib-quran",name:"تقريب القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
+  {id:"tabyin-quran",name:"تبيين القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية وبيانية لآيات القرآن الكريم."},
+  {id:"kalima-encyclopedia",name:"الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."},
+  {id:"fiqh-encyclopedia",name:"الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
+  {id:"fiqh-zahra",name:"من فقه الزهراء عليها السلام",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
 ];
 
 const BOOKS_JSON_FILES = [
@@ -588,7 +586,8 @@ const BOOKS_JSON_FILES = [
   ["books-all.json","ahlulbayt"],
   ["books-masoomeen.json","masoomeen"],
   ["books-kalima.json","ahlulbayt"],
-  ["books-taqrib.json","quran"]
+  ["books-taqrib.json","quran"],
+  ["books-tabyin.json","quran"] // تم إضافة تبيين القرآن
 ];
 
 const FILES_BASE = "./files/";
@@ -810,10 +809,10 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   VIDEOS = await loadVideos();
   const allBooks = [...fromJson, ...legacy];
   
+  // تم إزالة شرط حجب كتب "تقريب القرآن" هنا
   BOOKS = allBooks.filter(b => {
      if (!b.cover) {
         if (b.t.startsWith('من حياة')) return false;
-        if (b.t.includes('تقريب القرآن')) return false;
      }
      return true;
   });
@@ -906,8 +905,6 @@ function renderHome(){
 
   app.innerHTML = `
     <section class="hero">
-      <h1>مكتبة آل الشيرازي</h1>
-      <div class="subtitle">موسوعة تراث أسرة آل الشيرازي العلمي</div>
       <p>موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات.</p>
       <div class="random-btn" onclick="goToRandomBook()">• اكتشف كتاباً عشوائياً</div>
       <div class="stats">
@@ -1056,41 +1053,8 @@ function renderBookPage(id){
     </div>
   ` : '';
 
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip">${chipImg}${chipFallback}<span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item"><strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button><button class="dl-btn" style="background:#4a6b4a;" onclick="shareAsQuote('${b.id}')">🖼️ اقتباس</button>${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}${favBtnHtml("book",b.id)}</div></div></div></div>${descHtml}</div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${b.c}">${esc(c?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip">${chipImg}${chipFallback}<span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item"><strong>التصنيف:</strong> ${esc(c?.name||"غير مصنف")}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>مشاركة</button>${!b.hasPdf && !b.hasWord?`<span style="color:var(--muted);font-size:12px">الملف غير متوفر</span>`:""}${favBtnHtml("book",b.id)}</div></div></div></div>${descHtml}</div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
 }
-
-window.shareAsQuote = async function(id) {
-  const b = getBook(id);
-  if(!b) return;
-  
-  document.getElementById('qt-title').textContent = b.t;
-  document.getElementById('qt-desc').textContent = b.desc || "كتاب من إصدارات مكتبة آل الشيرازي. تصفحه الآن عبر موقعنا.";
-  
-  const element = document.getElementById('quote-template');
-  
-  try {
-    const canvas = await html2canvas(element, { scale: 2, useCORS: true });
-    canvas.toBlob(async (blob) => {
-      const file = new File([blob], 'quote.png', { type: 'image/png' });
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: 'اقتباس من مكتبة آل الشيرازي',
-          text: 'شارك هذا الكتاب الرائع'
-        });
-      } else {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${b.t}-quote.png`;
-        a.click();
-        alert('تم تحميل الصورة إلى معرض هاتفك!');
-      }
-    }, 'image/png');
-  } catch (err) {
-    alert("حدث خطأ أثناء إنشاء الصورة: " + err.message);
-  }
-};
 
 function renderPrintedBooks() {
   const locations = [
@@ -1536,37 +1500,6 @@ function doSearch(v){
 }
 
 document.addEventListener("click", e=>{ if(!e.target.closest(".search-wrap")) sug.classList.remove("show"); });
-
-const voiceBtn = document.getElementById("voiceBtn");
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (SpeechRecognition) {
-  const recognition = new SpeechRecognition();
-  recognition.lang = 'ar-SA';
-  recognition.interimResults = false;
-  
-  voiceBtn.onclick = () => {
-    voiceBtn.style.color = '#8b3a3a';
-    recognition.start();
-  };
-  
-  recognition.onresult = (event) => {
-    const speechToText = event.results[0][0].transcript;
-    q.value = speechToText;
-    doSearch(speechToText);
-    voiceBtn.style.color = 'var(--muted)';
-  };
-  
-  recognition.onerror = () => {
-    voiceBtn.style.color = 'var(--muted)';
-    alert('لم يتم التعرف على الصوت. تأكد من السماح للمتصفح باستخدام الميكروفون.');
-  };
-  
-  recognition.onend = () => {
-    voiceBtn.style.color = 'var(--muted)';
-  };
-} else {
-  voiceBtn.style.display = 'none';
-}
 
 async function downloadBook(id, format){
   const b = getBook(id); if(!b) return;
