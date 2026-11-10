@@ -5425,4 +5425,24 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.doc"
     }
   ]
+},
+{
+  "items": [
+    {
+      "title": "اللاعنف في الإسلام",
+      "author": "آية الله العظمى السيد محمد الحسيني الشيرازي رحمه الله",
+      "year": 1420,
+      "series": "",
+      "source_type": "upload",
+      "pdf_file": "books/اللاعنف في الاسلام.pdf",
+      "word_file": "books/اللاعنف في الاسلام.doc",
+      "drive_pdf": "",
+      "drive_word": "",
+      "archive_id": "",
+      "formats": [
+        "pdf",
+        "word"
+      ]
+    }
+  ]
 }
