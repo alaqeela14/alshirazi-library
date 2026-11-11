@@ -3577,23 +3577,20 @@
     },
     {
       "id": "book-274",
-      "title": "تبيين القرآن ج2",
+      "title": "بين المسلمين واليهود",
       "author": "shirazi-m",
-      "category": "quran",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.doc",
-      "series": "tabyin-quran"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.doc"
     },
     {
       "id": "book-275",
-      "title": "تبيين القرآن ج3",
+      "title": "تبيين القرآن ج١",
       "author": "shirazi-m",
-      "category": "quran",
       "year": 1420,
       "formats": [
         "pdf",
