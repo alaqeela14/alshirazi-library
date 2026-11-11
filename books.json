@@ -31,7 +31,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-002",
@@ -44,7 +45,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-003",
@@ -70,7 +72,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-005",
@@ -109,7 +112,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-008",
@@ -187,7 +191,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/013.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/013.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/013.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-014",
@@ -200,7 +205,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/014.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/014.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/014.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-015",
@@ -213,7 +219,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/015.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/015.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/015.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-016",
@@ -226,7 +233,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/016.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-017",
@@ -4242,7 +4250,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-330",
@@ -4255,7 +4264,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/330.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/330.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/330.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-331",
@@ -4268,7 +4278,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-332",
@@ -4281,7 +4292,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-333",
@@ -4775,7 +4787,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.doc",
+      "series": "masoomeen-lives"
     },
     {
       "id": "book-371",
