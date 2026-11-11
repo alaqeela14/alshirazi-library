@@ -3,260 +3,536 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة تحكم مكتبة آل الشيرازي</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<title>لوحة التحكم | مكتبة آل الشيرازي</title>
 <style>
-:root {
-  --bg: #f5f2eb; --paper: #ffffff; --paper-2: #faf8f3;
-  --ink: #2b2520; --muted: #8a7e6f; --line: #e5ddd0;
-  --primary: #5a4a35; --primary-dark: #3d3122; --accent: #a8916a; --green: #4a6b4a; --red: #8b3a3a;
+:root{
+  --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
+  --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
+  --line:#e5ddd0;--line-2:#f0ebe2;
+  --primary:#5a4a35;--primary-dark:#3d3122;
+  --accent:#a8916a;--accent-light:#c9b896;
+  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;
+  --radius:10px;--radius-lg:14px;
+  --shadow-sm:0 1px 3px rgba(90,74,53,.06);
+  --shadow:0 4px 14px rgba(90,74,53,.08);
+  --tr:.22s ease;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--ink); padding: 20px; line-height: 1.6; }
-.container { max-width: 1200px; margin: 0 auto; }
-h1 { text-align: center; color: var(--primary-dark); margin-bottom: 20px; font-size: 24px; }
-.card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(90,74,53,0.08); }
-.card h2 { font-size: 18px; color: var(--primary); margin-bottom: 15px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-@media(max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
-.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-label { font-size: 13px; font-weight: 700; color: var(--primary-dark); }
-input, select, textarea { width: 100%; padding: 10px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-family: inherit; font-size: 14px; outline: none; }
-input:focus, select:focus, textarea:focus { border-color: var(--primary); }
-textarea { resize: vertical; height: 80px; }
-button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
-.btn-load { background: var(--paper-2); color: var(--primary-dark); border: 1px solid var(--primary); }
-.btn-save { background: var(--primary); color: #fff; }
-.btn-download { background: var(--green); color: #fff; }
-button:hover { opacity: 0.9; transform: translateY(-2px); }
-.file-info { font-size: 13px; color: var(--green); margin-top: 10px; font-weight: bold; display: none; text-align: center; }
-#statusMsg { text-align: center; margin-top: 15px; font-weight: bold; font-size: 14px; }
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding-bottom:110px;font-size:14px}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit}
+.container{width:min(1100px,96%);margin-inline:auto}
 
-/* تنسيق جدول الكتب */
-.books-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
-.books-table th, .books-table td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: right; }
-.books-table th { background: var(--paper-2); color: var(--primary-dark); font-weight: 700; position: sticky; top: 0; }
-.books-table select, .books-table input { padding: 6px; font-size: 12px; width: 100%; }
-.books-table-wrapper { max-height: 500px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; }
+.admin-header{background:var(--primary-dark);color:#fff;padding:16px 0;margin-bottom:20px;box-shadow:var(--shadow)}
+.admin-header h1{font-size:19px;margin-bottom:4px}
+.admin-header p{font-size:12px;opacity:.85}
 
-/* تنسيق إدارة التصنيفات */
-.cat-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
-.cat-row input[type="text"] { flex: 1; }
-.cat-row button { width: 40px; padding: 10px 0; margin-top: 0; background: var(--red); color: #fff; font-size: 18px; line-height: 1; }
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-success{background:var(--green);color:#fff}
+.btn-success:hover{opacity:.9}
+.btn-danger{background:var(--red);color:#fff}
+.btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+.btn-outline:hover{background:var(--paper-2)}
+
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.stat-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px 10px;text-align:center}
+.stat-box strong{display:block;font-size:22px;color:var(--primary-dark);font-weight:800;line-height:1.2}
+.stat-box span{font-size:11px;color:var(--muted)}
+
+.draft-banner{background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:10px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
+.filters input:focus,.filters select:focus{border-color:var(--primary)}
+
+.book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;transition:all var(--tr)}
+.book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.book-item.duplicate{border-color:#e0a800;background:#fffbf0}
+.book-item.missing-series{border-color:#17a2b8;background:#f0faff}
+.book-info{min-width:0}
+.book-title{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word}
+.book-meta{font-size:11px;color:var(--muted);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.book-meta .tag{display:inline-flex;align-items:center;gap:3px;background:var(--paper-2);padding:1px 7px;border-radius:9px}
+.book-meta .tag.cat{color:var(--primary);font-weight:700}
+.book-meta .tag.series{color:var(--blue);font-weight:700}
+.book-meta .tag.dup{color:#b8860b;font-weight:700;background:#fff3cd}
+.book-select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:11.5px;cursor:pointer;outline:none;min-width:120px;max-width:150px}
+.book-select:focus{border-color:var(--primary)}
+.book-select.series-select{background:#f0faff;min-width:110px}
+.book-delete{width:34px;height:34px;border-radius:50%;background:#fde8e8;color:var(--red);font-size:15px;display:grid;place-items:center;transition:all var(--tr);flex-shrink:0}
+.book-delete:hover{background:var(--red);color:#fff}
+
+.add-form-wrap{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;display:none}
+.add-form-wrap.open{display:block}
+.add-form-wrap h3{font-size:16px;color:var(--primary-dark);margin-bottom:12px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.form-field{display:flex;flex-direction:column;gap:4px}
+.form-field label{font-size:12px;font-weight:700;color:var(--primary-dark)}
+.form-field input,.form-field select,.form-field textarea{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--primary)}
+.form-field textarea{resize:vertical;min-height:60px}
+.form-field.full{grid-column:1/-1}
+.form-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end}
+
+.empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg)}
+
+.health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:16px}
+.health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px}
+.health-panel .check{margin-bottom:6px;font-size:13px}
+.health-panel .check.ok{color:var(--green)}
+.health-panel .check.warn{color:var(--orange)}
+.health-panel .check.error{color:var(--red)}
+.cat-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px}
+.cat-count{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.cat-count .cnt{font-weight:800;color:var(--primary);font-size:14px}
+
+.floating-actions{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:50;box-shadow:0 -4px 14px rgba(0,0,0,.05);flex-wrap:wrap}
+.floating-actions .info{font-size:12px;color:var(--muted);flex:1;min-width:160px}
+
+@media(max-width:700px){
+  .book-item{grid-template-columns:1fr;gap:8px}
+  .book-select,.book-select.series-select{max-width:100%;width:100%}
+  .book-delete{width:100%;border-radius:6px;height:36px}
+  .filters{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>🛠️ لوحة تحكم المكتبة</h1>
+<header class="admin-header">
+  <div class="container">
+    <h1>⚙️ لوحة التحكم — مكتبة آل الشيرازي</h1>
+    <p>أضف، صنّف، احذف. لا تنسَ الضغط على "تصدير books.json" في النهاية.</p>
+  </div>
+</header>
 
-  <!-- الخطوة 1: رفع الملف -->
-  <div class="card">
-    <h2>1. تحميل ملف الكتب (JSON)</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">اختر الملف الذي تريد التعديل عليه (مثلاً: books-all.json). <strong style="color:var(--red)">تنبيه: لا تختر ملفات PDF، فقط ملفات JSON.</strong></p>
-    <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="loadFile(event)">
-    <button class="btn-load" onclick="document.getElementById('fileInput').click()">📁 اختر ملف JSON من هاتفك</button>
-    <div id="fileInfo" class="file-info"></div>
+<main class="container">
+
+  <div id="draftBanner" class="draft-banner" style="display:none">
+    <span>📝 أنت تعمل على مسودة محفوظة في متصفحك (لم تُصدَّر بعد).</span>
+    <button class="btn btn-outline" onclick="resetToServer()">🗑️ تجاهل المسودة</button>
   </div>
 
-  <!-- الخطوة 2: إضافة كتاب -->
-  <div class="card" id="addBookCard" style="display:none;">
-    <h2>2. إضافة كتاب جديد</h2>
-    <div class="form-group">
-      <label>عنوان الكتاب (مطلوب)</label>
-      <input type="text" id="bookTitle" placeholder="مثال: كتاب الطهارة">
-    </div>
-    
+  <div class="top-actions">
+    <button class="btn btn-primary" onclick="toggleAddForm()">➕ إضافة كتاب جديد</button>
+    <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
+    <label class="btn btn-outline">
+      📁 استيراد books.json
+      <input type="file" accept=".json,application/json" onchange="importBooks(event)" style="display:none">
+    </label>
+  </div>
+
+  <div class="add-form-wrap" id="addForm">
+    <h3>➕ إضافة كتاب جديد</h3>
     <div class="form-grid">
-      <div class="form-group">
-        <label>المؤلف</label>
-        <select id="bookAuthor">
-          <option value="shirazi-m">السيد محمد الحسيني الشيرازي</option>
-          <option value="shirazi-h">السيد حسن الحسيني الشيرازي</option>
-          <option value="shirazi-s">السيد صادق الحسيني الشيرازي</option>
-          <option value="shirazi-mr">السيد محمد رضا الشيرازي</option>
-          <option value="shirazi-mo">السيد مرتضى الحسيني الشيرازي</option>
-          <option value="shirazi-j">السيد جعفر الحسيني الشيرازي</option>
-          <option value="shirazi-me">السيد مهدي الحسيني الشيرازي</option>
+      <div class="form-field full">
+        <label>اسم الكتاب *</label>
+        <input type="text" id="new-title" placeholder="مثال: من حياة الرسول الأعظم">
+      </div>
+      <div class="form-field">
+        <label>المؤلف *</label>
+        <select id="new-author"></select>
+      </div>
+      <div class="form-field">
+        <label>التصنيف *</label>
+        <select id="new-cat"></select>
+      </div>
+      <div class="form-field">
+        <label>الموسوعة (اختياري)</label>
+        <select id="new-series">
+          <option value="">— بدون —</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>التصنيف</label>
-        <select id="bookCategory">
-          <!-- سيتم تعبئتها ديناميكياً -->
-        </select>
+      <div class="form-field">
+        <label>السنة الهجرية</label>
+        <input type="number" id="new-year" value="1420">
+      </div>
+      <div class="form-field">
+        <label>عدد الصفحات (اختياري)</label>
+        <input type="number" id="new-pages" placeholder="مثال: 250">
+      </div>
+      <div class="form-field full">
+        <label>رابط PDF</label>
+        <input type="url" id="new-pdf" placeholder="https://github.com/.../001.pdf">
+      </div>
+      <div class="form-field full">
+        <label>رابط Word</label>
+        <input type="url" id="new-word" placeholder="https://github.com/.../001.doc">
+      </div>
+      <div class="form-field full">
+        <label>وصف الكتاب (اختياري)</label>
+        <textarea id="new-desc" placeholder="نبذة قصيرة..."></textarea>
       </div>
     </div>
-
-    <div class="form-group">
-      <label>رابط ملف PDF (اختياري)</label>
-      <input type="url" id="bookPdf" placeholder="https://github.com/...">
-    </div>
-    <div class="form-group">
-      <label>رابط ملف Word (اختياري)</label>
-      <input type="url" id="bookWord" placeholder="https://github.com/...">
-    </div>
-
-    <button class="btn-save" onclick="addBook()">💾 إضافة الكتاب للقائمة</button>
-    <div id="statusMsg"></div>
-  </div>
-
-  <!-- الخطوة 3: تعديل الكتب الحالية -->
-  <div class="card" id="editCatsCard" style="display:none;">
-    <h2>3. تعديل الكتب الحالية (التصنيف والروابط)</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:10px;">ابحث عن الكتاب، يمكنك تغيير تصنيفه أو تصحيح رقم/رابط الـ PDF الخاص به.</p>
-    <input type="text" id="searchBook" placeholder="🔍 ابحث عن كتاب..." oninput="filterTable()" style="margin-bottom:10px;">
-    
-    <div class="books-table-wrapper">
-      <table class="books-table" id="booksTable">
-        <thead>
-          <tr>
-            <th>عنوان الكتاب</th>
-            <th>التصنيف</th>
-            <th>رابط PDF</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          <!-- سيتم تعبئتها عبر JS -->
-        </tbody>
-      </table>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="toggleAddForm()">إلغاء</button>
+      <button class="btn btn-primary" onclick="addNewBook()">➕ إضافة</button>
     </div>
   </div>
 
-  <!-- الخطوة 4: تحميل الملف -->
-  <div class="card" id="downloadCard" style="display:none;">
-    <h2>4. تحميل الملف المحدث</h2>
-    <p style="font-size:13px; color:var(--muted); margin-bottom:15px;">تمت التعديلات بنجاح! قم بتحميل الملف الجديد وارفعه إلى GitHub ليظهر التغيير في الموقع.</p>
-    <button class="btn-download" onclick="downloadJson()">⬇️ تحميل الملف المحدث (Books JSON)</button>
+  <div class="stats-bar" id="statsBar"></div>
+  <div class="health-panel" id="healthPanel"></div>
+
+  <div class="filters">
+    <input type="search" id="searchInput" placeholder="🔍 ابحث بالعنوان أو المؤلف..." oninput="renderBookList()">
+    <select id="filterCat" onchange="renderBookList()">
+      <option value="">كل التصنيفات</option>
+    </select>
+    <select id="filterIssue" onchange="renderBookList()">
+      <option value="">كل الكتب</option>
+      <option value="dup">🔁 المكررة فقط</option>
+      <option value="missing-series">📚 بلا موسوعة</option>
+      <option value="missing-author">👤 بمؤلف غير معروف</option>
+      <option value="missing-file">📄 بلا ملف PDF/Word</option>
+    </select>
   </div>
 
-</div>
+  <div class="book-list" id="bookList"></div>
+
+</main>
+
+<footer class="floating-actions">
+  <span class="info" id="footerInfo">—</span>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-outline" onclick="resetToServer()">🔄 إعادة تحميل</button>
+    <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
+  </div>
+</footer>
 
 <script>
-let currentJsonData = null;
-let currentFileName = "";
-let modifiedData = null;
-
-let catOptions = [
-  {id:"quran",name:"القرآن والتفسير"}, {id:"aqaid",name:"العقائد"}, {id:"seerah",name:"السيرة"},
-  {id:"fiqh",name:"الفقه"}, {id:"usul",name:"الأصول"}, {id:"hadith",name:"الحديث"},
-  {id:"akhlaq",name:"الأخلاق"}, {id:"tarikh",name:"التاريخ"}, {id:"kalam",name:"الكلام"},
-  {id:"ahlulbayt",name:"أهل البيت (عليهم السلام)"}, {id:"hussein",name:"الإمام الحسين وعاشوراء"},
-  {id:"mahdi",name:"الإمام المهدي (عجل الله فرجه)"}, {id:"siyasah",name:"السياسة والاقتصاد"},
-  {id:"mujtama",name:"المجتمع والأسرة"}, {id:"youth",name:"الشباب"}, {id:"tibb",name:"الطب"},
-  {id:"languages",name:"كتب بلغات أخرى"}
+const AUTHORS = [
+  {id:"shirazi-m", name:"السيد محمد الحسيني الشيرازي"},
+  {id:"shirazi-h", name:"السيد حسن الحسيني الشيرازي"},
+  {id:"shirazi-s", name:"السيد صادق الحسيني الشيرازي"},
+  {id:"shirazi-mr", name:"السيد محمد رضا الشيرازي"},
+  {id:"shirazi-mo", name:"السيد مرتضى الحسيني الشيرازي"},
+  {id:"shirazi-j", name:"السيد جعفر الحسيني الشيرازي"},
+  {id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي"}
 ];
 
-function loadFile(event) {
-  const file = event.target.files[0];
-  if (!file) return;
+const SERIES = [
+  {id:"taqrib-quran", name:"تقريب القرآن"},
+  {id:"tabyin-quran", name:"تبيين القرآن"},
+  {id:"kalima-encyclopedia", name:"الكلمة"},
+  {id:"fiqh-encyclopedia", name:"الفقه"},
+  {id:"fiqh-zahra", name:"من فقه الزهراء"}
+];
 
-  if (!file.name.endsWith('.json')) {
-    alert('⚠️ خطأ: يجب اختيار ملف ينتهي بـ .json');
-    event.target.value = '';
+let CATS = [];
+let BOOKS = [];
+let hasDraft = false;
+const DRAFT_KEY = 'admin_books_draft_v1';
+
+const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّف';
+const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
+const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
+
+async function loadCategories() {
+  try {
+    const res = await fetch('categories.json?t=' + Date.now());
+    if (!res.ok) throw new Error('categories.json غير موجود');
+    const data = await res.json();
+    CATS = Array.isArray(data) ? data : (data.items || []);
+  } catch(e) {
+    alert('⚠️ تعذّر تحميل categories.json\n' + e.message);
+    CATS = [];
+  }
+}
+
+async function loadBooksFromServer() {
+  try {
+    const res = await fetch('books.json?t=' + Date.now());
+    if (!res.ok) throw new Error('books.json غير موجود');
+    const data = await res.json();
+    return data.items || [];
+  } catch(e) {
+    alert('⚠️ تعذّر تحميل books.json من الخادم.\n' + e.message + '\n\nيمكنك استيراد الملف يدوياً من زر "استيراد".');
+    return [];
+  }
+}
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch(e) { return null; }
+}
+
+function saveDraft() {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(BOOKS));
+    hasDraft = true;
+  } catch(e) {
+    alert('⚠️ تعذّر الحفظ في المتصفح. قد يكون حجم البيانات كبيراً.');
+  }
+}
+
+async function init() {
+  await loadCategories();
+  populateSelects();
+
+  const draft = loadDraft();
+  if (draft && Array.isArray(draft) && draft.length > 0) {
+    if (confirm('تم العثور على مسودة سابقة (' + draft.length + ' كتاب).\n\nاستئناف العمل عليها؟\n\n(اختر "إلغاء" لتحميل النسخة من الخادم)')) {
+      BOOKS = draft;
+      hasDraft = true;
+      document.getElementById('draftBanner').style.display = 'flex';
+    } else {
+      BOOKS = await loadBooksFromServer();
+      localStorage.removeItem(DRAFT_KEY);
+      hasDraft = false;
+    }
+  } else {
+    BOOKS = await loadBooksFromServer();
+    hasDraft = false;
+  }
+  render();
+}
+
+function populateSelects() {
+  document.getElementById('new-author').innerHTML = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  document.getElementById('new-cat').innerHTML = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  document.getElementById('new-series').innerHTML = '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+}
+
+function render() {
+  renderStats();
+  renderHealth();
+  renderBookList();
+  updateFooter();
+}
+
+function renderStats() {
+  const total = BOOKS.length;
+  const catsUsed = new Set(BOOKS.map(b => b.category)).size;
+  const seriesUsed = new Set(BOOKS.filter(b => b.series).map(b => b.series)).size;
+  const withPdf = BOOKS.filter(b => b.pdf_url).length;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-box"><strong>${total}</strong><span>إجمالي الكتب</span></div>
+    <div class="stat-box"><strong>${catsUsed}</strong><span>تصنيفات مستخدمة</span></div>
+    <div class="stat-box"><strong>${seriesUsed}</strong><span>موسوعات مرتبطة</span></div>
+    <div class="stat-box"><strong>${withPdf}</strong><span>كتب برابط PDF</span></div>
+  `;
+}
+
+function findDuplicates() {
+  const seen = new Map();
+  const dups = new Set();
+  BOOKS.forEach(b => {
+    const key = (b.title||'').trim() + '|' + (b.author||'');
+    if (seen.has(key)) { dups.add(seen.get(key)); dups.add(b.id); }
+    else { seen.set(key, b.id); }
+  });
+  return dups;
+}
+
+function isMissingSeries(b) {
+  if (b.series) return false;
+  return /تقريب القرآن|تبيين القرآن|كلمة|من فقه الزهراء|الجزء|ج\d/i.test(b.title||'');
+}
+
+function renderHealth() {
+  const dups = findDuplicates();
+  const missingSeries = BOOKS.filter(isMissingSeries).length;
+  const missingAuthor = BOOKS.filter(b => !AUTHORS.find(a => a.id === b.author)).length;
+  const missingFile = BOOKS.filter(b => !b.pdf_url && !b.word_url).length;
+
+  const catCounts = {};
+  BOOKS.forEach(b => { catCounts[b.category] = (catCounts[b.category] || 0) + 1; });
+
+  let html = '<h3>🔍 الفحص الصحي</h3>';
+  html += `<div class="check ${dups.size===0?'ok':'warn'}">${dups.size===0?'✅':'⚠️'} كتب مكررة: <strong>${dups.size}</strong></div>`;
+  html += `<div class="check ${missingSeries===0?'ok':'warn'}">${missingSeries===0?'✅':'⚠️'} كتب تنتمي لموسوعة بلا حقل series: <strong>${missingSeries}</strong></div>`;
+  html += `<div class="check ${missingAuthor===0?'ok':'error'}">${missingAuthor===0?'✅':'❌'} كتب بمؤلف غير معروف: <strong>${missingAuthor}</strong></div>`;
+  html += `<div class="check ${missingFile===0?'ok':'warn'}">${missingFile===0?'✅':'⚠️'} كتب بلا ملف PDF/Word: <strong>${missingFile}</strong></div>`;
+  html += '<h3 style="margin-top:16px">📊 إحصاءات التصنيفات</h3><div class="cat-counts">';
+  CATS.forEach(c => {
+    html += `<div class="cat-count"><span>${esc(c.name)}</span><span class="cnt">${catCounts[c.id]||0}</span></div>`;
+  });
+  html += '</div>';
+  document.getElementById('healthPanel').innerHTML = html;
+}
+
+function renderBookList() {
+  const box = document.getElementById('bookList');
+  const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+  const fCat = document.getElementById('filterCat').value;
+  const fIssue = document.getElementById('filterIssue').value;
+  const dups = findDuplicates();
+
+  let list = BOOKS.slice();
+  if (q) list = list.filter(b =>
+    (b.title||'').toLowerCase().includes(q) ||
+    (b.id||'').toLowerCase().includes(q) ||
+    getAuthName(b.author).toLowerCase().includes(q)
+  );
+  if (fCat) list = list.filter(b => b.category === fCat);
+  if (fIssue === 'dup') list = list.filter(b => dups.has(b.id));
+  else if (fIssue === 'missing-series') list = list.filter(isMissingSeries);
+  else if (fIssue === 'missing-author') list = list.filter(b => !AUTHORS.find(a => a.id === b.author));
+  else if (fIssue === 'missing-file') list = list.filter(b => !b.pdf_url && !b.word_url);
+
+  if (list.length === 0) {
+    box.innerHTML = '<div class="empty">لا توجد كتب مطابقة للبحث.</div>';
     return;
   }
 
-  currentFileName = file.name;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const content = e.target.result;
-      currentJsonData = JSON.parse(content);
-      if (!currentJsonData.items) throw new Error("الملف لا يحتوي على مصفوفة items");
-      
-      modifiedData = JSON.parse(JSON.stringify(currentJsonData));
-      
-      document.getElementById('fileInfo').textContent = `✅ تم تحميل: ${file.name} (يحتوي على ${modifiedData.items.length} كتاب)`;
-      document.getElementById('fileInfo').style.display = 'block';
-      
-      document.getElementById('addBookCard').style.display = 'block';
-      document.getElementById('editCatsCard').style.display = 'block';
-      document.getElementById('downloadCard').style.display = 'none';
-      
-      renderTable();
-    } catch (err) {
-      alert('خطأ في قراءة الملف: ' + err.message);
-    }
+  box.innerHTML = list.map(b => {
+    const isDup = dups.has(b.id);
+    const missSeries = isMissingSeries(b);
+    const cls = isDup ? 'duplicate' : (missSeries ? 'missing-series' : '');
+    const catOptions = CATS.map(c => `<option value="${c.id}" ${c.id===b.category?'selected':''}>${esc(c.name)}</option>`).join('');
+    const seriesOptions = '<option value="">— بدون موسوعة —</option>' + SERIES.map(s => `<option value="${s.id}" ${s.id===b.series?'selected':''}>${esc(s.name)}</option>`).join('');
+    const seriesTag = b.series ? `<span class="tag series">📚 ${esc(getSeriesName(b.series))}</span>` : '';
+    const dupTag = isDup ? `<span class="tag dup">🔁 مكرر</span>` : '';
+
+    return `<div class="book-item ${cls}" data-id="${esc(b.id)}">
+      <div class="book-info">
+        <div class="book-title">${esc(b.title)}</div>
+        <div class="book-meta">
+          <span class="tag">👤 ${esc(getAuthName(b.author))}</span>
+          <span class="tag cat">🏷️ ${esc(getCatName(b.category))}</span>
+          ${seriesTag}${dupTag}
+          <span class="tag" style="font-family:monospace;direction:ltr">${esc(b.id)}</span>
+        </div>
+      </div>
+      <select class="book-select" onchange="changeCategory('${esc(b.id)}', this.value)">
+        ${catOptions}
+      </select>
+      <select class="book-select series-select" onchange="changeSeries('${esc(b.id)}', this.value)">
+        ${seriesOptions}
+      </select>
+      <button class="book-delete" onclick="deleteBook('${esc(b.id)}')" title="حذف">🗑️</button>
+    </div>`;
+  }).join('');
+}
+
+function updateFooter() {
+  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب • ${hasDraft?'📝 مسودة محفوظة':'✅ من الخادم'}`;
+}
+
+function changeCategory(id, newCat) {
+  const b = BOOKS.find(x => x.id === id);
+  if (!b) return;
+  b.category = newCat;
+  saveDraft();
+  const row = document.querySelector(`.book-item[data-id="${id}"]`);
+  if (row) {
+    const catTag = row.querySelector('.tag.cat');
+    if (catTag) catTag.textContent = '🏷️ ' + getCatName(newCat);
+  }
+  renderStats();
+  renderHealth();
+  updateFooter();
+}
+
+function changeSeries(id, newSeries) {
+  const b = BOOKS.find(x => x.id === id);
+  if (!b) return;
+  if (newSeries) b.series = newSeries; else delete b.series;
+  saveDraft();
+  render();
+}
+
+function deleteBook(id) {
+  const b = BOOKS.find(x => x.id === id);
+  if (!b) return;
+  if (!confirm('حذف: ' + b.title + '؟')) return;
+  BOOKS = BOOKS.filter(x => x.id !== id);
+  saveDraft();
+  render();
+}
+
+function toggleAddForm() { document.getElementById('addForm').classList.toggle('open'); }
+
+function addNewBook() {
+  const title = document.getElementById('new-title').value.trim();
+  if (!title) { alert('يجب إدخال اسم الكتاب'); return; }
+
+  const formats = [];
+  const pdf_url = document.getElementById('new-pdf').value.trim();
+  const word_url = document.getElementById('new-word').value.trim();
+  if (pdf_url) formats.push('pdf');
+  if (word_url) formats.push('word');
+  if (formats.length === 0) formats.push('pdf');
+
+  const newBook = {
+    id: 'book-' + String(Date.now()).slice(-6),
+    title,
+    author: document.getElementById('new-author').value,
+    category: document.getElementById('new-cat').value,
+    year: parseInt(document.getElementById('new-year').value) || 1420,
+    formats
   };
-  reader.readAsText(file);
+  const series = document.getElementById('new-series').value;
+  if (series) newBook.series = series;
+  const pages = parseInt(document.getElementById('new-pages').value);
+  if (pages) newBook.pages = pages;
+  if (pdf_url) newBook.pdf_url = pdf_url;
+  if (word_url) newBook.word_url = word_url;
+  const desc = document.getElementById('new-desc').value.trim();
+  if (desc) newBook.description = desc;
+
+  BOOKS.unshift(newBook);
+  saveDraft();
+  render();
+
+  ['new-title','new-pages','new-pdf','new-word','new-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addForm').classList.remove('open');
+  alert('✅ تمت إضافة: ' + title);
 }
 
-function renderTable() {
-  if(!modifiedData) return;
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
-  
-  modifiedData.items.forEach((book, index) => {
-    const tr = document.createElement('tr');
-    
-    const tdTitle = document.createElement('td');
-    tdTitle.textContent = book.title;
-    tdTitle.style.fontWeight = '700';
-    
-    // التصنيف
-    const tdCat = document.createElement('td');
-    const select = document.createElement('select');
-    catOptions.forEach(opt => {
-      const option = document.createElement('option');
-      option.value = opt.id;
-      option.textContent = opt.name;
-      if(book.category === opt.id) option.selected = true;
-      select.appendChild(option);
-    });
-    select.onchange = (e) => {
-      modifiedData.items[index].category = e.target.value;
-      document.getElementById('downloadCard').style.display = 'block';
-    };
-    tdCat.appendChild(select);
-    
-    // رابط PDF
-    const tdUrl = document.createElement('td');
-    const urlInput = document.createElement('input');
-    urlInput.type = 'text';
-    urlInput.value = book.pdf_url || '';
-    urlInput.placeholder = 'رابط PDF';
-    urlInput.onchange = (e) => {
-      modifiedData.items[index].pdf_url = e.target.value;
-      document.getElementById('downloadCard').style.display = 'block';
-    };
-    tdUrl.appendChild(urlInput);
-    
-    tr.appendChild(tdTitle);
-    tr.appendChild(tdCat);
-    tr.appendChild(tdUrl);
-    tbody.appendChild(tr);
-  });
-}
-
-function filterTable() {
-  const query = document.getElementById('searchBook').value.toLowerCase();
-  const rows = document.querySelectorAll('#tableBody tr');
-  
-  rows.forEach(row => {
-    const title = row.cells[0].textContent.toLowerCase();
-    row.style.display = title.includes(query) ? '' : 'none';
-  });
-}
-
-function downloadJson() {
-  if (!modifiedData) return;
-  const jsonString = JSON.stringify(modifiedData, null, 2);
-  const blob = new Blob([jsonString], { type: "application/json" });
+function exportBooks() {
+  if (BOOKS.length === 0) { alert('لا توجد كتب للتصدير'); return; }
+  const json = JSON.stringify({ items: BOOKS }, null, 2);
+  const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = currentFileName; 
+  a.download = 'books.json';
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
-  
-  document.getElementById('statusMsg').innerHTML = `<span style="color:var(--primary)">⬇️ تم تحميل الملف، الآن ارفعه إلى GitHub!</span>`;
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  alert('✅ تم تصدير books.json\n\nالخطوات التالية:\n1. ابحث عن الملف في مجلد التنزيلات\n2. ارفعه إلى GitHub ليحل محل books.json القديم\n3. اضغط "تجاهل المسودة" لتنظيف المتصفح');
 }
 
-function addBook() {
-  // نفس دالة الإضافة السابقة (اختصاراً للمساحة)
+function importBooks(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const items = Array.isArray(data) ? data : (data.items || []);
+      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على كتب');
+      if (!confirm('سيتم استبدال ' + BOOKS.length + ' كتاباً بـ ' + items.length + ' كتاباً.\n\nمتابعة؟')) return;
+      BOOKS = items;
+      saveDraft();
+      render();
+      alert('✅ تم الاستيراد: ' + items.length + ' كتاباً');
+    } catch(err) {
+      alert('❌ فشل الاستيراد:\n' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
 }
+
+function resetToServer() {
+  if (!confirm('سيتم حذف المسودة المحلية وتحميل النسخة من الخادم.\n\nأي تعديلات لم تُصدَّر ستفقد.\n\nمتابعة؟')) return;
+  localStorage.removeItem(DRAFT_KEY);
+  location.reload();
+}
+
+init();
 </script>
-
 </body>
 </html>
