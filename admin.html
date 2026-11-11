@@ -24,32 +24,28 @@ body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--i
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit}
 .container{width:min(1100px,96%);margin-inline:auto}
-
-/* ---- Header ---- */
 .admin-header{background:var(--primary-dark);color:#fff;padding:16px 0;margin-bottom:16px;box-shadow:var(--shadow)}
 .admin-header h1{font-size:19px;margin-bottom:3px}
 .admin-header p{font-size:12px;opacity:.85}
-
-/* ---- Buttons ---- */
 .btn{padding:9px 16px;border-radius:8px;font-size:13px;font-weight:700;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .btn-primary{background:var(--primary);color:#fff}
 .btn-primary:hover{background:var(--primary-dark)}
 .btn-success{background:var(--green);color:#fff}
 .btn-success:hover{opacity:.9;transform:translateY(-1px)}
 .btn-danger{background:var(--red);color:#fff}
-.btn-danger:hover{opacity:.9}
 .btn-warning{background:var(--orange);color:#fff}
 .btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
 .btn-outline:hover{background:var(--paper-2);border-color:var(--accent)}
 .btn-icon{width:36px;height:36px;padding:0;border-radius:50%;display:inline-grid;place-items:center;font-size:15px}
-
-/* ---- Banner ---- */
 .draft-banner{background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-
-/* ---- Top Actions ---- */
 .top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-
-/* ---- Add Form ---- */
+.section-toggle{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all var(--tr)}
+.section-toggle:hover{border-color:var(--accent)}
+.section-toggle h3{font-size:15px;color:var(--primary-dark)}
+.section-toggle .arrow{transition:transform var(--tr);font-size:12px;color:var(--muted)}
+.section-toggle.open .arrow{transform:rotate(180deg)}
+.section-content{display:none;background:var(--paper);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:14px 16px;margin-top:-14px;margin-bottom:14px}
+.section-content.open{display:block}
 .add-form{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:16px;margin-bottom:16px;display:none}
 .add-form.open{display:block}
 .add-form h3{font-size:16px;color:var(--primary-dark);margin-bottom:12px}
@@ -60,15 +56,12 @@ input,select,textarea{font-family:inherit}
 .ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--primary)}
 .ff textarea{resize:vertical;min-height:60px}
 .ff.full{grid-column:1/-1}
+.ff .hint{font-size:11px;color:var(--muted);margin-top:2px}
 .form-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-
-/* ---- Stats Bar ---- */
 .stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px}
 .stat-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px 8px;text-align:center}
 .stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
 .stat-box span{font-size:11px;color:var(--muted)}
-
-/* ---- Health Panel ---- */
 .health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
 .health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .check{margin-bottom:6px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -80,14 +73,10 @@ input,select,textarea{font-family:inherit}
 .cat-count .cnt{font-weight:800;color:var(--primary);font-size:13px;background:var(--paper);padding:1px 7px;border-radius:9px}
 .smart-btn{margin-top:10px;width:100%;padding:9px;background:#fff3cd;color:#856404;border:1px dashed #d4a017;border-radius:6px;font-weight:700;font-size:12.5px;cursor:pointer;transition:all var(--tr)}
 .smart-btn:hover{background:#fde8b8}
-
-/* ---- Filters ---- */
 .filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
 .filters input:focus,.filters select:focus{border-color:var(--primary)}
 @media(max-width:700px){.filters{grid-template-columns:1fr}}
-
-/* ---- Book List ---- */
 .book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
 .book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
@@ -114,15 +103,17 @@ input,select,textarea{font-family:inherit}
   .book-controls .btn-edit-full{grid-column:1/-1}
   .book-delete{grid-column:1/-1;width:100%;height:36px}
 }
-
-/* ---- Load More ---- */
+.series-list{display:flex;flex-direction:column;gap:8px}
+.series-item{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
+.series-item .s-info{min-width:0}
+.series-item .s-name{font-weight:700;font-size:13.5px;color:var(--ink)}
+.series-item .s-meta{font-size:11px;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap}
+.series-item .s-id{font-family:monospace;direction:ltr;background:var(--paper);padding:1px 6px;border-radius:5px;font-size:10px}
+.series-item .s-count{font-weight:800;color:var(--primary);font-size:12px;background:var(--paper);padding:3px 10px;border-radius:9px;white-space:nowrap}
 .load-more-wrap{text-align:center;margin:16px 0 20px}
 .load-more-btn{padding:10px 24px;background:var(--paper);border:1px solid var(--accent);color:var(--primary);border-radius:24px;font-weight:700;font-size:13px;cursor:pointer;transition:all var(--tr)}
 .load-more-btn:hover{background:var(--primary);color:#fff}
-
 .empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg)}
-
-/* ---- Modal ---- */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
 .modal-overlay.open{display:flex}
 .modal{background:var(--paper);border-radius:var(--radius-lg);width:min(600px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
@@ -134,12 +125,8 @@ input,select,textarea{font-family:inherit}
 .modal-body .form-grid{grid-template-columns:1fr}
 .modal-body .form-grid .ff.full{grid-column:auto}
 .modal-foot{padding:12px 18px;background:var(--paper-2);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
-
-/* ---- Floating Footer ---- */
 .floating-actions{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:50;box-shadow:0 -4px 14px rgba(0,0,0,.05);flex-wrap:wrap}
 .floating-actions .info{font-size:12px;color:var(--muted);flex:1;min-width:140px}
-
-/* ---- Toast ---- */
 .toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.success{background:var(--green)}
@@ -152,7 +139,7 @@ input,select,textarea{font-family:inherit}
 <header class="admin-header">
   <div class="container">
     <h1>⚙️ لوحة التحكم — مكتبة آل الشيرازي</h1>
-    <p>عدّل التصنيفات والروابط والموسوعات. الحفظ تلقائي في المتصفح. لا تنسَ التصدير في النهاية.</p>
+    <p>عدّل الكتب والموسوعات. الحفظ تلقائي في المتصفح. لا تنسَ التصدير في النهاية.</p>
   </div>
 </header>
 
@@ -166,9 +153,14 @@ input,select,textarea{font-family:inherit}
   <div class="top-actions">
     <button class="btn btn-primary" onclick="toggleAddForm()">➕ إضافة كتاب جديد</button>
     <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
+    <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
     <label class="btn btn-outline">
       📁 استيراد books.json
       <input type="file" accept=".json,application/json" onchange="importBooks(event)" style="display:none">
+    </label>
+    <label class="btn btn-outline">
+      📁 استيراد series.json
+      <input type="file" accept=".json,application/json" onchange="importSeries(event)" style="display:none">
     </label>
   </div>
 
@@ -194,6 +186,32 @@ input,select,textarea{font-family:inherit}
   <div class="stats-bar" id="statsBar"></div>
   <div class="health-panel" id="healthPanel"></div>
 
+  <!-- ================= قسم إدارة الموسوعات ================= -->
+  <div class="section-toggle" id="seriesToggle" onclick="toggleSection('series')">
+    <h3>📚 إدارة الموسوعات (<span id="seriesCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="seriesContent">
+    <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
+      الموسوعات هي مجموعات كبرى من الكتب (مثل: موسوعة الفقه، موسوعة الكلمة). بعد إضافة موسوعة هنا، ستظهر تلقائياً في القوائم المنسدلة لكل كتاب وفي الموقع.
+    </p>
+    <div class="add-form open" style="border:2px solid var(--blue); margin-bottom:14px">
+      <h3 style="color:var(--blue)">➕ إضافة موسوعة جديدة</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name" placeholder="مثال: موسوعة الأخلاق"></div>
+        <div class="ff"><label>المعرّف (ID) — إنجليزي بدون مسافات *</label><input type="text" id="new-series-id" placeholder="مثال: akhlaq-encyclopedia"><div class="hint">حروف إنجليزية صغيرة وأرقام وشرطة فقط</div></div>
+        <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
+        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc" placeholder="نبذة قصيرة عن الموسوعة..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="clearSeriesForm()">مسح</button>
+        <button class="btn btn-primary" onclick="addNewSeries()">➕ إضافة الموسوعة</button>
+      </div>
+    </div>
+    <div class="series-list" id="seriesList"></div>
+  </div>
+  <!-- ================= نهاية قسم الموسوعات ================= -->
+
   <div class="filters">
     <input type="search" id="searchInput" placeholder="🔍 ابحث بالعنوان أو المؤلف أو ID..." oninput="debouncedRender()">
     <select id="filterCat" onchange="resetPagination(); renderBookList()"><option value="">كل التصنيفات</option></select>
@@ -218,7 +236,8 @@ input,select,textarea{font-family:inherit}
   <span class="info" id="footerInfo">—</span>
   <div style="display:flex;gap:6px;flex-wrap:wrap">
     <button class="btn btn-outline" onclick="resetToServer()">🔄 إعادة تحميل</button>
-    <button class="btn btn-success" onclick="exportBooks()">💾 تصدير</button>
+    <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
+    <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
   </div>
 </footer>
 
@@ -254,7 +273,7 @@ input,select,textarea{font-family:inherit}
 
 <script>
 /* ================================================================
-   البيانات الأساسية
+   الثوابت
    ================================================================ */
 const AUTHORS = [
   {id:"shirazi-m", name:"السيد محمد الحسيني الشيرازي"},
@@ -266,24 +285,19 @@ const AUTHORS = [
   {id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي"}
 ];
 
-const SERIES = [
-  {id:"taqrib-quran", name:"تقريب القرآن"},
-  {id:"tabyin-quran", name:"تبيين القرآن"},
-  {id:"kalima-encyclopedia", name:"الكلمة"},
-  {id:"fiqh-encyclopedia", name:"الفقه"},
-  {id:"fiqh-zahra", name:"من فقه الزهراء"}
-];
-
 /* ================================================================
    الحالة العامة
    ================================================================ */
 let CATS = [];
+let SERIES = [];
 let BOOKS = [];
 let hasDraft = false;
+let hasSeriesDraft = false;
 let editingId = null;
 let shownCount = 50;
 const PAGE_SIZE = 50;
 const DRAFT_KEY = 'admin_books_draft_v1';
+const SERIES_DRAFT_KEY = 'admin_series_draft_v1';
 let searchTimer = null;
 
 /* ================================================================
@@ -293,6 +307,7 @@ const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;","
 const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّف';
 const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
 const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
+const countBooksInSeries = sid => BOOKS.filter(b => b.series === sid).length;
 
 function toast(msg, type='info'){
   const t = document.getElementById('toast');
@@ -303,7 +318,7 @@ function toast(msg, type='info'){
 }
 
 /* ================================================================
-   التحميل
+   التحميل من الخادم
    ================================================================ */
 async function loadCategories() {
   try {
@@ -311,9 +326,8 @@ async function loadCategories() {
     if (!res.ok) throw new Error('categories.json غير موجود');
     const data = await res.json();
     CATS = Array.isArray(data) ? data : (data.items || []);
-    if (CATS.length === 0) throw new Error('categories.json فارغ');
   } catch(e) {
-    alert('⚠️ تعذّر تحميل categories.json\n' + e.message + '\n\nتأكد من وجود الملف بجانب admin.html');
+    alert('⚠️ تعذّر تحميل categories.json\n' + e.message);
     CATS = [];
   }
 }
@@ -325,28 +339,45 @@ async function loadBooksFromServer() {
     const data = await res.json();
     return data.items || [];
   } catch(e) {
-    alert('⚠️ تعذّر تحميل books.json\n' + e.message + '\n\nيمكنك استخدام زر "استيراد books.json"');
+    alert('⚠️ تعذّر تحميل books.json\n' + e.message);
     return [];
   }
 }
 
-function loadDraft(){
+async function loadSeriesFromServer() {
   try {
-    const raw = localStorage.getItem(DRAFT_KEY);
+    const res = await fetch('series.json?t=' + Date.now());
+    if (!res.ok) return null;
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : (data.items || []);
+    return list.filter(s => s && s.id && s.name);
+  } catch(e) {
+    return null;
+  }
+}
+
+/* ================================================================
+   المسودات (localStorage)
+   ================================================================ */
+function loadDraft(key) {
+  try {
+    const raw = localStorage.getItem(key);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : null;
   } catch(e){ return null; }
 }
 
-function saveDraft(){
+function saveDraft(key, data){
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(BOOKS));
-    hasDraft = true;
+    localStorage.setItem(key, JSON.stringify(data));
   } catch(e) {
     toast('⚠️ تعذّر الحفظ في المتصفح', 'error');
   }
 }
+
+function saveBooksDraft(){ saveDraft(DRAFT_KEY, BOOKS); hasDraft = true; }
+function saveSeriesDraft(){ saveDraft(SERIES_DRAFT_KEY, SERIES); hasSeriesDraft = true; }
 
 /* ================================================================
    التهيئة
@@ -355,37 +386,56 @@ async function init(){
   await loadCategories();
   populateSelects();
 
-  const draft = loadDraft();
-  if (draft && draft.length > 0) {
-    if (confirm('تم العثور على مسودة سابقة (' + draft.length + ' كتاب).\n\nهل تستأنف العمل عليها؟\n\n(موافق = استئناف، إلغاء = تحميل النسخة الأصلية من الخادم)')) {
-      BOOKS = draft;
-      hasDraft = true;
-      document.getElementById('draftBanner').style.display = 'flex';
+  const booksDraft = loadDraft(DRAFT_KEY);
+  const seriesDraft = loadDraft(SERIES_DRAFT_KEY);
+
+  const hasAnyDraft = (booksDraft && booksDraft.length > 0) || (seriesDraft && seriesDraft.length > 0);
+
+  if (hasAnyDraft) {
+    if (confirm('تم العثور على مسودة سابقة.\n\nاستئناف العمل عليها؟\n\n(موافق = استئناف، إلغاء = تحميل النسخ الأصلية)')) {
+      BOOKS = (booksDraft && booksDraft.length > 0) ? booksDraft : await loadBooksFromServer();
+      const sFromServer = await loadSeriesFromServer();
+      SERIES = (seriesDraft && seriesDraft.length > 0) ? seriesDraft : (sFromServer || []);
+      hasDraft = !!(booksDraft && booksDraft.length > 0);
+      hasSeriesDraft = !!(seriesDraft && seriesDraft.length > 0);
+      if (hasDraft || hasSeriesDraft) {
+        document.getElementById('draftBanner').style.display = 'flex';
+      }
     } else {
       BOOKS = await loadBooksFromServer();
+      SERIES = (await loadSeriesFromServer()) || [];
       localStorage.removeItem(DRAFT_KEY);
+      localStorage.removeItem(SERIES_DRAFT_KEY);
       hasDraft = false;
+      hasSeriesDraft = false;
     }
   } else {
     BOOKS = await loadBooksFromServer();
+    SERIES = (await loadSeriesFromServer()) || [];
     hasDraft = false;
+    hasSeriesDraft = false;
   }
   render();
+  renderSeriesList();
 }
 
 function populateSelects(){
   const authorOpts = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
   const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  const seriesOpts = '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
 
   document.getElementById('new-author').innerHTML = authorOpts;
   document.getElementById('new-cat').innerHTML = catOpts;
-  document.getElementById('new-series').innerHTML = seriesOpts;
+  document.getElementById('new-series').innerHTML = rebuildSeriesOptions();
+  document.getElementById('new-series-author').innerHTML = authorOpts;
   document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + catOpts;
 
   document.getElementById('edit-author').innerHTML = authorOpts;
   document.getElementById('edit-cat').innerHTML = catOpts;
-  document.getElementById('edit-series').innerHTML = seriesOpts;
+  document.getElementById('edit-series').innerHTML = rebuildSeriesOptions();
+}
+
+function rebuildSeriesOptions(){
+  return '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
 }
 
 /* ================================================================
@@ -406,7 +456,7 @@ function renderStats(){
   document.getElementById('statsBar').innerHTML = `
     <div class="stat-box"><strong>${total}</strong><span>كتاب</span></div>
     <div class="stat-box"><strong>${catsUsed}/${CATS.length}</strong><span>تصنيفات مستخدمة</span></div>
-    <div class="stat-box"><strong>${seriesUsed}/${SERIES.length}</strong><span>موسوعات مرتبطة</span></div>
+    <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعات</span></div>
     <div class="stat-box"><strong>${withPdf}</strong><span>برابط PDF</span></div>
   `;
 }
@@ -470,7 +520,6 @@ function getFilteredList(){
   else if (fIssue === 'missing-author') list = list.filter(b => !AUTHORS.find(a => a.id === b.author));
   else if (fIssue === 'missing-file') list = list.filter(b => !b.pdf_url && !b.word_url);
   else if (fIssue === 'has-series') list = list.filter(b => b.series);
-
   return list;
 }
 
@@ -496,8 +545,6 @@ function renderBookList(){
     const seriesTag = b.series ? `<span class="tag series">📚 ${esc(getSeriesName(b.series))}</span>` : '';
     const dupTag = isDup ? `<span class="tag dup">🔁 مكرر</span>` : '';
     const noFileTag = (!b.pdf_url && !b.word_url) ? `<span class="tag nofile">📄 بلا ملف</span>` : '';
-    const pdfTag = b.pdf_url ? '📕' : '';
-    const wordTag = b.word_url ? '📘' : '';
 
     return `<div class="book-item ${cls}">
       <div class="book-title-row">
@@ -508,7 +555,6 @@ function renderBookList(){
         <span class="tag">👤 ${esc(getAuthName(b.author))}</span>
         <span class="tag cat">🏷️ ${esc(getCatName(b.category))}</span>
         ${seriesTag}${dupTag}${noFileTag}
-        <span class="tag">${pdfTag}${wordTag || (!pdfTag?'':"")}</span>
       </div>
       <div class="book-controls">
         <select class="book-select" onchange="changeCategory('${esc(b.id)}', this.value)">${catOpts}</select>
@@ -531,29 +577,31 @@ function loadMore(){ shownCount += PAGE_SIZE; renderBookList(); }
 function resetPagination(){ shownCount = PAGE_SIZE; }
 
 function updateFooter(){
-  const draftStatus = hasDraft ? '📝 مسودة محفوظة' : '✅ من الخادم';
-  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب • ${draftStatus}`;
+  const parts = [`${BOOKS.length} كتاب`, `${SERIES.length} موسوعة`];
+  if (hasDraft || hasSeriesDraft) parts.push('📝 مسودة محفوظة');
+  else parts.push('✅ من الخادم');
+  document.getElementById('footerInfo').textContent = parts.join(' • ');
 }
 
 /* ================================================================
-   التعديلات السريعة
+   تعديلات سريعة
    ================================================================ */
 function changeCategory(id, newCat){
   const b = BOOKS.find(x => x.id === id);
   if (!b || b.category === newCat) return;
   b.category = newCat;
-  saveDraft();
+  saveBooksDraft();
   renderStats();
   renderHealth();
   updateFooter();
-  toast('✅ تم تغيير التصنيف إلى: ' + getCatName(newCat), 'success');
+  toast('✅ التصنيف: ' + getCatName(newCat), 'success');
 }
 
 function changeSeries(id, newSeries){
   const b = BOOKS.find(x => x.id === id);
   if (!b) return;
   if (newSeries) b.series = newSeries; else delete b.series;
-  saveDraft();
+  saveBooksDraft();
   render();
   toast('✅ تم تحديث الموسوعة', 'success');
 }
@@ -563,7 +611,7 @@ function deleteBook(id){
   if (!b) return;
   if (!confirm('حذف نهائي:\n\n«' + b.title + '»\n\nمتابعة؟')) return;
   BOOKS = BOOKS.filter(x => x.id !== id);
-  saveDraft();
+  saveBooksDraft();
   render();
   toast('🗑️ تم الحذف', 'warn');
 }
@@ -600,7 +648,6 @@ function saveEdit(){
   if (!editingId) return;
   const b = BOOKS.find(x => x.id === editingId);
   if (!b) return;
-
   const title = document.getElementById('edit-title').value.trim();
   if (!title) { alert('اسم الكتاب مطلوب'); return; }
 
@@ -631,7 +678,7 @@ function saveEdit(){
   const desc = document.getElementById('edit-desc').value.trim();
   if (desc) b.description = desc; else delete b.description;
 
-  saveDraft();
+  saveBooksDraft();
   render();
   closeEdit();
   toast('💾 تم حفظ التعديلات', 'success');
@@ -642,7 +689,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* ================================================================
-   إضافة كتاب جديد
+   إضافة كتاب
    ================================================================ */
 function toggleAddForm(){ document.getElementById('addForm').classList.toggle('open'); }
 
@@ -676,7 +723,7 @@ function addNewBook(){
   if (desc) newBook.description = desc;
 
   BOOKS.unshift(newBook);
-  saveDraft();
+  saveBooksDraft();
   render();
 
   ['new-title','new-pages','new-pdf','new-word','new-desc'].forEach(id => document.getElementById(id).value = '');
@@ -685,7 +732,7 @@ function addNewBook(){
 }
 
 /* ================================================================
-   الحذف الذكي للمكرر
+   حذف ذكي للمكرر
    ================================================================ */
 function smartDeleteDuplicates(){
   const groups = {};
@@ -716,44 +763,152 @@ function smartDeleteDuplicates(){
     group.forEach(b => delete b._score);
   });
 
-  if (toDelete.length === 0) {
-    toast('لا توجد كتب مكررة.', 'info');
-    return;
-  }
+  if (toDelete.length === 0) { toast('لا توجد كتب مكررة.', 'info'); return; }
 
-  const summary = `سيتم حذف ${toDelete.length} كتاباً مكرراً وإبقاء النسخة الأكثر اكتمالاً (التي تحمل series/word/وصف أكثر).\n\nالتفاصيل:\n${report.slice(0, 10).join('\n')}${report.length > 10 ? '\n... (' + (report.length - 10) + ' مجموعة أخرى)' : ''}\n\nمتابعة؟`;
-
+  const summary = `سيتم حذف ${toDelete.length} كتاباً مكرراً.\n\n${report.slice(0, 8).join('\n')}${report.length > 8 ? '\n... (' + (report.length - 8) + ' مجموعة أخرى)' : ''}\n\nمتابعة؟`;
   if (!confirm(summary)) return;
 
   BOOKS = BOOKS.filter(b => !toDelete.includes(b.id));
-  saveDraft();
+  saveBooksDraft();
   render();
   toast(`✅ تم حذف ${toDelete.length} كتاباً مكرراً`, 'success');
 }
 
 /* ================================================================
-   الاستيراد / التصدير / الإعادة
+   إدارة الموسوعات
    ================================================================ */
-function exportBooks(){
-  if (BOOKS.length === 0) { toast('لا توجد كتب للتصدير', 'warn'); return; }
-  const cleaned = BOOKS.map(b => {
-    const copy = { ...b };
-    Object.keys(copy).forEach(k => {
-      if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k];
-    });
-    return copy;
+function toggleSection(which){
+  if (which === 'series') {
+    const t = document.getElementById('seriesToggle');
+    const c = document.getElementById('seriesContent');
+    t.classList.toggle('open');
+    c.classList.toggle('open');
+  }
+}
+
+function renderSeriesList(){
+  const list = document.getElementById('seriesList');
+  const label = document.getElementById('seriesCountLabel');
+  label.textContent = SERIES.length;
+
+  if (SERIES.length === 0) {
+    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد موسوعات. أضف أول موسوعة من النموذج أعلاه.</div>';
+    return;
+  }
+
+  list.innerHTML = SERIES.map(s => {
+    const count = countBooksInSeries(s.id);
+    return `<div class="series-item">
+      <div class="s-info">
+        <div class="s-name">📚 ${esc(s.name)}</div>
+        <div class="s-meta">
+          <span class="s-id">${esc(s.id)}</span>
+          <span>👤 ${esc(getAuthName(s.author))}</span>
+          ${s.desc ? `<span style="font-size:10px;color:var(--muted)">${esc(s.desc.slice(0, 60))}${s.desc.length > 60 ? '...' : ''}</span>` : ''}
+        </div>
+      </div>
+      <span class="s-count">${count} كتاب</span>
+      <button class="book-delete" onclick="deleteSeries('${esc(s.id)}')" title="حذف الموسوعة">🗑️</button>
+    </div>`;
+  }).join('');
+}
+
+function clearSeriesForm(){
+  document.getElementById('new-series-name').value = '';
+  document.getElementById('new-series-id').value = '';
+  document.getElementById('new-series-desc').value = '';
+}
+
+function addNewSeries(){
+  const name = document.getElementById('new-series-name').value.trim();
+  let id = document.getElementById('new-series-id').value.trim().toLowerCase();
+  const author = document.getElementById('new-series-author').value;
+  const desc = document.getElementById('new-series-desc').value.trim();
+
+  if (!name) { alert('اسم الموسوعة مطلوب'); return; }
+  if (!id) {
+    // توليد ID تلقائي من الاسم (يحذف المسافات والرموز)
+    id = 'series-' + Date.now().toString(36);
+    toast('تم توليد معرّف تلقائياً: ' + id, 'info');
+  }
+  if (!/^[a-z0-9-]+$/.test(id)) {
+    alert('المعرّف (ID) يجب أن يحتوي فقط على: حروف إنجليزية صغيرة، أرقام، وشرطة (-)');
+    return;
+  }
+  if (SERIES.find(s => s.id === id)) {
+    alert('يوجد موسوعة أخرى بنفس المعرّف: ' + id);
+    return;
+  }
+
+  SERIES.push({ id, name, author, desc });
+  saveSeriesDraft();
+  populateSelects();
+  renderStats();
+  renderSeriesList();
+  updateFooter();
+  clearSeriesForm();
+  toast('✅ تمت إضافة الموسوعة: ' + name, 'success');
+}
+
+function deleteSeries(id){
+  const s = SERIES.find(x => x.id === id);
+  if (!s) return;
+  const count = countBooksInSeries(id);
+
+  let msg = `حذف الموسوعة: «${s.name}»\n\n`;
+  if (count > 0) {
+    msg += `⚠️ تنبيه: ${count} كتاباً مرتبطاً بها. سيُزال ارتباطهم وسيصبحون "بلا موسوعة".\n\n`;
+  }
+  msg += 'متابعة؟';
+  if (!confirm(msg)) return;
+
+  SERIES = SERIES.filter(x => x.id !== id);
+  // إزالة series من الكتب المرتبطة
+  BOOKS.forEach(b => { if (b.series === id) delete b.series; });
+  saveSeriesDraft();
+  saveBooksDraft();
+  populateSelects();
+  render();
+  renderSeriesList();
+  toast('🗑️ تم حذف الموسوعة' + (count > 0 ? ` وفكّ ارتباط ${count} كتاباً` : ''), 'warn');
+}
+
+/* ================================================================
+   الاستيراد / التصدير
+   ================================================================ */
+function cleanObj(obj){
+  const copy = { ...obj };
+  Object.keys(copy).forEach(k => {
+    if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k];
   });
-  const json = JSON.stringify({ items: cleaned }, null, 2);
+  return copy;
+}
+
+function downloadJSON(data, filename){
+  const json = JSON.stringify(data, null, 2);
   const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'books.json';
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  toast('✅ تم تصدير books.json — ارفعه إلى GitHub', 'success');
+}
+
+function exportBooks(){
+  if (BOOKS.length === 0) { toast('لا توجد كتب للتصدير', 'warn'); return; }
+  const cleaned = BOOKS.map(cleanObj);
+  downloadJSON({ items: cleaned }, 'books.json');
+  toast('✅ تم تصدير books.json', 'success');
+}
+
+function exportSeries(){
+  if (SERIES.length === 0) { toast('لا توجد موسوعات للتصدير', 'warn'); return; }
+  const cleaned = SERIES.map(cleanObj);
+  downloadJSON({ items: cleaned }, 'series.json');
+  toast('✅ تم تصدير series.json', 'success');
 }
 
 function importBooks(event){
@@ -765,20 +920,48 @@ function importBooks(event){
       const data = JSON.parse(e.target.result);
       const items = Array.isArray(data) ? data : (data.items || []);
       if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على كتب');
-
-      const mode = confirm(`الملف يحتوي على ${items.length} كتاباً.\n\nهل تريد:\n• موافق = استبدال القائمة الحالية (${BOOKS.length} كتاب)\n• إلغاء = دمج (إضافة) إلى القائمة الحالية`);
-
+      const mode = confirm(`الملف يحتوي على ${items.length} كتاباً.\n\n• موافق = استبدال الكتب الحالية (${BOOKS.length})\n• إلغاء = دمج (إضافة) للكتب الحالية`);
       if (mode) {
         BOOKS = items;
+        toast(`✅ استبدال: ${items.length} كتاباً`, 'success');
       } else {
-        const existingIds = new Set(BOOKS.map(b => b.id));
-        const newItems = items.filter(b => !existingIds.has(b.id));
-        BOOKS = [...BOOKS, ...newItems];
-        toast(`تم دمج ${newItems.length} كتاباً جديداً`, 'success');
+        const existing = new Set(BOOKS.map(b => b.id));
+        const fresh = items.filter(b => !existing.has(b.id));
+        BOOKS = [...BOOKS, ...fresh];
+        toast(`تم دمج ${fresh.length} كتاباً جديداً`, 'success');
       }
-      saveDraft();
+      saveBooksDraft();
       render();
-      if (mode) toast(`✅ تم الاستبدال: ${items.length} كتاباً`, 'success');
+    } catch(err) {
+      alert('❌ فشل الاستيراد:\n' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function importSeries(event){
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const items = Array.isArray(data) ? data : (data.items || []);
+      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على موسوعات');
+      const mode = confirm(`الملف يحتوي على ${items.length} موسوعة.\n\n• موافق = استبدال (${SERIES.length})\n• إلغاء = دمج`);
+      if (mode) {
+        SERIES = items.filter(s => s && s.id && s.name);
+      } else {
+        const existing = new Set(SERIES.map(s => s.id));
+        const fresh = items.filter(s => s && s.id && s.name && !existing.has(s.id));
+        SERIES = [...SERIES, ...fresh];
+      }
+      saveSeriesDraft();
+      populateSelects();
+      render();
+      renderSeriesList();
+      toast('✅ تم استيراد الموسوعات', 'success');
     } catch(err) {
       alert('❌ فشل الاستيراد:\n' + err.message);
     }
@@ -788,8 +971,9 @@ function importBooks(event){
 }
 
 function resetToServer(){
-  if (!confirm('سيتم حذف المسودة المحلية وتحميل النسخة من الخادم.\n\nأي تعديلات لم تُصدَّر ستفقد.\n\nمتابعة؟')) return;
+  if (!confirm('سيتم حذف كل المسودات المحلية (كتب + موسوعات) وتحميل النسخة من الخادم.\n\nأي تعديلات لم تُصدَّر ستفقد.\n\nمتابعة؟')) return;
   localStorage.removeItem(DRAFT_KEY);
+  localStorage.removeItem(SERIES_DRAFT_KEY);
   location.reload();
 }
 
@@ -798,10 +982,7 @@ function resetToServer(){
    ================================================================ */
 function debouncedRender(){
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    resetPagination();
-    renderBookList();
-  }, 250);
+  searchTimer = setTimeout(() => { resetPagination(); renderBookList(); }, 250);
 }
 
 init();
