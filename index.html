@@ -43,21 +43,19 @@ a{color:inherit;text-decoration:none;transition:color var(--tr)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .container{width:min(1240px,94%);margin-inline:auto}
 
-/* الترويسة (بدون نص) */
 .site-head{background-image:url('header-bg.jpg');background-size:cover;background-position:center top;background-repeat:no-repeat;position:relative;height:250px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
 .date-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);color:var(--accent-light);padding:2px 0;font-size:9.5px;border-top:none;z-index:10}
 .date-strip .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
-/* أزرار المفضلة والوضع الليلي (بجوار بعضهما) */
+/* الأزرار العلوية (أفقية الآن) */
 .head-actions{position:absolute;top:15px;left:15px;display:flex;flex-direction:row;gap:8px;z-index:10;align-items:center}
-.head-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;width:max-content}
+.head-btn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;width:max-content}
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .head-btn{background:rgba(0,0,0,0.4);color:var(--ink);border-color:rgba(255,255,255,0.1)}
-.head-btn .fav-cnt{background:var(--accent);color:#212529;font-size:12px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-grid;place-items:center;padding:0 4px}
+.head-btn .fav-cnt{background:var(--accent);color:#212529;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;padding:0 4px}
 
-/* النص المتحرك */
 .moving-text-bar{background:var(--primary-dark);padding:6px 0;overflow:hidden;position:relative;display:flex;align-items:center;border-bottom:1px solid rgba(0,0,0,.2)}
 .moving-text-content{display:flex;white-space:nowrap;width:max-content;animation:scrollLeftToRight 45s linear infinite;animation-delay:2s}
 .moving-text-content span{font-family:'Amiri',serif;font-size:13px;color:#ffffff;padding-inline-end:60px}
@@ -120,7 +118,6 @@ main{flex:1;padding:22px 0 60px}
 .sec-title::before{content:"";display:block;width:4px;height:24px;background:var(--accent);border-radius:2px}
 [data-theme="dark"] .sec-title{color:var(--accent)}
 
-/* تصغير المربع الترحيبي */
 .hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;text-align:center}
 .hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px;margin-inline:auto}
 .hero .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);position:relative;z-index:1}
@@ -132,7 +129,6 @@ main{flex:1;padding:22px 0 60px}
 .random-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#212529;padding:6px 14px;border-radius:20px;font-weight:800;font-size:12px;margin-top:12px;cursor:pointer;transition:all .2s}
 .random-btn:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.2)}
 
-/* تصغير متابعة القراءة */
 .continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr)}
 .continue-reading:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:14px;color:var(--primary-dark);margin-bottom:2px}
@@ -151,8 +147,6 @@ main{flex:1;padding:22px 0 60px}
 [data-theme="dark"] .view-toggle button.active{color:#212529}
 
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-
-/* تصغير الكتب في الشاشة الرئيسية */
 .compact-books{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:26px}
 .compact-books .book-card .info{padding:6px 8px}
 .compact-books .book-card .title{font-size:11px;line-height:1.3}
@@ -275,6 +269,13 @@ main{flex:1;padding:22px 0 60px}
 .empty-box{background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;color:var(--muted)}
 .empty-box .ef-icon{width:64px;height:64px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;margin:0 auto 14px;font-size:28px}
 
+.reader-wrap{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;flex-direction:column}
+.reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+[data-theme="dark"] .reader-header h1{color:var(--accent)}
+.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1;transition:filter .3s}
+.reader-iframe.dark-pdf{filter:invert(1) hue-rotate(180deg);background:#000}
+
 .about-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);font-size:14.5px;line-height:2;color:var(--ink-2)}
 .about-box p{margin-bottom:14px}
 .about-box strong{color:var(--primary-dark);font-weight:700}
@@ -359,8 +360,8 @@ textarea.form-control{resize:vertical;min-height:100px}
 
 @media(max-width:768px){
   .site-head{height:160px;background-position:center top}
-  .head-actions{top:5px;left:5px;gap:4px}
-  .head-btn{padding:3px 6px;font-size:10px}
+  .head-actions{top:8px;left:8px;gap:6px}
+  .head-btn{padding:3px 8px;font-size:10px}
   .head-btn .txt{display:none}
   .date-strip{font-size:8px;padding:2px 0}
   .date-strip .container{justify-content:space-between;gap:10px;padding:0 10px}
@@ -411,10 +412,8 @@ textarea.form-control{resize:vertical;min-height:100px}
 
 <header class="site-head">
   <div class="head-actions">
-    <a href="#/favorites" class="head-btn">
-      <span class="fav-cnt" id="favCountTop">0</span> <span class="txt">المفضلة</span>
-    </a>
-    <button class="head-btn" id="themeBtn">🌙 <span class="txt" id="themeText">ليلي</span></button>
+    <a href="#/favorites" class="head-btn"><span class="fav-cnt" id="favCountTop">0</span> <span class="txt">المفضلة</span> ⭐</a>
+    <button class="head-btn" id="themeBtn"><span class="txt" id="themeText">ليلي</span> 🌙</button>
   </div>
   <div class="date-strip"><div class="container"><span><strong id="clock">—</strong></span><span><strong id="gregDate">—</strong></span></div></div>
 </header>
@@ -633,8 +632,8 @@ const htmlEl = document.documentElement;
 const themeBtn = document.getElementById("themeBtn");
 const themeText = document.getElementById("themeText");
 function setTheme(t){
-  if(t==="dark"){ htmlEl.setAttribute("data-theme","dark"); themeText.textContent="نهاري"; themeBtn.firstChild.textContent="☀️ "; }
-  else { htmlEl.removeAttribute("data-theme"); themeText.textContent="ليلي"; themeBtn.firstChild.textContent="🌙 "; }
+  if(t==="dark"){ htmlEl.setAttribute("data-theme","dark"); themeText.textContent="نهاري"; themeBtn.lastChild.textContent=" ☀️"; }
+  else { htmlEl.removeAttribute("data-theme"); themeText.textContent="ليلي"; themeBtn.lastChild.textContent=" 🌙"; }
   try{ localStorage.setItem("alsh_theme", t); }catch(e){}
 }
 try{ if(localStorage.getItem("alsh_theme")==="dark") setTheme("dark"); }catch(e){}
@@ -663,7 +662,6 @@ function buildSidebar(){
     ${activeCats.map(c=>`<li><a href="#/category/${c.id}" onclick="closeSidebar()">${esc(c.name)} <span class="side-cnt">${countIn(c.id)}</span></a></li>`).join("")}
   `;
   document.getElementById("sideSeries").innerHTML = SERIES.map(s=>`<li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>`).join("");
-  // تم إزالة قسم المؤلفين بالكامل
 }
 
 window.addEventListener("hashchange", router);
@@ -746,8 +744,7 @@ function catCardHtml(c){
 }
 
 function renderHome(){
-  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0,12);
-  const top3 = latest.slice(0, 3); // عرض 3 كتب فقط
+  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0, 3);
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
@@ -761,10 +758,10 @@ function renderHome(){
     ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div><div class="cr-icon">📖</div></a>`:""}
     
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-      <div class="sec-title" style="margin-bottom:0;">أحدث الإصدارات</div>
-      <a href="#/latest" style="color:var(--primary); font-size:13px; font-weight:700; text-decoration:underline;">للمزيد</a>
+      <div class="sec-title" style="margin-bottom:0;"><span>أحدث الإصدارات</span></div>
+      <a href="#/latest" style="font-size:13px; font-weight:700; color:var(--primary); text-decoration:underline;">للمزيد ←</a>
     </div>
-    ${top3.length?`<div class="compact-books">${top3.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
+    ${latest.length?`<div class="compact-books">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
     
     ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
     <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${activeCats.map(catCardHtml).join("")}</div>
@@ -772,10 +769,10 @@ function renderHome(){
 }
 
 function renderLatestPage(){
-  state.cat="all"; state.author="all"; state.series="all"; state.q="";
-  state.sort = "year-desc";
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div><div class="sec-title">أحدث الإصدارات</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
-  bindToolbar(); renderList();
+  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0));
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
+  <div class="sec-title">أحدث الإصدارات</div>
+  ${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}`;
 }
 
 window.goToRandomBook = () => {
@@ -824,12 +821,12 @@ function renderAllAuthors(){
 
 function renderAuthor(id){
   const a = getAuthor(id);
-  if(!a){ location.hash = "#/home"; return; }
+  if(!a){ location.hash = "#/authors"; return; }
   state.author = id; state.cat = "all"; state.series = "all"; state.q = "";
   const count = countByAuthor(id);
   const imgBig = a.img ? `<img src="${a.img}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
   const fallbackBig = `<div class="author-avatar-big" style="display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header">${imgBig}${fallbackBig}<h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header">${imgBig}${fallbackBig}<h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
   if(count){ bindToolbar(); renderList(); }
 }
 
@@ -918,14 +915,36 @@ function renderFavorites(){
 function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
-  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF."); location.hash = "#/book/" + id; return; }
+  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
+  
   let rawUrl = "";
-  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; }
-  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; }
+  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
+  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
   else { rawUrl = b.id + ".pdf"; }
-  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) { rawUrl = FILES_BASE + rawUrl; }
-  window.open(rawUrl, '_blank');
-  location.hash = "#/book/" + b.id;
+
+  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
+     rawUrl = FILES_BASE + rawUrl;
+  }
+  
+  let viewerUrl = "";
+  // استخدام Google Docs Viewer للروابط الخارجية (GitHub) لتجاوز التحميل الإجباري
+  if (rawUrl.startsWith("http")) {
+     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
+  } else {
+     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  }
+
+  app.innerHTML = `
+    <div class="reader-wrap">
+      <div class="reader-header">
+        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
+        <h1>${esc(b.t)}</h1>
+        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
+        ${favBtnHtml("book",b.id)}
+      </div>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
+    </div>
+  `;
 }
 
 function renderMediaLibrary(type){
@@ -1018,7 +1037,7 @@ const searchTypeSel = document.getElementById("searchType");
 let timer;
 if(searchTypeSel) searchTypeSel.value = state.searchType;
 
-function isListPage(){ const h = location.hash || ""; return h==="#/library" || h==="#/latest" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/"); }
+function isListPage(){ const h = location.hash || ""; return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/") || h==="#/latest"; }
 
 function showHistory(){
   if(!SEARCH_HISTORY.length){ sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث</li>`; sug.classList.add("show"); return; }
