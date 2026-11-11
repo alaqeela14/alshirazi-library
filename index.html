@@ -689,11 +689,25 @@ function jsonToBook(item){
 async function loadJsonFile(path){
   try{
     const res = await fetch(path + "?t=" + Date.now());
-    if(!res.ok) return [];
-    const json = await res.json();
-    if(!json.items || !Array.isArray(json.items)) return [];
-    return json.items.map(item => jsonToBook(item)).filter(book => book !== null); 
-  }catch(e){ return []; }
+    if(!res.ok) {
+       alert("خطأ: لم يتم العثور على الملف " + path);
+       return [];
+    }
+    const text = await res.text();
+    const json = JSON.parse(text); 
+    if(!json.items || !Array.isArray(json.items)) {
+       alert("خطأ: الملف لا يحتوي على قائمة الكتب (items)");
+       return [];
+    }
+    const mapped = json.items.map(item => jsonToBook(item)).filter(book => book !== null);
+    if(mapped.length === 0 && json.items.length > 0) {
+       alert("تم العثور على كتب في الملف، ولكن تم استبعادها جميعاً بسبب نقص الروابط.");
+    }
+    return mapped; 
+  }catch(e){ 
+    alert("يوجد خطأ برمجي في ملف books.json. التفاصيل:\n" + e.message); 
+    return []; 
+  }
 }
 
 async function loadAllJsonBooks(){
