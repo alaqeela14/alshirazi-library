@@ -2439,19 +2439,6 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/187.doc"
     },
     {
-      "id": "book-188",
-      "title": "مناسك الحج",
-      "author": "shirazi-m",
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/188.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/188.doc"
-    },
-    {
       "id": "book-189",
       "title": "من فقه الزهراء عليها السلام ــ الجزء الاول",
       "author": "shirazi-m",
@@ -3536,18 +3523,6 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/272.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/272.doc"
-    },
-    {
-      "id": "book-273",
-      "title": "بيان التجويد",
-      "author": "shirazi-m",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc"
     },
     {
       "id": "book-275",
