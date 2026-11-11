@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "id": "book-530170-wop",
+      "title": "الدعاء والزيارة",
+      "author": "shirazi-m",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/dua-wa-ziyara.pdf"
+    },
+    {
+      "id": "book-512363-oeb",
+      "title": "شرح الصحيفة السجادية",
+      "author": "shirazi-m",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/sharh-sahifa-sajjadiyya.pdf"
+    },
+    {
       "id": "book-001",
       "title": "من حياة الرسول الاعظم صلى الله عليه واله",
       "author": "shirazi-m",
