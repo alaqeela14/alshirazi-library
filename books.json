@@ -2455,7 +2455,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/189.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/189.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/189.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-190",
@@ -2468,7 +2469,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/190.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/190.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/190.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-191",
@@ -2481,7 +2483,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-192",
@@ -2494,7 +2497,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/192.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/192.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/192.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-193",
@@ -2507,7 +2511,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-194",
@@ -2520,7 +2525,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/194.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/194.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/194.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-195",
@@ -2533,7 +2539,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/195.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/195.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/195.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-196",
@@ -3547,7 +3554,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc",
+      "series": "tabyin-quran"
     },
     {
       "id": "book-274",
@@ -3560,7 +3568,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.doc",
+      "series": "tabyin-quran"
     },
     {
       "id": "book-275",
@@ -3573,7 +3582,8 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/275.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/275.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/275.doc",
+      "series": "tabyin-quran"
     },
     {
       "id": "book-276",
@@ -4821,8 +4831,7 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/371.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/371.doc",
-      "series": "kids-curriculum"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/371.doc"
     },
     {
       "id": "book-372",
