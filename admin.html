@@ -151,7 +151,7 @@ input,select,textarea{font-family:inherit}
 <header class="admin-header">
   <div class="container">
     <h1>⚙️ لوحة التحكم — مكتبة آل الشيرازي</h1>
-    <p>عدّل الكتب والموسوعات ثم انشر مباشرة إلى GitHub.</p>
+    <p>عدّل الكتب والتصنيفات والموسوعات ثم انشر مباشرة إلى GitHub.</p>
   </div>
 </header>
 
@@ -169,6 +169,7 @@ input,select,textarea{font-family:inherit}
     <button class="btn btn-publish" id="publishAllBtn" onclick="publishAll()">🚀 نشر الكل إلى GitHub</button>
     <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
     <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
+    <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
     <label class="btn btn-outline">
       📁 استيراد books.json
       <input type="file" accept=".json,application/json" onchange="importBooks(event)" style="display:none">
@@ -176,6 +177,10 @@ input,select,textarea{font-family:inherit}
     <label class="btn btn-outline">
       📁 استيراد series.json
       <input type="file" accept=".json,application/json" onchange="importSeries(event)" style="display:none">
+    </label>
+    <label class="btn btn-outline">
+      📁 استيراد categories.json
+      <input type="file" accept=".json,application/json" onchange="importCategories(event)" style="display:none">
     </label>
   </div>
 
@@ -190,9 +195,9 @@ input,select,textarea{font-family:inherit}
       <br><strong>الأمان:</strong> الرمز يُخزَّن في متصفحك فقط ولا يُرسَل لأي مكان سوى GitHub.
     </p>
     <div class="form-grid">
-      <div class="ff"><label>صاحب المستودع (Owner)</label><input type="text" id="gh-owner" value="alaqeela14" placeholder="alaqeela14"></div>
-      <div class="ff"><label>اسم المستودع (Repo)</label><input type="text" id="gh-repo" value="alshirazi-library" placeholder="alshirazi-library"></div>
-      <div class="ff"><label>الفرع (Branch)</label><input type="text" id="gh-branch" value="main" placeholder="main"></div>
+      <div class="ff"><label>صاحب المستودع (Owner)</label><input type="text" id="gh-owner" value="alaqeela14"></div>
+      <div class="ff"><label>اسم المستودع (Repo)</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
+      <div class="ff"><label>الفرع (Branch)</label><input type="text" id="gh-branch" value="main"></div>
       <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."><div class="hint">يبدأ بـ github_pat_ — لن يُعرض بعد الحفظ</div></div>
     </div>
     <div class="form-actions">
@@ -203,29 +208,31 @@ input,select,textarea{font-family:inherit}
     <div id="ghTestResult" style="margin-top:10px; font-size:13px;"></div>
   </div>
 
-  <div class="add-form" id="addForm">
-    <h3>➕ إضافة كتاب جديد</h3>
-    <div class="form-grid">
-      <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="new-title" placeholder="مثال: من حياة الرسول الأعظم"></div>
-      <div class="ff"><label>المؤلف *</label><select id="new-author"></select></div>
-      <div class="ff"><label>التصنيف *</label><select id="new-cat"></select></div>
-      <div class="ff"><label>الموسوعة (اختياري)</label><select id="new-series"><option value="">— بدون —</option></select></div>
-      <div class="ff"><label>السنة الهجرية</label><input type="number" id="new-year" value="1420"></div>
-      <div class="ff"><label>عدد الصفحات</label><input type="number" id="new-pages" placeholder="اختياري"></div>
-      <div class="ff full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="new-cover" placeholder="https://i.ibb.co/..."><div class="hint">ارفع الصورة إلى ImgBB أو GitHub ثم الصق الرابط المباشر</div></div>
-      <div class="ff full"><label>رابط PDF</label><input type="url" id="new-pdf" placeholder="https://github.com/..."></div>
-      <div class="ff full"><label>رابط Word</label><input type="url" id="new-word" placeholder="https://github.com/..."></div>
-      <div class="ff full"><label>وصف الكتاب</label><textarea id="new-desc" placeholder="نبذة قصيرة..."></textarea></div>
+  <!-- ================= إدارة التصنيفات ================= -->
+  <div class="section-toggle" id="catToggle" onclick="toggleSection('cat')">
+    <h3>🏷️ إدارة التصنيفات (<span id="categoriesCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="catContent">
+    <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
+      التصنيفات هي الأقسام الرئيسية التي تظهر في القائمة الجانبية للموقع. عند حذف تصنيف، تنتقل كتبه تلقائياً إلى «أخرى».
+      <br><strong>تنبيه:</strong> معرّف التصنيف (ID) لا يمكن تعديله بعد الإنشاء، لأنه مرتبط بالكتب.
+    </p>
+    <div class="add-form open" style="border:2px solid var(--green); margin-bottom:14px">
+      <h3 style="color:var(--green)">➕ إضافة تصنيف جديد</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input" placeholder="مثال: أدعية وأذكار"></div>
+        <div class="ff"><label>المعرّف (ID) — إنجليزي بدون مسافات *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"><div class="hint">حروف إنجليزية صغيرة وأرقام وشرطة فقط</div></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="clearCategoryForm()">مسح</button>
+        <button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة التصنيف</button>
+      </div>
     </div>
-    <div class="form-actions">
-      <button class="btn btn-outline" onclick="toggleAddForm()">إلغاء</button>
-      <button class="btn btn-primary" onclick="addNewBook()">➕ إضافة</button>
-    </div>
+    <div class="series-list" id="categoriesList"></div>
   </div>
 
-  <div class="stats-bar" id="statsBar"></div>
-  <div class="health-panel" id="healthPanel"></div>
-
+  <!-- ================= إدارة الموسوعات ================= -->
   <div class="section-toggle" id="seriesToggle" onclick="toggleSection('series')">
     <h3>📚 إدارة الموسوعات (<span id="seriesCountLabel">0</span>)</h3>
     <span class="arrow">▼</span>
@@ -241,7 +248,7 @@ input,select,textarea{font-family:inherit}
         <div class="ff"><label>المعرّف (ID) — إنجليزي بدون مسافات *</label><input type="text" id="new-series-id" placeholder="akhlaq-encyclopedia"><div class="hint">حروف إنجليزية صغيرة وأرقام وشرطة فقط</div></div>
         <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
         <div class="ff full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="new-series-cover" placeholder="https://i.ibb.co/..."></div>
-        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc" placeholder="نبذة قصيرة عن الموسوعة..."></textarea></div>
+        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc" placeholder="نبذة قصيرة..."></textarea></div>
       </div>
       <div class="form-actions">
         <button class="btn btn-outline" onclick="clearSeriesForm()">مسح</button>
@@ -250,6 +257,30 @@ input,select,textarea{font-family:inherit}
     </div>
     <div class="series-list" id="seriesList"></div>
   </div>
+
+  <!-- ================= نموذج إضافة كتاب ================= -->
+  <div class="add-form" id="addForm">
+    <h3>➕ إضافة كتاب جديد</h3>
+    <div class="form-grid">
+      <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="new-title" placeholder="مثال: من حياة الرسول الأعظم"></div>
+      <div class="ff"><label>المؤلف *</label><select id="new-author"></select></div>
+      <div class="ff"><label>التصنيف *</label><select id="new-cat"></select></div>
+      <div class="ff"><label>الموسوعة (اختياري)</label><select id="new-series"><option value="">— بدون —</option></select></div>
+      <div class="ff"><label>السنة الهجرية</label><input type="number" id="new-year" value="1420"></div>
+      <div class="ff"><label>عدد الصفحات</label><input type="number" id="new-pages" placeholder="اختياري"></div>
+      <div class="ff full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="new-cover" placeholder="https://i.ibb.co/..."></div>
+      <div class="ff full"><label>رابط PDF</label><input type="url" id="new-pdf" placeholder="https://github.com/..."></div>
+      <div class="ff full"><label>رابط Word</label><input type="url" id="new-word" placeholder="https://github.com/..."></div>
+      <div class="ff full"><label>وصف الكتاب</label><textarea id="new-desc" placeholder="نبذة قصيرة..."></textarea></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="toggleAddForm()">إلغاء</button>
+      <button class="btn btn-primary" onclick="addNewBook()">➕ إضافة</button>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="statsBar"></div>
+  <div class="health-panel" id="healthPanel"></div>
 
   <div class="filters">
     <input type="search" id="searchInput" placeholder="🔍 ابحث بالعنوان أو المؤلف أو ID..." oninput="debouncedRender()">
@@ -280,6 +311,7 @@ input,select,textarea{font-family:inherit}
   </div>
 </footer>
 
+<!-- ============ Modal تعديل الكتاب ============ -->
 <div class="modal-overlay" id="editModal">
   <div class="modal">
     <div class="modal-head">
@@ -308,6 +340,7 @@ input,select,textarea{font-family:inherit}
   </div>
 </div>
 
+<!-- ============ Modal تعديل الموسوعة ============ -->
 <div class="modal-overlay" id="editSeriesModal">
   <div class="modal">
     <div class="modal-head">
@@ -330,6 +363,26 @@ input,select,textarea{font-family:inherit}
   </div>
 </div>
 
+<!-- ============ Modal تعديل التصنيف ============ -->
+<div class="modal-overlay" id="editCategoryModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>✏️ تعديل التصنيف</h3>
+      <button class="modal-close" onclick="closeEditCategory()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="ff full"><label>المعرّف (ID) — للقراءة فقط</label><input type="text" id="edit-cat-id-display" disabled style="background:#e5ddd0"></div>
+        <div class="ff full"><label>اسم التصنيف *</label><input type="text" id="edit-cat-name-input"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeEditCategory()">إلغاء</button>
+      <button class="btn btn-primary" onclick="saveCategoryEdit()">💾 حفظ التعديلات</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -348,12 +401,15 @@ let SERIES = [];
 let BOOKS = [];
 let hasDraft = false;
 let hasSeriesDraft = false;
+let hasCatsDraft = false;
 let editingId = null;
 let editingSeriesId = null;
+let editingCategoryId = null;
 let shownCount = 50;
 const PAGE_SIZE = 50;
 const DRAFT_KEY = 'admin_books_draft_v1';
 const SERIES_DRAFT_KEY = 'admin_series_draft_v1';
+const CATS_DRAFT_KEY = 'admin_cats_draft_v1';
 const GH_KEY = 'admin_github_settings_v1';
 let searchTimer = null;
 
@@ -362,6 +418,7 @@ const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّ�
 const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
 const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
 const countBooksInSeries = sid => BOOKS.filter(b => b.series === sid).length;
+const countBooksInCat = cid => BOOKS.filter(b => b.category === cid).length;
 
 function toast(msg, type='info'){
   const t = document.getElementById('toast');
@@ -380,10 +437,7 @@ function showPublishBanner(msg, isError){
 }
 
 /* ========== إعدادات GitHub ========== */
-function getGitHubSettings(){
-  try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); }
-  catch(e) { return {}; }
-}
+function getGitHubSettings(){ try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); } catch(e) { return {}; } }
 
 function saveGitHubSettings(){
   const owner = document.getElementById('gh-owner').value.trim();
@@ -393,8 +447,7 @@ function saveGitHubSettings(){
   if (!owner || !repo) { toast('املأ صاحب المستودع واسمه', 'error'); return; }
   if (!token && !getGitHubSettings().token) { toast('أدخل رمز GitHub', 'error'); return; }
   const settings = { owner, repo, branch };
-  if (token) settings.token = token;
-  else settings.token = getGitHubSettings().token;
+  settings.token = token || getGitHubSettings().token;
   localStorage.setItem(GH_KEY, JSON.stringify(settings));
   updateTokenBadge();
   toast('✅ تم حفظ إعدادات GitHub', 'success');
@@ -446,7 +499,7 @@ async function testGitHub(){
   }
 }
 
-/* ========== النشر إلى GitHub ========== */
+/* ========== النشر ========== */
 function toBase64UTF8(str) {
   const bytes = new TextEncoder().encode(str);
   let binary = '';
@@ -456,9 +509,7 @@ function toBase64UTF8(str) {
 
 async function publishFileToGitHub(fileName, data){
   const s = getGitHubSettings();
-  if (!s.token || !s.owner || !s.repo) {
-    throw new Error('إعدادات GitHub غير مكتملة. افتح قسم "إعدادات النشر التلقائي" وأدخل الرمز.');
-  }
+  if (!s.token || !s.owner || !s.repo) throw new Error('إعدادات GitHub غير مكتملة');
   const branch = s.branch || 'main';
   const apiUrl = `https://api.github.com/repos/${s.owner}/${s.repo}/contents/${fileName}`;
   const headers = {
@@ -470,32 +521,21 @@ async function publishFileToGitHub(fileName, data){
   let sha = null;
   try {
     const getRes = await fetch(`${apiUrl}?ref=${branch}`, { headers });
-    if (getRes.ok) {
-      const fileData = await getRes.json();
-      sha = fileData.sha;
-    } else if (getRes.status !== 404) {
-      throw new Error('فشل قراءة الملف الحالي: HTTP ' + getRes.status);
-    }
-  } catch(e) {
-    if (!e.message.includes('404')) throw e;
-  }
+    if (getRes.ok) { const fd = await getRes.json(); sha = fd.sha; }
+    else if (getRes.status !== 404) throw new Error('HTTP ' + getRes.status);
+  } catch(e) { if (!e.message.includes('404')) throw e; }
 
-  const content = JSON.stringify(data, null, 2);
   const body = {
-    message: `تحديث ${fileName} من لوحة التحكم — ${new Date().toLocaleString('ar-EG')}`,
-    content: toBase64UTF8(content),
+    message: `تحديث ${fileName} — ${new Date().toLocaleString('ar-EG')}`,
+    content: toBase64UTF8(JSON.stringify(data, null, 2)),
     branch: branch
   };
   if (sha) body.sha = sha;
 
-  const putRes = await fetch(apiUrl, {
-    method: 'PUT',
-    headers: headers,
-    body: JSON.stringify(body)
-  });
+  const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
   if (!putRes.ok) {
     const errData = await putRes.json().catch(() => ({}));
-    throw new Error('فشل النشر: ' + (errData.message || 'HTTP ' + putRes.status));
+    throw new Error(errData.message || 'HTTP ' + putRes.status);
   }
   return await putRes.json();
 }
@@ -503,7 +543,7 @@ async function publishFileToGitHub(fileName, data){
 async function publishAll(){
   const s = getGitHubSettings();
   if (!s.token || !s.owner || !s.repo) {
-    showPublishBanner('⚠️ يجب إعداد رمز GitHub أولاً. افتح قسم "إعدادات النشر التلقائي".', true);
+    showPublishBanner('⚠️ يجب إعداد رمز GitHub أولاً.', true);
     document.getElementById('ghToggle').scrollIntoView({behavior:'smooth'});
     return;
   }
@@ -511,25 +551,25 @@ async function publishAll(){
 
   const btn = document.getElementById('publishAllBtn');
   btn.disabled = true;
-  const originalText = btn.textContent;
+  const orig = btn.textContent;
   btn.textContent = '⏳ جارٍ النشر...';
-  showPublishBanner('⏳ جارٍ نشر الملفين إلى GitHub...', false);
+  showPublishBanner('⏳ جارٍ نشر 3 ملفات إلى GitHub...', false);
 
   try {
     await publishFileToGitHub('books.json', { items: BOOKS.map(cleanObj) });
     await publishFileToGitHub('series.json', { items: SERIES.map(cleanObj) });
-    showPublishBanner('✅ تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية. امسح الكاش لرؤية التغييرات.', false);
+    await publishFileToGitHub('categories.json', CATS.map(cleanObj));
+    showPublishBanner('✅ تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية.', false);
     toast('🚀 تم النشر إلى GitHub', 'success');
-    hasDraft = false;
-    hasSeriesDraft = false;
+    hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
     document.getElementById('draftBanner').style.display = 'none';
     updateFooter();
   } catch(e) {
     showPublishBanner('❌ فشل النشر: ' + e.message, true);
-    toast('فشل النشر — راجع التفاصيل', 'error');
+    toast('فشل النشر', 'error');
   } finally {
     btn.disabled = false;
-    btn.textContent = originalText;
+    btn.textContent = orig;
   }
 }
 
@@ -552,10 +592,7 @@ async function loadBooksFromServer() {
     if (!res.ok) throw new Error('books.json غير موجود');
     const data = await res.json();
     return data.items || [];
-  } catch(e) {
-    alert('⚠️ تعذّر تحميل books.json\n' + e.message);
-    return [];
-  }
+  } catch(e) { alert('⚠️ تعذّر تحميل books.json\n' + e.message); return []; }
 }
 
 async function loadSeriesFromServer() {
@@ -584,6 +621,7 @@ function saveDraft(key, data){
 
 function saveBooksDraft(){ saveDraft(DRAFT_KEY, BOOKS); hasDraft = true; }
 function saveSeriesDraft(){ saveDraft(SERIES_DRAFT_KEY, SERIES); hasSeriesDraft = true; }
+function saveCatsDraft(){ saveDraft(CATS_DRAFT_KEY, CATS); hasCatsDraft = true; }
 
 async function init(){
   await loadCategories();
@@ -593,30 +631,35 @@ async function init(){
 
   const booksDraft = loadDraft(DRAFT_KEY);
   const seriesDraft = loadDraft(SERIES_DRAFT_KEY);
-  const hasAnyDraft = (booksDraft && booksDraft.length > 0) || (seriesDraft && seriesDraft.length > 0);
+  const catsDraft = loadDraft(CATS_DRAFT_KEY);
+  const hasAnyDraft = (booksDraft && booksDraft.length > 0) || (seriesDraft && seriesDraft.length > 0) || (catsDraft && catsDraft.length > 0);
 
   if (hasAnyDraft) {
     if (confirm('تم العثور على مسودة سابقة.\n\nاستئناف العمل عليها؟\n\n(موافق = استئناف، إلغاء = تحميل النسخ الأصلية)')) {
       BOOKS = (booksDraft && booksDraft.length > 0) ? booksDraft : await loadBooksFromServer();
       const sFromServer = await loadSeriesFromServer();
       SERIES = (seriesDraft && seriesDraft.length > 0) ? seriesDraft : (sFromServer || []);
+      if (catsDraft && catsDraft.length > 0) CATS = catsDraft;
       hasDraft = !!(booksDraft && booksDraft.length > 0);
       hasSeriesDraft = !!(seriesDraft && seriesDraft.length > 0);
-      if (hasDraft || hasSeriesDraft) document.getElementById('draftBanner').style.display = 'flex';
+      hasCatsDraft = !!(catsDraft && catsDraft.length > 0);
+      if (hasDraft || hasSeriesDraft || hasCatsDraft) document.getElementById('draftBanner').style.display = 'flex';
     } else {
       BOOKS = await loadBooksFromServer();
       SERIES = (await loadSeriesFromServer()) || [];
       localStorage.removeItem(DRAFT_KEY);
       localStorage.removeItem(SERIES_DRAFT_KEY);
-      hasDraft = false; hasSeriesDraft = false;
+      localStorage.removeItem(CATS_DRAFT_KEY);
+      hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
     }
   } else {
     BOOKS = await loadBooksFromServer();
     SERIES = (await loadSeriesFromServer()) || [];
-    hasDraft = false; hasSeriesDraft = false;
+    hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
   }
   render();
   renderSeriesList();
+  renderCategoriesList();
 }
 
 function populateSelects(){
@@ -648,8 +691,8 @@ function renderStats(){
   const withCover = BOOKS.filter(b => b.cover).length;
   document.getElementById('statsBar').innerHTML = `
     <div class="stat-box"><strong>${total}</strong><span>كتاب</span></div>
-    <div class="stat-box"><strong>${catsUsed}/${CATS.length}</strong><span>تصنيفات</span></div>
-    <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعات</span></div>
+    <div class="stat-box"><strong>${CATS.length}</strong><span>تصنيف</span></div>
+    <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
     <div class="stat-box"><strong>${withCover}</strong><span>بغلاف</span></div>
   `;
 }
@@ -676,16 +719,18 @@ function renderHealth(){
   const missingAuthor = BOOKS.filter(b => !AUTHORS.find(a => a.id === b.author)).length;
   const missingFile = BOOKS.filter(b => !b.pdf_url && !b.word_url).length;
   const missingCover = BOOKS.filter(b => !b.cover).length;
+  const orphans = BOOKS.filter(b => b.category && !CATS.find(c => c.id === b.category)).length;
 
   const catCounts = {};
   BOOKS.forEach(b => { catCounts[b.category] = (catCounts[b.category] || 0) + 1; });
 
   let html = '<h3>🔍 الفحص الصحي</h3>';
   html += `<div class="check ${dups.size===0?'ok':'warn'}">${dups.size===0?'✅':'⚠️'} كتب مكررة: <strong>${dups.size}</strong>${dups.size>0?' — <button class="smart-btn" style="width:auto;display:inline-block;padding:3px 10px;margin:0 0 0 8px;font-size:11px" onclick="smartDeleteDuplicates()">🗑️ حذف ذكي</button>':''}</div>`;
-  html += `<div class="check ${missingSeries===0?'ok':'warn'}">${missingSeries===0?'✅':'⚠️'} بلا موسوعة (تحتاج مراجعة): <strong>${missingSeries}</strong></div>`;
+  html += `<div class="check ${missingSeries===0?'ok':'warn'}">${missingSeries===0?'✅':'⚠️'} بلا موسوعة: <strong>${missingSeries}</strong></div>`;
   html += `<div class="check ${missingAuthor===0?'ok':'error'}">${missingAuthor===0?'✅':'❌'} بمؤلف غير معروف: <strong>${missingAuthor}</strong></div>`;
   html += `<div class="check ${missingFile===0?'ok':'warn'}">${missingFile===0?'✅':'⚠️'} بلا ملف PDF/Word: <strong>${missingFile}</strong></div>`;
   html += `<div class="check ${missingCover===0?'ok':'warn'}">${missingCover===0?'✅':'⚠️'} بلا صورة غلاف: <strong>${missingCover}</strong></div>`;
+  html += `<div class="check ${orphans===0?'ok':'error'}">${orphans===0?'✅':'❌'} بتصنيف محذوف/غير موجود: <strong>${orphans}</strong></div>`;
   html += '<h3 style="margin-top:14px">📊 إحصاءات التصنيفات</h3><div class="cat-counts">';
   CATS.forEach(c => { html += `<div class="cat-count"><span>${esc(c.name)}</span><span class="cnt">${catCounts[c.id]||0}</span></div>`; });
   html += '</div>';
@@ -772,8 +817,8 @@ function loadMore(){ shownCount += PAGE_SIZE; renderBookList(); }
 function resetPagination(){ shownCount = PAGE_SIZE; }
 
 function updateFooter(){
-  const parts = [`${BOOKS.length} كتاب`, `${SERIES.length} موسوعة`];
-  if (hasDraft || hasSeriesDraft) parts.push('📝 مسودة محفوظة');
+  const parts = [`${BOOKS.length} كتاب`, `${CATS.length} تصنيف`, `${SERIES.length} موسوعة`];
+  if (hasDraft || hasSeriesDraft || hasCatsDraft) parts.push('📝 مسودة محفوظة');
   else parts.push('✅ من الخادم');
   document.getElementById('footerInfo').textContent = parts.join(' • ');
 }
@@ -875,6 +920,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (document.getElementById('editModal').classList.contains('open')) closeEdit();
     if (document.getElementById('editSeriesModal').classList.contains('open')) closeEditSeries();
+    if (document.getElementById('editCategoryModal').classList.contains('open')) closeEditCategory();
   }
 });
 
@@ -960,21 +1006,120 @@ function smartDeleteDuplicates(){
 }
 
 function toggleSection(which){
-  if (which === 'series') {
-    document.getElementById('seriesToggle').classList.toggle('open');
-    document.getElementById('seriesContent').classList.toggle('open');
-  } else if (which === 'gh') {
-    document.getElementById('ghToggle').classList.toggle('open');
-    document.getElementById('ghContent').classList.toggle('open');
-  }
+  const t = document.getElementById(which + 'Toggle');
+  const c = document.getElementById(which + 'Content');
+  if (t && c) { t.classList.toggle('open'); c.classList.toggle('open'); }
 }
 
+/* ========== إدارة التصنيفات ========== */
+function renderCategoriesList(){
+  const list = document.getElementById('categoriesList');
+  document.getElementById('categoriesCountLabel').textContent = CATS.length;
+
+  if (CATS.length === 0) {
+    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد تصنيفات. أضف أول تصنيف من النموذج أعلاه.</div>';
+    return;
+  }
+
+  list.innerHTML = CATS.map(c => {
+    const count = countBooksInCat(c.id);
+    const isOther = c.id === 'other';
+    const deleteBtn = isOther
+      ? `<button class="book-delete" style="opacity:.4;cursor:not-allowed" title="لا يمكن حذف التصنيف الافتراضي">🔒</button>`
+      : `<button class="book-delete" onclick="deleteCategory('${esc(c.id)}')" title="حذف">🗑️</button>`;
+    return `<div class="series-item">
+      <div class="cover-preview-ph" style="width:40px;height:40px;border-radius:50%;font-size:16px">🏷️</div>
+      <div class="s-info">
+        <div class="s-name">${esc(c.name)} ${isOther ? '<span style="font-size:10px;color:var(--muted)">(افتراضي)</span>' : ''}</div>
+        <div class="s-meta"><span class="s-id">${esc(c.id)}</span></div>
+      </div>
+      <span class="s-count">${count} كتاب</span>
+      <div class="s-actions">
+        <button class="btn btn-outline btn-icon" onclick="openEditCategory('${esc(c.id)}')" title="تعديل">✏️</button>
+        ${deleteBtn}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function clearCategoryForm(){
+  document.getElementById('new-cat-name-input').value = '';
+  document.getElementById('new-cat-id-input').value = '';
+}
+
+function addNewCategory(){
+  const name = document.getElementById('new-cat-name-input').value.trim();
+  let id = document.getElementById('new-cat-id-input').value.trim().toLowerCase();
+
+  if (!name) { alert('اسم التصنيف مطلوب'); return; }
+  if (!id) { alert('المعرّف (ID) مطلوب'); return; }
+  if (!/^[a-z0-9-]+$/.test(id)) { alert('المعرّف (ID) يجب أن يحتوي فقط على: حروف إنجليزية صغيرة، أرقام، وشرطة (-)'); return; }
+  if (CATS.find(c => c.id === id)) { alert('يوجد تصنيف آخر بنفس المعرّف: ' + id); return; }
+
+  CATS.push({ id, name });
+  saveCatsDraft();
+  populateSelects();
+  renderStats(); renderCategoriesList(); updateFooter();
+  clearCategoryForm();
+  toast('✅ تمت إضافة التصنيف: ' + name, 'success');
+}
+
+function openEditCategory(id){
+  const c = CATS.find(x => x.id === id);
+  if (!c) return;
+  editingCategoryId = id;
+  document.getElementById('edit-cat-id-display').value = c.id;
+  document.getElementById('edit-cat-name-input').value = c.name;
+  document.getElementById('editCategoryModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEditCategory(){
+  editingCategoryId = null;
+  document.getElementById('editCategoryModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveCategoryEdit(){
+  if (!editingCategoryId) return;
+  const c = CATS.find(x => x.id === editingCategoryId);
+  if (!c) return;
+  const name = document.getElementById('edit-cat-name-input').value.trim();
+  if (!name) { alert('اسم التصنيف مطلوب'); return; }
+  c.name = name;
+  saveCatsDraft();
+  populateSelects(); render(); renderCategoriesList();
+  closeEditCategory();
+  toast('💾 تم حفظ تعديلات التصنيف', 'success');
+}
+
+function deleteCategory(id){
+  const c = CATS.find(x => x.id === id);
+  if (!c) return;
+  if (id === 'other') { alert('لا يمكن حذف التصنيف الافتراضي «أخرى»'); return; }
+  const count = countBooksInCat(id);
+  let msg = `حذف التصنيف: «${c.name}»\n\n`;
+  if (count > 0) msg += `⚠️ تنبيه: ${count} كتاباً تحت هذا التصنيف. ستنتقل تلقائياً إلى «أخرى».\n\n`;
+  msg += 'متابعة؟';
+  if (!confirm(msg)) return;
+
+  CATS = CATS.filter(x => x.id !== id);
+  if (count > 0) {
+    BOOKS.forEach(b => { if (b.category === id) b.category = 'other'; });
+    saveBooksDraft();
+  }
+  saveCatsDraft();
+  populateSelects(); render(); renderCategoriesList();
+  toast('🗑️ تم حذف التصنيف' + (count > 0 ? ` ونقل ${count} كتاباً إلى «أخرى»` : ''), 'warn');
+}
+
+/* ========== إدارة الموسوعات ========== */
 function renderSeriesList(){
   const list = document.getElementById('seriesList');
   document.getElementById('seriesCountLabel').textContent = SERIES.length;
 
   if (SERIES.length === 0) {
-    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد موسوعات. أضف أول موسوعة من النموذج أعلاه.</div>';
+    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد موسوعات.</div>';
     return;
   }
 
@@ -1081,6 +1226,7 @@ function deleteSeries(id){
   toast('🗑️ تم حذف الموسوعة' + (count > 0 ? ` وفكّ ارتباط ${count} كتاباً` : ''), 'warn');
 }
 
+/* ========== الاستيراد / التصدير ========== */
 function cleanObj(obj){
   const copy = { ...obj };
   Object.keys(copy).forEach(k => {
@@ -1109,6 +1255,12 @@ function exportSeries(){
   if (SERIES.length === 0) { toast('لا توجد موسوعات للتصدير', 'warn'); return; }
   downloadJSON({ items: SERIES.map(cleanObj) }, 'series.json');
   toast('✅ تم تصدير series.json', 'success');
+}
+
+function exportCategories(){
+  if (CATS.length === 0) { toast('لا توجد تصنيفات للتصدير', 'warn'); return; }
+  downloadJSON(CATS.map(cleanObj), 'categories.json');
+  toast('✅ تم تصدير categories.json', 'success');
 }
 
 function importBooks(event){
@@ -1157,10 +1309,35 @@ function importSeries(event){
   event.target.value = '';
 }
 
+function importCategories(event){
+  const file = event.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const items = Array.isArray(data) ? data : (data.items || []);
+      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على تصنيفات');
+      const clean = items.filter(c => c && c.id && c.name);
+      const mode = confirm(`الملف يحتوي على ${clean.length} تصنيف.\n\n• موافق = استبدال (${CATS.length})\n• إلغاء = دمج`);
+      if (mode) { CATS = clean; }
+      else {
+        const existing = new Set(CATS.map(c => c.id));
+        const fresh = clean.filter(c => !existing.has(c.id));
+        CATS = [...CATS, ...fresh];
+      }
+      saveCatsDraft(); populateSelects(); render(); renderCategoriesList();
+      toast('✅ تم استيراد التصنيفات', 'success');
+    } catch(err) { alert('❌ فشل الاستيراد:\n' + err.message); }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
 function resetToServer(){
   if (!confirm('سيتم حذف كل المسودات المحلية وتحميل النسخة من الخادم.\n\nأي تعديلات لم تُنشر ستفقد.\n\nمتابعة؟')) return;
   localStorage.removeItem(DRAFT_KEY);
   localStorage.removeItem(SERIES_DRAFT_KEY);
+  localStorage.removeItem(CATS_DRAFT_KEY);
   location.reload();
 }
 
