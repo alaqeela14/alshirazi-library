@@ -590,7 +590,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ================================================================
-// التصنيفات: تُحمّل الآن من ملف categories.json الخارجي
+// التصنيفات: تُحمّل من ملف categories.json الخارجي
 // ================================================================
 let CATS = [];
 
@@ -602,7 +602,6 @@ async function loadCategories() {
       return [];
     }
     const data = await res.json();
-    // يدعم صيغتين: {items:[...]} أو مصفوفة مباشرة [...]
     const list = Array.isArray(data) ? data : (data.items || []);
     return list
       .filter(c => c && c.id && c.name)
@@ -611,6 +610,36 @@ async function loadCategories() {
     console.error('❌ خطأ في تحميل categories.json:', e);
     alert('حدث خطأ أثناء تحميل ملف التصنيفات (categories.json).\nالتفاصيل: ' + e.message);
     return [];
+  }
+}
+// ================================================================
+
+// ================================================================
+// الموسوعات: احتياطي داخلي + تحميل من series.json
+// ================================================================
+let SERIES = [
+  {id:"taqrib-quran",name:"تقريب القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
+  {id:"tabyin-quran",name:"تبيين القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية وبيانية لآيات القرآن الكريم."},
+  {id:"kalima-encyclopedia",name:"الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."},
+  {id:"fiqh-encyclopedia",name:"الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
+  {id:"fiqh-zahra",name:"من فقه الزهراء عليها السلام",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
+];
+
+async function loadSeries() {
+  try {
+    const res = await fetch('series.json?t=' + Date.now());
+    if (!res.ok) {
+      console.warn('⚠️ series.json غير موجود — سيُستخدم الاحتياطي الداخلي.');
+      return null;
+    }
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : (data.items || []);
+    const filtered = list.filter(s => s && s.id && s.name);
+    if (filtered.length === 0) return null;
+    return filtered;
+  } catch (e) {
+    console.warn('⚠️ لم يتم تحميل series.json، سيُستخدم الاحتياطي الداخلي:', e);
+    return null;
   }
 }
 // ================================================================
@@ -625,14 +654,6 @@ const AUTHORS = [
   {id:"shirazi-me", img:"shirazi-me.jpg", name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
 ];
 
-const SERIES = [
-  {id:"taqrib-quran",name:"تقريب القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
-  {id:"tabyin-quran",name:"تبيين القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية وبيانية لآيات القرآن الكريم."},
-  {id:"kalima-encyclopedia",name:"الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."},
-  {id:"fiqh-encyclopedia",name:"الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
-  {id:"fiqh-zahra",name:"من فقه الزهراء عليها السلام",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
-];
-
 const DONATION_PROJECTS = [
   { id: 1, title: "طباعة كتاب: موسوعة الفقه", desc: "طباعة ونشر نسخ ورقية من الكتاب لتوزيعها على المكتبات والمراكز العلمية." },
   { id: 2, title: "رقمنة مخطوطات ووثائق نادرة", desc: "تصوير وفهرسة المخطوطات والوثائق وحفظها رقمياً وإتاحتها للباحثين." },
@@ -642,7 +663,6 @@ const DONATION_PROJECTS = [
   { id: 6, title: "استضافة الموقع وصيانته", desc: "تغطية تكاليف الاستضافة والدومين والصيانة التقنية السنوية." }
 ];
 
-// الآن نقرأ من ملف واحد فقط
 const BOOKS_JSON_FILES = [
   ["books.json", "all"]
 ];
@@ -653,7 +673,6 @@ let BOOKS = [];
 let AUDIOS = [];
 let VIDEOS = [];
 const app = document.getElementById("app");
-// الترتيب الافتراضي أصبح الأحدث أولاً
 const state = { view:"table", sort:"year-desc", q:"", cat:"all", author:"all", series:"all", searchType:"title" };
 
 const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -678,7 +697,7 @@ function jsonToBook(item){
   return {
     id: item.id || ("b_" + Math.random().toString(36).substr(2, 9)),
     t: item.title||"", 
-    c: item.category||"other", // التصنيف الآن يأتي من داخل الكتاب
+    c: item.category||"other",
     y: parseInt(item.year)||0, 
     pages: parseInt(item.pages)||0,
     desc: item.description||"", 
@@ -875,9 +894,15 @@ function buildSidebar(){
 window.addEventListener("hashchange", router);
 window.addEventListener("DOMContentLoaded", async ()=>{
   document.getElementById("yr").textContent = new Date().getFullYear();
-  // تحميل الكتب والتصنيفات بالتوازي (parallel) لتسريع البدء
-  const [fromJson, cats] = await Promise.all([ loadAllJsonBooks(), loadCategories() ]);
+  // تحميل الكتب + التصنيفات + الموسوعات بالتوازي (parallel) لتسريع البدء
+  const [fromJson, cats, seriesFromJson] = await Promise.all([ loadAllJsonBooks(), loadCategories(), loadSeries() ]);
   CATS = cats;
+  if (seriesFromJson && seriesFromJson.length > 0) {
+    SERIES = seriesFromJson;
+    console.log('✅ تم تحميل ' + SERIES.length + ' موسوعة من series.json');
+  } else {
+    console.log('ℹ️ استُخدم الاحتياطي الداخلي: ' + SERIES.length + ' موسوعة');
+  }
   AUDIOS = await loadAudios();
   VIDEOS = await loadVideos();
   
@@ -1329,11 +1354,9 @@ function renderReader(id){
   }
   
   let viewerUrl = "";
-  // استخدام Google Docs Viewer للروابط الخارجية (GitHub وغيرها) لتجاوز مشكلة CORS
   if (rawUrl.startsWith("http")) {
      viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
   } else {
-     // استخدام PDF.js للروابط المحلية فقط (داخل مجلد files)
      viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
   }
 
