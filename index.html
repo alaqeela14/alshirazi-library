@@ -427,7 +427,7 @@ textarea.form-control{resize:vertical;min-height:100px}
     <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
     <li><a href="#/printed" onclick="closeSidebar()">🛒 الحصول على الكتب المطبوعة</a></li>
     <li><a href="#/istifta" onclick="closeSidebar()">📝 استفتاء</a></li>
-    <li><a href="#/donate" onclick="closeSidebar()">❤️ الدعم والمساهمة</a></li>
+    <li><a href="#/donate" onclick="closeSidebar()"> ♦ الدعم والمساهمة</a></li>
     <li><a href="#/useful-links" onclick="closeSidebar()">🔗 مواقع مفيدة</a></li>
     <li><a href="#/contact" onclick="closeSidebar()">📞 تواصل معنا</a></li>
     <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>⭐ المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
@@ -872,7 +872,7 @@ function renderUsefulLinks(){
 }
 
 function renderDonate(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الدعم والمساهمة</span></div><div class="sec-title">❤️ الدعم والمساهمة</div><div style="background:var(--paper);padding:20px;border-radius:var(--radius-lg);margin-bottom:24px;border:1px solid var(--line);text-align:center;"><p style="font-size:14px;color:var(--ink-2);line-height:1.8;">ساهم في نشر علوم محمد وآله (عليهم الصلاة والسلام).</p></div><div class="donate-grid">${DONATION_PROJECTS.map(p => `<div class="donate-card"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><a href="#/contact" class="btn-donate">ساهم الآن</a></div>`).join("")}</div>`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الدعم والمساهمة</span></div><div class="sec-title"> ♦ الدعم والمساهمة</div><div style="background:var(--paper);padding:20px;border-radius:var(--radius-lg);margin-bottom:24px;border:1px solid var(--line);text-align:center;"><p style="font-size:14px;color:var(--ink-2);line-height:1.8;">ساهم في نشر علوم محمد وآله (عليهم الصلاة والسلام).</p></div><div class="donate-grid">${DONATION_PROJECTS.map(p => `<div class="donate-card"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><a href="#/contact" class="btn-donate">ساهم الآن</a></div>`).join("")}</div>`;
 }
 
 function renderFavorites(){
