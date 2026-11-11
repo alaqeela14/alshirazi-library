@@ -1,6 +1,30 @@
 {
   "items": [
     {
+      "id": "book-593966-m7j",
+      "title": "كيف أستثمر العطلة؟",
+      "author": "shirazi-me",
+      "category": "youth",
+      "year": 1447,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/invest-holiday.pdf"
+    },
+    {
+      "id": "book-539851-bpu",
+      "title": "المرأة المؤمنة",
+      "author": "shirazi-me",
+      "category": "women",
+      "year": 1447,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/al-mara-al-muminah.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/al-mara-al-muminah.docx"
+    },
+    {
       "id": "book-530170-wop",
       "title": "الدعاء والزيارة",
       "author": "shirazi-m",
