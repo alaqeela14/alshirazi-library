@@ -1,0 +1,14 @@
+[
+  {"id": "quran", "name": "القرآن وتفسيره"},
+  {"id": "ahlulbayt", "name": "أهل البيت (عليهم السلام)"},
+  {"id": "shaair", "name": "الشعائر"},
+  {"id": "fiqh", "name": "فقهية"},
+  {"id": "aqaid", "name": "عقائدية"},
+  {"id": "akhlaq", "name": "أخلاقية"},
+  {"id": "siyasah", "name": "سياسية"},
+  {"id": "ijtimaiya", "name": "إجتماعية"},
+  {"id": "women", "name": "المجتمع والنساء"},
+  {"id": "youth", "name": "الشباب"},
+  {"id": "other", "name": "أخرى"},
+  {"id": "languages", "name": "لغات أخرى"}
+]
