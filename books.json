@@ -8,7 +8,9 @@
       "formats": [
         "pdf"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/dua-wa-ziyara.pdf"
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/dua-wa-ziyara.pdf",
+      "category": "other",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/book-covers/images.4.21.jpeg"
     },
     {
       "id": "book-512363-oeb",
@@ -18,7 +20,9 @@
       "formats": [
         "pdf"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/sharh-sahifa-sajjadiyya.pdf"
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/sharh-sahifa-sajjadiyya.pdf",
+      "category": "other",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/book-covers/shr7sahedasjaddiahmhdshirazii001cover.1.jpg"
     },
     {
       "id": "book-001",
