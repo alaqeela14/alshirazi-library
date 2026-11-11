@@ -43,19 +43,19 @@ a{color:inherit;text-decoration:none;transition:color var(--tr)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .container{width:min(1240px,94%);margin-inline:auto}
 
-/* الترويسة (بدون النص الذي في التصميم) */
+/* الترويسة (بدون نص) */
 .site-head{background-image:url('header-bg.jpg');background-size:cover;background-position:center top;background-repeat:no-repeat;position:relative;height:250px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
 .date-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);color:var(--accent-light);padding:2px 0;font-size:9.5px;border-top:none;z-index:10}
 .date-strip .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .date-strip span{display:flex;align-items:center;gap:4px}
 .date-strip strong{color:#fff;font-weight:600}
 
-/* أزرار المفضلة والوضع الليلي (تراكب عمودي) */
-.head-actions{position:absolute;top:15px;left:15px;display:flex;flex-direction:column;gap:8px;z-index:10;align-items:flex-start}
-.head-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;width:max-content}
+/* أزرار المفضلة والوضع الليلي (بجوار بعضهما) */
+.head-actions{position:absolute;top:15px;left:15px;display:flex;flex-direction:row;gap:8px;z-index:10;align-items:center}
+.head-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;width:max-content}
 .head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .head-btn{background:rgba(0,0,0,0.4);color:var(--ink);border-color:rgba(255,255,255,0.1)}
-.head-btn .fav-cnt{background:var(--accent);color:#212529;font-size:9px;font-weight:800;min-width:15px;height:15px;border-radius:9px;display:inline-grid;place-items:center;padding:0 4px}
+.head-btn .fav-cnt{background:var(--accent);color:#212529;font-size:12px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:inline-grid;place-items:center;padding:0 4px}
 
 /* النص المتحرك */
 .moving-text-bar{background:var(--primary-dark);padding:6px 0;overflow:hidden;position:relative;display:flex;align-items:center;border-bottom:1px solid rgba(0,0,0,.2)}
@@ -411,10 +411,11 @@ textarea.form-control{resize:vertical;min-height:100px}
 
 <header class="site-head">
   <div class="head-actions">
-    <a href="#/favorites" class="head-btn">⭐ <span class="txt">المفضلة</span><span class="fav-cnt" id="favCountTop">0</span></a>
+    <a href="#/favorites" class="head-btn">
+      <span class="fav-cnt" id="favCountTop">0</span> <span class="txt">المفضلة</span>
+    </a>
     <button class="head-btn" id="themeBtn">🌙 <span class="txt" id="themeText">ليلي</span></button>
   </div>
-  <!-- تم إزالة النص هنا بناء على طلبك -->
   <div class="date-strip"><div class="container"><span><strong id="clock">—</strong></span><span><strong id="gregDate">—</strong></span></div></div>
 </header>
 
@@ -448,10 +449,8 @@ textarea.form-control{resize:vertical;min-height:100px}
     <li><a href="#/videos" onclick="closeSidebar()">المكتبة المرئية</a></li>
   </ul></div>
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
-  <div class="side-widget"><h4>المؤلفون</h4><ul class="side-list" id="sideAuthors"></ul></div>
   <div class="side-widget"><h4>روابط سريعة</h4><ul class="side-list">
     <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
-    <li><a href="#/authors" onclick="closeSidebar()">قائمة المؤلفين</a></li>
     <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
     <li><a href="#/printed" onclick="closeSidebar()">الحصول على الكتب المطبوعة</a></li>
     <li><a href="#/istifta" onclick="closeSidebar()">استفتاء</a></li>
@@ -664,11 +663,7 @@ function buildSidebar(){
     ${activeCats.map(c=>`<li><a href="#/category/${c.id}" onclick="closeSidebar()">${esc(c.name)} <span class="side-cnt">${countIn(c.id)}</span></a></li>`).join("")}
   `;
   document.getElementById("sideSeries").innerHTML = SERIES.map(s=>`<li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>`).join("");
-  document.getElementById("sideAuthors").innerHTML = authorsWithBooks().map(a=>{
-    const c = countByAuthor(a.id);
-    const imgHtml = a.img ? `<img src="${a.img}" class="side-avatar" onerror="this.style.display='none'">` : '';
-    return `<li><a href="#/author/${a.id}" onclick="closeSidebar()" style="display:flex;align-items:center;"><span style="display:flex;align-items:center;">${imgHtml}${esc(a.short)}</span> <span class="side-cnt">${c}</span></a></li>`;
-  }).join("");
+  // تم إزالة قسم المؤلفين بالكامل
 }
 
 window.addEventListener("hashchange", router);
@@ -689,6 +684,7 @@ function router(){
   window.scrollTo({top:0,behavior:"smooth"}); closeSidebar();
   if(route==="home") renderHome();
   else if(route==="library") renderLibrary();
+  else if(route==="latest") renderLatestPage();
   else if(route==="cats") renderAllCats();
   else if(route==="series") renderAllSeries();
   else if(route==="series-one") renderSeriesPage(decodedParam);
@@ -751,6 +747,7 @@ function catCardHtml(c){
 
 function renderHome(){
   const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0,12);
+  const top3 = latest.slice(0, 3); // عرض 3 كتب فقط
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
@@ -763,13 +760,22 @@ function renderHome(){
     </section>
     ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div><div class="cr-icon">📖</div></a>`:""}
     
-    <div class="sec-title">أحدث الإصدارات</div>
-    ${latest.length?`<div class="compact-books">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <div class="sec-title" style="margin-bottom:0;">أحدث الإصدارات</div>
+      <a href="#/latest" style="color:var(--primary); font-size:13px; font-weight:700; text-decoration:underline;">للمزيد</a>
+    </div>
+    ${top3.length?`<div class="compact-books">${top3.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
     
     ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
     <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${activeCats.map(catCardHtml).join("")}</div>
-    <div class="sec-title">المؤلفون</div><div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-bottom:26px">${authorsWithBooks().map(authorCardHtml).join("")}</div>
   `;
+}
+
+function renderLatestPage(){
+  state.cat="all"; state.author="all"; state.series="all"; state.q="";
+  state.sort = "year-desc";
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div><div class="sec-title">أحدث الإصدارات</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
+  bindToolbar(); renderList();
 }
 
 window.goToRandomBook = () => {
@@ -818,12 +824,12 @@ function renderAllAuthors(){
 
 function renderAuthor(id){
   const a = getAuthor(id);
-  if(!a){ location.hash = "#/authors"; return; }
+  if(!a){ location.hash = "#/home"; return; }
   state.author = id; state.cat = "all"; state.series = "all"; state.q = "";
   const count = countByAuthor(id);
   const imgBig = a.img ? `<img src="${a.img}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
   const fallbackBig = `<div class="author-avatar-big" style="display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header">${imgBig}${fallbackBig}<h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header">${imgBig}${fallbackBig}<h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
   if(count){ bindToolbar(); renderList(); }
 }
 
@@ -1012,7 +1018,7 @@ const searchTypeSel = document.getElementById("searchType");
 let timer;
 if(searchTypeSel) searchTypeSel.value = state.searchType;
 
-function isListPage(){ const h = location.hash || ""; return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/"); }
+function isListPage(){ const h = location.hash || ""; return h==="#/library" || h==="#/latest" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/"); }
 
 function showHistory(){
   if(!SEARCH_HISTORY.length){ sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث</li>`; sug.classList.add("show"); return; }
