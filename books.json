@@ -414,7 +414,7 @@
       "id": "book-031",
       "title": "من كرامات الاولياء",
       "author": "shirazi-m",
-      "category": "languages",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1675,7 +1675,7 @@
       "id": "book-128",
       "title": "لماذا الكوارث؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1761,19 +1761,6 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/134.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/134.doc"
-    },
-    {
-      "id": "book-135",
-      "title": "من كرامات الاولياء",
-      "author": "shirazi-m",
-      "category": "ahlulbayt",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/135.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/135.doc"
     },
     {
       "id": "book-136",
@@ -2613,19 +2600,6 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/199.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/199.doc"
-    },
-    {
-      "id": "book-200",
-      "title": "لماذا الكوارث؟",
-      "author": "shirazi-m",
-      "category": "ahlulbayt",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/200.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/200.doc"
     },
     {
       "id": "book-201",
@@ -3574,18 +3548,6 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc"
-    },
-    {
-      "id": "book-274",
-      "title": "بين المسلمين واليهود",
-      "author": "shirazi-m",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/274.doc"
     },
     {
       "id": "book-275",
