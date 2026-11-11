@@ -3545,17 +3545,15 @@
     },
     {
       "id": "book-273",
-      "title": "تبيين القرآن ج1",
+      "title": "بيان التجويد",
       "author": "shirazi-m",
-      "category": "quran",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc",
-      "series": "tabyin-quran"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/273.doc"
     },
     {
       "id": "book-274",
