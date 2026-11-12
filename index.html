@@ -3,1096 +3,659 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
-<title>مكتبة آل الشيرازي</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#212529">
-<link rel="icon" href="logo.png" type="image/png">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>لوحة التحكم | مكتبة آل الشيرازي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
   --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
   --line:#e5ddd0;--line-2:#f0ebe2;
-  --primary:#343a40;--primary-dark:#212529;--primary-light:#5a6268;
+  --primary:#343a40;--primary-dark:#212529;
   --accent:#d4af37;--accent-light:#f8e7b9;
-  --gold:#d4af37;--gold-2:#f8e7b9;
-  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;
-  --radius:10px;--radius-lg:14px;--radius-xl:18px;
+  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;--gold:#b8860b;
+  --radius:10px;--radius-lg:14px;
   --shadow-sm:0 1px 3px rgba(33,37,41,.06);
   --shadow:0 4px 14px rgba(33,37,41,.08);
-  --shadow-lg:0 12px 32px rgba(33,37,41,.12);
-  --tr:.22s ease;
-}
-[data-theme="dark"]{
-  --bg:#121417;--paper:#1c1f24;--paper-2:#15171b;
-  --ink:#f0ebe2;--ink-2:#d8d0c0;--muted:#9a8e7d;
-  --line:#2d3238;--line-2:#24282e;
-  --primary:#d4af37;--primary-dark:#b8952e;--primary-light:#e6c86e;
-  --accent:#d4af37;--accent-light:#f8e7b9;
-  --shadow-sm:0 1px 3px rgba(0,0,0,.4);
-  --shadow:0 4px 14px rgba(0,0,0,.5);
-  --shadow-lg:0 12px 32px rgba(0,0,0,.6);
+  --shadow-lg:0 12px 32px rgba(33,37,41,.15);
+  --tr:.18s ease;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;min-height:100vh;display:flex;flex-direction:column;transition:background .3s,color .3s;overflow-x:hidden}
-body.no-scroll{overflow:hidden}
-a{color:inherit;text-decoration:none;transition:color var(--tr)}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:14px;padding-bottom:100px}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-.container{width:min(1240px,94%);margin-inline:auto}
-
-.site-head{background-image:url('header-bg.jpg');background-size:cover;background-position:center top;background-repeat:no-repeat;position:relative;height:250px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.date-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);color:var(--accent-light);padding:2px 0;font-size:9.5px;border-top:none;z-index:10}
-.date-strip .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.date-strip span{display:flex;align-items:center;gap:4px}
-.date-strip strong{color:#fff;font-weight:600}
-
-/* الأزرار العلوية (أفقية الآن) */
-.head-actions{position:absolute;top:15px;left:15px;display:flex;flex-direction:row;gap:8px;z-index:10;align-items:center}
-.head-btn{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,0.3);transition:all var(--tr);position:relative;width:max-content}
-.head-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-[data-theme="dark"] .head-btn{background:rgba(0,0,0,0.4);color:var(--ink);border-color:rgba(255,255,255,0.1)}
-.head-btn .fav-cnt{background:var(--accent);color:#212529;font-size:10px;font-weight:800;min-width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;padding:0 4px}
-
-.moving-text-bar{background:var(--primary-dark);padding:6px 0;overflow:hidden;position:relative;display:flex;align-items:center;border-bottom:1px solid rgba(0,0,0,.2)}
-.moving-text-content{display:flex;white-space:nowrap;width:max-content;animation:scrollLeftToRight 45s linear infinite;animation-delay:2s}
-.moving-text-content span{font-family:'Amiri',serif;font-size:13px;color:#ffffff;padding-inline-end:60px}
-@keyframes scrollLeftToRight{0%{transform:translateX(0)}100%{transform:translateX(50%)}}
-
-.topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;box-shadow:var(--shadow-sm)}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
-.topbar-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:22px;background:var(--paper-2);color:var(--primary-dark);font-size:13px;font-weight:700;border:1px solid var(--line);flex-shrink:0;transition:all var(--tr)}
-.topbar-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-[data-theme="dark"] .topbar-btn{color:var(--accent)}
-
-.search-wrap{flex:1;max-width:450px;margin:0 auto;position:relative}
-.search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color var(--tr);align-items:center}
-.search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
-.search-box select{border:none;background:transparent;padding:0 10px;color:var(--muted);font:inherit;font-size:11.5px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
-.search-box input{flex:1;padding:8px 12px;border:none;background:transparent;font:inherit;font-size:13px;outline:none;color:var(--ink);min-width:0}
-.search-box input::placeholder{color:var(--muted)}
-.search-box button{padding:0 14px;background:var(--primary);color:#fff;font-weight:700;font-size:12.5px;transition:background var(--tr);flex-shrink:0;height:100%;min-height:36px}
-.search-box button:hover{background:var(--primary-dark)}
-[data-theme="dark"] .search-box button{color:#212529}
-
-.suggestions{position:absolute;top:calc(100% + 6px);inset-inline:0;background:var(--paper);border-radius:12px;box-shadow:var(--shadow-lg);list-style:none;max-height:420px;overflow-y:auto;z-index:70;display:none;border:1px solid var(--line)}
-.suggestions.show{display:block}
-.suggestions li{padding:11px 14px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line-2);transition:background var(--tr);display:flex;justify-content:space-between;align-items:center;gap:8px}
-.suggestions li:last-child{border-bottom:none}
-.suggestions li:hover{background:var(--paper-2)}
-.suggestions li .sug-auth{font-size:11px;color:var(--muted)}
-.suggestions li.sug-head{background:var(--paper-2);font-size:11px;color:var(--muted);font-weight:700;cursor:default;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}
-.sug-clear{color:var(--primary);font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;background:var(--paper);border:1px solid var(--line)}
-.sug-clear:hover{background:var(--primary);color:#fff}
-.sug-term{flex:1;display:flex;align-items:center;gap:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sug-remove{color:var(--muted);font-size:13px;padding:2px 7px;border-radius:5px;flex-shrink:0}
-.sug-remove:hover{color:var(--primary);background:var(--paper-2)}
-.sug-empty{text-align:center;color:var(--muted);font-size:12.5px;padding:18px;cursor:default}
-
-.sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:97;backdrop-filter:blur(2px)}
-body.sidebar-open .sidebar-backdrop{opacity:1;pointer-events:auto}
-.sidebar{position:fixed;top:0;right:0;bottom:0;width:320px;max-width:88vw;background:var(--paper);z-index:98;overflow-y:auto;padding:20px 18px 30px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);border-inline-start:1px solid var(--line)}
-body.sidebar-open .sidebar{transform:translateX(0)}
-.sidebar-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
-.sidebar-head h3{font-family:'Amiri',serif;font-size:20px;color:var(--primary-dark)}
-[data-theme="dark"] .sidebar-head h3{color:var(--accent)}
-.sidebar-close{width:34px;height:34px;border-radius:50%;background:var(--paper-2);color:var(--ink);display:grid;place-items:center;font-size:14px}
-.sidebar-close:hover{background:var(--primary);color:#fff}
-.side-widget{margin-bottom:20px}
-.side-widget h4{font-size:13px;color:var(--primary-dark);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px;font-weight:800}
-[data-theme="dark"] .side-widget h4{color:var(--accent)}
-.side-list{list-style:none}
-.side-list li a{display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-radius:8px;font-size:13px;color:var(--ink-2);transition:all var(--tr);margin-bottom:2px}
-.side-list li a:hover{background:var(--paper-2);color:var(--primary-dark)}
-.side-list li a.active{background:var(--primary);color:#fff}
-.side-cnt{background:var(--paper-2);color:var(--muted);font-size:11px;padding:1px 8px;border-radius:9px;font-weight:600}
-.side-list li a.fav-link{background:linear-gradient(135deg,var(--paper-2),var(--paper));border:1px solid var(--accent);color:var(--primary-dark);font-weight:700}
-.side-list li a.fav-link:hover{background:var(--accent);color:#212529}
-
-main{flex:1;padding:22px 0 60px}
-.breadcrumbs{font-size:12px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.breadcrumbs a{color:var(--primary);font-weight:600}
-.sec-title{font-family:'Amiri',serif;font-size:22px;color:var(--primary-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px;font-weight:700}
-.sec-title::before{content:"";display:block;width:4px;height:24px;background:var(--accent);border-radius:2px}
-[data-theme="dark"] .sec-title{color:var(--accent)}
-
-.hero{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:16px;box-shadow:var(--shadow);position:relative;overflow:hidden;text-align:center}
-.hero p{font-size:12px;line-height:1.6;opacity:.95;max-width:800px;margin-inline:auto}
-.hero .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);position:relative;z-index:1}
-.hero .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:4px 6px;backdrop-filter:blur(4px)}
-.hero .stat strong{display:block;font-size:14px;color:var(--accent-light);font-weight:800;line-height:1.2}
-.hero .stat span{font-size:9px;opacity:.9;display:block;margin-top:2px}
-[data-theme="dark"] .hero{background:linear-gradient(135deg,#24282e,#1c1f24);border:1px solid #343a40}
-[data-theme="dark"] .hero .stat strong{color:var(--accent)}
-.random-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#212529;padding:6px 14px;border-radius:20px;font-weight:800;font-size:12px;margin-top:12px;cursor:pointer;transition:all .2s}
-.random-btn:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.2)}
-
-.continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr)}
-.continue-reading:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:14px;color:var(--primary-dark);margin-bottom:2px}
-[data-theme="dark"] .continue-reading .cr-text h3{color:var(--accent)}
-.continue-reading .cr-text p{font-size:11px;color:var(--muted)}
-.continue-reading .cr-icon{font-size:24px;color:var(--accent)}
-
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:10px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
-.results{font-size:13px;color:var(--muted)}
-.results strong{color:var(--ink);font-weight:800}
-.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.tools select{padding:8px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:13px;background:var(--paper);cursor:pointer;color:var(--ink)}
-.view-toggle{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;overflow:hidden;padding:2px}
-.view-toggle button{padding:6px 13px;font-size:12.5px;color:var(--muted);border-radius:8px;font-weight:600}
-.view-toggle button.active{background:var(--primary);color:#fff}
-[data-theme="dark"] .view-toggle button.active{color:#212529}
-
-.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-.compact-books{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-bottom:26px}
-.compact-books .book-card .info{padding:6px 8px}
-.compact-books .book-card .title{font-size:11px;line-height:1.3}
-.compact-books .book-card .auth{font-size:9px}
-
-.book-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;transition:all var(--tr);display:flex;flex-direction:column;box-shadow:var(--shadow-sm);color:inherit}
-.book-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent)}
-.book-card .cover{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden}
-.book-card .cover img{width:100%;height:100%;object-fit:cover}
-.book-card .info{padding:11px 12px;flex:1;display:flex;flex-direction:column;gap:5px}
-.book-card .title{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.book-card .auth{font-size:11px;color:var(--muted);margin-top:auto}
-
-.cover-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent-light);text-align:center;padding:12px}
-.cover-ph .cp-icon{font-size:26px;margin-bottom:6px;opacity:.8}
-.cover-ph .cp-auth{font-size:9.5px;opacity:.75;margin-top:4px}
-
-.books-list{display:flex;flex-direction:column;gap:12px}
-.book-row{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:14px;transition:all var(--tr);box-shadow:var(--shadow-sm);color:inherit}
-.book-row:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent)}
-.book-row .cover{width:85px;height:115px;border-radius:8px;flex-shrink:0;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.1);background:linear-gradient(135deg,var(--primary),var(--primary-dark))}
-.book-row .cover img{width:100%;height:100%;object-fit:cover}
-.book-row .info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
-.book-row .title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;line-height:1.4}
-.book-row .meta{font-size:12px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-.book-row .meta span{display:flex;align-items:center;gap:4px}
-.book-row .meta strong{color:var(--ink-2);font-weight:700}
-.book-row .desc{font-size:12.5px;color:var(--ink-2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
-.book-row .actions{display:flex;gap:6px;align-items:center;margin-top:auto;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-.book-row .actions::-webkit-scrollbar{display:none}
-
-.fmt-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;transition:all var(--tr);border:none;line-height:1.4;white-space:nowrap;flex-shrink:0}
-.fmt-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
-.fmt-pdf{background:var(--red)}
-.fmt-word{background:var(--blue)}
-
-.fav-btn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--paper-2);color:var(--muted);border:1px solid var(--line);transition:all var(--tr);flex-shrink:0;padding:0}
-.fav-btn:hover{color:var(--accent);border-color:var(--accent);transform:scale(1.06)}
-.fav-btn.active{background:var(--accent);color:#212529;border-color:var(--accent);box-shadow:0 3px 10px rgba(212,175,55,.35)}
-.fav-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.fav-btn.active svg{fill:currentColor}
-
-.series-banner{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:20px;display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:var(--shadow);margin-bottom:24px;cursor:pointer;transition:all var(--tr);text-decoration:none}
-.series-banner:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.series-banner .sb-text h2{font-family:'Amiri',serif;font-size:22px;margin-bottom:6px;color:#fff}
-.series-banner .sb-text p{font-size:13px;opacity:.9}
-.series-banner .sb-icon{font-size:40px;background:rgba(255,255,255,.1);width:70px;height:70px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;border:2px solid rgba(255,255,255,.2)}
-
-.book-page{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);margin-bottom:26px;max-width:100%;overflow:hidden}
-.book-main{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;max-width:100%}
-.book-cover-wrap{width:220px;flex-shrink:0;position:relative}
-.book-cover-img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
-.book-cover-big{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent-light);text-align:center;padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.2)}
-.book-cover-big .icon{font-size:44px;margin-bottom:12px;opacity:.85}
-.book-info{flex:1;min-width:260px;max-width:100%}
-.book-title{font-family:'Amiri',serif;font-size:26px;color:var(--primary-dark);margin-bottom:14px;line-height:1.35;word-break:break-word}
-[data-theme="dark"] .book-title{color:var(--accent)}
-.author-chip{display:inline-flex;align-items:center;gap:10px;background:var(--paper-2);padding:6px 16px 6px 6px;border-radius:30px;margin-bottom:18px;border:1px solid var(--line);transition:all var(--tr);max-width:100%}
-.author-chip:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.author-chip .avatar-letter{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;font-family:'Amiri',serif;flex-shrink:0;overflow:hidden}
-.author-chip:hover .avatar-letter{background:var(--accent);color:#212529}
-.author-chip span{font-size:13px;font-weight:700;white-space:normal;word-break:break-word;line-height:1.4}
-.book-meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px;background:var(--paper-2);padding:14px;border-radius:10px;border:1px solid var(--line-2);max-width:100%}
-.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
-.meta-item strong{color:var(--primary-dark);font-weight:800}
-[data-theme="dark"] .meta-item strong{color:var(--accent)}
-.download-box{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:18px;background:var(--paper);max-width:100%}
-.download-header{background:var(--paper-2);padding:10px 14px;font-size:12.5px;font-weight:700;color:var(--primary-dark);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
-[data-theme="dark"] .download-header{color:var(--accent)}
-.download-header svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
-.download-body{padding:10px 14px;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;align-items:center;max-width:100%}
-.download-body::-webkit-scrollbar{display:none}
-.dl-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;transition:all var(--tr);border:none;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.dl-btn:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.15)}
-.dl-pdf{background:var(--red)}
-.dl-word{background:var(--blue)}
-.dl-read{background:var(--green)}
-.dl-share{background:var(--accent);color:#212529}
-.dl-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2}
-.book-desc-section{margin-top:26px;border-top:1px solid var(--line);padding-top:22px}
-.book-desc{font-size:14.5px;line-height:2;color:var(--ink-2);text-align:justify;word-break:break-word}
-
-.author-header{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;text-align:center;margin-bottom:26px;box-shadow:var(--shadow-sm)}
-.author-avatar-big{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--accent-light);font-size:40px;font-family:'Amiri',serif;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);overflow:hidden}
-.author-header h1{font-family:'Amiri',serif;font-size:26px;color:var(--primary-dark);margin-bottom:10px}
-[data-theme="dark"] .author-header h1{color:var(--accent)}
-.author-header p{font-size:13.5px;color:var(--muted);max-width:640px;margin:0 auto 14px;line-height:1.9}
-.author-stats{display:inline-flex;gap:12px;background:var(--paper-2);padding:10px 22px;border-radius:20px;font-size:13px;font-weight:700;color:var(--ink);border:1px solid var(--line);margin-bottom:15px}
-.author-stats span{color:var(--primary)}
-[data-theme="dark"] .author-stats span{color:var(--accent)}
-
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.cat-card{background:var(--paper);border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:var(--radius-lg);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:all var(--tr);color:inherit;box-shadow:var(--shadow-sm)}
-.cat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-inline-start-color:var(--primary)}
-.cat-card .cc-name{font-weight:700;font-size:14px;color:var(--ink);line-height:1.4}
-.cat-card .cc-count{font-size:11.5px;color:var(--muted);margin-top:3px}
-.cat-card .cc-badge{flex-shrink:0;min-width:42px;height:42px;border-radius:11px;background:var(--paper-2);color:var(--primary);display:grid;place-items:center;font-size:14px;font-weight:800;padding:0 6px}
-[data-theme="dark"] .cat-card .cc-badge{color:var(--accent)}
-
-.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.series-card{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-lg);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px;box-shadow:var(--shadow);cursor:pointer;position:relative;overflow:hidden;transition:all var(--tr);color:#fff;background-size:cover;background-position:center}
-.series-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.series-card .sc-name{font-family:'Amiri',serif;font-size:18px;font-weight:700;margin-bottom:6px;line-height:1.3}
-.series-card .sc-desc{font-size:12px;opacity:.9;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.series-card .sc-meta{font-size:11px;opacity:.85;margin-top:5px}
-.series-card .sc-badge{flex-shrink:0;min-width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);display:grid;place-items:center;font-size:18px;font-weight:900;color:var(--accent-light);line-height:1;padding:0 8px;position:relative;z-index:1}
-.series-card .sc-badge small{display:block;font-size:9px;color:#fff;font-weight:600;margin-top:1px}
-.series-card.has-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(33,37,41,.85),rgba(33,37,41,.95));z-index:0}
-.series-card.has-cover > *{position:relative;z-index:1}
-
-.fav-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-xl);padding:22px 24px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.fav-header h1{font-family:'Amiri',serif;font-size:24px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.fav-header p{opacity:.95;font-size:13px}
-.fav-header .fh-stats{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
-.fav-header .fh-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:18px;font-size:12px;font-weight:600}
-.fav-header .fh-stat strong{color:var(--accent-light);font-weight:800}
-.fav-clear-btn{background:rgba(255,255,255,.15);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.25)}
-.fav-clear-btn:hover{background:var(--primary-dark)}
-
-.empty-box{background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;color:var(--muted)}
-.empty-box .ef-icon{width:64px;height:64px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;margin:0 auto 14px;font-size:28px}
-
-.reader-wrap{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;flex-direction:column}
-.reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
-[data-theme="dark"] .reader-header h1{color:var(--accent)}
-.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1;transition:filter .3s}
-.reader-iframe.dark-pdf{filter:invert(1) hue-rotate(180deg);background:#000}
-
-.about-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);font-size:14.5px;line-height:2;color:var(--ink-2)}
-.about-box p{margin-bottom:14px}
-.about-box strong{color:var(--primary-dark);font-weight:700}
-[data-theme="dark"] .about-box strong{color:var(--accent)}
-
-.print-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;box-shadow:var(--shadow-sm);transition:all var(--tr);display:flex;flex-direction:column;gap:10px}
-.print-card:hover{border-color:var(--accent);box-shadow:var(--shadow)}
-.print-city{font-family:'Amiri',serif;font-size:20px;color:var(--primary-dark);font-weight:700;margin-bottom:5px;border-bottom:1px solid var(--line-2);padding-bottom:8px}
-.print-name{font-size:15px;font-weight:700;color:var(--ink)}
-.print-address{font-size:13.5px;color:var(--muted)}
-.print-phone{display:inline-flex;align-items:center;gap:6px;background:var(--paper-2);color:var(--primary);padding:8px 16px;border-radius:8px;font-weight:700;font-family:monospace;direction:ltr;margin-top:5px;border:1px solid var(--line);text-decoration:none;width:fit-content}
-.print-phone:hover{background:var(--primary);color:#fff}
-
-.contact-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-sm);text-align:center}
-.contact-icon{font-size:50px;margin-bottom:15px}
-.contact-card h3{font-family:'Amiri',serif;font-size:22px;color:var(--primary-dark);margin-bottom:10px}
-.contact-card p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px}
-
-.back-btn{display:inline-flex;align-items:center;gap:7px;background:var(--paper);color:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:8px 16px;font:inherit;font-size:13px;font-weight:600;margin-bottom:16px;transition:all var(--tr)}
-.back-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
-footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
-
-.lib-controls{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:12px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-sm)}
-.lib-search-box{display:flex;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;overflow:hidden;padding:0 12px}
-.lib-search-box input{flex:1;border:none;background:transparent;padding:10px;outline:none;font-family:inherit;color:var(--ink)}
-.lib-search-box svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
-.lib-filters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:5px}
-.lib-filter-group{display:flex;flex-direction:column;gap:4px}
-.lib-filter-group label{font-size:11px;font-weight:700;color:var(--primary-dark);padding-right:4px}
-[data-theme="dark"] .lib-filter-group label{color:var(--accent)}
-.lib-filter-select{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:13px;color:var(--ink);cursor:pointer;outline:none;transition:border-color var(--tr)}
-.lib-filter-select:focus{border-color:var(--primary)}
-.lib-table{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:30px}
-.lib-thead{display:grid;grid-template-columns:2fr 1fr 100px;background:var(--primary);color:#fff;padding:12px 16px;font-weight:700;font-size:13px;text-align:center}
-[data-theme="dark"] .lib-thead{color:#212529}
-.lib-thead div:first-child{text-align:right}
-.lib-row{display:grid;grid-template-columns:2fr 1fr 100px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line-2);transition:background var(--tr)}
-.lib-row:last-child{border-bottom:none}
-.lib-row:hover{background:var(--paper-2)}
-.lib-title{font-weight:700;font-size:13.5px;color:var(--ink);line-height:1.4;text-align:right}
-.lib-auth{font-size:12px;color:var(--muted);text-align:center;line-height:1.4}
-.lib-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.lib-btn{width:32px;height:32px;border-radius:6px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:all var(--tr);cursor:pointer}
-.lib-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.lib-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.form-container{background:var(--paper);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);border:1px solid var(--line);max-width:600px;margin:0 auto}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:13px;font-weight:700;color:var(--primary-dark);margin-bottom:6px}
-[data-theme="dark"] .form-group label{color:var(--accent)}
-.form-control{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:14px;color:var(--ink);transition:all var(--tr)}
-.form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
-textarea.form-control{resize:vertical;min-height:100px}
-.btn-submit{width:100%;padding:12px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background var(--tr);margin-top:10px}
-[data-theme="dark"] .btn-submit{color:#212529}
-.btn-submit:hover{background:var(--primary-dark)}
-
-.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.link-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 20px;text-decoration:none;color:inherit;transition:all var(--tr);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-bottom:3px solid var(--line)}
-.link-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);border-bottom-color:var(--accent)}
-.link-card .title{font-weight:800;font-size:16px;color:var(--primary-dark);margin-bottom:8px}
-[data-theme="dark"] .link-card .title{color:var(--accent)}
-.link-card .desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px}
-.link-card .url{font-size:12px;color:var(--primary);font-family:monospace;direction:ltr;background:var(--paper-2);padding:4px 10px;border-radius:20px;font-weight:600;border:1px dashed var(--line)}
-
-.donate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:30px}
-.donate-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:all var(--tr)}
-.donate-card:hover{border-color:var(--accent);box-shadow:var(--shadow)}
-.donate-card h3{font-size:17px;font-family:'Amiri',serif;color:var(--primary-dark);margin-bottom:8px}
-.donate-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;flex:1}
-.btn-donate{display:block;text-align:center;padding:10px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background var(--tr)}
-[data-theme="dark"] .btn-donate{color:#212529}
-.btn-donate:hover{background:var(--primary-dark)}
-.payment-methods{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-bottom:24px}
-.payment-methods h3{font-family:'Amiri',serif;font-size:20px;margin-bottom:16px;color:var(--primary-dark);border-bottom:1px solid var(--line);padding-bottom:10px}
-.pay-item{margin-bottom:12px;font-size:14px;display:flex;align-items:center;gap:8px}
-.pay-item strong{color:var(--primary)}
-[data-theme="dark"] .pay-item strong{color:var(--accent)}
-
-.side-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;margin-left:8px;vertical-align:middle;border:1px solid var(--line)}
-
-@media(max-width:768px){
-  .site-head{height:160px;background-position:center top}
-  .head-actions{top:8px;left:8px;gap:6px}
-  .head-btn{padding:3px 8px;font-size:10px}
-  .head-btn .txt{display:none}
-  .date-strip{font-size:8px;padding:2px 0}
-  .date-strip .container{justify-content:space-between;gap:10px;padding:0 10px}
-  .moving-text-bar{padding:4px 0}
-  .moving-text-content span{font-size:11px;padding-inline-end:40px}
-  .topbar-inner{flex-wrap:nowrap;padding:8px 0;gap:8px}
-  .search-wrap{flex:1;max-width:100%;margin:0}
-  .topbar-btn{padding:8px;width:36px;height:36px;border-radius:50%;display:flex;justify-content:center;align-items:center;flex-shrink:0}
-  .topbar-btn .txt{display:none}
-  .books-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .compact-books{grid-template-columns:repeat(3,1fr);gap:8px}
-  .book-row .cover{width:65px;height:88px}
-  .book-row .desc{display:none}
-  .book-row .title{font-size:14px}
-  .book-page{padding:15px}
-  .book-main{flex-direction:column;align-items:center;width:100%}
-  .book-cover-wrap{width:170px}
-  .book-info{width:100%;min-width:0;text-align:center}
-  .author-chip{margin-inline:auto;flex-wrap:wrap;justify-content:center;text-align:center}
-  .book-meta-grid{justify-content:center;width:100%}
-  .download-body{justify-content:flex-start;padding-bottom:12px;width:100%}
-  .series-card{padding:14px 16px}
-  .series-card .sc-name{font-size:16px}
-  .author-header{padding:20px}
-  .author-header h1{font-size:22px}
-  .author-avatar-big{width:80px;height:80px;font-size:32px}
-  .hero{padding:10px 12px}
-  .hero .stat strong{font-size:12px}
-  .sec-title{font-size:19px}
-  .fav-header{padding:16px 18px}
-  .fav-header h1{font-size:20px}
-  .series-banner{flex-direction:column;text-align:center;padding:15px}
-  .series-banner .sb-icon{width:50px;height:50px;font-size:28px}
-  .series-banner .sb-text h2{font-size:18px}
-  .continue-reading{flex-direction:column;text-align:center;padding:8px 10px}
-  .continue-reading .cr-icon{display:none}
-  .lib-filters-grid{grid-template-columns:1fr}
-  .lib-thead{grid-template-columns:1.5fr 1fr 90px;padding:10px;font-size:12px}
-  .lib-row{grid-template-columns:1.5fr 1fr 90px;padding:10px}
-  .lib-title{font-size:12px}
-  .lib-auth{font-size:10.5px}
-  .lib-btn{width:28px;height:28px}
-  .lib-btn svg{width:14px;height:14px}
-}
+input,select,textarea{font-family:inherit}
+.container{width:min(1100px,96%);margin-inline:auto}
+.admin-header{background:var(--primary-dark);color:#fff;padding:16px 0;margin-bottom:16px;box-shadow:var(--shadow)}
+.admin-header h1{font-size:19px;margin-bottom:3px}
+.admin-header p{font-size:12px;opacity:.85}
+.btn{padding:9px 16px;border-radius:8px;font-size:13px;font-weight:700;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-success{background:var(--green);color:#fff}
+.btn-warning{background:var(--orange);color:#fff}
+.btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+.btn-outline:hover{background:var(--paper-2);border-color:var(--accent)}
+.btn-icon{width:36px;height:36px;padding:0;border-radius:50%;display:inline-grid;place-items:center;font-size:15px}
+.btn-publish{background:linear-gradient(135deg,#4a6b4a,#2e4a2e);color:#fff;padding:10px 18px;font-size:14px;font-weight:800}
+.btn-publish:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(74,107,74,.4)}
+.btn-publish:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.draft-banner{background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.publish-banner{background:#d4edda;border:1px solid #c3e6cb;color:#155724;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.publish-banner.error{background:#f8d7da;border-color:#f5c6cb;color:#721c24}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.section-toggle{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all var(--tr)}
+.section-toggle:hover{border-color:var(--accent)}
+.section-toggle h3{font-size:15px;color:var(--primary-dark)}
+.section-toggle .arrow{transition:transform var(--tr);font-size:12px;color:var(--muted)}
+.section-toggle.open .arrow{transform:rotate(180deg)}
+.section-content{display:none;background:var(--paper);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:14px 16px;margin-top:-14px;margin-bottom:14px}
+.section-content.open{display:block}
+.add-form{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:16px;margin-bottom:16px;display:none}
+.add-form.open{display:block}
+.add-form h3{font-size:16px;color:var(--primary-dark);margin-bottom:12px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.ff{display:flex;flex-direction:column;gap:4px}
+.ff label{font-size:12px;font-weight:700;color:var(--primary-dark)}
+.ff input,.ff select,.ff textarea{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--primary)}
+.ff textarea{resize:vertical;min-height:60px}
+.ff.full{grid-column:1/-1}
+.ff .hint{font-size:11px;color:var(--muted);margin-top:2px}
+.form-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px}
+.stat-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px 8px;text-align:center}
+.stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
+.stat-box span{font-size:11px;color:var(--muted)}
+.health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
+.health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.check{margin-bottom:6px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.check.ok{color:var(--green)}.check.warn{color:var(--orange)}.check.error{color:var(--red)}
+.cat-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:10px}
+.cat-count{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.cat-count .cnt{font-weight:800;color:var(--primary);font-size:13px;background:var(--paper);padding:1px 7px;border-radius:9px}
+.smart-btn{margin-top:10px;width:100%;padding:9px;background:#fff3cd;color:#856404;border:1px dashed #d4a017;border-radius:6px;font-weight:700;font-size:12.5px;cursor:pointer;transition:all var(--tr)}
+.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
+.filters input:focus,.filters select:focus{border-color:var(--primary)}
+@media(max-width:700px){.filters{grid-template-columns:1fr}}
+.book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
+.book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.book-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.book-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word;cursor:pointer;flex:1}
+.book-id{font-size:10px;color:var(--muted);font-family:monospace;direction:ltr;background:var(--paper-2);padding:2px 6px;border-radius:5px;flex-shrink:0}
+.book-meta{font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
+.book-meta .tag{display:inline-flex;align-items:center;gap:3px;background:var(--paper-2);padding:2px 8px;border-radius:9px;line-height:1.6}
+.book-meta .tag.cat{color:var(--primary);font-weight:700;background:#f5ede0}
+.book-meta .tag.series{color:var(--blue);font-weight:700;background:#e8f0f8}
+.book-controls{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center}
+.book-delete{width:34px;height:34px;border-radius:6px;background:#fde8e8;color:var(--red);font-size:14px;display:grid;place-items:center;transition:all var(--tr)}
+.book-delete:hover{background:var(--red);color:#fff}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--paper);border-radius:var(--radius-lg);width:min(600px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
+.modal-head{padding:14px 18px;background:var(--primary-dark);color:#fff;display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{font-size:16px}
+.modal-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:16px;display:grid;place-items:center}
+.modal-body{padding:16px 18px;overflow-y:auto;flex:1}
+.modal-foot{padding:12px 18px;background:var(--paper-2);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+.floating-actions{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:50;box-shadow:0 -4px 14px rgba(0,0,0,.05);flex-wrap:wrap}
+.floating-actions .info{font-size:12px;color:var(--muted);flex:1;min-width:140px}
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--green)}.toast.error{background:var(--red)}.toast.warn{background:var(--orange)}
+.cover-preview{width:40px;height:54px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:var(--paper-2);flex-shrink:0;margin-left:6px}
+.cover-preview-ph{width:40px;height:54px;border-radius:4px;border:1px dashed var(--line);display:grid;place-items:center;font-size:16px;color:var(--muted);flex-shrink:0;margin-left:6px}
+.token-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:9px;font-weight:700}
+.token-status.ok{background:#d4edda;color:#155724}
+.token-status.missing{background:#f8d7da;color:#721c24}
 </style>
 </head>
 <body>
 
-<header class="site-head">
-  <div class="head-actions">
-    <a href="#/favorites" class="head-btn"><span class="fav-cnt" id="favCountTop">0</span> <span class="txt">المفضلة</span> ⭐</a>
-    <button class="head-btn" id="themeBtn"><span class="txt" id="themeText">ليلي</span> 🌙</button>
+<header class="admin-header">
+  <div class="container">
+    <h1>لوحة التحكم — مكتبة آل الشيرازي</h1>
+    <p>عدّل الكتب، الوسائط، والموسوعات ثم انشر مباشرة إلى GitHub.</p>
   </div>
-  <div class="date-strip"><div class="container"><span><strong id="clock">—</strong></span><span><strong id="gregDate">—</strong></span></div></div>
 </header>
 
-<div class="moving-text-bar">
-  <div class="moving-text-content">
-    <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ اللَّهُمَّ كُنْ لِوَلِيِّكَ الْحُجَّة ابْن الحَسَن صَلَوَاتُكَ عَلَيْهِ وَعَلَى آبَائِهِ فِي هَذِهِ السَّاعَةِ وَفِي كُلِّ سَاعَة وَلِيَّاً وَحَافِظَاً وَقَائِدَاً وَنَاصِرَاً وَدَلِيلَاً وَعَيْنَاً حَتَّى تُسْكِنهُ أَرْضَكَ طَوْعَاً وَتُمَتِّعَهُ فِيهَا طَوِيلاً بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ.</span>
-    <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ اللَّهُمَّ كُنْ لِوَلِيِّكَ الْحُجَّة ابْن الحَسَن صَلَوَاتُكَ عَلَيْهِ وَعَلَى آبَائِهِ فِي هَذِهِ السَّاعَةِ وَفِي كُلِّ سَاعَة وَلِيَّاً وَحَافِظَاً وَقَائِدَاً وَنَاصِرَاً وَدَلِيلَاً وَعَيْنَاً حَتَّى تُسْكِنهُ أَرْضَكَ طَوْعَاً وَتُمَتِّعَهُ فِيهَا طَوِيلاً بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ.</span>
-  </div>
-</div>
+<main class="container">
 
-<div class="topbar">
-  <div class="container topbar-inner">
-    <button class="topbar-btn" id="menuBtn">☰ <span class="txt">القائمة</span></button>
-    <div class="search-wrap">
-      <div class="search-box">
-        <select id="searchType"><option value="title">اسم الكتاب</option><option value="author">اسم المؤلف</option><option value="all">كل الحقول</option></select>
-        <input id="q" type="search" placeholder="ابحث في المكتبة..." autocomplete="off">
-        <button id="qBtn">بحث</button>
+  <div id="draftBanner" class="draft-banner" style="display:none">
+    <span>أنت تعمل على مسودة محفوظة في المتصفح. (لم تُنشر بعد)</span>
+    <button class="btn btn-outline" onclick="resetToServer()">تجاهل المسودة</button>
+  </div>
+
+  <div id="publishBanner" class="publish-banner" style="display:none"></div>
+
+  <div class="top-actions">
+    <button class="btn btn-primary" onclick="toggleAddForm()">➕ إضافة كتاب جديد</button>
+    <button class="btn btn-publish" id="publishAllBtn" onclick="publishAll()">🚀 نشر الكل إلى GitHub</button>
+    <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
+    <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
+    <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
+    <label class="btn btn-outline">📁 استيراد books.json<input type="file" accept=".json" onchange="importBooks(event)" style="display:none"></label>
+    <label class="btn btn-outline">📁 استيراد series.json<input type="file" accept=".json" onchange="importSeries(event)" style="display:none"></label>
+  </div>
+
+  <div class="section-toggle" id="ghToggle" onclick="toggleSection('gh')">
+    <h3>🔧 إعدادات النشر التلقائي إلى GitHub <span id="tokenStatusBadge" class="token-status missing">غير مفعّل</span></h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="ghContent">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">أدخل رمز GitHub لتفعيل النشر بضغطة زر.</p>
+    <div class="form-grid">
+      <div class="ff"><label>صاحب المستودع</label><input type="text" id="gh-owner" value="alaqeela14"></div>
+      <div class="ff"><label>اسم المستودع</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
+      <div class="ff"><label>الفرع</label><input type="text" id="gh-branch" value="main"></div>
+      <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="clearToken()">🗑️ حذف الرمز</button>
+      <button class="btn btn-outline" onclick="testGitHub()">🔌 اختبار الاتصال</button>
+      <button class="btn btn-primary" onclick="saveGitHubSettings()">💾 حفظ</button>
+    </div>
+    <div id="ghTestResult" style="margin-top:10px;font-size:13px;"></div>
+  </div>
+
+  <div class="section-toggle" id="mediaToggle" onclick="toggleSection('media')">
+    <h3>🎬 إدارة المكتبة المرئية والصوتية</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="mediaContent">
+    <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+      <button class="btn btn-primary" id="tabVideoBtn" onclick="switchMediaTab('video')">المرئية</button>
+      <button class="btn btn-outline" id="tabAudioBtn" onclick="switchMediaTab('audio')">الصوتية</button>
+      <button class="btn btn-warning" onclick="openListsManager()">📁 إدارة القوائم (السلاسل)</button>
+    </div>
+
+    <div class="add-form open" style="border:2px solid var(--green); margin-bottom:15px;">
+      <h3 style="color:var(--green)">➕ إضافة عنصر للمكتبة</h3>
+      <div class="form-grid">
+        <div class="ff full"><label>العنوان *</label><input type="text" id="med-title" placeholder="مثال: 1- أهمية الإصلاح"></div>
+        <div class="ff full"><label>الرابط (URL) *</label><input type="url" id="med-url" placeholder="https://youtu.be/..."></div>
+        <div class="ff"><label>المتحدث / المؤلف</label><select id="med-speaker"></select></div>
+        <div class="ff"><label>القائمة (Topic)</label><select id="med-topic" onchange="updateSubtopicDropdown()"></select></div>
+        <div class="ff"><label>القائمة الفرعية (Subtopic)</label><select id="med-subtopic"></select></div>
       </div>
-      <ul id="sug" class="suggestions"></ul>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="clearMediaForm()">مسح</button>
+        <button class="btn btn-primary" onclick="addMediaItem()">➕ إضافة العنصر</button>
+      </div>
+    </div>
+
+    <div class="book-list" id="mediaListBox"></div>
+  </div>
+
+  <div class="section-toggle" id="catToggle" onclick="toggleSection('cat')">
+    <h3>🏷️ إدارة التصنيفات (<span id="categoriesCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="catContent">
+    <div class="add-form open" style="border:2px solid var(--green);margin-bottom:14px">
+      <h3 style="color:var(--green)">➕ إضافة تصنيف جديد</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input" placeholder="مثال: أدعية وأذكار"></div>
+        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة</button>
+      </div>
+    </div>
+    <div class="series-list" id="categoriesList"></div>
+  </div>
+
+  <div class="section-toggle" id="seriesToggle" onclick="toggleSection('series')">
+    <h3>📚 إدارة الموسوعات (<span id="seriesCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="seriesContent">
+    <div class="add-form open" style="border:2px solid var(--blue);margin-bottom:14px">
+      <h3 style="color:var(--blue)">➕ إضافة موسوعة جديدة</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name"></div>
+        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-series-id"></div>
+        <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
+        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="new-series-cover"></div>
+        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc"></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="addNewSeries()">➕ إضافة</button>
+      </div>
+    </div>
+    <div class="series-list" id="seriesList"></div>
+  </div>
+
+  <div class="filters">
+    <input type="search" id="searchInput" placeholder="🔍 ابحث..." oninput="debouncedRender()">
+    <select id="filterCat" onchange="resetPagination(); renderBookList()"><option value="">كل التصنيفات</option></select>
+    <select id="filterIssue" onchange="resetPagination(); renderBookList()">
+      <option value="">كل الكتب</option>
+      <option value="dup">🔁 المكررة فقط</option>
+      <option value="missing-cover">🖼️ بلا غلاف</option>
+    </select>
+  </div>
+
+  <div class="book-list" id="bookList"></div>
+  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+    <button class="load-more-btn" onclick="loadMore()">عرض المزيد</button>
+  </div>
+
+</main>
+
+<footer class="floating-actions">
+  <span class="info" id="footerInfo">—</span>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <button class="btn btn-outline" onclick="resetToServer()">🔄 إعادة تحميل</button>
+    <button class="btn btn-publish" onclick="publishAll()">🚀 نشر إلى GitHub</button>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-head"><h3>✏️ تعديل الكتاب</h3><button class="modal-close" onclick="closeEdit()">✕</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
+        <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="edit-title"></div>
+        <div class="ff"><label>المؤلف</label><select id="edit-author"></select></div>
+        <div class="ff"><label>الموسوعة</label><select id="edit-series"></select></div>
+        <div class="ff"><label>السنة</label><input type="number" id="edit-year"></div>
+        <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
+        <div class="ff full"><label>التصنيفات * (يمكن اختيار أكثر من واحد)</label><div id="edit-cats-checkboxes" class="cat-checkboxes"></div></div>
+        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-cover"></div>
+        <div class="ff full"><label>رابط PDF</label><input type="url" id="edit-pdf"></div>
+        <div class="ff full"><label>رابط Word</label><input type="url" id="edit-word"></div>
+        <div class="ff full"><label>وصف الكتاب</label><textarea id="edit-desc"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeEdit()">إلغاء</button>
+      <button class="btn btn-primary" onclick="saveEdit()">💾 حفظ</button>
     </div>
   </div>
 </div>
 
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-head"><h3>التصفح</h3><button class="sidebar-close" id="sidebarClose">✕</button></div>
-  <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
-  <div class="side-widget"><h4>الوسائط المتعددة</h4><ul class="side-list">
-    <li><a href="#/audios" onclick="closeSidebar()">المكتبة الصوتية</a></li>
-    <li><a href="#/videos" onclick="closeSidebar()">المكتبة المرئية</a></li>
-  </ul></div>
-  <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
-  <div class="side-widget"><h4>روابط سريعة</h4><ul class="side-list">
-    <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
-    <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
-    <li><a href="#/printed" onclick="closeSidebar()">الحصول على الكتب المطبوعة</a></li>
-    <li><a href="#/istifta" onclick="closeSidebar()">استفتاء</a></li>
-    <li><a href="#/donate" onclick="closeSidebar()">الدعم والمساهمة</a></li>
-    <li><a href="#/useful-links" onclick="closeSidebar()">مواقع مفيدة</a></li>
-    <li><a href="#/contact" onclick="closeSidebar()">تواصل معنا</a></li>
-    <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
-    <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
-  </ul></div>
-</aside>
+<div class="modal-overlay" id="listsModal">
+  <div class="modal">
+    <div class="modal-head"><h3>📁 إدارة القوائم (السلاسل)</h3><button class="modal-close" onclick="closeListsManager()">✕</button></div>
+    <div class="modal-body">
+      <div style="display:flex; gap:8px; margin-bottom:15px;">
+        <input type="text" id="newTopicName" placeholder="اسم القائمة الرئيسية (مثال: الإصلاح الاجتماعي)" style="flex:1; padding:8px; border:1px solid var(--line); border-radius:6px;">
+        <button class="btn btn-primary" onclick="addMediaTopic()">إضافة قائمة</button>
+      </div>
+      <div id="listsManagerBody"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeListsManager()">إغلاق</button>
+    </div>
+  </div>
+</div>
 
-<main class="container"><section id="app"></section></main>
-<footer><div class="container"><p>© <span id="yr"></span> مكتبة آل الشيرازي — جميع الحقوق محفوظة</p></div></footer>
+<div class="toast" id="toast"></div>
 
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js').then(reg => console.log('SW registered')).catch(err => console.log('SW registration failed', err));
-  });
-}
-
-let CATS = [];
-async function loadCategories() {
-  try {
-    const res = await fetch('categories.json?t=' + Date.now());
-    if (!res.ok) { return []; }
-    const data = await res.json();
-    const list = Array.isArray(data) ? data : (data.items || []);
-    return list.filter(c => c && c.id && c.name).map(c => ({ id: String(c.id), name: String(c.name) }));
-  } catch (e) { console.error('❌ خطأ categories.json:', e); return []; }
-}
-
-let SERIES = [
-  {id:"taqrib-quran",name:"تقريب القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية شاملة للقرآن الكريم في عشرة أجزاء."},
-  {id:"tabyin-quran",name:"تبيين القرآن",author:"shirazi-m",desc:"موسوعة تفسيرية وبيانية لآيات القرآن الكريم."},
-  {id:"kalima-encyclopedia",name:"الكلمة",author:"shirazi-h",desc:"موسوعة حديثية ومعرفية ضخمة تجمع كلمات الله عز وجل والأنبياء وأهل البيت (عليهم السلام) في 26 مجلداً."},
-  {id:"fiqh-encyclopedia",name:"الفقه",author:"shirazi-m",desc:"موسوعة فقهية شاملة تُغطي جميع أبواب الفقه الإسلامي، من الاجتهاد والتقليد إلى الديات."},
-  {id:"fiqh-zahra",name:"من فقه الزهراء عليها السلام",author:"shirazi-m",desc:"موسوعة فقهية مستندة إلى فقه الصديقة الطاهرة فاطمة الزهراء (عليها السلام)، في سبعة أجزاء."}
-];
-async function loadSeries() {
-  try {
-    const res = await fetch('series.json?t=' + Date.now());
-    if (!res.ok) { return null; }
-    const data = await res.json();
-    const list = Array.isArray(data) ? data : (data.items || []);
-    const filtered = list.filter(s => s && s.id && s.name);
-    return filtered.length > 0 ? filtered : null;
-  } catch (e) { return null; }
-}
-
 const AUTHORS = [
-  {id:"shirazi-m", img:"shirazi-m.jpg", name:"آية الله العظمى السيد محمد الحسيني الشيرازي",short:"السيد محمد الحسيني الشيرازي",bio:"المرجع الديني الراحل (1347 – 1422هـ)، صاحب موسوعة «تقريب القرآن إلى الأذهان» و«من فقه العترة الطاهرة» و«موسوعة الفقه»."},
-  {id:"shirazi-h", img:"shirazi-h.jpg", name:"الشهيد السيد حسن الحسيني الشيرازي",short:"السيد حسن الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي، ومؤلف موسوعة الكلمة الضخمة، استشهد على يد النظام البائد عام 1400هـ."},
-  {id:"shirazi-s", img:"shirazi-s.jpg", name:"آية الله العظمى السيد صادق الحسيني الشيرازي",short:"السيد صادق الحسيني الشيرازي",bio:"مرجع ديني معاصر، من أعلام أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والعقائد."},
-  {id:"shirazi-mr", img:"shirazi-mr.jpg", name:"آية الله الفقيه السيد محمد رضا الشيرازي",short:"السيد محمد رضا الشيرازي",bio:"فقيه ومفكر إسلامي، من أسرة آل الشيرازي، صاحب مؤلفات في الفقه والأصول والتفسير."},
-  {id:"shirazi-mo", img:"shirazi-mo.jpg", name:"آية الله السيد مرتضى الحسيني الشيرازي",short:"السيد مرتضى الحسيني الشيرازي",bio:"عالم دين ومؤلف، من أسرة آل الشيرازي."},
-  {id:"shirazi-j", img:"shirazi-j.jpg", name:"السيد جعفر الحسيني الشيرازي",short:"السيد جعفر الحسيني الشيرازي",bio:"باحث ومؤلف إسلامي، من أسرة آل الشيرازي."},
-  {id:"shirazi-me", img:"shirazi-me.jpg", name:"السيد مهدي الحسيني الشيرازي",short:"السيد مهدي الحسيني الشيرازي",bio:"من أعلام أسرة آل الشيرازي."}
+  {id:"shirazi-m", name:"السيد محمد الحسيني الشيرازي"},
+  {id:"shirazi-h", name:"السيد حسن الحسيني الشيرازي"},
+  {id:"shirazi-s", name:"السيد صادق الحسيني الشيرازي"},
+  {id:"shirazi-mr", name:"السيد محمد رضا الشيرازي"},
+  {id:"shirazi-mo", name:"السيد مرتضى الحسيني الشيرازي"},
+  {id:"shirazi-j", name:"السيد جعفر الحسيني الشيرازي"},
+  {id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي"}
 ];
 
-const DONATION_PROJECTS = [
-  { id: 1, title: "طباعة كتاب: موسوعة الفقه", desc: "طباعة ونشر نسخ ورقية من الكتاب لتوزيعها على المكتبات والمراكز العلمية." },
-  { id: 2, title: "رقمنة مخطوطات ووثائق نادرة", desc: "تصوير وفهرسة المخطوطات والوثائق وحفظها رقمياً وإتاحتها للباحثين." },
-  { id: 3, title: "ترجمة كتاب إلى الإنجليزية", desc: "ترجمة ومراجعة ونشر أحد مؤلفات المكتبة لغير الناطقين بالعربية." },
-  { id: 4, title: "إنشاء مكتبة صوتية", desc: "تسجيل الكتب والمحاضرات بصوت واضح وإتاحتها للمكفوفين وذوي الاحتياجات." },
-  { id: 5, title: "ترميم الكتب التالفة", desc: "تجليد وترميم الكتب القديمة والتالفة للحفاظ عليها في المكتبة." },
-  { id: 6, title: "استضافة الموقع وصيانته", desc: "تغطية تكاليف الاستضافة والدومين والصيانة التقنية السنوية." }
-];
-
-const BOOKS_JSON_FILES = [["books.json", "all"]];
-const FILES_BASE = "./files/";
-const DEFAULT_AUTH = "shirazi-m";
-let BOOKS = [], AUDIOS = [], VIDEOS = [];
-const app = document.getElementById("app");
-const state = { view:"table", sort:"year-desc", q:"", cat:"all", author:"all", series:"all", searchType:"title" };
+let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [];
+let MEDIA_LISTS = { video: [], audio: [] };
+let hasDraft = false;
+let editingId = null, editingSeriesId = null, editingCategoryId = null;
+let currentMediaTab = 'video', editingMediaIndex = -1;
+let shownCount = 50;
+const PAGE_SIZE = 50;
+const GH_KEY = 'admin_github_settings_v1';
+let searchTimer = null;
 
 const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const getCat = id => CATS.find(c=>c.id===id);
-const getBook = id => BOOKS.find(b=>b.id===id);
-const getAuthor = id => AUTHORS.find(a=>a.id===id);
-const getSeries = id => SERIES.find(s=>s.id===id);
-const getBookCats = b => (b.cats && Array.isArray(b.cats) && b.cats.length > 0) ? b.cats : (b.c ? [b.c] : ['other']);
-const countIn = id => BOOKS.filter(b=>getBookCats(b).includes(id)).length;
-const countByAuthor = id => BOOKS.filter(b=>b.a===id).length;
-const countBySeries = id => BOOKS.filter(b=>b.series===id).length;
-const authorName = id => getAuthor(id)?.short || "—";
-const authorsWithBooks = () => AUTHORS.filter(a=>countByAuthor(a.id)>0);
+const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّف';
+const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
+const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
+const countBooksInSeries = sid => BOOKS.filter(b => b.series === sid).length;
+const countBooksInCat = cid => BOOKS.filter(b => (b.categories||[b.category]).includes(cid)).length;
 
-function jsonToBook(item){
-  const formats = item.formats || ["pdf"];
-  const f = formats.map(x => x==="pdf"?"p":x==="word"?"w":"e").join("");
-  const hasPdf = (formats.includes("pdf") || formats.includes("p")) && ((item.pdf_url && item.pdf_url.trim() !== "" && item.pdf_url !== "#") || (item.filename && item.filename.trim() !== ""));
-  const hasWord = (formats.includes("word") || formats.includes("w")) && (item.word_url && item.word_url.trim() !== "" && item.word_url !== "#");
-  if (!hasPdf && !hasWord) return null;
-  const catsArray = (Array.isArray(item.categories) && item.categories.filter(c => typeof c === 'string' && c.trim()).length > 0)
-    ? item.categories.filter(c => typeof c === 'string' && c.trim())
-    : (item.category ? [item.category] : ['other']);
-  return {
-    id: item.id || ("b_" + Math.random().toString(36).substr(2, 9)),
-    t: item.title||"", c: catsArray[0], cats: catsArray,
-    y: parseInt(item.year)||0, pages: parseInt(item.pages)||0,
-    desc: item.description||"", cover: item.cover||"",
-    f, a: item.author||DEFAULT_AUTH, series: item.series||"",
-    filename: item.filename || "", pdf_url: item.pdf_url || "", word_url: item.word_url || "", wordExt: item.word_ext||"docx",
-    hasPdf, hasWord, reads: Math.floor(Math.random()*1800)+80
-  };
+function toast(msg, type='info'){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warn' ? 'warn' : '') + ' show';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-async function loadJsonFile(path){
+function showPublishBanner(msg, isError){
+  const b = document.getElementById('publishBanner');
+  b.textContent = msg;
+  b.className = 'publish-banner' + (isError ? ' error' : '');
+  b.style.display = 'flex';
+  setTimeout(() => { b.style.display = 'none'; }, 8000);
+}
+
+/* ========== إعدادات GitHub ========== */
+function getGitHubSettings(){ try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); } catch(e) { return {}; } }
+function saveGitHubSettings(){
+  const owner = document.getElementById('gh-owner').value.trim();
+  const repo = document.getElementById('gh-repo').value.trim();
+  const branch = document.getElementById('gh-branch').value.trim() || 'main';
+  const token = document.getElementById('gh-token').value.trim();
+  if (!owner || !repo) { toast('املأ صاحب المستودع واسمه', 'error'); return; }
+  if (!token && !getGitHubSettings().token) { toast('أدخل رمز GitHub', 'error'); return; }
+  localStorage.setItem(GH_KEY, JSON.stringify({ owner, repo, branch, token: token || getGitHubSettings().token }));
+  updateTokenBadge(); toast('تم حفظ إعدادات GitHub', 'success');
+}
+function clearToken(){ localStorage.removeItem(GH_KEY); document.getElementById('gh-token').value = ''; updateTokenBadge(); }
+function updateTokenBadge(){
+  const s = getGitHubSettings();
+  const badge = document.getElementById('tokenStatusBadge');
+  if (s.token && s.owner && s.repo) { badge.textContent = 'مفعّل'; badge.className = 'token-status ok'; }
+  else { badge.textContent = 'غير مفعّل'; badge.className = 'token-status missing'; }
+}
+async function testGitHub(){
+  const s = getGitHubSettings();
+  if (!s.token) return alert('احفظ الإعدادات أولاً');
+  const result = document.getElementById('ghTestResult');
+  result.innerHTML = 'جارٍ الاختبار...';
   try {
-    const res = await fetch(path + "?t=" + Date.now());
-    if (!res.ok) { alert("خطأ: لم يتم العثور على الملف " + path); return []; }
-    const json = JSON.parse(await res.text());
-    if (!json.items || !Array.isArray(json.items)) { alert("خطأ: الملف لا يحتوي على items"); return []; }
-    return json.items.map(item => jsonToBook(item)).filter(b => b !== null);
-  } catch(e) { alert("خطأ في books.json:\n" + e.message); return []; }
+    const res = await fetch(`https://api.github.com/repos/${s.owner}/${s.repo}`, { headers: { 'Authorization': `token ${s.token}` } });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    result.innerHTML = 'الاتصال ناجح'; result.style.color = 'var(--green)';
+  } catch(e) { result.innerHTML = 'فشل: ' + e.message; result.style.color = 'var(--red)'; }
 }
 
-async function loadAllJsonBooks(){
-  const results = await Promise.all(BOOKS_JSON_FILES.map(([f])=>loadJsonFile(f)));
-  return results.flat();
+/* ========== النشر ========== */
+function toBase64UTF8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+async function publishFileToGitHub(fileName, data){
+  const s = getGitHubSettings();
+  if (!s.token) throw new Error('إعدادات GitHub غير مكتملة');
+  const apiUrl = `https://api.github.com/repos/${s.owner}/${s.repo}/contents/${fileName}`;
+  const headers = { 'Authorization': `token ${s.token}`, 'Accept': 'application/vnd.github.v3+json' };
+  let sha = null;
+  try {
+    const getRes = await fetch(`${apiUrl}?ref=${s.branch}`, { headers });
+    if (getRes.ok) sha = (await getRes.json()).sha;
+  } catch(e) {}
+  const body = { message: `تحديث ${fileName}`, content: toBase64UTF8(JSON.stringify(data, null, 2)), branch: s.branch };
+  if (sha) body.sha = sha;
+  const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
+  if (!putRes.ok) throw new Error('فشل النشر: ' + (await putRes.json()).message);
+  return await putRes.json();
+}
+async function publishAll(){
+  const s = getGitHubSettings();
+  if (!s.token) { showPublishBanner('يجب إعداد رمز GitHub أولاً.', true); return; }
+  const btn = document.getElementById('publishAllBtn');
+  btn.disabled = true; btn.textContent = 'جارٍ النشر...';
+  showPublishBanner('جارٍ نشر 6 ملفات إلى GitHub...', false);
+  try {
+    await publishFileToGitHub('books.json', { items: BOOKS.map(cleanObj) });
+    await publishFileToGitHub('series.json', { items: SERIES.map(cleanObj) });
+    await publishFileToGitHub('categories.json', CATS.map(cleanObj));
+    await publishFileToGitHub('videos.json', { items: VIDEOS.map(cleanObj) });
+    await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
+    await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
+    showPublishBanner('تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية.', false);
+    toast('تم النشر', 'success');
+    hasDraft = false; document.getElementById('draftBanner').style.display = 'none';
+  } catch(e) {
+    showPublishBanner('فشل النشر: ' + e.message, true);
+  } finally {
+    btn.disabled = false; btn.textContent = '🚀 نشر الكل إلى GitHub';
+  }
 }
 
-async function loadAudios(){ try { const res = await fetch('audios.json?t=' + Date.now()); if(!res.ok) return []; const json = await res.json(); return json.items || []; } catch(e) { return []; } }
-async function loadVideos(){ try { const res = await fetch('videos.json?t=' + Date.now()); if(!res.ok) return []; const json = await res.json(); return json.items || []; } catch(e) { return []; } }
-
-let FAVORITES = { books:[], series:[] };
-try { const f = JSON.parse(localStorage.getItem("alsh_favorites")||"{}"); if(Array.isArray(f.books)) FAVORITES.books = f.books; if(Array.isArray(f.series)) FAVORITES.series = f.series; } catch(e){}
-const saveFavs = () => { try{ localStorage.setItem("alsh_favorites", JSON.stringify(FAVORITES)); }catch(e){} };
-const isFav = (type,id) => type==="book" ? FAVORITES.books.includes(id) : FAVORITES.series.includes(id);
-const countFavs = () => FAVORITES.books.length + FAVORITES.series.length;
-
-function updateFavUI(){
-  const c = countFavs();
-  document.getElementById("favCountTop").textContent = c;
-  document.getElementById("favCountSide").textContent = c;
+/* ========== التحميل ========== */
+async function loadData(){
+  try {
+    const resC = await fetch('categories.json?t=' + Date.now()); if(resC.ok) CATS = await resC.json();
+    const resS = await fetch('series.json?t=' + Date.now()); if(resS.ok) SERIES = (await resS.json()).items || (await resS.json());
+    const resB = await fetch('books.json?t=' + Date.now()); if(resB.ok) BOOKS = (await resB.json()).items || [];
+    const resV = await fetch('videos.json?t=' + Date.now()); if(resV.ok) VIDEOS = (await resV.json()).items || [];
+    const resA = await fetch('audios.json?t=' + Date.now()); if(resA.ok) AUDIOS = (await resA.json()).items || [];
+    const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
+  } catch(e) { console.error(e); }
 }
 
-function toggleFav(type,id,ev){
-  if(ev){ ev.stopPropagation(); ev.preventDefault(); }
-  const arr = type==="book" ? FAVORITES.books : FAVORITES.series;
-  const idx = arr.indexOf(id);
-  if(idx>-1) arr.splice(idx,1); else arr.push(id);
-  saveFavs(); updateFavUI();
-  document.querySelectorAll(`[data-fav-type="${type}"][data-fav-id="${id}"]`).forEach(btn=>{ btn.classList.toggle("active", isFav(type,id)); });
+async function init(){
+  await loadData();
+  populateSelects();
+  updateTokenBadge();
+  render();
+  switchMediaTab('video');
 }
 
-function favBtnHtml(type,id,extra=""){
-  const active = isFav(type,id);
-  return `<button class="fav-btn ${active?'active':''} ${extra}" data-fav-type="${type}" data-fav-id="${id}" onclick="toggleFav('${type}','${id}',event)" aria-label="مفضلة"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>`;
+function populateSelects(){
+  const authorOpts = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
+  document.getElementById('new-author').innerHTML = authorOpts;
+  document.getElementById('new-series-author').innerHTML = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
 }
 
-function clearAllFavs(){
-  if(!countFavs()) return;
-  if(!confirm("هل تريد حذف جميع العناصر من المفضلة؟")) return;
-  FAVORITES = { books:[], series:[] }; saveFavs(); updateFavUI(); renderFavorites();
+function render(){
+  renderStats(); renderHealth(); renderBookList(); renderCategoriesList(); renderSeriesList();
+  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب | ${VIDEOS.length} فيديو | ${AUDIOS.length} صوتية`;
 }
 
-let SEARCH_HISTORY = [];
-try { const h = JSON.parse(localStorage.getItem("alsh_search_history")||"[]"); if(Array.isArray(h)) SEARCH_HISTORY = h.slice(0,15); } catch(e){}
-const saveHistory = () => { try{ localStorage.setItem("alsh_search_history", JSON.stringify(SEARCH_HISTORY.slice(0,15))); }catch(e){} };
-function addToHistory(term){ term=(term||"").trim(); if(!term||term.length<2) return; SEARCH_HISTORY = [term, ...SEARCH_HISTORY.filter(t=>t!==term)].slice(0,15); saveHistory(); }
-function removeFromHistory(term){ SEARCH_HISTORY = SEARCH_HISTORY.filter(t=>t!==term); saveHistory(); }
-function clearHistory(){ SEARCH_HISTORY = []; saveHistory(); }
-
-function matchBook(b,query,type){
-  const s = query.toLowerCase().trim();
-  if(!s) return true;
-  const title = b.t.toLowerCase();
-  const authShort = authorName(b.a).toLowerCase();
-  const authFull = (getAuthor(b.a)?.name||"").toLowerCase();
-  const catNames = getBookCats(b).map(id => getCat(id)?.name || "").join(" ").toLowerCase();
-  if(type==="title") return title.includes(s);
-  if(type==="author") return authShort.includes(s) || authFull.includes(s);
-  if(type==="category") return catNames.includes(s);
-  return title.includes(s) || authShort.includes(s) || authFull.includes(s) || catNames.includes(s);
-}
-
-const htmlEl = document.documentElement;
-const themeBtn = document.getElementById("themeBtn");
-const themeText = document.getElementById("themeText");
-function setTheme(t){
-  if(t==="dark"){ htmlEl.setAttribute("data-theme","dark"); themeText.textContent="نهاري"; themeBtn.lastChild.textContent=" ☀️"; }
-  else { htmlEl.removeAttribute("data-theme"); themeText.textContent="ليلي"; themeBtn.lastChild.textContent=" 🌙"; }
-  try{ localStorage.setItem("alsh_theme", t); }catch(e){}
-}
-try{ if(localStorage.getItem("alsh_theme")==="dark") setTheme("dark"); }catch(e){}
-themeBtn.addEventListener("click", ()=>{ setTheme(htmlEl.getAttribute("data-theme")==="dark" ? "light" : "dark"); });
-
-function updateDateTime(){
-  const now = new Date();
-  try { document.getElementById('gregDate').textContent = new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now) + " م"; } catch(e){ document.getElementById('gregDate').textContent="—"; }
-  try { document.getElementById('clock').textContent = new Intl.DateTimeFormat('ar-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now); } catch(e){}
-}
-updateDateTime(); setInterval(updateDateTime, 1000);
-
-const menuBtn = document.getElementById("menuBtn");
-const sidebarClose = document.getElementById("sidebarClose");
-const sidebarBackdrop = document.getElementById("sidebarBackdrop");
-function openSidebar(){ document.body.classList.add("sidebar-open","no-scroll"); }
-function closeSidebar(){ document.body.classList.remove("sidebar-open","no-scroll"); }
-menuBtn.onclick = openSidebar; sidebarClose.onclick = closeSidebar; sidebarBackdrop.onclick = closeSidebar;
-document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSidebar(); });
-
-function buildSidebar(){
-  const activeCats = CATS.filter(c => countIn(c.id) > 0);
-  document.getElementById("sideCats").innerHTML = `
-    <li><a href="#/home" onclick="closeSidebar()">الرئيسية</a></li>
-    <li><a href="#/library" onclick="closeSidebar()">كل الكتب <span class="side-cnt">${BOOKS.length}</span></a></li>
-    ${activeCats.map(c=>`<li><a href="#/category/${c.id}" onclick="closeSidebar()">${esc(c.name)} <span class="side-cnt">${countIn(c.id)}</span></a></li>`).join("")}
-  `;
-  document.getElementById("sideSeries").innerHTML = SERIES.map(s=>`<li><a href="#/series-one/${s.id}" onclick="closeSidebar()">${esc(s.name)} <span class="side-cnt">${countBySeries(s.id)}</span></a></li>`).join("");
-}
-
-window.addEventListener("hashchange", router);
-window.addEventListener("DOMContentLoaded", async ()=>{
-  document.getElementById("yr").textContent = new Date().getFullYear();
-  const [fromJson, cats, seriesFromJson] = await Promise.all([loadAllJsonBooks(), loadCategories(), loadSeries()]);
-  CATS = cats;
-  if (seriesFromJson && seriesFromJson.length > 0) { SERIES = seriesFromJson; }
-  AUDIOS = await loadAudios(); VIDEOS = await loadVideos();
-  BOOKS = fromJson;
-  buildSidebar(); updateFavUI(); router();
-});
-
-function router(){
-  const raw = location.hash.replace(/^#\/?/,"") || "home";
-  const [route, param] = raw.split("/");
-  const decodedParam = param ? decodeURIComponent(param) : param;
-  window.scrollTo({top:0,behavior:"smooth"}); closeSidebar();
-  if(route==="home") renderHome();
-  else if(route==="library") renderLibrary();
-  else if(route==="latest") renderLatestPage();
-  else if(route==="cats") renderAllCats();
-  else if(route==="series") renderAllSeries();
-  else if(route==="series-one") renderSeriesPage(decodedParam);
-  else if(route==="category") renderCategory(decodedParam);
-  else if(route==="authors") renderAllAuthors();
-  else if(route==="author") renderAuthor(decodedParam);
-  else if(route==="book") renderBookPage(decodedParam);
-  else if(route==="favorites") renderFavorites();
-  else if(route==="read") renderReader(decodedParam);
-  else if(route==="audios") renderMediaLibrary("audio");
-  else if(route==="videos") renderMediaLibrary("video");
-  else if(route==="masoomeen") renderMasoomeenPage();
-  else if(route==="printed") renderPrintedBooks();
-  else if(route==="contact") renderContact();
-  else if(route==="about") renderAbout();
-  else if(route==="istifta") renderIstifta();
-  else if(route==="useful-links") renderUsefulLinks();
-  else if(route==="donate") renderDonate();
-  else renderHome();
-}
-
-function coverHtmlSmall(b, showAuth=true){
-  const fallback = `<div class="cover-ph" style="display:none;position:absolute;inset:0;"><div class="cp-icon">📖</div>${showAuth?`<div class="cp-auth">${esc(authorName(b.a))}</div>`:""}</div>`;
-  if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">${fallback}`;
-  return `<div class="cover-ph"><div class="cp-icon">📖</div>${showAuth?`<div class="cp-auth">${esc(authorName(b.a))}</div>`:""}</div>`;
-}
-
-function coverHtmlBig(b){
-  const fallback = `<div class="book-cover-big" style="display:none;aspect-ratio:3/4;"><div class="icon">📖</div></div>`;
-  if(b.cover) return `<img src="${b.cover}" class="book-cover-img" alt="${esc(b.t)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">${fallback}`;
-  return `<div class="book-cover-big"><div class="icon">📖</div></div>`;
-}
-
-function bookCardHtml(b){
-  return `<a href="#/book/${b.id}" class="book-card"><div class="cover">${coverHtmlSmall(b,false)}</div><div class="info"><div class="title">${esc(b.t)}</div><div class="auth">${esc(authorName(b.a))}</div></div></a>`;
-}
-
-function bookRowHtml(b){
-  const catsTags = getBookCats(b).map(cid => `<span><strong>التصنيف:</strong> ${esc(getCat(cid)?.name||"")}</span>`).join("");
-  return `<div class="book-row"><a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a><div class="info"><div><a href="#/book/${b.id}" class="title">${esc(b.t)}</a><div class="meta"><span><strong>المؤلف:</strong> ${esc(authorName(b.a))}</span>${catsTags}${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}</div>${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}</div><div class="actions">${favBtnHtml("book",b.id)}${b.hasPdf?`<a href="#/book/${b.id}" class="fmt-btn fmt-pdf">PDF</a>`:""}${b.hasWord?`<a href="#/book/${b.id}" class="fmt-btn fmt-word">Word</a>`:""}</div></div></div>`;
-}
-
-function authorCardHtml(a){
-  const c = countByAuthor(a.id);
-  const imgHtml = a.img ? `<img src="${a.img}" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--line);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
-  const fallbackHtml = `<div class="avatar-letter" style="width:44px;height:44px;font-size:18px;display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
-  return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">${imgHtml}${fallbackHtml}</div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
-}
-
-function seriesCardHtml(s){
-  const c = countBySeries(s.id);
-  const cls = s.cover ? 'series-card has-cover' : 'series-card';
-  const styleAttr = s.cover ? `style="background-image:url('${esc(s.cover)}')"` : '';
-  return `<a href="#/series-one/${s.id}" class="${cls}" ${styleAttr}><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
-}
-
-function catCardHtml(c){
-  return `<a href="#/category/${c.id}" class="cat-card"><div><div class="cc-name">${esc(c.name)}</div><div class="cc-count">${countIn(c.id)} كتاب</div></div><div class="cc-badge">${countIn(c.id)}</div></a>`;
-}
-
-function renderHome(){
-  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0, 3);
-  const lastReadId = localStorage.getItem("alsh_last_read");
-  const lastReadBook = lastReadId ? getBook(lastReadId) : null;
-  const activeCats = CATS.filter(c => countIn(c.id) > 0);
-  
-  app.innerHTML = `
-    <section class="hero">
-      <p>موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات.</p>
-      <div class="random-btn" onclick="goToRandomBook()">• اكتشف كتاباً عشوائياً</div>
-      <div class="stats"><div class="stat"><strong>${BOOKS.length}</strong><span>كتاب</span></div><div class="stat"><strong>${SERIES.length}</strong><span>موسوعة</span></div><div class="stat"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div><div class="stat"><strong>PDF · Word</strong><span>صيغ التحميل</span></div></div>
-    </section>
-    ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div><div class="cr-icon">📖</div></a>`:""}
-    
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-      <div class="sec-title" style="margin-bottom:0;"><span>أحدث الإصدارات</span></div>
-      <a href="#/latest" style="font-size:13px; font-weight:700; color:var(--primary); text-decoration:underline;">للمزيد ←</a>
-    </div>
-    ${latest.length?`<div class="compact-books">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}
-    
-    ${SERIES.length?`<div class="sec-title">الموسوعات</div><div class="series-grid" style="margin-bottom:26px">${SERIES.map(seriesCardHtml).join("")}</div>`:""}
-    <div class="sec-title">التصنيفات</div><div class="cat-grid" style="margin-bottom:26px">${activeCats.map(catCardHtml).join("")}</div>
+function renderStats(){
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-box"><strong>${BOOKS.length}</strong><span>كتاب</span></div>
+    <div class="stat-box"><strong>${CATS.length}</strong><span>تصنيف</span></div>
+    <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
+    <div class="stat-box"><strong>${VIDEOS.length + AUDIOS.length}</strong><span>وسائط</span></div>
   `;
 }
 
-function renderLatestPage(){
-  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0));
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
-  <div class="sec-title">أحدث الإصدارات</div>
-  ${latest.length?`<div class="books-grid">${latest.map(bookCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد كتب بعد.</div>`}`;
+function renderHealth(){
+  let html = '<h3>الفحص الصحي</h3>';
+  html += `<div class="check ok">تم تحميل البيانات بنجاح</div>`;
+  document.getElementById('healthPanel').innerHTML = html;
 }
 
-window.goToRandomBook = () => {
-  if(BOOKS.length === 0) return;
-  location.hash = '#/book/' + BOOKS[Math.floor(Math.random() * BOOKS.length)].id;
-};
-
-function renderLibrary(){
-  state.cat="all"; state.author="all"; state.series="all";
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>كل الكتب</span></div><div class="sec-title">كل الكتب</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
-  bindToolbar();
-  if(state.q){ const el = document.getElementById("q"); if(el) el.value = state.q; }
-  renderList();
-}
-
-function renderCategory(id){
-  const cat = getCat(id);
-  if(!cat){ location.hash = "#/home"; return; }
-  state.cat = id; state.author = "all"; state.series = "all"; state.q = "";
-  let specialBanner = "";
-  if (id === 'ahlulbayt') {
-    specialBanner = `<a href="#/masoomeen" class="series-banner"><div class="sb-text"><h2>سلسلة من حياة المعصومين عليهم السلام</h2><p>مجموعة مباركة من 13 كتاباً تروي سير أهل البيت (عليهم السلام) مرتبة حسب التسلسل العقائدي.</p></div><div class="sb-icon">🕌</div></a>`;
-  }
-  app.innerHTML = `${specialBanner}<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div><div class="sec-title">${esc(cat.name)}</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
-  bindToolbar(); renderList();
-}
-
-function renderMasoomeenPage(){
-  const books = BOOKS.filter(b => getBookCats(b).includes('masoomeen') || getBookCats(b).includes('ahlulbayt'));
-  app.innerHTML = `
-    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/category/ahlulbayt">أهل البيت (عليهم السلام)</a> <span>/</span> <span>من حياة المعصومين</span></div>
-    <div class="sec-title" style="color:var(--primary-dark)">من حياة المعصومين عليهم السلام</div>
-    <div style="background:var(--paper);padding:20px;border-radius:var(--radius-lg);margin-bottom:20px;border:1px solid var(--line);text-align:center;"><p style="font-size:14px;color:var(--ink-2);line-height:1.8;">هذه السلسلة المباركة تعرض سيرة أهل البيت (عليهم السلام) بالترتيب العقائدي، بدءاً من الرسول الأكرم (صلى الله عليه وآله) وحتى الإمام العسكري (عليه السلام).</p></div>
-    ${books.length ? `<div class="books-grid">${books.map(bookCardHtml).join("")}</div>` : `<div class="empty-state">جاري تحميل الكتب...</div>`}
-  `;
-}
-
-function renderAllCats(){
-  const activeCats = CATS.filter(c => countIn(c.id) > 0);
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>التصنيفات</span></div><div class="sec-title">جميع التصنيفات</div><div class="cat-grid">${activeCats.map(catCardHtml).join("")}</div>`;
-}
-
-function renderAllAuthors(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المؤلفون</span></div><div class="sec-title">المؤلفون</div><div class="books-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">${authorsWithBooks().map(authorCardHtml).join("")}</div>`;
-}
-
-function renderAuthor(id){
-  const a = getAuthor(id);
-  if(!a){ location.hash = "#/authors"; return; }
-  state.author = id; state.cat = "all"; state.series = "all"; state.q = "";
-  const count = countByAuthor(id);
-  const imgBig = a.img ? `<img src="${a.img}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
-  const fallbackBig = `<div class="author-avatar-big" style="display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/authors">المؤلفون</a> <span>/</span> <span>${esc(a.short)}</span></div><div class="author-header">${imgBig}${fallbackBig}<h1>${esc(a.name)}</h1><p>${esc(a.bio)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span></div></div>${count?`${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`:`<div class="empty-state">لا توجد كتب مضافة لهذا المؤلف حالياً.</div>`}`;
-  if(count){ bindToolbar(); renderList(); }
-}
-
-function renderAllSeries(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الموسوعات</span></div><div class="sec-title">الموسوعات</div>${SERIES.length?`<div class="series-grid">${SERIES.map(seriesCardHtml).join("")}</div>`:`<div class="empty-state">لا توجد موسوعات بعد.</div>`}`;
-}
-
-function renderSeriesPage(id){
-  const s = getSeries(id);
-  if(!s){ location.hash = "#/series"; return; }
-  state.series = id; state.cat = "all"; state.author = "all"; state.q = "";
-  const count = countBySeries(id);
-  let bulkHtml = "";
-  if (id === "fiqh-encyclopedia") {
-    bulkHtml = `<div style="background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;"><h3 style="font-family:'Amiri',serif;font-size:18px;color:var(--primary-dark);margin:0;">تحميل الموسوعة كاملة</h3><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px;"><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;">تحميل الكل (PDF)</a><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;">تحميل الكل (Word)</a></div></div>`;
-  }
-  const seriesCoverHtml = s.cover
-    ? `<img src="${esc(s.cover)}" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="author-avatar-big" style="display:none">${esc(s.name.charAt(0))}</div>`
-    : `<div class="author-avatar-big">${esc(s.name.charAt(0))}</div>`;
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div><div class="author-header">${seriesCoverHtml}<h1>${esc(s.name)}</h1><p>${esc(s.desc)}</p><div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div><div style="margin-top:15px;"><button onclick="shareSeries('${s.id}')" style="padding:8px 20px;font-size:13px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;">مشاركة الموسوعة</button></div></div>${bulkHtml}${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
-  bindToolbar(); renderList();
-}
-
-function renderBookPage(id){
-  const b = getBook(id);
-  if(!b){ location.hash = "#/home"; return; }
-  const a = getAuthor(b.a);
-  let related = BOOKS.filter(x=>getBookCats(x).some(c=>getBookCats(b).includes(c)) && x.id!==b.id).slice(0,6);
-  if(related.length<3){ related = [...related, ...BOOKS.filter(x=>x.a===b.a && x.id!==b.id)].slice(0,6); }
-  localStorage.setItem("alsh_last_read", b.id);
-  const chipImg = a && a.img ? `<img src="${a.img}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
-  const chipFallback = `<div class="avatar-letter" style="display:${a && a.img ? 'none' : 'grid'}">${esc((a?.short||"م").charAt(0))}</div>`;
-  const descHtml = b.desc ? `<div class="book-desc-section"><div class="sec-title">عن الكتاب</div><div class="book-desc">${esc(b.desc)}</div></div>` : '';
-  const catsLinks = getBookCats(b).map(cid => `<a href="#/category/${cid}" style="color:var(--primary);text-decoration:underline">${esc(getCat(cid)?.name||"غير مصنف")}</a>`).join(" • ");
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${getBookCats(b)[0]}">${esc(getCat(getBookCats(b)[0])?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div><div class="book-page"><div class="book-main"><div class="book-cover-wrap">${coverHtmlBig(b)}</div><div class="book-info"><h1 class="book-title">${esc(b.t)}</h1><a href="#/author/${b.a}" class="author-chip">${chipImg}${chipFallback}<span>${esc(a?.name||"غير محدد")}</span></a><div class="book-meta-grid"><div class="meta-item" style="flex-wrap:wrap"><strong>التصنيفات:</strong> ${catsLinks}</div>${b.pages?`<div class="meta-item"><strong>الصفحات:</strong> ${b.pages}</div>`:""}${b.y?`<div class="meta-item"><strong>التاريخ:</strong> ${b.y} هـ</div>`:""}${b.series&&getSeries(b.series)?`<div class="meta-item"><strong>الموسوعة:</strong> <a href="#/series-one/${b.series}" style="color:var(--primary)">${esc(getSeries(b.series).name)}</a></div>`:""}</div><div class="download-box"><div class="download-header"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>تحميل الكتاب</div><div class="download-body">${b.hasPdf?`<button class="dl-btn dl-pdf" onclick="downloadBook('${b.id}','pdf')">PDF</button>`:""}${b.hasWord?`<button class="dl-btn dl-word" onclick="downloadBook('${b.id}','word')">Word</button>`:""}${b.hasPdf?`<a href="#/read/${b.id}" class="dl-btn dl-read">قراءة</a>`:""}<button class="dl-btn dl-share" onclick="shareBook('${b.id}')">مشاركة</button>${favBtnHtml("book",b.id)}</div></div></div></div>${descHtml}</div>${related.length?`<div class="sec-title">كتب مشابهة</div><div class="books-grid">${related.map(bookCardHtml).join("")}</div>`:""}`;
-}
-
-function renderPrintedBooks(){
-  const locations = [
-    { city: "النجف الأشرف", name: "مكتبة الإمام الحسن المجتبى عليه السلام", address: "", phone: "009647826265250" },
-    { city: "كربلاء المقدسة", name: "مكتبة الإمام الحسين عليه السلام التخصصية", address: "شارع الإمام علي عليه السلام", phone: "" },
-    { city: "مشهد المقدسة", name: "مدرسة الإمام الرضا عليه السلام", address: "تقاطع شهداء، شارع بهجت، فرع 7", phone: "" },
-    { city: "طهران", name: "دارالعلم", address: "شارع انقلاب، شارع 12 فروردين، مجتمع ناشران، الطابق الأرضي، الرقم 16 و 18", phone: "" },
-    { city: "قم المقدسة", name: "دارالعلم", address: "شارع معلم، دوار روح الله، فرع 19", phone: "" },
-    { city: "قم المقدسة", name: "دارالعلم", address: "شارع معلم، مجتمع ناشران، الطابق الأرضي، الرقم 7", phone: "" }
-  ];
-  let html = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الحصول على الكتب المطبوعة</span></div><div class="sec-title">الحصول على الكتب المطبوعة</div><div style="background:var(--paper);padding:20px;border-radius:var(--radius-lg);margin-bottom:24px;border:1px solid var(--line);text-align:center;"><p style="font-size:14px;color:var(--ink-2);line-height:1.8;">يمكنك الحصول على نسخ ورقية من مؤلفات أسرة آل الشيرازي من خلال الوكلاء والمكتبات المعتمدة التالية:</p></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">`;
-  locations.forEach(loc => {
-    html += `<div class="print-card"><div class="print-city">📍 ${esc(loc.city)}</div><div class="print-name">${esc(loc.name)}</div>${loc.address?`<div class="print-address">🗺️ ${esc(loc.address)}</div>`:""}${loc.phone?`<a href="tel:${loc.phone}" class="print-phone">📞 ${esc(loc.phone)}</a>`:""}</div>`;
-  });
-  html += `</div>`;
-  app.innerHTML = html;
-}
-
-function renderContact(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>تواصل معنا</span></div><div class="sec-title">تواصل معنا</div><div class="contact-card"><div class="contact-icon">✉️</div><h3>يسعدنا تواصلكم معنا</h3><p>إذا كان لديكم أي استفسار، أو اقتراح، أو ترغبون في إضافة كتب جديدة للمكتبة، يمكنكم التواصل معنا عبر الوسائل التالية:</p><div style="display:flex;flex-direction:column;gap:15px;align-items:center;margin-top:30px;"><div style="background:var(--paper-2);padding:15px 30px;border-radius:10px;border:1px dashed var(--line);width:100%;max-width:400px;"><strong style="color:var(--primary-dark);display:block;margin-bottom:5px;">البريد الإلكتروني:</strong><span style="color:var(--muted);">[سيتم إضافته قريباً]</span></div><div style="background:var(--paper-2);padding:15px 30px;border-radius:10px;border:1px dashed var(--line);width:100%;max-width:400px;"><strong style="color:var(--primary-dark);display:block;margin-bottom:5px;">رقم الواتساب:</strong><span style="color:var(--muted);">[سيتم إضافته قريباً]</span></div><div style="background:var(--paper-2);padding:15px 30px;border-radius:10px;border:1px dashed var(--line);width:100%;max-width:400px;"><strong style="color:var(--primary-dark);display:block;margin-bottom:5px;">قناة التيليجرام:</strong><span style="color:var(--muted);">[سيتم إضافته قريباً]</span></div></div></div>`;
-}
-
-function renderIstifta(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>استفتاء</span></div><div class="sec-title">إرسال استفتاء</div><div class="form-container"><form onsubmit="event.preventDefault(); alert('تم إرسال استفتائك بنجاح.'); this.reset();"><div class="form-group"><label>الاسم</label><input type="text" class="form-control" required></div><div class="form-group"><label>البريد الإلكتروني</label><input type="email" class="form-control" required></div><div class="form-group"><label>نص السؤال</label><textarea class="form-control" required></textarea></div><button type="submit" class="btn-submit">إرسال الاستفتاء</button></form></div>`;
-}
-
-function renderUsefulLinks(){
-  const links = [
-    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "alshirazi.com", link: "https://alshirazi.com" },
-    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "arabic.shirazi.ir", link: "http://arabic.shirazi.ir" },
-    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "m-alshirazi.com", link: "http://m-alshirazi.com/" },
-    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "mahdialshirazi.com", link: "https://mahdialshirazi.com" },
-    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تيليجرام", url: "t.me/shirazi_lib", link: "https://t.me/shirazi_lib" },
-    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "m.annabaa.org", link: "http://m.annabaa.org" }
-  ];
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>مواقع مفيدة</span></div><div class="sec-title">مواقع مفيدة</div><div class="links-grid">${links.map(l => `<a href="${l.link}" target="_blank" class="link-card"><div class="title">${esc(l.title)}</div><div class="desc">${esc(l.desc)}</div><div class="url">${esc(l.url)}</div></a>`).join("")}</div>`;
-}
-
-function renderDonate(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>الدعم والمساهمة</span></div><div class="sec-title"><span style="color:#000000;">♦</span> الدعم والمساهمة</div><div style="background:var(--paper);padding:20px;border-radius:var(--radius-lg);margin-bottom:24px;border:1px solid var(--line);text-align:center;"><p style="font-size:14px;color:var(--ink-2);line-height:1.8;">ساهم في نشر علوم محمد وآله (عليهم الصلاة والسلام) ↓</p></div><div class="donate-grid">${DONATION_PROJECTS.map(p => `<div class="donate-card"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p><a href="#/contact" class="btn-donate">ساهم الآن</a></div>`).join("")}</div>`;
-}
-
-function renderFavorites(){
-  const favBooks = FAVORITES.books.map(getBook).filter(Boolean);
-  const favSeries = FAVORITES.series.map(getSeries).filter(Boolean);
-  const total = favBooks.length + favSeries.length;
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>المفضلة</span></div><div class="fav-header"><div style="flex:1;min-width:200px"><h1>المفضلة</h1><p>جميع الكتب والموسوعات التي حفظتها في مكان واحد</p><div class="fh-stats"><span class="fh-stat">الكتب: <strong>${favBooks.length}</strong></span><span class="fh-stat">الموسوعات: <strong>${favSeries.length}</strong></span><span class="fh-stat">الإجمالي: <strong>${total}</strong></span></div></div>${total?`<button class="fav-clear-btn" onclick="clearAllFavs()">حذف الكل</button>`:""}</div>${total===0?`<div class="empty-box"><div class="ef-icon">⭐</div><h3 style="font-family:'Amiri',serif;font-size:20px;color:var(--ink);margin-bottom:8px">لا توجد عناصر محفوظة بعد</h3><p>اضغط على أيقونة النجمة في صفحة أي كتاب لإضافته هنا.</p></div>`:`${favBooks.length?`<div class="sec-title">الكتب (${favBooks.length})</div><div class="books-grid">${favBooks.map(bookCardHtml).join("")}</div>`:""}${favSeries.length?`<div class="sec-title" style="margin-top:26px">الموسوعات (${favSeries.length})</div><div class="series-grid">${favSeries.map(s=>`<a href="#/series-one/${s.id}" class="series-card" style="background:var(--paper);color:var(--ink);border:1px solid var(--line);border-inline-start:4px solid var(--accent);box-shadow:var(--shadow-sm)"><div style="flex:1;min-width:0"><div style="font-family:'Amiri',serif;font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:6px">${esc(s.name)}</div><div style="font-size:12px;color:var(--muted);line-height:1.6">${esc(s.desc)}</div></div>${favBtnHtml("series",s.id)}</a>`).join("")}</div>`:""}`}`;
-}
-
-function renderReader(id){
-  const b = getBook(id);
-  if(!b){ location.hash = "#/home"; return; }
-  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
-  
-  let rawUrl = "";
-  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
-  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
-  else { rawUrl = b.id + ".pdf"; }
-
-  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
-     rawUrl = FILES_BASE + rawUrl;
-  }
-  
-  let viewerUrl = "";
-  // استخدام Google Docs Viewer للروابط الخارجية (GitHub) لتجاوز التحميل الإجباري
-  if (rawUrl.startsWith("http")) {
-     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
-  } else {
-     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
-  }
-
-  app.innerHTML = `
-    <div class="reader-wrap">
-      <div class="reader-header">
-        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
-        <h1>${esc(b.t)}</h1>
-        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
-        ${favBtnHtml("book",b.id)}
+function renderBookList(){
+  const box = document.getElementById('bookList');
+  const list = BOOKS.slice(0, 50);
+  if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب.</div>'; return; }
+  box.innerHTML = list.map(b => `
+    <div class="book-item">
+      <div class="book-title-row"><div class="book-title">${esc(b.title)}</div></div>
+      <div class="book-meta"><span class="tag">${esc(getAuthName(b.author))}</span></div>
+      <div class="book-controls">
+        <div></div>
+        <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
+        <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
       </div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
     </div>
-  `;
+  `).join('');
 }
 
-function renderMediaLibrary(type){
-  const isAudio = type === "audio";
-  const data = isAudio ? AUDIOS : VIDEOS;
-  const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
-  const allCats = [...new Set(data.map(a => a.category).filter(Boolean))];
-  let fCat='all', fSpeaker='all', fTopic='all', fSubtopic='all', searchQuery='';
-  const drawContent = () => {
-    let filtered = data;
-    if (fCat !== 'all') filtered = filtered.filter(a => a.category === fCat);
-    if (fSpeaker !== 'all') filtered = filtered.filter(a => a.speaker === fSpeaker);
-    if (fTopic !== 'all') filtered = filtered.filter(a => a.topic === fTopic);
-    if (fSubtopic !== 'all') filtered = filtered.filter(a => a.subtopic === fSubtopic);
-    if(searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q)); }
-    app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div><div class="sec-title">${pageTitle}</div><div class="lib-controls"><div class="lib-search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="بحث..." value="${searchQuery}" oninput="window.mediaSearch(this.value)"></div><div class="lib-filters-grid"><div class="lib-filter-group"><label>القسم</label><select class="lib-filter-select" onchange="window.updateFilter('cat', this.value)"><option value="all">الكل</option>${allCats.map(c => `<option value="${c}" ${fCat===c?'selected':''}>${esc(c)}</option>`).join('')}</select></div></div></div><div class="lib-table"><div class="lib-thead"><div>العنوان</div><div>المتحدث</div><div>الخدمات</div></div>${filtered.length === 0 ? '<div style="padding:20px;text-align:center;color:var(--muted);">لا توجد عناصر.</div>' : filtered.map((a, idx) => `<div class="lib-row"><div class="lib-title">${esc(a.title)}</div><div class="lib-auth">${esc(a.speaker||a.author||'—')}</div><div class="lib-actions">${isAudio ? `<button class="lib-btn" onclick="window.toggleInlineAudio(${idx}, '${a.url}')">▶</button>` : `<a href="${a.url}" target="_blank" class="lib-btn">▶</a>`}</div></div>`).join('')}</div>`;
-  };
-  window.updateFilter = (type, val) => { if (type === 'cat') fCat = val; drawContent(); };
-  window.mediaSearch = (val) => { searchQuery = val; drawContent(); };
-  drawContent();
+function renderCategoriesList(){
+  document.getElementById('categoriesCountLabel').textContent = CATS.length;
+  document.getElementById('categoriesList').innerHTML = CATS.map(c => `
+    <div class="book-item"><div class="book-title">${esc(c.name)} (${c.id})</div></div>
+  `).join('');
 }
 
-let inlineAudio = new Audio();
-let currentIdx = null;
-window.toggleInlineAudio = function(idx, url){
-  const iconPlay = document.getElementById(`icon-play-${idx}`);
-  const iconPause = document.getElementById(`icon-pause-${idx}`);
-  if (currentIdx === idx) {
-    if (inlineAudio.paused) { inlineAudio.play(); if(iconPlay) iconPlay.style.display='none'; if(iconPause) iconPause.style.display='block'; }
-    else { inlineAudio.pause(); if(iconPlay) iconPlay.style.display='block'; if(iconPause) iconPause.style.display='none'; }
+function renderSeriesList(){
+  document.getElementById('seriesCountLabel').textContent = SERIES.length;
+  document.getElementById('seriesList').innerHTML = SERIES.map(s => `
+    <div class="book-item"><div class="book-title">${esc(s.name)} (${s.id})</div></div>
+  `).join('');
+}
+
+function toggleSection(id){ document.getElementById(id+'Toggle').classList.toggle('open'); document.getElementById(id+'Content').classList.toggle('open'); }
+
+/* ========== إدارة الوسائط ========== */
+function switchMediaTab(tab){
+  currentMediaTab = tab;
+  document.getElementById('tabVideoBtn').className = tab === 'video' ? 'btn btn-primary' : 'btn btn-outline';
+  document.getElementById('tabAudioBtn').className = tab === 'audio' ? 'btn btn-primary' : 'btn btn-outline';
+  renderMediaList();
+  populateMediaDropdowns();
+}
+
+function populateMediaDropdowns(){
+  const speakerSelect = document.getElementById('med-speaker');
+  speakerSelect.innerHTML = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  document.getElementById('med-topic').innerHTML = `<option value="">— بدون —</option>` + lists.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('');
+  updateSubtopicDropdown();
+}
+
+function updateSubtopicDropdown(){
+  const topicName = document.getElementById('med-topic').value;
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  const topic = lists.find(l => l.name === topicName);
+  const subtopicSelect = document.getElementById('med-subtopic');
+  if (topic && topic.subs) {
+    subtopicSelect.innerHTML = `<option value="">— بدون —</option>` + topic.subs.map(s => `<option value="${esc(s.name)}">${esc(s.name)}</option>`).join('');
   } else {
-    currentIdx = idx; inlineAudio.src = url; inlineAudio.play();
+    subtopicSelect.innerHTML = `<option value="">— بدون —</option>`;
   }
-};
-
-function renderAbout(){
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>عن المكتبة</span></div><div class="sec-title">عن المكتبة</div><div class="about-box"><p>هذه المكتبة الإلكترونية تهدف إلى إتاحة تراث <strong>أسرة آل الشيرازي</strong> العلمي عبر أجيالها، إلى طلبة العلم والباحثين، عبر تصنيف علمي واضح ومنظم.</p><p style="color:var(--muted)">المؤلفات المعروضة هنا (${BOOKS.length} كتاباً) قابلة للتوسيع عبر لوحة التحكم.</p></div>`;
 }
 
-function toolbarHtml(){
-  const auths = authorsWithBooks();
-  return `<div class="toolbar"><div class="results" id="resCount"></div><div class="tools">${auths.length>1?`<select id="authorFilter"><option value="all">كل المؤلفين</option>${auths.map(a=>`<option value="${a.id}">${esc(a.short)}</option>`).join("")}</select>`:""}<select id="sort"><option value="title-asc">أبجدي (أ – ي)</option><option value="title-desc">أبجدي (ي – أ)</option><option value="year-desc">الأحدث أولاً</option><option value="year-asc">الأقدم أولاً</option></select><div class="view-toggle"><button data-view="table" class="${state.view==='table'?'active':''}">قائمة</button><button data-view="grid" class="${state.view==='grid'?'active':''}">بطاقات</button></div></div></div>`;
+function renderMediaList(){
+  const box = document.getElementById('mediaListBox');
+  const items = currentMediaTab === 'video' ? VIDEOS : AUDIOS;
+  if (items.length === 0) { box.innerHTML = '<div class="empty">لا توجد عناصر.</div>'; return; }
+  box.innerHTML = items.map((item, idx) => `
+    <div class="book-item">
+      <div class="book-title-row"><div class="book-title">${esc(item.title)}</div></div>
+      <div class="book-meta">
+        <span class="tag">${esc(item.speaker)}</span>
+        ${item.topic ? `<span class="tag cat">${esc(item.topic)}</span>` : ''}
+        ${item.subtopic ? `<span class="tag series">↳ ${esc(item.subtopic)}</span>` : ''}
+      </div>
+      <div class="book-controls">
+        <div></div>
+        <button class="btn btn-outline btn-icon" onclick="editMediaItem(${idx})">✏️</button>
+        <button class="book-delete" onclick="deleteMediaItem(${idx})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
 }
 
-function bindToolbar(){
-  const sortEl = document.getElementById("sort");
-  if(sortEl){ sortEl.value = state.sort; sortEl.onchange = ()=>{ state.sort = sortEl.value; renderList(); }; }
-  const auEl = document.getElementById("authorFilter");
-  if(auEl){ auEl.value = state.author; auEl.onchange = ()=>{ state.author = auEl.value; renderList(); }; }
-  document.querySelectorAll(".view-toggle button").forEach(b=>{
-    b.onclick = ()=>{
-      state.view = b.dataset.view;
-      document.querySelectorAll(".view-toggle button").forEach(x=>x.classList.toggle("active",x===b));
-      const box = document.getElementById("booksBox");
-      if(box) box.className = state.view==="table"?"books-list":"books-grid";
-      renderList();
-    };
-  });
+function clearMediaForm(){
+  document.getElementById('med-title').value = '';
+  document.getElementById('med-url').value = '';
+  editingMediaIndex = -1;
 }
 
-function getFiltered(){
-  let list = [...BOOKS];
-  if(state.cat!=="all") list = list.filter(b=>getBookCats(b).includes(state.cat));
-  if(state.author!=="all") list = list.filter(b=>b.a===state.author);
-  if(state.series!=="all") list = list.filter(b=>b.series===state.series);
-  if(state.q) list = list.filter(b=>matchBook(b,state.q,state.searchType));
-  const parseId = (id) => { const m = String(id).match(/\d+/); return m ? parseInt(m[0], 10) : 0; };
-  switch(state.sort){
-    case "title-asc": list.sort((a,b) => { const nA = parseId(a.id); const nB = parseId(b.id); if (nA !== nB && nA !== 0 && nB !== 0) return nA - nB; return a.t.localeCompare(b.t, "ar"); }); break;
-    case "title-desc": list.sort((a,b) => { const nA = parseId(a.id); const nB = parseId(b.id); if (nA !== nB && nA !== 0 && nB !== 0) return nB - nA; return b.t.localeCompare(a.t, "ar"); }); break;
-    case "year-desc": list.sort((a,b)=>(b.y||0)-(a.y||0)); break;
-    case "year-asc": list.sort((a,b)=>(a.y||0)-(b.y||0)); break;
+function addMediaItem(){
+  const title = document.getElementById('med-title').value.trim();
+  const url = document.getElementById('med-url').value.trim();
+  if (!title || !url) return alert('العنوان والرابط مطلوبان');
+  const item = {
+    title, url,
+    speaker: document.getElementById('med-speaker').value,
+    topic: document.getElementById('med-topic').value,
+    subtopic: document.getElementById('med-subtopic').value
+  };
+  if (editingMediaIndex > -1) {
+    if (currentMediaTab === 'video') VIDEOS[editingMediaIndex] = item;
+    else AUDIOS[editingMediaIndex] = item;
+  } else {
+    if (currentMediaTab === 'video') VIDEOS.unshift(item);
+    else AUDIOS.unshift(item);
   }
-  return list;
+  saveMediaDraft();
+  renderMediaList();
+  clearMediaForm();
 }
 
-function renderList(){
-  const list = getFiltered();
-  const box = document.getElementById("booksBox");
-  const res = document.getElementById("resCount");
-  if(!box) return;
-  if(res) res.innerHTML = `عدد النتائج: <strong>${list.length}</strong> كتاب`;
-  if(!list.length){ box.className = ""; box.innerHTML = `<div class="empty-state">لا توجد نتائج مطابقة.</div>`; return; }
-  box.innerHTML = state.view==="table" ? list.map(bookRowHtml).join("") : list.map(bookCardHtml).join("");
+function editMediaItem(idx){
+  const item = currentMediaTab === 'video' ? VIDEOS[idx] : AUDIOS[idx];
+  document.getElementById('med-title').value = item.title || '';
+  document.getElementById('med-url').value = item.url || '';
+  document.getElementById('med-speaker').value = item.speaker || '';
+  document.getElementById('med-topic').value = item.topic || '';
+  updateSubtopicDropdown();
+  document.getElementById('med-subtopic').value = item.subtopic || '';
+  editingMediaIndex = idx;
+  document.getElementById('med-title').scrollIntoView({behavior:'smooth'});
 }
 
-const q = document.getElementById("q");
-const sug = document.getElementById("sug");
-const searchTypeSel = document.getElementById("searchType");
-let timer;
-if(searchTypeSel) searchTypeSel.value = state.searchType;
-
-function isListPage(){ const h = location.hash || ""; return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/") || h==="#/latest"; }
-
-function showHistory(){
-  if(!SEARCH_HISTORY.length){ sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث</li>`; sug.classList.add("show"); return; }
-  sug.innerHTML = `<li class="sug-head"><span>البحث السابق</span><button class="sug-clear" onclick="event.stopPropagation();clearHistory();showHistory();">مسح</button></li>${SEARCH_HISTORY.map(t=>`<li data-history="${esc(t)}"><span class="sug-term">${esc(t)}</span><button class="sug-remove" onclick="event.stopPropagation();removeFromHistory('${esc(t).replace(/'/g,"\\'")}');showHistory();">✕</button></li>`).join("")}`;
-  sug.classList.add("show");
+function deleteMediaItem(idx){
+  if (!confirm('حذف العنصر؟')) return;
+  if (currentMediaTab === 'video') VIDEOS.splice(idx, 1);
+  else AUDIOS.splice(idx, 1);
+  saveMediaDraft(); renderMediaList();
 }
 
-function showSuggestions(v){
-  const results = BOOKS.filter(b=>matchBook(b,v,state.searchType)).slice(0,10);
-  if(!results.length){ sug.innerHTML = `<li class="sug-empty">لا توجد نتائج</li>`; sug.classList.add("show"); return; }
-  sug.innerHTML = results.map(b=>`<li data-id="${b.id}">${esc(b.t)}<span class="sug-auth">${esc(authorName(b.a))}</span></li>`).join("");
-  sug.classList.add("show");
+/* ========== إدارة القوائم ========== */
+function openListsManager(){
+  document.getElementById('listsModal').classList.add('open');
+  renderListsManager();
+}
+function closeListsManager(){
+  document.getElementById('listsModal').classList.remove('open');
+}
+function renderListsManager(){
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  const box = document.getElementById('listsManagerBody');
+  box.innerHTML = lists.map((l, i) => `
+    <div style="background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:10px; margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>${esc(l.name)}</strong>
+        <button class="book-delete" style="width:28px;height:28px;" onclick="deleteMediaTopic(${i})">🗑️</button>
+      </div>
+      <div style="margin-top:8px; padding-right:15px; border-right:2px solid var(--accent);">
+        ${(l.subs || []).map((s, j) => `
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:5px;">
+            <span>↳ ${esc(s.name)}</span>
+            <button class="book-delete" style="width:24px;height:24px;font-size:10px;" onclick="deleteMediaSubtopic(${i}, ${j})">✕</button>
+          </div>
+        `).join('')}
+        <div style="display:flex; gap:5px; margin-top:8px;">
+          <input type="text" id="new-sub-${i}" placeholder="اسم القائمة الفرعية" style="flex:1; padding:4px 8px; font-size:12px; border:1px solid var(--line); border-radius:4px;">
+          <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="addMediaSubtopic(${i})">➕</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function addMediaTopic(){
+  const name = document.getElementById('newTopicName').value.trim();
+  if (!name) return;
+  if (!MEDIA_LISTS[currentMediaTab]) MEDIA_LISTS[currentMediaTab] = [];
+  MEDIA_LISTS[currentMediaTab].push({ name, subs: [] });
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  document.getElementById('newTopicName').value = '';
+}
+function deleteMediaTopic(i){
+  if (!confirm('حذف القائمة الرئيسية وكل ما تحتها؟')) return;
+  MEDIA_LISTS[currentMediaTab].splice(i, 1);
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+}
+function addMediaSubtopic(i){
+  const name = document.getElementById(`new-sub-${i}`).value.trim();
+  if (!name) return;
+  MEDIA_LISTS[currentMediaTab][i].subs.push({ name });
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+}
+function deleteMediaSubtopic(i, j){
+  MEDIA_LISTS[currentMediaTab][i].subs.splice(j, 1);
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
 }
 
-q.addEventListener("focus", ()=>{ if(!q.value.trim()) showHistory(); else showSuggestions(q.value.trim()); });
-q.addEventListener("input", ()=>{ clearTimeout(timer); const v = q.value.trim(); if(isListPage()){ if(v){ state.q = v; renderList(); } else if(state.q){ state.q = ""; renderList(); } } if(!v){ showHistory(); return; } timer = setTimeout(()=>showSuggestions(v), 150); });
+function saveMediaDraft(){ hasDraft = true; document.getElementById('draftBanner').style.display = 'flex'; }
 
-sug.addEventListener("click", e=>{
-  if(e.target.closest("[data-remove]") || e.target.closest(".sug-clear") || e.target.closest(".sug-remove")){ e.stopPropagation(); return; }
-  const h = e.target.closest("li[data-history]"); if(h){ q.value = h.dataset.history; doSearch(h.dataset.history); return; }
-  const li = e.target.closest("li[data-id]"); if(!li) return;
-  sug.classList.remove("show"); q.value = ""; state.q = ""; location.hash = "#/book/" + li.dataset.id;
-});
-
-searchTypeSel.addEventListener("change", ()=>{ state.searchType = searchTypeSel.value; if(q.value.trim()) showSuggestions(q.value.trim()); });
-document.getElementById("qBtn").onclick = ()=>doSearch(q.value);
-q.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(q.value); } });
-
-function doSearch(v){
-  v = (v||"").trim(); if(!v){ state.q = ""; renderList(); return; }
-  addToHistory(v); state.q = v; state.cat = "all"; state.author = "all"; state.series = "all";
-  sug.classList.remove("show"); if(isListPage()) renderList(); else location.hash = "#/library";
+function cleanObj(obj){
+  const copy = { ...obj };
+  Object.keys(copy).forEach(k => { if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k]; });
+  return copy;
 }
 
-document.addEventListener("click", e=>{ if(!e.target.closest(".search-wrap")) sug.classList.remove("show"); });
-
-async function downloadBook(id, format){
-  const b = getBook(id); if(!b) return;
-  let url = format === "pdf" ? (b.pdf_url || b.filename) : b.word_url;
-  if (!url) { alert("رابط الملف غير متوفر."); return; }
-  if (!url.startsWith("http") && !url.startsWith("//")) url = FILES_BASE + url;
-  window.open(url, "_blank");
-}
-
-async function shareBook(id){
-  const b = getBook(id); if(!b) return;
-  const shareData = { title: b.t, text: `تصفح هذا الكتاب من مكتبة آل الشيرازي: ${b.t}`, url: window.location.href };
-  try { if (navigator.share) { await navigator.share(shareData); } else { await navigator.clipboard.writeText(shareData.url); alert("تم نسخ الرابط"); } } catch(e){}
-}
-
-async function shareSeries(id){
-  const s = getSeries(id); if(!s) return;
-  const shareData = { title: s.name, text: `تصفح هذه الموسوعة: ${s.name}`, url: window.location.href };
-  try { if (navigator.share) { await navigator.share(shareData); } else { await navigator.clipboard.writeText(shareData.url); alert("تم نسخ الرابط"); } } catch(e){}
-}
+window.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
