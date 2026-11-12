@@ -1,6 +1,21 @@
 {
   "items": [
     {
+      "id": "book-985577",
+      "title": "ديوان السيد حسن الشيرازي",
+      "author": "shirazi-h",
+      "categories": [
+        "about-the-al-shirazi-family"
+      ],
+      "category": "about-the-al-shirazi-family",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/kalima-volumes/diwan-of-sayyid-hasan-al-shirazi.pdf",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/book-covers/diwan-of-sayyid-hasan-al-shirazi.jpeg"
+    },
+    {
       "id": "book-593966-m7j",
       "title": "كيف أستثمر العطلة؟",
       "author": "shirazi-me",
