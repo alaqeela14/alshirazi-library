@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>المقالات والبحوث — مكتبة آل الشيرازي</title>
+<meta name="theme-color" content="#212529">
+<link rel="icon" href="logo.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
+  --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
+  --line:#e5ddd0;--line-2:#f0ebe2;
+  --primary:#343a40;--primary-dark:#212529;
+  --accent:#d4af37;--accent-light:#f8e7b9;
+  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;
+  /* القراءة الأكاديمية */
+  --read-bg:#faf6f0;--read-paper:#fdfbf6;--read-ink:#2b2520;--read-muted:#6b6255;--read-line:#e0d6c4;--read-accent:#b8952e;
+  --radius:10px;--radius-lg:14px;
+  --shadow-sm:0 1px 3px rgba(33,37,41,.06);
+  --shadow:0 4px 14px rgba(33,37,41,.08);
+  --shadow-lg:0 12px 32px rgba(33,37,41,.12);
+  --tr:.22s ease;
+}
+[data-theme="dark"]{
+  --bg:#121417;--paper:#1c1f24;--paper-2:#15171b;
+  --ink:#f0ebe2;--ink-2:#d8d0c0;--muted:#9a8e7d;
+  --line:#2d3238;--line-2:#24282e;
+  --primary:#d4af37;--primary-dark:#b8952e;
+  --accent:#d4af37;--accent-light:#f8e7b9;
+  --read-bg:#16181c;--read-paper:#1c1f24;--read-ink:#f0ebe2;--read-muted:#b0a690;--read-line:#2d3238;--read-accent:#d4af37;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.4);
+  --shadow:0 4px 14px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none;transition:color var(--tr)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.container{width:min(1240px,94%);margin-inline:auto}
+.container-read{width:min(860px,94%);margin-inline:auto}
+
+/* Header */
+.acad-header{background:var(--primary-dark);color:#fff;padding:20px 0;box-shadow:var(--shadow)}
+.acad-header-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.acad-header h1{font-family:'Amiri',serif;font-size:22px}
+.acad-header p{font-size:12px;opacity:.85;margin-top:2px}
+.acad-header .back-home{padding:8px 16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;font-size:13px;font-weight:700;color:#fff}
+.acad-header .back-home:hover{background:var(--accent);color:var(--primary-dark);border-color:var(--accent)}
+
+/* Home / List view */
+.view{padding:30px 0 60px}
+.page-title{font-family:'Amiri',serif;font-size:28px;color:var(--primary-dark);margin-bottom:8px;text-align:center}
+.page-sub{font-size:14px;color:var(--muted);text-align:center;margin-bottom:30px;max-width:700px;margin-inline:auto;line-height:1.8}
+[data-theme="dark"] .page-title{color:var(--accent)}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:12px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
+.toolbar input,.toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:13px;color:var(--ink);outline:none}
+.toolbar input{flex:1;min-width:180px}
+.toolbar input:focus,.toolbar select:focus{border-color:var(--primary)}
+.type-filter{display:flex;gap:4px;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:3px}
+.type-filter button{padding:6px 14px;border-radius:6px;font-size:12.5px;font-weight:700;color:var(--muted);background:transparent;transition:all var(--tr)}
+.type-filter button.active{background:var(--primary);color:#fff}
+[data-theme="dark"] .type-filter button.active{color:var(--primary-dark)}
+
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.article-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;display:flex;flex-direction:column;gap:10px;transition:all var(--tr);box-shadow:var(--shadow-sm);color:inherit;cursor:pointer}
+.article-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.article-card .card-type{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;width:fit-content}
+.article-card .card-type.research{background:#f5ede0;color:#8a6b2c}
+.article-card .card-type.article{background:#e8f0f8;color:#4a5c78}
+[data-theme="dark"] .article-card .card-type.research{background:#3a2e1a;color:#e6c86e}
+[data-theme="dark"] .article-card .card-type.article{background:#1f2a38;color:#a8c4e0}
+.article-card .card-title{font-family:'Amiri',serif;font-size:19px;font-weight:700;color:var(--primary-dark);line-height:1.4}
+[data-theme="dark"] .article-card .card-title{color:var(--accent)}
+.article-card .card-meta{font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.article-card .card-summary{font-size:13.5px;color:var(--ink-2);line-height:1.8;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.article-card .card-foot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);padding-top:10px;border-top:1px solid var(--line-2);margin-top:auto}
+.article-card .card-cat{background:var(--paper-2);padding:2px 8px;border-radius:8px;font-weight:600}
+
+.featured-strip{margin-bottom:24px}
+.featured-title{font-family:'Amiri',serif;font-size:18px;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.featured-title::before{content:"";width:4px;height:20px;background:var(--accent);border-radius:2px}
+
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:30px}
+.cat-chip{background:var(--paper);border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:all var(--tr)}
+.cat-chip:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-inline-start-color:var(--primary)}
+.cat-chip .cn{font-weight:700;font-size:13px;color:var(--ink)}
+.cat-chip .cc{background:var(--paper-2);color:var(--muted);font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700}
+
+/* ============== Reading Page ============== */
+.reader-shell{background:var(--read-bg);min-height:100vh;padding:30px 0 60px}
+.reader-meta-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 0;margin-bottom:24px;border-bottom:1px solid var(--read-line);flex-wrap:wrap;gap:10px}
+.reader-meta-bar .back-btn{padding:7px 16px;background:var(--read-paper);border:1px solid var(--read-line);border-radius:20px;font-size:12.5px;font-weight:700;color:var(--read-muted);display:inline-flex;align-items:center;gap:6px}
+.reader-meta-bar .back-btn:hover{background:var(--read-accent);color:#fff;border-color:var(--read-accent)}
+.reader-tools{display:flex;gap:4px;flex-wrap:wrap}
+.reader-tool-btn{width:34px;height:34px;border-radius:8px;background:var(--read-paper);border:1px solid var(--read-line);color:var(--read-muted);display:inline-grid;place-items:center;font-size:13px;font-weight:700;transition:all var(--tr);padding:0}
+.reader-tool-btn:hover{background:var(--read-accent);color:#fff;border-color:var(--read-accent)}
+.reader-tool-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reader-tool-btn.active{background:var(--read-accent);color:#fff;border-color:var(--read-accent)}
+
+.reader-paper{background:var(--read-paper);border:1px solid var(--read-line);border-radius:4px;padding:50px 60px;box-shadow:0 8px 30px rgba(90,74,53,.08);font-family:'Noto Naskh Arabic','Amiri',serif;color:var(--read-ink);line-height:2.1;font-size:17.5px}
+
+.reader-type-badge{display:inline-block;font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-bottom:16px}
+.reader-type-badge.research{background:#f5ede0;color:#8a6b2c}
+.reader-type-badge.article{background:#e8f0f8;color:#4a5c78}
+[data-theme="dark"] .reader-type-badge.research{background:#3a2e1a;color:#e6c86e}
+[data-theme="dark"] .reader-type-badge.article{background:#1f2a38;color:#a8c4e0}
+
+.reader-title{font-family:'Amiri',serif;font-size:34px;font-weight:700;text-align:center;color:var(--read-ink);line-height:1.45;margin-bottom:24px;letter-spacing:-.3px}
+.reader-author{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:20px}
+.reader-author .auth-name{font-size:16px;font-weight:700;color:var(--read-accent)}
+.reader-author .auth-role{font-family:'Cairo',sans-serif;font-size:11.5px;color:var(--read-muted)}
+.reader-pub-info{text-align:center;font-family:'Cairo',sans-serif;font-size:12.5px;color:var(--read-muted);display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--read-line);border-bottom:1px solid var(--read-line);margin-bottom:30px}
+.reader-pub-info span{display:inline-flex;align-items:center;gap:5px}
+.reader-pub-info .journal-name{color:var(--read-accent);font-weight:700}
+
+.reader-abstract{background:rgba(212,175,55,.08);border-right:4px solid var(--read-accent);padding:20px 24px;margin-bottom:26px;border-radius:4px}
+.reader-abstract h3{font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;color:var(--read-accent);margin-bottom:8px}
+.reader-abstract p{font-size:15.5px;line-height:1.95;color:var(--read-ink);text-align:justify;margin:0}
+
+.reader-keywords{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:30px}
+.reader-keywords .kw{font-family:'Cairo',sans-serif;font-size:11.5px;padding:3px 10px;background:var(--read-bg);border:1px solid var(--read-line);border-radius:12px;color:var(--read-muted);font-weight:600}
+
+.reader-toc{background:rgba(212,175,55,.05);border:1px solid var(--read-line);border-radius:4px;padding:18px 22px;margin-bottom:32px}
+.reader-toc h3{font-family:'Cairo',sans-serif;font-size:14px;color:var(--read-accent);margin-bottom:10px;font-weight:700}
+.reader-toc ol{list-style:none;counter-reset:toc;padding-right:0}
+.reader-toc li{counter-increment:toc;font-size:14.5px;padding:4px 0;line-height:1.6}
+.reader-toc li::before{content:counter(toc) ". ";color:var(--read-accent);font-weight:700;margin-left:4px}
+.reader-toc a{color:var(--read-ink);display:inline}
+.reader-toc a:hover{color:var(--read-accent);text-decoration:underline}
+.reader-toc li.toc-h3{padding-right:24px;font-size:13.5px;color:var(--read-muted)}
+
+.reader-content{font-size:17.5px;line-height:2.1;text-align:justify;color:var(--read-ink)}
+.reader-content p{margin-bottom:16px;text-align:justify}
+.reader-content h2{font-family:'Amiri',serif;font-size:24px;color:var(--read-accent);font-weight:700;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--read-line);scroll-margin-top:80px}
+.reader-content h3{font-family:'Amiri',serif;font-size:19.5px;color:var(--read-ink);font-weight:700;margin:24px 0 10px;scroll-margin-top:80px}
+.reader-content h4{font-size:17px;color:var(--read-ink);font-weight:700;margin:18px 0 8px}
+.reader-content ul,.reader-content ol{padding-right:28px;margin-bottom:16px}
+.reader-content li{margin-bottom:6px;line-height:1.9}
+.reader-content blockquote{background:var(--read-bg);padding:16px 20px;border-right:3px solid var(--read-accent);margin:16px 0;border-radius:4px;font-style:normal;color:var(--read-ink-2)}
+.reader-content .quran-box{background:rgba(74,107,74,.08);border:1px solid rgba(74,107,74,.25);padding:18px 22px;border-radius:6px;margin:20px 0;text-align:center;font-family:'Amiri',serif;font-size:20px;color:#3d5c3d;line-height:1.9}
+[data-theme="dark"] .reader-content .quran-box{background:rgba(74,107,74,.15);color:#a8cfa8;border-color:rgba(74,107,74,.4)}
+.reader-content .quran-box .quran-src{display:block;font-size:14px;color:var(--read-muted);margin-top:8px}
+.reader-content .quote-box{background:rgba(212,175,55,.08);padding:16px 20px;border-radius:6px;margin:16px 0;border-right:3px solid var(--read-accent);color:var(--read-ink)}
+.reader-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;font-family:'Cairo',sans-serif}
+.reader-content th,.reader-content td{border:1px solid var(--read-line);padding:10px 12px;text-align:right}
+.reader-content th{background:var(--read-bg);font-weight:700;color:var(--read-accent)}
+.reader-content img{max-width:100%;height:auto;border-radius:6px;margin:12px 0;display:block}
+.reader-content .fn-ref{color:var(--read-accent);font-size:12px;font-weight:700;vertical-align:super;text-decoration:none;cursor:pointer;padding:0 2px;font-family:'Cairo',sans-serif}
+.reader-content .fn-ref:hover{text-decoration:underline}
+.reader-content .fn-ref.flash{background:var(--accent-light);border-radius:3px;padding:2px 4px}
+
+.reader-footnotes{margin-top:44px;padding-top:22px;border-top:2px solid var(--read-accent)}
+.reader-footnotes h3{font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;color:var(--read-accent);margin-bottom:14px}
+.reader-footnotes ol{padding-right:24px;list-style:decimal}
+.reader-footnotes li{font-size:14.5px;line-height:1.9;color:var(--read-ink-2);margin-bottom:10px;padding-right:8px;scroll-margin-top:80px}
+.reader-footnotes li.flash{background:rgba(212,175,55,.2);border-radius:4px;padding:8px 12px}
+.reader-footnotes .fn-back{color:var(--read-accent);font-size:12px;font-weight:700;margin-right:6px;font-family:'Cairo',sans-serif}
+.reader-footnotes .fn-back:hover{text-decoration:underline}
+
+.reader-references{margin-top:34px;padding-top:22px;border-top:1px solid var(--read-line)}
+.reader-references h3{font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;color:var(--read-accent);margin-bottom:14px}
+.reader-references ol{padding-right:24px;list-style:decimal}
+.reader-references li{font-size:14.5px;line-height:1.9;color:var(--read-ink-2);margin-bottom:10px}
+
+.reader-citation-section{margin-top:30px;padding:20px;background:var(--read-bg);border-radius:6px;text-align:center;border:1px dashed var(--read-line)}
+.citation-btn{padding:10px 22px;background:var(--read-accent);color:#fff;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;border:none}
+.citation-btn:hover{background:var(--primary-dark);color:var(--accent-light)}
+
+.reader-nav{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.reader-nav a{background:var(--read-paper);border:1px solid var(--read-line);border-radius:6px;padding:14px 18px;transition:all var(--tr);display:flex;flex-direction:column;gap:4px;color:inherit}
+.reader-nav a:hover{background:var(--read-bg);border-color:var(--read-accent)}
+.reader-nav .nav-label{font-family:'Cairo',sans-serif;font-size:11px;color:var(--read-muted);font-weight:700}
+.reader-nav .nav-title{font-family:'Amiri',serif;font-size:15px;color:var(--read-ink);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reader-nav a.next{text-align:left}
+.reader-nav a.next .nav-label,.reader-nav a.next .nav-title{text-align:left}
+
+.related-articles{margin-top:40px}
+.related-title{font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;color:var(--read-accent);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--read-line)}
+
+/* Modal للاقتباس */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--paper);border-radius:var(--radius-lg);width:min(600px,100%);max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
+.modal-head{padding:14px 18px;background:var(--primary-dark);color:#fff;display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{font-size:15px}
+.modal-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:15px;display:grid;place-items:center}
+.modal-body{padding:20px}
+.modal-body p{font-size:13px;color:var(--muted);margin-bottom:14px}
+.citation-textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:'Cairo',sans-serif;font-size:13px;line-height:1.9;color:var(--ink);resize:vertical;min-height:180px;direction:rtl}
+.modal-foot{padding:12px 18px;background:var(--paper-2);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+.btn-modal{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+
+@media(max-width:768px){
+  .acad-header{padding:14px 0}
+  .acad-header h1{font-size:18px}
+  .acad-header p{font-size:11px}
+  .page-title{font-size:22px}
+  .page-sub{font-size:13px}
+  .articles-grid{grid-template-columns:1fr}
+  .reader-paper{padding:24px 18px}
+  .reader-title{font-size:24px}
+  .reader-pub-info{font-size:11.5px;gap:8px}
+  .reader-content{font-size:16.5px;line-height:2}
+  .reader-content h2{font-size:20px}
+  .reader-content h3{font-size:17.5px}
+  .reader-toc{padding:12px 16px}
+  .reader-toc li{font-size:13.5px}
+  .reader-nav{grid-template-columns:1fr}
+  .reader-meta-bar{gap:6px}
+  .reader-tool-btn{width:32px;height:32px;font-size:12px}
+  .reader-tool-btn svg{width:14px;height:14px}
+  .reader-abstract{padding:14px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="acad-header">
+  <div class="container acad-header-inner">
+    <div>
+      <h1>المقالات والبحوث</h1>
+      <p>قسم علمي متخصص ضمن مكتبة آل الشيرازي</p>
+    </div>
+    <a href="index.html" class="back-home">← العودة للمكتبة</a>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<!-- Modal الاقتباس -->
+<div class="modal-overlay" id="citeModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>توثيق هذا المحتوى</h3>
+      <button class="modal-close" onclick="closeCiteModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>انسخ بيانات التوثيق لإدراجها في بحثك:</p>
+      <textarea class="citation-textarea" id="citeText" readonly></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-modal btn-outline" onclick="closeCiteModal()">إغلاق</button>
+      <button class="btn-modal btn-primary" onclick="copyCitation()">نسخ التوثيق</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ البيانات ============ */
+let ARTICLES = [], ARTICLE_CATS = [], ARTICLE_AUTHORS = [];
+let READ_FONT_SIZE = 17.5;
+
+async function loadAll(){
+  try {
+    const [r1, r2, r3] = await Promise.all([
+      fetch('articles.json?t=' + Date.now()),
+      fetch('article-categories.json?t=' + Date.now()),
+      fetch('article-authors.json?t=' + Date.now())
+    ]);
+    if (r1.ok) { const d = await r1.json(); ARTICLES = (d.items||[]).filter(a => a.status === 'published'); }
+    if (r2.ok) { const d = await r2.json(); ARTICLE_CATS = d.items||[]; }
+    if (r3.ok) { const d = await r3.json(); ARTICLE_AUTHORS = d.items||[]; }
+  } catch(e) { console.error(e); }
+}
+
+/* ============ أدوات ============ */
+const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const getCatName = id => (ARTICLE_CATS.find(c=>c.id===id)||{}).name || 'غير مصنف';
+const getAuthor = id => ARTICLE_AUTHORS.find(a=>a.id===id);
+const fmtDate = d => {
+  if(!d) return '—';
+  try { return new Intl.DateTimeFormat('ar-EG',{year:'numeric',month:'long',day:'numeric'}).format(new Date(d)); }
+  catch(e) { return d; }
+};
+const countWords = txt => {
+  if(!txt) return 0;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = txt;
+  return (tmp.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+};
+const readingTime = a => Math.max(1, Math.ceil(countWords(a.content)/180));
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ============ View: Home / List ============ */
+let state = { type: 'all', cat: 'all', q: '', sort: 'newest' };
+
+function renderHome(){
+  const featured = ARTICLES.find(a => a.featured);
+  const activeCats = ARTICLE_CATS.filter(c => ARTICLES.some(a => a.category === c.id));
+  
+  let list = ARTICLES.slice();
+  if (state.type !== 'all') list = list.filter(a => a.type === state.type);
+  if (state.cat !== 'all') list = list.filter(a => a.category === state.cat);
+  if (state.q) {
+    const q = state.q.toLowerCase();
+    list = list.filter(a => (a.title||'').toLowerCase().includes(q) || (a.summary||'').toLowerCase().includes(q) || (a.keywords||[]).join(' ').toLowerCase().includes(q));
+  }
+  if (state.sort === 'newest') list.sort((a,b) => new Date(b.publishedAt||0) - new Date(a.publishedAt||0));
+  else if (state.sort === 'views') list.sort((a,b) => (b.views||0) - (a.views||0));
+
+  document.getElementById('app').innerHTML = `
+    <div class="view container">
+      <h2 class="page-title">المقالات والبحوث</h2>
+      <p class="page-sub">منصة علمية متخصصة لنشر المقالات والبحوث في تراث أسرة آل الشيرازي، تتيح للباحث والقارئ فرصة الوصول إلى المحتوى الأكاديمي الرصين بأساليب عرض احترافية.</p>
+
+      ${featured ? `
+        <div class="featured-strip">
+          <div class="featured-title">المحتوى المميز</div>
+          <a href="#/article/${featured.id}" class="article-card" style="border-color:var(--accent);border-width:2px">
+            <span class="card-type ${featured.type}">${featured.type==='research'?'بحث علمي':'مقال'}</span>
+            <h3 class="card-title" style="font-size:22px">${esc(featured.title)}</h3>
+            <div class="card-meta">
+              <span>${esc(getAuthor(featured.authorId)?.name || '—')}</span>
+              <span>${fmtDate(featured.publishedAt)}</span>
+            </div>
+            <p class="card-summary" style="-webkit-line-clamp:3">${esc(featured.summary||'')}</p>
+          </a>
+        </div>
+      ` : ''}
+
+      <div class="toolbar">
+        <input type="search" id="qInput" placeholder="ابحث في المقالات والبحوث..." value="${esc(state.q)}">
+        <select id="catSelect">
+          <option value="all">جميع التصنيفات</option>
+          ${activeCats.map(c => `<option value="${c.id}" ${state.cat===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}
+        </select>
+        <select id="sortSelect">
+          <option value="newest" ${state.sort==='newest'?'selected':''}>الأحدث أولاً</option>
+          <option value="views" ${state.sort==='views'?'selected':''}>الأكثر قراءة</option>
+        </select>
+        <div class="type-filter">
+          <button data-type="all" class="${state.type==='all'?'active':''}">الكل</button>
+          <button data-type="research" class="${state.type==='research'?'active':''}">البحوث</button>
+          <button data-type="article" class="${state.type==='article'?'active':''}">المقالات</button>
+        </div>
+      </div>
+
+      <div class="featured-title">تصفح حسب التصنيف</div>
+      <div class="cats-grid">
+        ${activeCats.map(c => `
+          <div class="cat-chip" onclick="filterByCat('${c.id}')">
+            <span class="cn">${esc(c.name)}</span>
+            <span class="cc">${ARTICLES.filter(a=>a.category===c.id).length}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="featured-title">${state.q ? 'نتائج البحث' : (state.type==='research'?'البحوث':state.type==='article'?'المقالات':'آخر الإضافات')}</div>
+      ${list.length === 0 ? '<div class="empty-state">لا توجد نتائج مطابقة.</div>' : `
+        <div class="articles-grid">
+          ${list.map(a => articleCardHtml(a)).join('')}
+        </div>
+      `}
+    </div>
+  `;
+  
+  // ربط الأحداث
+  document.getElementById('qInput').addEventListener('input', e => { state.q = e.target.value.trim(); renderHome(); setTimeout(()=>{const i=document.getElementById('qInput');i.focus();i.setSelectionRange(i.value.length,i.value.length);},0); });
+  document.getElementById('catSelect').addEventListener('change', e => { state.cat = e.target.value; renderHome(); });
+  document.getElementById('sortSelect').addEventListener('change', e => { state.sort = e.target.value; renderHome(); });
+  document.querySelectorAll('.type-filter button').forEach(b => {
+    b.addEventListener('click', () => { state.type = b.dataset.type; renderHome(); });
+  });
+}
+
+function articleCardHtml(a) {
+  const author = getAuthor(a.authorId);
+  return `
+    <a href="#/article/${a.id}" class="article-card">
+      <span class="card-type ${a.type}">${a.type==='research'?'بحث علمي':'مقال'}</span>
+      <h3 class="card-title">${esc(a.title)}</h3>
+      <div class="card-meta">
+        <span>${esc(author?.name || '—')}</span>
+        <span>${fmtDate(a.publishedAt)}</span>
+      </div>
+      <p class="card-summary">${esc(a.summary||'')}</p>
+      <div class="card-foot">
+        <span class="card-cat">${esc(getCatName(a.category))}</span>
+        <span>${a.views||0} مشاهدة · ${readingTime(a)} د قراءة</span>
+      </div>
+    </a>
+  `;
+}
+
+function filterByCat(id) {
+  state.cat = id;
+  renderHome();
+}
+
+/* ============ View: Reading Page ============ */
+function renderArticle(id) {
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) { location.hash = ''; return; }
+  const author = getAuthor(a.authorId);
+  
+  // زيادة عدد المشاهدات
+  a.views = (a.views || 0) + 1;
+  
+  // استخراج عناوين المحتوى (TOC)
+  const tmpDiv = document.createElement('div');
+  tmpDiv.innerHTML = a.content || '';
+  const headings = tmpDiv.querySelectorAll('h2, h3');
+  const tocHtml = headings.length > 0 ? `
+    <nav class="reader-toc">
+      <h3>فهرس المحتويات</h3>
+      <ol>
+        ${Array.from(headings).map((h, i) => {
+          const hid = 'sec-' + i;
+          h.id = hid;
+          return `<li class="${h.tagName==='H3'?'toc-h3':''}"><a href="#${hid}" onclick="scrollToSection('${hid}', event)">${esc(h.textContent)}</a></li>`;
+        }).join('')}
+      </ol>
+    </nav>
+  ` : '';
+  
+  // معالجة الحواشي: تحويل <sup class="fn-ref"><a href="#fn-1">[1]</a></sup> لروابط قابلة للنقر
+  let contentHtml = tmpDiv.innerHTML;
+  
+  // بناء الحواشي
+  const footnotesHtml = (a.footnotes && a.footnotes.length > 0) ? `
+    <section class="reader-footnotes">
+      <h3>الحواشي</h3>
+      <ol>
+        ${a.footnotes.map(fn => `
+          <li id="fn-${fn.id}" class="fn-item">
+            <span>${fn.text}</span>
+            <a href="#fnref-${fn.id}" class="fn-back" onclick="jumpBackToRef('${fn.id}', event)">↩︎</a>
+          </li>
+        `).join('')}
+      </ol>
+    </section>
+  ` : '';
+  
+  // تعديل مراجع الحواشي في المحتوى لتعمل مع onclick
+  contentHtml = contentHtml.replace(/<sup class="fn-ref"><a href="#fn-(\d+)">\[(\d+)\]<\/a><\/sup>/g, 
+    (match, num, label) => `<sup class="fn-ref"><a href="#fn-${num}" id="fnref-${num}" onclick="jumpToFootnote('${num}', event)">[${label}]</a></sup>`);
+  
+  // المراجع
+  const referencesHtml = (a.references && a.references.length > 0) ? `
+    <section class="reader-references">
+      <h3>المصادر والمراجع</h3>
+      <ol>
+        ${a.references.map(r => `
+          <li>${esc(r.author||'')}، <strong>${esc(r.title||'')}</strong>${r.publisher?`, ${esc(r.publisher)}`:''}${r.city?`، ${esc(r.city)}`:''}${r.edition?`، الطبعة ${esc(r.edition)}`:''}${r.volume?`، ${esc(r.volume)}`:''}${r.page?`، ص ${esc(r.page)}`:''}${r.year?`، ${esc(r.year)}`:''}.</li>
+        `).join('')}
+      </ol>
+    </section>
+  ` : '';
+  
+  // بيانات النشر
+  const journalInfo = (a.type === 'research' && a.journal) ? `
+    <span class="journal-name">${esc(a.journal.name||'')}</span>
+    ${a.journal.volume?`<span>المجلد: ${esc(a.journal.volume)}</span>`:''}
+    ${a.journal.issue?`<span>العدد: ${esc(a.journal.issue)}</span>`:''}
+    ${a.journal.pages?`<span>ص: ${esc(a.journal.pages)}</span>`:''}
+    ${a.journal.doi?`<span>DOI: ${esc(a.journal.doi)}</span>`:''}
+  ` : '';
+  
+  // المقالات ذات الصلة
+  const related = ARTICLES.filter(x => x.id !== a.id && (x.category === a.category || x.authorId === a.authorId)).slice(0, 3);
+  
+  // السابق والتالي
+  const sorted = ARTICLES.filter(x => x.status === 'published').sort((x,y) => new Date(y.publishedAt||0) - new Date(x.publishedAt||0));
+  const idx = sorted.findIndex(x => x.id === a.id);
+  const prev = idx > 0 ? sorted[idx - 1] : null;
+  const next = idx < sorted.length - 1 ? sorted[idx + 1] : null;
+  
+  const favKey = 'alsh_article_favs';
+  let favs = [];
+  try { favs = JSON.parse(localStorage.getItem(favKey) || '[]'); } catch(e){}
+  const isFav = favs.includes(a.id);
+  
+  document.getElementById('app').innerHTML = `
+    <div class="reader-shell">
+      <div class="container-read">
+        <div class="reader-meta-bar">
+          <a href="#" class="back-btn" onclick="location.hash=''; return false;">← العودة للقائمة</a>
+          <div class="reader-tools">
+            <button class="reader-tool-btn" onclick="changeFontSize(-1)" title="تصغير الخط">A−</button>
+            <button class="reader-tool-btn" onclick="changeFontSize(1)" title="تكبير الخط">A+</button>
+            <button class="reader-tool-btn" onclick="toggleDark()" title="الوضع الليلي">🌙</button>
+            <button class="reader-tool-btn" onclick="printArticle()" title="طباعة / PDF">🖨</button>
+            <button class="reader-tool-btn" onclick="copyFullArticle()" title="نسخ المحتوى">📋</button>
+            <button class="reader-tool-btn" onclick="shareArticle()" title="مشاركة">📤</button>
+            <button class="reader-tool-btn ${isFav?'active':''}" id="favBtn" onclick="toggleArticleFav('${a.id}')" title="مفضلة">⭐</button>
+          </div>
+        </div>
+        
+        <article class="reader-paper" id="readerPaper">
+          <span class="reader-type-badge ${a.type}">${a.type==='research'?'بحث علمي محكّم':'مقال'}</span>
+          <h1 class="reader-title">${esc(a.title)}</h1>
+          
+          <div class="reader-author">
+            <div class="auth-name">${esc(author?.name || 'غير محدد')}</div>
+            ${author?.role ? `<div class="auth-role">${esc(author.role)}</div>` : ''}
+            ${author?.bio ? `<div class="auth-role" style="max-width:600px;text-align:center;margin-top:6px;line-height:1.7">${esc(author.bio)}</div>` : ''}
+          </div>
+          
+          <div class="reader-pub-info">
+            <span>📅 نُشر: ${fmtDate(a.publishedAt)}</span>
+            ${a.updatedAt && a.updatedAt !== a.publishedAt ? `<span>🔄 آخر تحديث: ${fmtDate(a.updatedAt)}</span>` : ''}
+            <span>🏷 ${esc(getCatName(a.category))}</span>
+            <span>📖 ${readingTime(a)} دقيقة قراءة</span>
+            <span>👁 ${a.views} مشاهدة</span>
+            ${journalInfo}
+          </div>
+          
+          ${a.summary && a.type === 'research' ? `
+            <div class="reader-abstract">
+              <h3>الملخص</h3>
+              <p>${esc(a.summary)}</p>
+            </div>
+          ` : ''}
+          
+          ${a.keywords && a.keywords.length > 0 ? `
+            <div class="reader-keywords">
+              ${a.keywords.map(k => `<span class="kw">${esc(k)}</span>`).join('')}
+            </div>
+          ` : ''}
+          
+          ${tocHtml}
+          
+          <div class="reader-content" id="readerContent">
+            ${contentHtml}
+          </div>
+          
+          ${footnotesHtml}
+          ${referencesHtml}
+          
+          <div class="reader-citation-section">
+            <p style="font-size:13px;color:var(--read-muted);margin-bottom:10px;font-family:'Cairo',sans-serif">هل ترغب في الاستشهاد بهذا المحتوى؟</p>
+            <button class="citation-btn" onclick="openCiteModal('${a.id}')">توثيق هذا ${a.type === 'research' ? 'البحث' : 'المقال'}</button>
+          </div>
+        </article>
+        
+        <nav class="reader-nav">
+          ${prev ? `<a href="#/article/${prev.id}" class="prev"><span class="nav-label">→ السابق</span><span class="nav-title">${esc(prev.title)}</span></a>` : '<span></span>'}
+          ${next ? `<a href="#/article/${next.id}" class="next"><span class="nav-label">التالي ←</span><span class="nav-title">${esc(next.title)}</span></a>` : '<span></span>'}
+        </nav>
+        
+        ${related.length > 0 ? `
+          <div class="related-articles">
+            <div class="related-title">مقالات ذات صلة</div>
+            <div class="articles-grid">
+              ${related.map(articleCardHtml).join('')}
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+  
+  // تطبيق حجم الخط المحفوظ
+  const savedSize = parseFloat(localStorage.getItem('alsh_article_font')) || 17.5;
+  document.getElementById('readerContent').style.fontSize = savedSize + 'px';
+  READ_FONT_SIZE = savedSize;
+  
+  // تفعيل التمرير السلس
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function scrollToSection(id, e) {
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function jumpToFootnote(num, e) {
+  e.preventDefault();
+  const target = document.getElementById('fn-' + num);
+  if (target) {
+    target.scrollIntoView({behavior:'smooth', block:'center'});
+    target.classList.add('flash');
+    setTimeout(() => target.classList.remove('flash'), 2000);
+  }
+}
+
+function jumpBackToRef(num, e) {
+  e.preventDefault();
+  const target = document.getElementById('fnref-' + num);
+  if (target) {
+    target.scrollIntoView({behavior:'smooth', block:'center'});
+    target.classList.add('flash');
+    setTimeout(() => target.classList.remove('flash'), 2000);
+  }
+}
+
+function changeFontSize(delta) {
+  READ_FONT_SIZE = Math.max(14, Math.min(24, READ_FONT_SIZE + delta * 1));
+  const el = document.getElementById('readerContent');
+  if (el) el.style.fontSize = READ_FONT_SIZE + 'px';
+  localStorage.setItem('alsh_article_font', READ_FONT_SIZE);
+}
+
+function toggleDark() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  if (cur === 'dark') html.setAttribute('data-theme', 'dark');
+  else html.removeAttribute('data-theme');
+  localStorage.setItem('alsh_theme', cur);
+}
+if (localStorage.getItem('alsh_theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+function printArticle() {
+  const paper = document.getElementById('readerPaper');
+  if (!paper) return;
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <html dir="rtl"><head><title>طباعة</title>
+    <style>
+      body{font-family:'Noto Naskh Arabic','Amiri',serif;line-height:2;color:#2b2520;background:#fff;padding:30px;max-width:800px;margin:auto;font-size:16px}
+      h1{font-family:'Amiri',serif;font-size:26px;text-align:center;margin-bottom:20px;color:#3d3122}
+      h2{font-family:'Amiri',serif;font-size:20px;color:#8a6b2c;border-bottom:1px solid #e0d6c4;padding-bottom:6px;margin-top:28px}
+      h3{font-size:17px;color:#3d3122;margin-top:18px}
+      .reader-author,.reader-pub-info,.reader-type-badge,.reader-tools,.reader-meta-bar,.reader-toc,.citation-btn,.reader-citation-section{display:none !important}
+      .reader-abstract{background:#f5f0e8;padding:16px;border-right:4px solid #d4af37;margin-bottom:20px}
+      .reader-content p{text-align:justify;margin-bottom:14px}
+      .quran-box{background:#f0f5f0;text-align:center;padding:14px;border:1px solid #ccdccc;border-radius:6px;margin:14px 0;font-family:'Amiri',serif;color:#3d5c3d}
+      .reader-footnotes,.reader-references{margin-top:30px;padding-top:20px;border-top:2px solid #d4af37}
+      .reader-footnotes h3,.reader-references h3{color:#8a6b2c}
+      .fn-back{display:none}
+      @page{margin:15mm}
+    </style>
+    </head><body>${paper.innerHTML}</body></html>
+  `);
+  printWindow.document.close();
+  setTimeout(() => { printWindow.print(); }, 500);
+}
+
+async function copyFullArticle() {
+  const paper = document.getElementById('readerPaper');
+  if (!paper) return;
+  // استخراج النص فقط (بدون أزرار أو أدوات)
+  const clone = paper.cloneNode(true);
+  clone.querySelectorAll('button, .reader-tools, .reader-type-badge, .citation-btn').forEach(e => e.remove());
+  const text = clone.innerText.trim();
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('✅ تم نسخ المحتوى بالكامل');
+  } catch(e) {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    toast('✅ تم نسخ المحتوى');
+  }
+}
+
+function shareArticle() {
+  const shareData = {
+    title: document.title,
+    text: document.querySelector('.reader-title')?.innerText || 'اقرأ المقال',
+    url: window.location.href
+  };
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => toast('✅ تم نسخ الرابط'))
+      .catch(() => toast('تعذر النسخ'));
+  }
+}
+
+function toggleArticleFav(id) {
+  const key = 'alsh_article_favs';
+  let favs = [];
+  try { favs = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e){}
+  const idx = favs.indexOf(id);
+  if (idx > -1) { favs.splice(idx,1); toast('تمت الإزالة من المفضلة'); }
+  else { favs.push(id); toast('✅ أضيف إلى المفضلة'); }
+  localStorage.setItem(key, JSON.stringify(favs));
+  const btn = document.getElementById('favBtn');
+  if (btn) btn.classList.toggle('active', favs.includes(id));
+}
+
+function openCiteModal(id) {
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) return;
+  const author = getAuthor(a.authorId);
+  const year = a.publishedAt ? new Date(a.publishedAt).getFullYear() : '';
+  const type = a.type === 'research' ? 'بحث علمي' : 'مقال';
+  
+  const citation = `${author?.name || 'غير محدد'}، «${a.title}»، ${type}، ${a.journal?.name ? 'مجلة ' + a.journal.name + '، ' : ''}${year ? year + 'م، ' : ''}الرابط: ${window.location.href}`;
+  
+  document.getElementById('citeText').value = citation;
+  document.getElementById('citeModal').classList.add('open');
+}
+
+function closeCiteModal() {
+  document.getElementById('citeModal').classList.remove('open');
+}
+
+async function copyCitation() {
+  const ta = document.getElementById('citeText');
+  try {
+    await navigator.clipboard.writeText(ta.value);
+    toast('✅ تم نسخ التوثيق');
+    closeCiteModal();
+  } catch(e) {
+    ta.select();
+    document.execCommand('copy');
+    toast('✅ تم نسخ التوثيق');
+    closeCiteModal();
+  }
+}
+
+/* ============ Router ============ */
+function router() {
+  const hash = location.hash.replace(/^#\/?/, '');
+  if (hash.startsWith('article/')) {
+    const id = hash.substring(8);
+    renderArticle(id);
+  } else {
+    renderHome();
+  }
+}
+
+window.addEventListener('hashchange', router);
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadAll();
+  router();
+});
+</script>
+</body>
+</html>
