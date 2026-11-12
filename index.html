@@ -61,19 +61,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .moving-text-content span{font-family:'Amiri',serif;font-size:13px;color:#ffffff;padding-inline-end:60px}
 @keyframes scrollLeftToRight{0%{transform:translateX(0)}100%{transform:translateX(50%)}}
 
+/* تصغير شريط البحث العلوي */
 .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;box-shadow:var(--shadow-sm)}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
-.topbar-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:22px;background:var(--paper-2);color:var(--primary-dark);font-size:13px;font-weight:700;border:1px solid var(--line);flex-shrink:0;transition:all var(--tr)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0}
+.topbar-btn{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:22px;background:var(--paper-2);color:var(--primary-dark);font-size:12px;font-weight:700;border:1px solid var(--line);flex-shrink:0;transition:all var(--tr)}
 .topbar-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 [data-theme="dark"] .topbar-btn{color:var(--accent)}
 
 .search-wrap{flex:1;max-width:450px;margin:0 auto;position:relative}
-.search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:border-color var(--tr);align-items:center}
+.search-box{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color var(--tr);align-items:center}
 .search-box:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
-.search-box select{border:none;background:transparent;padding:0 10px;color:var(--muted);font:inherit;font-size:11.5px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
-.search-box input{flex:1;padding:8px 12px;border:none;background:transparent;font:inherit;font-size:13px;outline:none;color:var(--ink);min-width:0}
+.search-box select{border:none;background:transparent;padding:0 8px;color:var(--muted);font:inherit;font-size:11px;font-weight:700;outline:none;cursor:pointer;border-inline-end:1px solid var(--line);appearance:none}
+.search-box input{flex:1;padding:6px 10px;border:none;background:transparent;font:inherit;font-size:12px;outline:none;color:var(--ink);min-width:0}
 .search-box input::placeholder{color:var(--muted)}
-.search-box button{padding:0 14px;background:var(--primary);color:#fff;font-weight:700;font-size:12.5px;transition:background var(--tr);flex-shrink:0;height:100%;min-height:36px}
+.search-box button{padding:0 12px;background:var(--primary);color:#fff;font-weight:700;font-size:11.5px;transition:background var(--tr);flex-shrink:0;height:100%;min-height:32px}
 .search-box button:hover{background:var(--primary-dark)}
 [data-theme="dark"] .search-box button{color:#212529}
 
@@ -311,15 +312,16 @@ main{flex:1;padding:22px 0 60px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 [data-theme="dark"] footer { background: #000000; color: var(--accent); }
 
-.lib-controls{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:12px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-sm)}
-.lib-search-box{display:flex;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;overflow:hidden;padding:0 12px}
-.lib-search-box input{flex:1;border:none;background:transparent;padding:10px;outline:none;font-family:inherit;color:var(--ink)}
-.lib-search-box svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2}
-.lib-filters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:5px}
-.lib-filter-group{display:flex;flex-direction:column;gap:4px}
-.lib-filter-group label{font-size:11px;font-weight:700;color:var(--primary-dark);padding-right:4px}
+/* تصغير بطاقة التصفية في المكتبة */
+.lib-controls{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow-sm)}
+.lib-search-box{display:flex;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;overflow:hidden;padding:0 8px}
+.lib-search-box input{flex:1;border:none;background:transparent;padding:6px 8px;outline:none;font-family:inherit;font-size:12px;color:var(--ink)}
+.lib-search-box svg{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2}
+.lib-filters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:2px}
+.lib-filter-group{display:flex;flex-direction:column;gap:3px}
+.lib-filter-group label{font-size:10.5px;font-weight:700;color:var(--primary-dark);padding-right:4px}
 [data-theme="dark"] .lib-filter-group label{color:var(--accent)}
-.lib-filter-select{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:13px;color:var(--ink);cursor:pointer;outline:none;transition:border-color var(--tr)}
+.lib-filter-select{width:100%;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-family:inherit;font-size:12px;color:var(--ink);cursor:pointer;outline:none;transition:border-color var(--tr)}
 .lib-filter-select:focus{border-color:var(--primary)}
 .lib-table{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:30px}
 .lib-thead{display:grid;grid-template-columns:2fr 1fr 100px;background:var(--primary);color:#fff;padding:12px 16px;font-weight:700;font-size:13px;text-align:center}
@@ -384,7 +386,6 @@ textarea.form-control{resize:vertical;min-height:100px}
 .media-modal-body iframe{width:100%;height:100%;border:none}
 .media-modal-body audio{width:90%;max-width:600px}
 
-/* تصميم شريط الأزرار: صف أفقي واحد، مدمج، ألوان بنية وذهبية */
 .media-modal-foot{
     padding: 8px;
     background: var(--paper-2);
@@ -520,7 +521,7 @@ textarea.form-control{resize:vertical;min-height:100px}
     <div class="search-wrap">
       <div class="search-box">
         <select id="searchType"><option value="title">اسم الكتاب</option><option value="author">اسم المؤلف</option><option value="all">كل الحقول</option></select>
-        <input id="q" type="search" placeholder="ابحث في المكتبة..." autocomplete="off">
+        <input id="q" type="search" placeholder="ابحث..." autocomplete="off">
         <button id="qBtn">بحث</button>
       </div>
       <ul id="sug" class="suggestions"></ul>
@@ -1070,7 +1071,6 @@ window.openMediaPlayer = function(url, title, type){
     } else {
       body.innerHTML = `<div style="color:#fff;padding:20px;text-align:center">تعذر تحميل الفيديو. <a href="${url}" target="_blank" style="color:var(--accent)">فتح مباشرة</a></div>`;
     }
-    // الأزرار الأربعة في صف واحد
     foot.innerHTML = `
       <button class="media-modal-btn" onclick="toggleMediaFullscreen()">
         <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
@@ -1090,7 +1090,6 @@ window.openMediaPlayer = function(url, title, type){
       </button>
     `;
   } else {
-    // صوت
     body.innerHTML = `<audio id="inlineAudioEl" controls autoplay src="${esc(url)}"></audio>`;
     foot.innerHTML = `
       <button class="media-modal-btn" onclick="window.open('${esc(url)}','_blank')">
@@ -1137,7 +1136,7 @@ window.shareList = async function(listName){
   } catch(e) {}
 };
 
-function renderMediaLibrary(type){
+function renderMediaLibrary(type, initialQuery = ''){
   const isAudio = type === "audio";
   const data = isAudio ? AUDIOS : VIDEOS;
   const typeKey = isAudio ? 'audio' : 'video';
@@ -1147,7 +1146,7 @@ function renderMediaLibrary(type){
   const allTopics = lists.map(l => l.name);
   const allSpeakers = [...new Set(data.map(a => a.speaker).filter(Boolean))];
   
-  let fTopic = 'all', fSpeaker = 'all', searchQuery = '';
+  let fTopic = 'all', fSpeaker = 'all', searchQuery = initialQuery;
 
   const drawContent = () => {
     let filtered = data;
@@ -1171,9 +1170,9 @@ function renderMediaLibrary(type){
       return acc;
     }, {});
 
+    // حذف العنوان الرئيسي (المكتبة المرئية) بناء على طلبك
     let html = `
       <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div>
-      <div class="sec-title">${pageTitle}</div>
       <div class="lib-controls">
         <div class="lib-search-box">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1202,7 +1201,7 @@ function renderMediaLibrary(type){
       html += '<div class="empty-state">لا توجد عناصر مطابقة.</div>';
     } else {
       for (const [topicName, group] of Object.entries(grouped)) {
-        html += `<div class="list-header-row"><div class="sec-title" style="font-size: 20px;">${esc(topicName)}</div><button class="share-list-btn" onclick="shareList('${esc(topicName).replace(/'/g,"\\'")}')">مشاركة القائمة</button></div>`;
+        html += `<div class="list-header-row"><div class="sec-title" style="font-size: 18px; margin-bottom:0;">${esc(topicName)}</div><button class="share-list-btn" onclick="shareList('${esc(topicName).replace(/'/g,"\\'")}')">مشاركة القائمة</button></div>`;
         
         if (group.items.length > 0) {
           html += `<div class="lib-table">
@@ -1221,7 +1220,7 @@ function renderMediaLibrary(type){
 
         for (const [subName, subItems] of Object.entries(group.subs)) {
           html += `<div style="margin-right: 15px; margin-top: 15px; margin-bottom: 10px;">
-            <div class="list-header-row"><div class="sec-title" style="font-size: 16px; color: var(--muted); border-right: 3px solid var(--accent); padding-right: 8px;">↳ ${esc(subName)}</div></div>
+            <div class="list-header-row"><div class="sec-title" style="font-size: 15px; color: var(--muted); border-right: 3px solid var(--accent); padding-right: 8px; margin-bottom:0;">↳ ${esc(subName)}</div></div>
             <div class="lib-table">
               <div class="lib-thead"><div>العنوان</div><div>الأستاذ</div><div>الخدمات</div></div>
               ${subItems.map(a => `
@@ -1310,6 +1309,13 @@ if(searchTypeSel) searchTypeSel.value = state.searchType;
 
 function isListPage(){ const h = location.hash || ""; return h==="#/library" || h.startsWith("#/category/") || h.startsWith("#/author/") || h.startsWith("#/series-one/") || h==="#/latest"; }
 
+function getCurrentSearchContext() {
+  const hash = location.hash || "#/home";
+  if (hash.startsWith("#/videos")) return "videos";
+  if (hash.startsWith("#/audios")) return "audios";
+  return "books"; // default
+}
+
 function showHistory(){
   if(!SEARCH_HISTORY.length){ sug.innerHTML = `<li class="sug-empty">لا يوجد سجل بحث</li>`; sug.classList.add("show"); return; }
   sug.innerHTML = `<li class="sug-head"><span>البحث السابق</span><button class="sug-clear" onclick="event.stopPropagation();clearHistory();showHistory();">مسح</button></li>${SEARCH_HISTORY.map(t=>`<li data-history="${esc(t)}"><span class="sug-term">${esc(t)}</span><button class="sug-remove" onclick="event.stopPropagation();removeFromHistory('${esc(t).replace(/'/g,"\\'")}');showHistory();">✕</button></li>`).join("")}`;
@@ -1317,9 +1323,32 @@ function showHistory(){
 }
 
 function showSuggestions(v){
-  const results = BOOKS.filter(b=>matchBook(b,v,state.searchType)).slice(0,10);
+  const context = getCurrentSearchContext();
+  let results = [];
+  
+  if (context === 'videos') {
+    results = VIDEOS.filter(a => (a.title||'').toLowerCase().includes(v.toLowerCase()) || (a.speaker||'').toLowerCase().includes(v.toLowerCase())).map(a => ({type: 'video', id: a.url, title: a.title, sub: a.speaker})).slice(0, 10);
+  } else if (context === 'audios') {
+    results = AUDIOS.filter(a => (a.title||'').toLowerCase().includes(v.toLowerCase()) || (a.speaker||'').toLowerCase().includes(v.toLowerCase())).map(a => ({type: 'audio', id: a.url, title: a.title, sub: a.speaker})).slice(0, 10);
+  } else {
+    const bookRes = BOOKS.filter(b => matchBook(b, v, state.searchType)).map(b => ({type: 'book', id: b.id, title: b.t, sub: authorName(b.a)})).slice(0, 5);
+    let mediaRes = [];
+    if (location.hash === '#/home' || !location.hash) {
+      const vRes = VIDEOS.filter(a => (a.title||'').toLowerCase().includes(v.toLowerCase())).map(a => ({type: 'video', id: a.url, title: a.title, sub: a.speaker})).slice(0, 3);
+      const aRes = AUDIOS.filter(a => (a.title||'').toLowerCase().includes(v.toLowerCase())).map(a => ({type: 'audio', id: a.url, title: a.title, sub: a.speaker})).slice(0, 3);
+      mediaRes = [...vRes, ...aRes];
+    }
+    results = [...bookRes, ...mediaRes];
+  }
+
   if(!results.length){ sug.innerHTML = `<li class="sug-empty">لا توجد نتائج</li>`; sug.classList.add("show"); return; }
-  sug.innerHTML = results.map(b=>`<li data-id="${b.id}">${esc(b.t)}<span class="sug-auth">${esc(authorName(b.a))}</span></li>`).join("");
+  
+  sug.innerHTML = results.map(r => `
+    <li data-type="${r.type}" data-id="${esc(r.id)}" data-title="${esc(r.title)}">
+      <span class="sug-term">${r.type==='book'?'📖':r.type==='video'?'🎬':'🎧'} ${esc(r.title)}</span>
+      <span class="sug-auth">${esc(r.sub||'')}</span>
+    </li>
+  `).join("");
   sug.classList.add("show");
 }
 
@@ -1330,7 +1359,20 @@ sug.addEventListener("click", e=>{
   if(e.target.closest("[data-remove]") || e.target.closest(".sug-clear") || e.target.closest(".sug-remove")){ e.stopPropagation(); return; }
   const h = e.target.closest("li[data-history]"); if(h){ q.value = h.dataset.history; doSearch(h.dataset.history); return; }
   const li = e.target.closest("li[data-id]"); if(!li) return;
-  sug.classList.remove("show"); q.value = ""; state.q = ""; location.hash = "#/book/" + li.dataset.id;
+  
+  const type = li.dataset.type;
+  const id = li.dataset.id;
+  const title = li.dataset.title;
+
+  sug.classList.remove("show"); q.value = ""; 
+
+  if (type === 'book') {
+    state.q = ""; location.hash = "#/book/" + id;
+  } else if (type === 'video') {
+    openMediaPlayer(id, title, 'video');
+  } else if (type === 'audio') {
+    openMediaPlayer(id, title, 'audio');
+  }
 });
 
 searchTypeSel.addEventListener("change", ()=>{ state.searchType = searchTypeSel.value; if(q.value.trim()) showSuggestions(q.value.trim()); });
@@ -1338,8 +1380,23 @@ document.getElementById("qBtn").onclick = ()=>doSearch(q.value);
 q.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); doSearch(q.value); } });
 
 function doSearch(v){
-  v = (v||"").trim(); if(!v){ state.q = ""; renderList(); return; }
-  addToHistory(v); state.q = v; state.cat = "all"; state.author = "all"; state.series = "all";
+  v = (v||"").trim(); if(!v){ return; }
+  addToHistory(v);
+  const context = getCurrentSearchContext();
+  
+  if (context === 'videos') {
+    renderMediaLibrary('video', v);
+    sug.classList.remove("show");
+    return;
+  }
+  if (context === 'audios') {
+    renderMediaLibrary('audio', v);
+    sug.classList.remove("show");
+    return;
+  }
+  
+  // Default Books
+  state.q = v; state.cat = "all"; state.author = "all"; state.series = "all";
   sug.classList.remove("show"); if(isListPage()) renderList(); else location.hash = "#/library";
 }
 
