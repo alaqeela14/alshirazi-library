@@ -45,6 +45,7 @@ input,select,textarea{font-family:inherit}
 .btn-publish:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(74,107,74,.4)}
 .btn-publish:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .btn-danger{background:var(--red);color:#fff}
+.btn-sm{padding:5px 10px;font-size:11.5px}
 
 .draft-banner{background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .publish-banner{background:#d4edda;border:1px solid #c3e6cb;color:#155724;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -85,18 +86,6 @@ input,select,textarea{font-family:inherit}
 .stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
 .stat-box span{font-size:11px;color:var(--muted)}
 
-.health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
-.health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.check{margin-bottom:6px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.check.ok{color:var(--green)}
-.check.warn{color:var(--orange)}
-.check.error{color:var(--red)}
-.cat-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:10px}
-.cat-count{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:6px}
-.cat-count .cnt{font-weight:800;color:var(--primary);font-size:13px;background:var(--paper);padding:1px 7px;border-radius:9px}
-.smart-btn{margin-top:10px;width:100%;padding:9px;background:#fff3cd;color:#856404;border:1px dashed #d4a017;border-radius:6px;font-weight:700;font-size:12.5px;cursor:pointer;transition:all var(--tr)}
-.smart-btn:hover{background:#fde8b8}
-
 .filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
 .filters input:focus,.filters select:focus{border-color:var(--primary)}
@@ -105,8 +94,6 @@ input,select,textarea{font-family:inherit}
 .book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
 .book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
-.book-item.duplicate{border-color:#e0a800;background:#fffbf0}
-.book-item.missing-series{border-color:#17a2b8;background:#f0faff}
 
 .book-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
 .book-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word;cursor:pointer;flex:1}
@@ -116,20 +103,22 @@ input,select,textarea{font-family:inherit}
 .book-meta .tag{display:inline-flex;align-items:center;gap:3px;background:var(--paper-2);padding:2px 8px;border-radius:9px;line-height:1.6}
 .book-meta .tag.cat{color:var(--primary);font-weight:700;background:#f5ede0}
 .book-meta .tag.series{color:var(--blue);font-weight:700;background:#e8f0f8}
-.book-meta .tag.dup{color:var(--gold);font-weight:700;background:#fff3cd}
-.book-meta .tag.nofile{color:var(--red);font-weight:700;background:#fde8e8}
-.book-meta .tag.cover{color:var(--green);font-weight:700;background:#e8f5e8}
-.book-controls{display:grid;grid-template-columns:1fr 1fr auto auto;gap:6px;align-items:center}
+.book-controls{display:grid;grid-template-columns:1fr auto auto auto auto;gap:6px;align-items:center}
 .book-select{padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:12px;cursor:pointer;outline:none;width:100%}
 .book-select:focus{border-color:var(--primary)}
 .book-select.series-select{background:#f0faff}
 .book-delete{width:34px;height:34px;border-radius:6px;background:#fde8e8;color:var(--red);font-size:14px;display:grid;place-items:center;transition:all var(--tr)}
 .book-delete:hover{background:var(--red);color:#fff}
 
+.move-btn{width:34px;height:34px;border-radius:6px;background:var(--paper-2);border:1px solid var(--line);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;transition:all .2s;flex-shrink:0}
+.move-btn:hover{background:var(--accent);color:var(--primary-dark);border-color:var(--accent)}
+.move-btn:disabled{opacity:.3;cursor:not-allowed;background:transparent}
+
 @media(max-width:700px){
-  .book-controls{grid-template-columns:1fr 1fr}
-  .book-controls .btn-edit-full{grid-column:1/-1}
-  .book-delete{grid-column:1/-1;width:100%;height:36px}
+  .book-controls{grid-template-columns:1fr auto auto;}
+  .book-controls .btn-edit-full{grid-column:1/-1;}
+  .book-delete{grid-column:auto;}
+  .move-btn{grid-column:auto;}
 }
 
 .series-list{display:flex;flex-direction:column;gap:8px}
@@ -143,10 +132,6 @@ input,select,textarea{font-family:inherit}
 
 .cover-preview{width:40px;height:54px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:var(--paper-2);flex-shrink:0;margin-left:6px}
 .cover-preview-ph{width:40px;height:54px;border-radius:4px;border:1px dashed var(--line);display:grid;place-items:center;font-size:16px;color:var(--muted);flex-shrink:0;margin-left:6px}
-
-.load-more-wrap{text-align:center;margin:16px 0 20px}
-.load-more-btn{padding:10px 24px;background:var(--paper);border:1px solid var(--accent);color:var(--primary);border-radius:24px;font-weight:700;font-size:13px;cursor:pointer;transition:all var(--tr)}
-.load-more-btn:hover{background:var(--primary);color:#fff}
 
 .empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg)}
 
@@ -171,14 +156,6 @@ input,select,textarea{font-family:inherit}
 .token-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 10px;border-radius:9px;font-weight:700}
 .token-status.ok{background:#d4edda;color:#155724}
 .token-status.missing{background:#f8d7da;color:#721c24}
-
-.list-edit-box{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}
-.media-item-row{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 8px;background:var(--paper);border:1px solid var(--line-2);border-radius:6px;margin-bottom:4px;font-size:12px}
-.media-item-row .mi-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
-.media-item-row .mi-speaker{font-size:10px;color:var(--muted);margin-right:4px}
-.media-item-actions{display:flex;gap:3px}
-.mini-btn{width:24px;height:24px;border-radius:4px;display:grid;place-items:center;font-size:11px;background:var(--paper);border:1px solid var(--line);cursor:pointer}
-.mini-btn:hover{background:var(--accent);color:#212529}
 </style>
 </head>
 <body>
@@ -187,7 +164,7 @@ input,select,textarea{font-family:inherit}
   <div class="container inner">
     <div>
       <h1>لوحة التحكم — مكتبة آل الشيرازي</h1>
-      <p>إدارة شاملة للكتب، الموسوعات، التصنيفات، الوسائط، والمقالات.</p>
+      <p>إدارة شاملة للمحتوى، الترتيب، والنشر.</p>
     </div>
     <div class="header-links">
       <a href="index.html" target="_blank">← الموقع</a>
@@ -212,12 +189,10 @@ input,select,textarea{font-family:inherit}
     <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
     <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
     <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
-    <button class="btn btn-warning" onclick="exportMedia()">📁 تصدير الوسائط</button>
-    <label class="btn btn-outline">📁 استيراد books.json<input type="file" accept=".json" onchange="importBooks(event)" style="display:none"></label>
+    <button class="btn btn-warning" onclick="exportAuthors()">✍️ تصدير authors.json</button>
   </div>
 
   <div class="stats-bar" id="statsBar"></div>
-  <div class="health-panel" id="healthPanel"></div>
 
   <!-- GitHub Settings -->
   <div class="section-toggle" id="ghToggle" onclick="toggleSection('gh')">
@@ -229,7 +204,7 @@ input,select,textarea{font-family:inherit}
       <div class="ff"><label>صاحب المستودع</label><input type="text" id="gh-owner" value="alaqeela14"></div>
       <div class="ff"><label>اسم المستودع</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
       <div class="ff"><label>الفرع</label><input type="text" id="gh-branch" value="main"></div>
-      <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."><div class="hint">يبدأ بـ github_pat_</div></div>
+      <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."></div>
     </div>
     <div class="form-actions">
       <button class="btn btn-outline" onclick="clearToken()">🗑️ حذف الرمز</button>
@@ -239,13 +214,23 @@ input,select,textarea{font-family:inherit}
     <div id="ghTestResult" style="margin-top:10px;font-size:13px;"></div>
   </div>
 
-  <!-- Articles Management (iframe) -->
-  <div class="section-toggle" id="articlesToggle" onclick="toggleSection('articles')">
-    <h3>📝 إدارة المقالات والبحوث</h3>
+  <!-- Authors Management -->
+  <div class="section-toggle" id="authorsToggle" onclick="toggleSection('authors')">
+    <h3>✍️ إدارة المؤلفين</h3>
     <span class="arrow">▼</span>
   </div>
-  <div class="section-content" id="articlesContent">
-    <iframe src="admin-articles.html?embed=1" style="width:100%;min-height:85vh;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:block"></iframe>
+  <div class="section-content" id="authorsContent">
+    <div class="add-form open" style="border:2px solid var(--blue);margin-bottom:14px">
+      <h3 style="color:var(--blue)">➕ إضافة مؤلف جديد</h3>
+      <div class="form-grid">
+        <div class="ff"><label>الاسم الكامل *</label><input type="text" id="new-auth-name"></div>
+        <div class="ff"><label>الاسم المختصر</label><input type="text" id="new-auth-short"></div>
+        <div class="ff full"><label>رابط الصورة</label><input type="url" id="new-auth-img"></div>
+        <div class="ff full"><label>نبذة عنه</label><textarea id="new-auth-bio"></textarea></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" onclick="addAuthor()">➕ إضافة</button></div>
+    </div>
+    <div class="series-list" id="authorsList"></div>
   </div>
 
   <!-- Categories Management -->
@@ -257,8 +242,8 @@ input,select,textarea{font-family:inherit}
     <div class="add-form open" style="border:2px solid var(--green);margin-bottom:14px">
       <h3 style="color:var(--green)">➕ إضافة تصنيف جديد</h3>
       <div class="form-grid">
-        <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input" placeholder="مثال: أدعية وأذكار"></div>
-        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"></div>
+        <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input"></div>
+        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-cat-id-input"></div>
       </div>
       <div class="form-actions"><button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة</button></div>
     </div>
@@ -314,12 +299,13 @@ input,select,textarea{font-family:inherit}
     <div class="book-list" id="mediaListBox"></div>
   </div>
 
-  <!-- Add Book Form (hidden) -->
+  <!-- Add Book Form -->
   <div class="add-form" id="addForm">
     <h3>➕ إضافة كتاب جديد</h3>
     <div class="form-grid">
       <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="new-title"></div>
-      <div class="ff"><label>المؤلف *</label><select id="new-author"></select></div>
+      <div class="ff"><label>المؤلف *</label><select id="new-author" onchange="toggleCustomAuthor('new')"></select></div>
+      <div class="ff full" id="new-author-custom-wrap" style="display:none"><label>اسم المؤلف الجديد</label><input type="text" id="new-author-custom"></div>
       <div class="ff"><label>الموسوعة</label><select id="new-series"><option value="">— بدون —</option></select></div>
       <div class="ff"><label>السنة</label><input type="number" id="new-year" value="1420"></div>
       <div class="ff"><label>الصفحات</label><input type="number" id="new-pages"></div>
@@ -335,18 +321,13 @@ input,select,textarea{font-family:inherit}
     </div>
   </div>
 
-  <!-- Book Filters -->
+  <!-- Filters -->
   <div class="filters">
     <input type="search" id="searchInput" placeholder="🔍 ابحث في الكتب..." oninput="renderBookList()">
     <select id="filterCat" onchange="renderBookList()"><option value="">كل التصنيفات</option></select>
     <select id="filterIssue" onchange="renderBookList()">
       <option value="">كل الكتب</option>
-      <option value="dup">🔁 المكررة فقط</option>
-      <option value="missing-series">📚 بلا موسوعة</option>
-      <option value="missing-author">👤 بمؤلف غير معروف</option>
-      <option value="missing-file">📄 بلا ملف</option>
       <option value="missing-cover">🖼️ بلا غلاف</option>
-      <option value="multi-cat">🏷️ متعددة التصنيفات</option>
     </select>
   </div>
 
@@ -370,7 +351,8 @@ input,select,textarea{font-family:inherit}
       <div class="form-grid">
         <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
         <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="edit-title"></div>
-        <div class="ff"><label>المؤلف</label><select id="edit-author"></select></div>
+        <div class="ff"><label>المؤلف</label><select id="edit-author" onchange="toggleCustomAuthor('edit')"></select></div>
+        <div class="ff full" id="edit-author-custom-wrap" style="display:none"><label>اسم المؤلف الجديد</label><input type="text" id="edit-author-custom"></div>
         <div class="ff"><label>الموسوعة</label><select id="edit-series"></select></div>
         <div class="ff"><label>السنة</label><input type="number" id="edit-year"></div>
         <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
@@ -443,21 +425,24 @@ input,select,textarea{font-family:inherit}
 <div class="toast" id="toast"></div>
 
 <script>
-const AUTHORS = [
-  {id:"shirazi-m", name:"السيد محمد الحسيني الشيرازي"},
-  {id:"shirazi-h", name:"السيد حسن الحسيني الشيرازي"},
-  {id:"shirazi-s", name:"السيد صادق الحسيني الشيرازي"},
-  {id:"shirazi-mr", name:"السيد محمد رضا الشيرازي"},
-  {id:"shirazi-mo", name:"السيد مرتضى الحسيني الشيرازي"},
-  {id:"shirazi-j", name:"السيد جعفر الحسيني الشيرازي"},
-  {id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي"}
+const AUTHORS_BASE = [
+  {id:"shirazi-m", img:"shirazi-m.jpg", name:"السيد محمد الحسيني الشيرازي", short:"السيد محمد الحسيني الشيرازي"},
+  {id:"shirazi-h", img:"shirazi-h.jpg", name:"السيد حسن الحسيني الشيرازي", short:"السيد حسن الحسيني الشيرازي"},
+  {id:"shirazi-s", img:"shirazi-s.jpg", name:"السيد صادق الحسيني الشيرازي", short:"السيد صادق الحسيني الشيرازي"},
+  {id:"shirazi-mr", img:"shirazi-mr.jpg", name:"السيد محمد رضا الشيرازي", short:"السيد محمد رضا الشيرازي"},
+  {id:"shirazi-mo", img:"shirazi-mo.jpg", name:"السيد مرتضى الحسيني الشيرازي", short:"السيد مرتضى الحسيني الشيرازي"},
+  {id:"shirazi-j", img:"shirazi-j.jpg", name:"السيد جعفر الحسيني الشيرازي", short:"السيد جعفر الحسيني الشيرازي"},
+  {id:"shirazi-me", img:"shirazi-me.jpg", name:"السيد مهدي الحسيني الشيرازي", short:"السيد مهدي الحسيني الشيرازي"}
 ];
 
+let CUSTOM_AUTHORS = [];
+let AUTHORS = [...AUTHORS_BASE];
 let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [];
 let MEDIA_LISTS = { video: [], audio: [] };
 let currentMediaTab = 'video', editingMediaIndex = -1;
 let editingId = null, editingSeriesId = null, editingCategoryId = null;
 const GH_KEY = 'admin_github_settings_v1';
+const CUSTOM_AUTHORS_KEY = 'admin_custom_authors';
 
 const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -467,14 +452,6 @@ function toast(msg, type='info'){
   t.className = 'toast ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warn' ? 'warn' : '') + ' show';
   clearTimeout(t._timer);
   t._timer = setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-function showPublishBanner(msg, isError){
-  const b = document.getElementById('publishBanner');
-  b.textContent = msg;
-  b.className = 'publish-banner' + (isError ? ' error' : '');
-  b.style.display = 'flex';
-  setTimeout(() => { b.style.display = 'none'; }, 8000);
 }
 
 /* GitHub */
@@ -532,22 +509,21 @@ async function publishFileToGitHub(fileName, data){
 }
 async function publishAll(){
   const s = getGitHubSettings();
-  if (!s.token) { showPublishBanner('يجب إعداد رمز GitHub أولاً.', true); return; }
+  if (!s.token) { alert('يجب إعداد رمز GitHub أولاً.'); return; }
   const btn = document.getElementById('publishAllBtn');
   btn.disabled = true; const orig = btn.textContent; btn.textContent = 'جارٍ النشر...';
-  showPublishBanner('جارٍ نشر الملفات إلى GitHub...', false);
   try {
     await publishFileToGitHub('books.json', { items: BOOKS.map(cleanObj) });
     await publishFileToGitHub('series.json', { items: SERIES.map(cleanObj) });
     await publishFileToGitHub('categories.json', CATS.map(cleanObj));
+    await publishFileToGitHub('authors.json', CUSTOM_AUTHORS);
     await publishFileToGitHub('videos.json', { items: VIDEOS.map(cleanObj) });
     await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
     await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
-    showPublishBanner('تم النشر بنجاح! سيظهر التحديث خلال 30-90 ثانية.', false);
+    alert('تم النشر بنجاح!');
     toast('تم النشر', 'success');
-    document.getElementById('draftBanner').style.display = 'none';
   } catch(e) {
-    showPublishBanner('فشل النشر: ' + e.message, true);
+    alert('فشل النشر: ' + e.message);
   } finally {
     btn.disabled = false; btn.textContent = orig;
   }
@@ -559,9 +535,17 @@ async function loadData(){
     const resC = await fetch('categories.json?t=' + Date.now()); if(resC.ok) CATS = await resC.json();
     const resS = await fetch('series.json?t=' + Date.now()); if(resS.ok) SERIES = (await resS.json()).items || (await resS.json());
     const resB = await fetch('books.json?t=' + Date.now()); if(resB.ok) BOOKS = (await resB.json()).items || [];
+    const resA = await fetch('authors.json?t=' + Date.now()); if(resA.ok) CUSTOM_AUTHORS = await resA.json();
     const resV = await fetch('videos.json?t=' + Date.now()); if(resV.ok) VIDEOS = (await resV.json()).items || [];
-    const resA = await fetch('audios.json?t=' + Date.now()); if(resA.ok) AUDIOS = (await resA.json()).items || [];
+    const resAu = await fetch('audios.json?t=' + Date.now()); if(resAu.ok) AUDIOS = (await resAu.json()).items || [];
     const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
+    
+    const localAuth = localStorage.getItem(CUSTOM_AUTHORS_KEY);
+    if (localAuth) {
+      const parsed = JSON.parse(localAuth);
+      if (Array.isArray(parsed)) CUSTOM_AUTHORS = parsed;
+    }
+    AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
   } catch(e) { console.error(e); }
   autoPopulateListsFromItems();
 }
@@ -593,23 +577,24 @@ async function init(){
   renderStats();
   renderCategoriesList();
   renderSeriesList();
+  renderAuthorsList();
   renderBookList();
   switchMediaTab('video');
   updateFooter();
 }
 
 function populateSelects(){
-  const authorOpts = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  const authorOpts = AUTHORS.map(a => `<option value="${a.id}">${esc(a.short || a.name)}</option>`).join('') + '<option value="__custom__">➕ إضافة مؤلف جديد...</option>';
   const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
   const seriesOpts = '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
 
   document.getElementById('new-author').innerHTML = authorOpts;
   document.getElementById('new-series').innerHTML = seriesOpts;
-  document.getElementById('new-series-author').innerHTML = authorOpts;
+  document.getElementById('new-series-author').innerHTML = authorOpts.replace('__custom__','');
   document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + catOpts;
   document.getElementById('edit-author').innerHTML = authorOpts;
   document.getElementById('edit-series').innerHTML = seriesOpts;
-  document.getElementById('edit-series-author').innerHTML = authorOpts;
+  document.getElementById('edit-series-author').innerHTML = authorOpts.replace('__custom__','');
 
   renderCatCheckboxes('new-cats-checkboxes', []);
   if (editingId) {
@@ -618,22 +603,76 @@ function populateSelects(){
   }
 }
 
+function toggleCustomAuthor(mode) {
+  const sel = document.getElementById(mode + '-author');
+  const wrap = document.getElementById(mode + '-author-custom-wrap');
+  if (!sel || !wrap) return;
+  if (sel.value === '__custom__') wrap.style.display = 'flex';
+  else wrap.style.display = 'none';
+}
+
 function renderStats(){
   document.getElementById('statsBar').innerHTML = `
     <div class="stat-box"><strong>${BOOKS.length}</strong><span>كتاب</span></div>
     <div class="stat-box"><strong>${CATS.length}</strong><span>تصنيف</span></div>
     <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
+    <div class="stat-box"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div>
     <div class="stat-box"><strong>${VIDEOS.length + AUDIOS.length}</strong><span>وسائط</span></div>
   `;
 }
 
 function updateFooter(){
-  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب | ${VIDEOS.length} فيديو | ${AUDIOS.length} صوتية`;
+  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب | ${SERIES.length} موسوعة | ${AUTHORS.length} مؤلف`;
 }
 
 function toggleSection(id){
   document.getElementById(id+'Toggle').classList.toggle('open');
   document.getElementById(id+'Content').classList.toggle('open');
+}
+
+/* Authors Logic */
+function renderAuthorsList(){
+  const list = document.getElementById('authorsList');
+  list.innerHTML = AUTHORS.map(a => `
+    <div class="series-item">
+      ${a.img ? `<img src="${esc(a.img)}" class="cover-preview" style="border-radius:50%">` : `<div class="cover-preview-ph" style="border-radius:50%">👤</div>`}
+      <div class="s-info">
+        <div class="s-name">${esc(a.name)}</div>
+        <div class="s-meta"><span class="s-id">${esc(a.id)}</span></div>
+      </div>
+      <div></div>
+      <div class="s-actions">
+        ${!AUTHORS_BASE.find(x => x.id === a.id) ? `<button class="book-delete" onclick="deleteAuthor('${esc(a.id)}')">🗑️</button>` : '<span style="font-size:10px;color:var(--muted)">افتراضي</span>'}
+      </div>
+    </div>
+  `).join('');
+}
+
+function addAuthor(){
+  const name = document.getElementById('new-auth-name').value.trim();
+  const short = document.getElementById('new-auth-short').value.trim() || name;
+  const img = document.getElementById('new-auth-img').value.trim();
+  const bio = document.getElementById('new-auth-bio').value.trim();
+  if (!name) return alert('الاسم مطلوب');
+  const id = 'auth-' + Date.now();
+  const newAuth = { id, name, short, img, bio };
+  CUSTOM_AUTHORS.push(newAuth);
+  localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+  AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+  document.getElementById('new-auth-name').value = '';
+  document.getElementById('new-auth-short').value = '';
+  document.getElementById('new-auth-img').value = '';
+  document.getElementById('new-auth-bio').value = '';
+  renderAuthorsList(); populateSelects(); renderStats();
+  toast('تمت إضافة المؤلف', 'success');
+}
+
+function deleteAuthor(id){
+  if (!confirm('حذف هذا المؤلف؟ (لن تُحذف كتبه)')) return;
+  CUSTOM_AUTHORS = CUSTOM_AUTHORS.filter(a => a.id !== id);
+  localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+  AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+  renderAuthorsList(); populateSelects(); renderStats(); renderBookList();
 }
 
 /* Book Logic */
@@ -662,43 +701,48 @@ function renderBookList(){
   
   let list = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q));
   if (fCat) list = list.filter(b => getBookCats(b).includes(fCat));
-  
-  if (fIssue === 'dup') {
-    const seen = new Map(); const dups = new Set();
-    BOOKS.forEach(b => {
-      const key = (b.title||'').trim() + '|' + (b.author||'');
-      if (seen.has(key)) { dups.add(seen.get(key)); dups.add(b.id); } else seen.set(key, b.id);
-    });
-    list = list.filter(b => dups.has(b.id));
-  }
-  else if (fIssue === 'missing-series') list = list.filter(b => !b.series);
-  else if (fIssue === 'missing-author') list = list.filter(b => !AUTHORS.find(a => a.id === b.author));
-  else if (fIssue === 'missing-file') list = list.filter(b => !b.pdf_url && !b.word_url);
-  else if (fIssue === 'missing-cover') list = list.filter(b => !b.cover);
-  else if (fIssue === 'multi-cat') list = list.filter(b => getBookCats(b).length > 1);
-  
+  if (fIssue === 'missing-cover') list = list.filter(b => !b.cover);
+
   if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب مطابقة.</div>'; return; }
-  box.innerHTML = list.map(b => `
+  
+  box.innerHTML = list.map((b, idx) => {
+    const realIdx = BOOKS.findIndex(x => x.id === b.id);
+    const authorName = AUTHORS.find(a => a.id === b.author)?.short || b.author || 'غير معروف';
+    return `
     <div class="book-item">
       <div class="book-title-row">
         <div class="book-title" onclick="openEdit('${esc(b.id)}')">${esc(b.title)}</div>
         <span class="book-id">${esc(b.id)}</span>
       </div>
       <div class="book-meta">
+        <span class="tag">👤 ${esc(authorName)}</span>
         ${getBookCats(b).map(cid => `<span class="tag cat">${esc((CATS.find(x=>x.id===cid)||{}).name||cid)}</span>`).join('')}
-        ${b.series ? `<span class="tag series">${esc((SERIES.find(x=>x.id===b.series)||{}).name||b.series)}</span>` : ''}
+        ${b.series ? `<span class="tag series">📚 ${esc((SERIES.find(x=>x.id===b.series)||{}).name||b.series)}</span>` : ''}
       </div>
       <div class="book-controls">
         <select class="book-select" onchange="changeBookSeries('${esc(b.id)}', this.value)">
           <option value="">— بدون موسوعة —</option>
           ${SERIES.map(s => `<option value="${s.id}" ${s.id===b.series?'selected':''}>${esc(s.name)}</option>`).join('')}
         </select>
-        <div></div>
+        <button class="move-btn" onclick="moveBook('${b.id}', -1)" ${realIdx === 0 ? 'disabled' : ''} title="أعلى">⬆️</button>
+        <button class="move-btn" onclick="moveBook('${b.id}', 1)" ${realIdx === BOOKS.length - 1 ? 'disabled' : ''} title="أسفل">⬇️</button>
         <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
         <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
+}
+
+function moveBook(id, dir) {
+  const idx = BOOKS.findIndex(b => b.id === id);
+  if (idx < 0) return;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= BOOKS.length) return;
+  const temp = BOOKS[idx];
+  BOOKS[idx] = BOOKS[newIdx];
+  BOOKS[newIdx] = temp;
+  renderBookList();
+  toast('تم تغيير الترتيب', 'success');
 }
 
 function changeBookSeries(id, seriesId) {
@@ -716,10 +760,19 @@ function addNewBook(){
   const cats = getSelectedCats('new-cats-checkboxes');
   if (cats.length === 0) return alert('اختر تصنيفاً واحداً على الأقل');
 
+  let authorId = document.getElementById('new-author').value;
+  let authorText = '';
+  if (authorId === '__custom__') {
+    authorText = document.getElementById('new-author-custom').value.trim();
+    if (!authorText) return alert('اسم المؤلف مطلوب');
+    authorId = 'custom-' + Date.now();
+  }
+
   const newBook = {
-    id: 'book-' + String(Date.now()).slice(-6) + '-' + Math.random().toString(36).slice(2, 5),
+    id: 'book-' + String(Date.now()).slice(-6),
     title,
-    author: document.getElementById('new-author').value,
+    author: authorId,
+    authorText: authorText,
     categories: cats,
     category: cats[0],
     year: parseInt(document.getElementById('new-year').value) || 1420,
@@ -742,7 +795,7 @@ function addNewBook(){
 
   BOOKS.unshift(newBook);
   renderBookList(); renderStats(); updateFooter();
-  ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc'].forEach(id => document.getElementById(id).value = '');
+  ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc','new-author-custom'].forEach(id => document.getElementById(id).value = '');
   renderCatCheckboxes('new-cats-checkboxes', []);
   toggleAddForm();
   toast('تمت الإضافة', 'success');
@@ -754,7 +807,19 @@ function openEdit(id){
   editingId = id;
   document.getElementById('edit-id').value = b.id;
   document.getElementById('edit-title').value = b.title || '';
-  document.getElementById('edit-author').value = b.author || 'shirazi-m';
+  
+  const isCustom = !AUTHORS_BASE.find(x => x.id === b.author) && !AUTHORS.find(x => x.id === b.author && x.id.startsWith('auth-'));
+  const editAuthorSelect = document.getElementById('edit-author');
+  
+  if (b.authorText) {
+    editAuthorSelect.value = '__custom__';
+    document.getElementById('edit-author-custom-wrap').style.display = 'flex';
+    document.getElementById('edit-author-custom').value = b.authorText;
+  } else {
+    editAuthorSelect.value = b.author || 'shirazi-m';
+    document.getElementById('edit-author-custom-wrap').style.display = 'none';
+  }
+
   document.getElementById('edit-series').value = b.series || '';
   document.getElementById('edit-year').value = b.year || 1420;
   document.getElementById('edit-pages').value = b.pages || '';
@@ -775,7 +840,17 @@ function saveEdit(){
   if (cats.length === 0) return alert('اختر تصنيفاً واحداً على الأقل');
 
   b.title = title;
-  b.author = document.getElementById('edit-author').value;
+  
+  let authorId = document.getElementById('edit-author').value;
+  let authorText = '';
+  if (authorId === '__custom__') {
+    authorText = document.getElementById('edit-author-custom').value.trim();
+    if (!authorText) return alert('اسم المؤلف مطلوب');
+    authorId = 'custom-' + Date.now();
+  }
+  b.author = authorId;
+  b.authorText = authorText;
+
   b.categories = cats; b.category = cats[0];
   b.year = parseInt(document.getElementById('edit-year').value) || 1420;
   const pdf = document.getElementById('edit-pdf').value.trim();
@@ -807,9 +882,14 @@ function deleteBook(id){
 /* Categories */
 function renderCategoriesList(){
   document.getElementById('categoriesCountLabel').textContent = CATS.length;
-  document.getElementById('categoriesList').innerHTML = CATS.map(c => `
+  document.getElementById('categoriesList').innerHTML = CATS.map((c, idx) => `
     <div class="series-item">
       <div class="s-name">${esc(c.name)} (${esc(c.id)})</div>
+      <div style="display:flex;gap:4px;">
+        <button class="move-btn" onclick="moveCategory('${c.id}', -1)" ${idx === 0 ? 'disabled' : ''}>⬆️</button>
+        <button class="move-btn" onclick="moveCategory('${c.id}', 1)" ${idx === CATS.length - 1 ? 'disabled' : ''}>⬇️</button>
+      </div>
+      <div></div>
       <div style="display:flex;gap:4px;">
         <button class="btn btn-outline btn-icon" onclick="openEditCategory('${esc(c.id)}')">✏️</button>
         ${c.id === 'other' ? '' : `<button class="book-delete" onclick="deleteCategory('${esc(c.id)}')">🗑️</button>`}
@@ -817,6 +897,19 @@ function renderCategoriesList(){
     </div>
   `).join('');
 }
+
+function moveCategory(id, dir) {
+  const idx = CATS.findIndex(c => c.id === id);
+  if (idx < 0) return;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= CATS.length) return;
+  const temp = CATS[idx];
+  CATS[idx] = CATS[newIdx];
+  CATS[newIdx] = temp;
+  renderCategoriesList(); populateSelects();
+  toast('تم تغيير الترتيب', 'success');
+}
+
 function addNewCategory(){
   const name = document.getElementById('new-cat-name-input').value.trim();
   let id = document.getElementById('new-cat-id-input').value.trim().toLowerCase();
@@ -865,9 +958,14 @@ function deleteCategory(id){
 /* Series */
 function renderSeriesList(){
   document.getElementById('seriesCountLabel').textContent = SERIES.length;
-  document.getElementById('seriesList').innerHTML = SERIES.map(s => `
+  document.getElementById('seriesList').innerHTML = SERIES.map((s, idx) => `
     <div class="series-item">
       <div class="s-name">${esc(s.name)} (${esc(s.id)})</div>
+      <div style="display:flex;gap:4px;">
+        <button class="move-btn" onclick="moveSeries('${s.id}', -1)" ${idx === 0 ? 'disabled' : ''}>⬆️</button>
+        <button class="move-btn" onclick="moveSeries('${s.id}', 1)" ${idx === SERIES.length - 1 ? 'disabled' : ''}>⬇️</button>
+      </div>
+      <div></div>
       <div style="display:flex;gap:4px;">
         <button class="btn btn-outline btn-icon" onclick="openEditSeries('${esc(s.id)}')">✏️</button>
         <button class="book-delete" onclick="deleteSeries('${esc(s.id)}')">🗑️</button>
@@ -875,6 +973,19 @@ function renderSeriesList(){
     </div>
   `).join('');
 }
+
+function moveSeries(id, dir) {
+  const idx = SERIES.findIndex(s => s.id === id);
+  if (idx < 0) return;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= SERIES.length) return;
+  const temp = SERIES[idx];
+  SERIES[idx] = SERIES[newIdx];
+  SERIES[newIdx] = temp;
+  renderSeriesList(); populateSelects();
+  toast('تم تغيير الترتيب', 'success');
+}
+
 function addNewSeries(){
   const name = document.getElementById('new-series-name').value.trim();
   let id = document.getElementById('new-series-id').value.trim().toLowerCase();
@@ -1104,29 +1215,8 @@ function downloadJSON(data, filename){
 function exportBooks(){ downloadJSON({ items: BOOKS.map(cleanObj) }, 'books.json'); toast('تم تصدير books.json', 'success'); }
 function exportSeries(){ downloadJSON({ items: SERIES.map(cleanObj) }, 'series.json'); toast('تم تصدير series.json', 'success'); }
 function exportCategories(){ downloadJSON(CATS.map(cleanObj), 'categories.json'); toast('تم تصدير categories.json', 'success'); }
-function exportMedia(){
-  downloadJSON({ items: VIDEOS.map(cleanObj) }, 'videos.json');
-  setTimeout(() => downloadJSON({ items: AUDIOS.map(cleanObj) }, 'audios.json'), 300);
-  setTimeout(() => downloadJSON(MEDIA_LISTS, 'media_lists.json'), 600);
-  toast('تم تصدير ملفات الوسائط', 'success');
-}
-function importBooks(event){
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const data = JSON.parse(e.target.result);
-      const items = Array.isArray(data) ? data : (data.items || []);
-      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على كتب');
-      const mode = confirm(`الملف يحتوي على ${items.length} كتاباً.\n\n• موافق = استبدال (${BOOKS.length})\n• إلغاء = دمج`);
-      if (mode) BOOKS = items;
-      else { const ex = new Set(BOOKS.map(b => b.id)); BOOKS = [...BOOKS, ...items.filter(b => !ex.has(b.id))]; }
-      renderBookList(); renderStats(); updateFooter();
-      toast('تم الاستيراد', 'success');
-    } catch(err) { alert('فشل: ' + err.message); }
-  };
-  reader.readAsText(file); event.target.value = '';
-}
+function exportAuthors(){ downloadJSON(CUSTOM_AUTHORS, 'authors.json'); toast('تم تصدير authors.json', 'success'); }
+
 function resetToServer(){ if(confirm('إعادة تحميل؟ ستفقد التعديلات غير المنشورة')) location.reload(); }
 
 window.addEventListener('DOMContentLoaded', init);
