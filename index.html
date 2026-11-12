@@ -141,13 +141,14 @@ main{flex:1;padding:22px 0 60px}
 .continue-reading .cr-text p{font-size:11px;color:var(--muted)}
 .continue-reading .cr-icon{font-size:24px;color:var(--accent)}
 
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:10px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
-.results{font-size:13px;color:var(--muted)}
-.results strong{color:var(--ink);font-weight:800}
-.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.tools select{padding:8px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:13px;background:var(--paper);cursor:pointer;color:var(--ink)}
-.view-toggle{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;overflow:hidden;padding:2px}
-.view-toggle button{padding:6px 13px;font-size:12.5px;color:var(--muted);border-radius:8px;font-weight:600}
+/* تعديل شريط الأدوات ليكون أصغر وأكثر ترتيباً */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:6px 10px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.results{font-size:11px;color:var(--muted)}
+.results strong{color:var(--ink);font-weight:800;font-size:12px;}
+.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.tools select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:11px;background:var(--paper);cursor:pointer;color:var(--ink);min-width:90px;}
+.view-toggle{display:flex;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;overflow:hidden;padding:2px}
+.view-toggle button{padding:3px 8px;font-size:10.5px;color:var(--muted);border-radius:6px;font-weight:600}
 .view-toggle button.active{background:var(--primary);color:#fff}
 [data-theme="dark"] .view-toggle button.active{color:#212529}
 
@@ -254,18 +255,24 @@ main{flex:1;padding:22px 0 60px}
 
 /* تصغير بطاقة المؤلف/الموسوعة */
 .author-header{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;text-align:center;margin-bottom:26px;box-shadow:var(--shadow-sm)}
-.author-header.compact{padding:16px 20px;}
-.author-avatar-big{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--accent-light);font-size:40px;font-family:'Amiri',serif;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);overflow:hidden}
-.author-header.compact .author-avatar-big{width:70px;height:70px;font-size:28px;margin-bottom:10px;}
+.author-header.compact{padding:12px 16px;}
+.author-header.compact .author-avatar-big{width:64px;height:64px;font-size:24px;margin-bottom:8px;border-width:2px;}
 .author-header h1{font-family:'Amiri',serif;font-size:26px;color:var(--primary-dark);margin-bottom:10px}
-.author-header.compact h1{font-size:20px;margin-bottom:6px;}
+.author-header.compact h1{font-size:16px;margin-bottom:4px;}
 [data-theme="dark"] .author-header h1{color:var(--accent)}
 .author-header p{font-size:13.5px;color:var(--muted);max-width:640px;margin:0 auto 14px;line-height:1.9}
-.author-header.compact p{font-size:12.5px;margin-bottom:10px;line-height:1.6;}
+.author-header.compact p{font-size:11.5px;margin-bottom:6px;line-height:1.5;}
 .author-stats{display:inline-flex;gap:12px;background:var(--paper-2);padding:10px 22px;border-radius:20px;font-size:13px;font-weight:700;color:var(--ink);border:1px solid var(--line);margin-bottom:15px}
-.author-header.compact .author-stats{padding:6px 16px;font-size:12px;margin-bottom:10px;}
+.author-header.compact .author-stats{padding:4px 12px;font-size:10.5px;margin-bottom:8px;gap:8px;}
 .author-stats span{color:var(--primary)}
 [data-theme="dark"] .author-stats span{color:var(--accent)}
+
+/* صورة غلاف الموسوعة */
+.series-cover-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 8px; box-shadow: 0 4px 10px rgba(0,0,0,.15); border: 2px solid var(--accent); display: block; }
+
+/* زر مشاركة الموسوعة */
+.share-btn-compact { padding: 5px 14px; font-size: 11px; background: var(--primary); color: #fff; border-radius: 6px; font-weight: 700; transition: all var(--tr); display: inline-flex; align-items: center; gap: 4px; }
+.share-btn-compact:hover { background: var(--primary-dark); }
 
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .cat-card{background:var(--paper);border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:var(--radius-lg);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:all var(--tr);color:inherit;box-shadow:var(--shadow-sm)}
@@ -456,7 +463,11 @@ textarea.form-control{resize:vertical;min-height:100px}
   .series-card{padding:14px 16px}
   .series-card .sc-name{font-size:16px}
   .author-header{padding:20px}
+  .author-header.compact{padding:10px 12px;}
   .author-header h1{font-size:22px}
+  .author-header.compact h1{font-size:15px;margin-bottom:4px;}
+  .author-header p{font-size:13px}
+  .author-header.compact p{font-size:11px;margin-bottom:4px;}
   .author-avatar-big{width:80px;height:80px;font-size:32px}
   .hero{padding:10px 12px}
   .hero .stat strong{font-size:12px}
@@ -476,6 +487,14 @@ textarea.form-control{resize:vertical;min-height:100px}
   .lib-btn{width:28px;height:28px}
   .lib-btn svg{width:14px;height:14px}
   .media-modal-body{aspect-ratio:auto;height:220px}
+  /* تنسيق شريط الأدوات في الهاتف ليكون عرضياً */
+  .toolbar { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px; }
+  .tools { display: flex; flex-direction: row !important; flex-wrap: nowrap; width: 100%; justify-content: space-between; overflow-x: auto; scrollbar-width: none; gap: 4px; }
+  .tools::-webkit-scrollbar { display: none; }
+  .tools select { font-size: 10.5px; padding: 4px 6px; flex: 1; min-width: 0; }
+  .view-toggle { flex-shrink: 0; }
+  .view-toggle button { font-size: 10px; padding: 3px 6px; }
+  .author-header.compact .author-stats { padding: 3px 8px; font-size: 10px; flex-wrap: wrap; justify-content: center; }
 }
 </style>
 </head>
@@ -972,10 +991,10 @@ function renderSeriesPage(id){
     bulkHtml = `<div style="background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;"><h3 style="font-family:'Amiri',serif;font-size:18px;color:var(--primary-dark);margin:0;">تحميل الموسوعة كاملة</h3><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px;"><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;">تحميل الكل (PDF)</a><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;">تحميل الكل (Word)</a></div></div>`;
   }
   
-  // تصغير البطاقة هنا باستخدام compact
+  // تصغير البطاقة هنا باستخدام compact وإضافة كلاس لصورة الغلاف
   const seriesCoverHtml = s.cover
-    ? `<img src="${esc(s.cover)}" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="author-avatar-big" style="display:none">${esc(s.name.charAt(0))}</div>`
-    : `<div class="author-avatar-big">${esc(s.name.charAt(0))}</div>`;
+    ? `<img src="${esc(s.cover)}" class="series-cover-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="author-avatar-big" style="display:none;width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`
+    : `<div class="author-avatar-big" style="width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`;
 
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div>
   <div class="author-header compact">
@@ -983,7 +1002,7 @@ function renderSeriesPage(id){
     <h1>${esc(s.name)}</h1>
     <p>${esc(s.desc)}</p>
     <div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div>
-    <div style="margin-top:15px;"><button onclick="shareSeries('${s.id}')" style="padding:8px 20px;font-size:13px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;">مشاركة الموسوعة</button></div>
+    <div style="margin-top:8px;"><button onclick="shareSeries('${s.id}')" class="share-btn-compact">مشاركة الموسوعة</button></div>
   </div>
   ${bulkHtml}${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar(); renderList();
