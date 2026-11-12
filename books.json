@@ -2521,9 +2521,9 @@
     },
     {
       "id": "book-189",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الاول",
+      "title": "الاستفتاءت الدمشقية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -2531,7 +2531,9 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/189.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/189.doc",
-      "series": "fiqh-zahra"
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-190",
@@ -3820,16 +3822,20 @@
     },
     {
       "id": "book-291",
-      "title": "حديث مع الناشئين",
+      "title": "توصيات إلى العاملين للإسلام",
       "author": "shirazi-m",
-      "category": "youth",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/291.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/291.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/291.doc",
+      "categories": [
+        "ijtimaiya",
+        "youth"
+      ]
     },
     {
       "id": "book-292",
