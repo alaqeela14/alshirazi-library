@@ -1,14 +1,18 @@
 {
   "items": [
     {
-      "title": "الحكم التكليفي للمكاسب المحرّمة بالعنوان الثانوي",
-      "category": "دروس",
+      "title": "المكاسب المحرمة (٢) المكاسب الواجبة والمستحبة",
+      "url": "https://github.com/alaqeela14/alshirazi-library/releases/download/mahdi-audio/makasib-02.mp3",
       "speaker": "السيد مهدي الحسيني الشيرازي",
       "topic": "بحث الخارج",
-      "subtopic": "المكاسب المحرمة",
-      "description": "الدرس الأول",
-      "url": "ضع_رابط_الصوت_هنا.mp3",
-      "download_url": "ضع_رابط_الصوت_هنا.mp3"
+      "subtopic": "المكاسب المحرمة"
+    },
+    {
+      "title": "المكاسب المحرمة (١) الحكم التكليفي للمكاسب المحرّمة بالعنوان الثانوي",
+      "url": "ضع_https://github.com/alaqeela14/alshirazi-library/releases/download/mahdi-audio/makasib-01.mp3رابط_الصوت_هنا.mp3",
+      "speaker": "السيد مهدي الحسيني الشيرازي",
+      "topic": "بحث الخارج",
+      "subtopic": "المكاسب المحرمة"
     }
   ]
 }
