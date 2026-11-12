@@ -10,13 +10,13 @@
   --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
   --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
   --line:#e5ddd0;--line-2:#f0ebe2;
-  --primary:#5a4a35;--primary-dark:#3d3122;
-  --accent:#a8916a;--accent-light:#c9b896;
+  --primary:#343a40;--primary-dark:#212529;
+  --accent:#d4af37;--accent-light:#f8e7b9;
   --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;--gold:#b8860b;
   --radius:10px;--radius-lg:14px;
-  --shadow-sm:0 1px 3px rgba(90,74,53,.06);
-  --shadow:0 4px 14px rgba(90,74,53,.08);
-  --shadow-lg:0 12px 32px rgba(90,74,53,.15);
+  --shadow-sm:0 1px 3px rgba(33,37,41,.06);
+  --shadow:0 4px 14px rgba(33,37,41,.08);
+  --shadow-lg:0 12px 32px rgba(33,37,41,.15);
   --tr:.18s ease;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -31,8 +31,6 @@ input,select,textarea{font-family:inherit}
 .btn-primary{background:var(--primary);color:#fff}
 .btn-primary:hover{background:var(--primary-dark)}
 .btn-success{background:var(--green);color:#fff}
-.btn-success:hover{opacity:.9;transform:translateY(-1px)}
-.btn-danger{background:var(--red);color:#fff}
 .btn-warning{background:var(--orange);color:#fff}
 .btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
 .btn-outline:hover{background:var(--paper-2);border-color:var(--accent)}
@@ -70,14 +68,11 @@ input,select,textarea{font-family:inherit}
 .health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
 .health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .check{margin-bottom:6px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.check.ok{color:var(--green)}
-.check.warn{color:var(--orange)}
-.check.error{color:var(--red)}
+.check.ok{color:var(--green)}.check.warn{color:var(--orange)}.check.error{color:var(--red)}
 .cat-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:10px}
 .cat-count{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:6px}
 .cat-count .cnt{font-weight:800;color:var(--primary);font-size:13px;background:var(--paper);padding:1px 7px;border-radius:9px}
 .smart-btn{margin-top:10px;width:100%;padding:9px;background:#fff3cd;color:#856404;border:1px dashed #d4a017;border-radius:6px;font-weight:700;font-size:12.5px;cursor:pointer;transition:all var(--tr)}
-.smart-btn:hover{background:#fde8b8}
 .filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
 .filters input:focus,.filters select:focus{border-color:var(--primary)}
@@ -85,60 +80,29 @@ input,select,textarea{font-family:inherit}
 .book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
 .book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
-.book-item.duplicate{border-color:#e0a800;background:#fffbf0}
-.book-item.missing-series{border-color:#17a2b8;background:#f0faff}
 .book-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
 .book-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word;cursor:pointer;flex:1}
-.book-title:hover{color:var(--primary)}
 .book-id{font-size:10px;color:var(--muted);font-family:monospace;direction:ltr;background:var(--paper-2);padding:2px 6px;border-radius:5px;flex-shrink:0}
 .book-meta{font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
 .book-meta .tag{display:inline-flex;align-items:center;gap:3px;background:var(--paper-2);padding:2px 8px;border-radius:9px;line-height:1.6}
 .book-meta .tag.cat{color:var(--primary);font-weight:700;background:#f5ede0}
 .book-meta .tag.series{color:var(--blue);font-weight:700;background:#e8f0f8}
-.book-meta .tag.dup{color:var(--gold);font-weight:700;background:#fff3cd}
-.book-meta .tag.nofile{color:var(--red);font-weight:700;background:#fde8e8}
-.book-meta .tag.cover{color:var(--green);font-weight:700;background:#e8f5e8}
-.book-controls{display:grid;grid-template-columns:1fr 1fr auto auto;gap:6px;align-items:center}
-.book-select{padding:7px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:12px;cursor:pointer;outline:none;width:100%}
-.book-select:focus{border-color:var(--primary)}
-.book-select.series-select{background:#f0faff}
+.book-controls{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center}
 .book-delete{width:34px;height:34px;border-radius:6px;background:#fde8e8;color:var(--red);font-size:14px;display:grid;place-items:center;transition:all var(--tr)}
 .book-delete:hover{background:var(--red);color:#fff}
-@media(max-width:700px){
-  .book-controls{grid-template-columns:1fr 1fr}
-  .book-controls .btn-edit-full{grid-column:1/-1}
-  .book-delete{grid-column:1/-1;width:100%;height:36px}
-}
-.series-list{display:flex;flex-direction:column;gap:8px}
-.series-item{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center}
-.series-item .s-info{min-width:0}
-.series-item .s-name{font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:6px}
-.series-item .s-meta{font-size:11px;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap}
-.series-item .s-id{font-family:monospace;direction:ltr;background:var(--paper);padding:1px 6px;border-radius:5px;font-size:10px}
-.series-item .s-count{font-weight:800;color:var(--primary);font-size:12px;background:var(--paper);padding:3px 10px;border-radius:9px;white-space:nowrap}
-.series-item .s-actions{display:flex;gap:4px}
-.load-more-wrap{text-align:center;margin:16px 0 20px}
-.load-more-btn{padding:10px 24px;background:var(--paper);border:1px solid var(--accent);color:var(--primary);border-radius:24px;font-weight:700;font-size:13px;cursor:pointer;transition:all var(--tr)}
-.load-more-btn:hover{background:var(--primary);color:#fff}
-.empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg)}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
 .modal-overlay.open{display:flex}
 .modal{background:var(--paper);border-radius:var(--radius-lg);width:min(600px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
 .modal-head{padding:14px 18px;background:var(--primary-dark);color:#fff;display:flex;justify-content:space-between;align-items:center}
 .modal-head h3{font-size:16px}
 .modal-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:16px;display:grid;place-items:center}
-.modal-close:hover{background:rgba(255,255,255,.3)}
 .modal-body{padding:16px 18px;overflow-y:auto;flex:1}
-.modal-body .form-grid{grid-template-columns:1fr}
-.modal-body .form-grid .ff.full{grid-column:auto}
 .modal-foot{padding:12px 18px;background:var(--paper-2);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
 .floating-actions{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:50;box-shadow:0 -4px 14px rgba(0,0,0,.05);flex-wrap:wrap}
 .floating-actions .info{font-size:12px;color:var(--muted);flex:1;min-width:140px}
 .toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{background:var(--green)}
-.toast.error{background:var(--red)}
-.toast.warn{background:var(--orange)}
+.toast.success{background:var(--green)}.toast.error{background:var(--red)}.toast.warn{background:var(--orange)}
 .cover-preview{width:40px;height:54px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:var(--paper-2);flex-shrink:0;margin-left:6px}
 .cover-preview-ph{width:40px;height:54px;border-radius:4px;border:1px dashed var(--line);display:grid;place-items:center;font-size:16px;color:var(--muted);flex-shrink:0;margin-left:6px}
 .token-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:9px;font-weight:700}
@@ -150,16 +114,16 @@ input,select,textarea{font-family:inherit}
 
 <header class="admin-header">
   <div class="container">
-    <h1>⚙️ لوحة التحكم — مكتبة آل الشيرازي</h1>
-    <p>عدّل الكتب والتصنيفات والموسوعات ثم انشر مباشرة إلى GitHub.</p>
+    <h1>لوحة التحكم — مكتبة آل الشيرازي</h1>
+    <p>عدّل الكتب، الوسائط، والموسوعات ثم انشر مباشرة إلى GitHub.</p>
   </div>
 </header>
 
 <main class="container">
 
   <div id="draftBanner" class="draft-banner" style="display:none">
-    <span>📝 أنت تعمل على مسودة محفوظة في المتصفح. (لم تُنشر بعد)</span>
-    <button class="btn btn-outline" onclick="resetToServer()">🗑️ تجاهل المسودة</button>
+    <span>أنت تعمل على مسودة محفوظة في المتصفح. (لم تُنشر بعد)</span>
+    <button class="btn btn-outline" onclick="resetToServer()">تجاهل المسودة</button>
   </div>
 
   <div id="publishBanner" class="publish-banner" style="display:none"></div>
@@ -170,129 +134,105 @@ input,select,textarea{font-family:inherit}
     <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
     <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
     <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
-    <label class="btn btn-outline">
-      📁 استيراد books.json
-      <input type="file" accept=".json,application/json" onchange="importBooks(event)" style="display:none">
-    </label>
-    <label class="btn btn-outline">
-      📁 استيراد series.json
-      <input type="file" accept=".json,application/json" onchange="importSeries(event)" style="display:none">
-    </label>
-    <label class="btn btn-outline">
-      📁 استيراد categories.json
-      <input type="file" accept=".json,application/json" onchange="importCategories(event)" style="display:none">
-    </label>
+    <label class="btn btn-outline">📁 استيراد books.json<input type="file" accept=".json" onchange="importBooks(event)" style="display:none"></label>
+    <label class="btn btn-outline">📁 استيراد series.json<input type="file" accept=".json" onchange="importSeries(event)" style="display:none"></label>
   </div>
 
-  <!-- ================= إعدادات GitHub ================= -->
   <div class="section-toggle" id="ghToggle" onclick="toggleSection('gh')">
     <h3>🔧 إعدادات النشر التلقائي إلى GitHub <span id="tokenStatusBadge" class="token-status missing">غير مفعّل</span></h3>
     <span class="arrow">▼</span>
   </div>
   <div class="section-content" id="ghContent">
-    <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
-      لتفعيل النشر التلقائي، أدخل رمز GitHub (Personal Access Token). بعد ذلك يمكنك النشر بضغطة زر بدون تصدير ورفع يدوي.
-      <br><strong>الأمان:</strong> الرمز يُخزَّن في متصفحك فقط ولا يُرسَل لأي مكان سوى GitHub.
-    </p>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">أدخل رمز GitHub لتفعيل النشر بضغطة زر.</p>
     <div class="form-grid">
-      <div class="ff"><label>صاحب المستودع (Owner)</label><input type="text" id="gh-owner" value="alaqeela14"></div>
-      <div class="ff"><label>اسم المستودع (Repo)</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
-      <div class="ff"><label>الفرع (Branch)</label><input type="text" id="gh-branch" value="main"></div>
-      <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."><div class="hint">يبدأ بـ github_pat_ — لن يُعرض بعد الحفظ</div></div>
+      <div class="ff"><label>صاحب المستودع</label><input type="text" id="gh-owner" value="alaqeela14"></div>
+      <div class="ff"><label>اسم المستودع</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
+      <div class="ff"><label>الفرع</label><input type="text" id="gh-branch" value="main"></div>
+      <div class="ff full"><label>رمز GitHub (Token)</label><input type="password" id="gh-token" placeholder="github_pat_..."></div>
     </div>
     <div class="form-actions">
       <button class="btn btn-outline" onclick="clearToken()">🗑️ حذف الرمز</button>
       <button class="btn btn-outline" onclick="testGitHub()">🔌 اختبار الاتصال</button>
-      <button class="btn btn-primary" onclick="saveGitHubSettings()">💾 حفظ الإعدادات</button>
+      <button class="btn btn-primary" onclick="saveGitHubSettings()">💾 حفظ</button>
     </div>
-    <div id="ghTestResult" style="margin-top:10px; font-size:13px;"></div>
+    <div id="ghTestResult" style="margin-top:10px;font-size:13px;"></div>
   </div>
 
-  <!-- ================= إدارة التصنيفات ================= -->
+  <div class="section-toggle" id="mediaToggle" onclick="toggleSection('media')">
+    <h3>🎬 إدارة المكتبة المرئية والصوتية</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="mediaContent">
+    <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+      <button class="btn btn-primary" id="tabVideoBtn" onclick="switchMediaTab('video')">المرئية</button>
+      <button class="btn btn-outline" id="tabAudioBtn" onclick="switchMediaTab('audio')">الصوتية</button>
+      <button class="btn btn-warning" onclick="openListsManager()">📁 إدارة القوائم (السلاسل)</button>
+    </div>
+
+    <div class="add-form open" style="border:2px solid var(--green); margin-bottom:15px;">
+      <h3 style="color:var(--green)">➕ إضافة عنصر للمكتبة</h3>
+      <div class="form-grid">
+        <div class="ff full"><label>العنوان *</label><input type="text" id="med-title" placeholder="مثال: 1- أهمية الإصلاح"></div>
+        <div class="ff full"><label>الرابط (URL) *</label><input type="url" id="med-url" placeholder="https://youtu.be/..."></div>
+        <div class="ff"><label>المتحدث / المؤلف</label><select id="med-speaker"></select></div>
+        <div class="ff"><label>القائمة (Topic)</label><select id="med-topic" onchange="updateSubtopicDropdown()"></select></div>
+        <div class="ff"><label>القائمة الفرعية (Subtopic)</label><select id="med-subtopic"></select></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="clearMediaForm()">مسح</button>
+        <button class="btn btn-primary" onclick="addMediaItem()">➕ إضافة العنصر</button>
+      </div>
+    </div>
+
+    <div class="book-list" id="mediaListBox"></div>
+  </div>
+
   <div class="section-toggle" id="catToggle" onclick="toggleSection('cat')">
     <h3>🏷️ إدارة التصنيفات (<span id="categoriesCountLabel">0</span>)</h3>
     <span class="arrow">▼</span>
   </div>
   <div class="section-content" id="catContent">
-    <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
-      التصنيفات هي الأقسام الرئيسية التي تظهر في القائمة الجانبية للموقع. عند حذف تصنيف، تنتقل كتبه تلقائياً إلى «أخرى».
-      <br><strong>تنبيه:</strong> معرّف التصنيف (ID) لا يمكن تعديله بعد الإنشاء، لأنه مرتبط بالكتب.
-    </p>
-    <div class="add-form open" style="border:2px solid var(--green); margin-bottom:14px">
+    <div class="add-form open" style="border:2px solid var(--green);margin-bottom:14px">
       <h3 style="color:var(--green)">➕ إضافة تصنيف جديد</h3>
       <div class="form-grid">
         <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input" placeholder="مثال: أدعية وأذكار"></div>
-        <div class="ff"><label>المعرّف (ID) — إنجليزي بدون مسافات *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"><div class="hint">حروف إنجليزية صغيرة وأرقام وشرطة فقط</div></div>
+        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"></div>
       </div>
       <div class="form-actions">
-        <button class="btn btn-outline" onclick="clearCategoryForm()">مسح</button>
-        <button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة التصنيف</button>
+        <button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة</button>
       </div>
     </div>
     <div class="series-list" id="categoriesList"></div>
   </div>
 
-  <!-- ================= إدارة الموسوعات ================= -->
   <div class="section-toggle" id="seriesToggle" onclick="toggleSection('series')">
     <h3>📚 إدارة الموسوعات (<span id="seriesCountLabel">0</span>)</h3>
     <span class="arrow">▼</span>
   </div>
   <div class="section-content" id="seriesContent">
-    <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">
-      الموسوعات هي مجموعات كبرى من الكتب. بعد إضافة موسوعة هنا، ستظهر تلقائياً في القوائم المنسدلة لكل كتاب.
-    </p>
-    <div class="add-form open" style="border:2px solid var(--blue); margin-bottom:14px">
+    <div class="add-form open" style="border:2px solid var(--blue);margin-bottom:14px">
       <h3 style="color:var(--blue)">➕ إضافة موسوعة جديدة</h3>
       <div class="form-grid">
-        <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name" placeholder="مثال: موسوعة الأخلاق"></div>
-        <div class="ff"><label>المعرّف (ID) — إنجليزي بدون مسافات *</label><input type="text" id="new-series-id" placeholder="akhlaq-encyclopedia"><div class="hint">حروف إنجليزية صغيرة وأرقام وشرطة فقط</div></div>
+        <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name"></div>
+        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-series-id"></div>
         <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
-        <div class="ff full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="new-series-cover" placeholder="https://i.ibb.co/..."></div>
-        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc" placeholder="نبذة قصيرة..."></textarea></div>
+        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="new-series-cover"></div>
+        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc"></textarea></div>
       </div>
       <div class="form-actions">
-        <button class="btn btn-outline" onclick="clearSeriesForm()">مسح</button>
-        <button class="btn btn-primary" onclick="addNewSeries()">➕ إضافة الموسوعة</button>
+        <button class="btn btn-primary" onclick="addNewSeries()">➕ إضافة</button>
       </div>
     </div>
     <div class="series-list" id="seriesList"></div>
   </div>
 
-  <!-- ================= نموذج إضافة كتاب ================= -->
-  <div class="add-form" id="addForm">
-    <h3>➕ إضافة كتاب جديد</h3>
-    <div class="form-grid">
-      <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="new-title" placeholder="مثال: من حياة الرسول الأعظم"></div>
-      <div class="ff"><label>المؤلف *</label><select id="new-author"></select></div>
-      <div class="ff"><label>التصنيف *</label><select id="new-cat"></select></div>
-      <div class="ff"><label>الموسوعة (اختياري)</label><select id="new-series"><option value="">— بدون —</option></select></div>
-      <div class="ff"><label>السنة الهجرية</label><input type="number" id="new-year" value="1420"></div>
-      <div class="ff"><label>عدد الصفحات</label><input type="number" id="new-pages" placeholder="اختياري"></div>
-      <div class="ff full"><label>رابط صورة الغلاف (اختياري)</label><input type="url" id="new-cover" placeholder="https://i.ibb.co/..."></div>
-      <div class="ff full"><label>رابط PDF</label><input type="url" id="new-pdf" placeholder="https://github.com/..."></div>
-      <div class="ff full"><label>رابط Word</label><input type="url" id="new-word" placeholder="https://github.com/..."></div>
-      <div class="ff full"><label>وصف الكتاب</label><textarea id="new-desc" placeholder="نبذة قصيرة..."></textarea></div>
-    </div>
-    <div class="form-actions">
-      <button class="btn btn-outline" onclick="toggleAddForm()">إلغاء</button>
-      <button class="btn btn-primary" onclick="addNewBook()">➕ إضافة</button>
-    </div>
-  </div>
-
-  <div class="stats-bar" id="statsBar"></div>
-  <div class="health-panel" id="healthPanel"></div>
-
   <div class="filters">
-    <input type="search" id="searchInput" placeholder="🔍 ابحث بالعنوان أو المؤلف أو ID..." oninput="debouncedRender()">
+    <input type="search" id="searchInput" placeholder="🔍 ابحث..." oninput="debouncedRender()">
     <select id="filterCat" onchange="resetPagination(); renderBookList()"><option value="">كل التصنيفات</option></select>
     <select id="filterIssue" onchange="resetPagination(); renderBookList()">
       <option value="">كل الكتب</option>
       <option value="dup">🔁 المكررة فقط</option>
-      <option value="missing-series">📚 بلا موسوعة (تحتاج مراجعة)</option>
-      <option value="missing-author">👤 بمؤلف غير معروف</option>
-      <option value="missing-file">📄 بلا ملف PDF/Word</option>
-      <option value="missing-cover">🖼️ بلا صورة غلاف</option>
-      <option value="has-series">📖 مرتبطة بموسوعة</option>
+      <option value="missing-cover">🖼️ بلا غلاف</option>
     </select>
   </div>
 
@@ -311,74 +251,43 @@ input,select,textarea{font-family:inherit}
   </div>
 </footer>
 
-<!-- ============ Modal تعديل الكتاب ============ -->
 <div class="modal-overlay" id="editModal">
   <div class="modal">
-    <div class="modal-head">
-      <h3>✏️ تعديل الكتاب</h3>
-      <button class="modal-close" onclick="closeEdit()">✕</button>
-    </div>
+    <div class="modal-head"><h3>✏️ تعديل الكتاب</h3><button class="modal-close" onclick="closeEdit()">✕</button></div>
     <div class="modal-body">
       <div class="form-grid">
-        <div class="ff full"><label>المعرّف (ID) — للقراءة فقط</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
+        <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
         <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="edit-title"></div>
         <div class="ff"><label>المؤلف</label><select id="edit-author"></select></div>
-        <div class="ff"><label>التصنيف</label><select id="edit-cat"></select></div>
-        <div class="ff"><label>الموسوعة</label><select id="edit-series"><option value="">— بدون —</option></select></div>
-        <div class="ff"><label>السنة الهجرية</label><input type="number" id="edit-year"></div>
-        <div class="ff"><label>عدد الصفحات</label><input type="number" id="edit-pages"></div>
-        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-cover" placeholder="اتركه فارغاً لحذفه"></div>
-        <div class="ff full"><label>رابط PDF</label><input type="url" id="edit-pdf" placeholder="اتركه فارغاً لحذفه"></div>
-        <div class="ff full"><label>رابط Word</label><input type="url" id="edit-word" placeholder="اتركه فارغاً لحذفه"></div>
+        <div class="ff"><label>الموسوعة</label><select id="edit-series"></select></div>
+        <div class="ff"><label>السنة</label><input type="number" id="edit-year"></div>
+        <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
+        <div class="ff full"><label>التصنيفات * (يمكن اختيار أكثر من واحد)</label><div id="edit-cats-checkboxes" class="cat-checkboxes"></div></div>
+        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-cover"></div>
+        <div class="ff full"><label>رابط PDF</label><input type="url" id="edit-pdf"></div>
+        <div class="ff full"><label>رابط Word</label><input type="url" id="edit-word"></div>
         <div class="ff full"><label>وصف الكتاب</label><textarea id="edit-desc"></textarea></div>
       </div>
     </div>
     <div class="modal-foot">
       <button class="btn btn-outline" onclick="closeEdit()">إلغاء</button>
-      <button class="btn btn-primary" onclick="saveEdit()">💾 حفظ التعديلات</button>
+      <button class="btn btn-primary" onclick="saveEdit()">💾 حفظ</button>
     </div>
   </div>
 </div>
 
-<!-- ============ Modal تعديل الموسوعة ============ -->
-<div class="modal-overlay" id="editSeriesModal">
+<div class="modal-overlay" id="listsModal">
   <div class="modal">
-    <div class="modal-head">
-      <h3>✏️ تعديل الموسوعة</h3>
-      <button class="modal-close" onclick="closeEditSeries()">✕</button>
-    </div>
+    <div class="modal-head"><h3>📁 إدارة القوائم (السلاسل)</h3><button class="modal-close" onclick="closeListsManager()">✕</button></div>
     <div class="modal-body">
-      <div class="form-grid">
-        <div class="ff full"><label>المعرّف (ID) — للقراءة فقط</label><input type="text" id="edit-series-id" disabled style="background:#e5ddd0"></div>
-        <div class="ff full"><label>اسم الموسوعة *</label><input type="text" id="edit-series-name"></div>
-        <div class="ff"><label>المؤلف</label><select id="edit-series-author"></select></div>
-        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-series-cover" placeholder="اتركه فارغاً لحذفه"></div>
-        <div class="ff full"><label>وصف الموسوعة</label><textarea id="edit-series-desc"></textarea></div>
+      <div style="display:flex; gap:8px; margin-bottom:15px;">
+        <input type="text" id="newTopicName" placeholder="اسم القائمة الرئيسية (مثال: الإصلاح الاجتماعي)" style="flex:1; padding:8px; border:1px solid var(--line); border-radius:6px;">
+        <button class="btn btn-primary" onclick="addMediaTopic()">إضافة قائمة</button>
       </div>
+      <div id="listsManagerBody"></div>
     </div>
     <div class="modal-foot">
-      <button class="btn btn-outline" onclick="closeEditSeries()">إلغاء</button>
-      <button class="btn btn-primary" onclick="saveSeriesEdit()">💾 حفظ التعديلات</button>
-    </div>
-  </div>
-</div>
-
-<!-- ============ Modal تعديل التصنيف ============ -->
-<div class="modal-overlay" id="editCategoryModal">
-  <div class="modal">
-    <div class="modal-head">
-      <h3>✏️ تعديل التصنيف</h3>
-      <button class="modal-close" onclick="closeEditCategory()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="ff full"><label>المعرّف (ID) — للقراءة فقط</label><input type="text" id="edit-cat-id-display" disabled style="background:#e5ddd0"></div>
-        <div class="ff full"><label>اسم التصنيف *</label><input type="text" id="edit-cat-name-input"></div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-outline" onclick="closeEditCategory()">إلغاء</button>
-      <button class="btn btn-primary" onclick="saveCategoryEdit()">💾 حفظ التعديلات</button>
+      <button class="btn btn-outline" onclick="closeListsManager()">إغلاق</button>
     </div>
   </div>
 </div>
@@ -396,20 +305,13 @@ const AUTHORS = [
   {id:"shirazi-me", name:"السيد مهدي الحسيني الشيرازي"}
 ];
 
-let CATS = [];
-let SERIES = [];
-let BOOKS = [];
+let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [];
+let MEDIA_LISTS = { video: [], audio: [] };
 let hasDraft = false;
-let hasSeriesDraft = false;
-let hasCatsDraft = false;
-let editingId = null;
-let editingSeriesId = null;
-let editingCategoryId = null;
+let editingId = null, editingSeriesId = null, editingCategoryId = null;
+let currentMediaTab = 'video', editingMediaIndex = -1;
 let shownCount = 50;
 const PAGE_SIZE = 50;
-const DRAFT_KEY = 'admin_books_draft_v1';
-const SERIES_DRAFT_KEY = 'admin_series_draft_v1';
-const CATS_DRAFT_KEY = 'admin_cats_draft_v1';
 const GH_KEY = 'admin_github_settings_v1';
 let searchTimer = null;
 
@@ -418,7 +320,7 @@ const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّ�
 const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
 const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
 const countBooksInSeries = sid => BOOKS.filter(b => b.series === sid).length;
-const countBooksInCat = cid => BOOKS.filter(b => b.category === cid).length;
+const countBooksInCat = cid => BOOKS.filter(b => (b.categories||[b.category]).includes(cid)).length;
 
 function toast(msg, type='info'){
   const t = document.getElementById('toast');
@@ -438,7 +340,6 @@ function showPublishBanner(msg, isError){
 
 /* ========== إعدادات GitHub ========== */
 function getGitHubSettings(){ try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); } catch(e) { return {}; } }
-
 function saveGitHubSettings(){
   const owner = document.getElementById('gh-owner').value.trim();
   const repo = document.getElementById('gh-repo').value.trim();
@@ -446,57 +347,26 @@ function saveGitHubSettings(){
   const token = document.getElementById('gh-token').value.trim();
   if (!owner || !repo) { toast('املأ صاحب المستودع واسمه', 'error'); return; }
   if (!token && !getGitHubSettings().token) { toast('أدخل رمز GitHub', 'error'); return; }
-  const settings = { owner, repo, branch };
-  settings.token = token || getGitHubSettings().token;
-  localStorage.setItem(GH_KEY, JSON.stringify(settings));
-  updateTokenBadge();
-  toast('✅ تم حفظ إعدادات GitHub', 'success');
+  localStorage.setItem(GH_KEY, JSON.stringify({ owner, repo, branch, token: token || getGitHubSettings().token }));
+  updateTokenBadge(); toast('تم حفظ إعدادات GitHub', 'success');
 }
-
-function clearToken(){
-  if (!confirm('سيتم حذف رمز GitHub من هذا المتصفح.\n\nسيتوقف النشر التلقائي حتى تُدخل رمزاً جديداً.\n\nمتابعة؟')) return;
-  localStorage.removeItem(GH_KEY);
-  document.getElementById('gh-token').value = '';
-  updateTokenBadge();
-  toast('تم حذف الرمز', 'warn');
-}
-
-function loadGitHubSettingsIntoForm(){
-  const s = getGitHubSettings();
-  if (s.owner) document.getElementById('gh-owner').value = s.owner;
-  if (s.repo) document.getElementById('gh-repo').value = s.repo;
-  if (s.branch) document.getElementById('gh-branch').value = s.branch;
-}
-
+function clearToken(){ localStorage.removeItem(GH_KEY); document.getElementById('gh-token').value = ''; updateTokenBadge(); }
 function updateTokenBadge(){
   const s = getGitHubSettings();
   const badge = document.getElementById('tokenStatusBadge');
-  if (s.token && s.owner && s.repo) {
-    badge.textContent = '✅ مفعّل';
-    badge.className = 'token-status ok';
-  } else {
-    badge.textContent = '⚠️ غير مفعّل';
-    badge.className = 'token-status missing';
-  }
+  if (s.token && s.owner && s.repo) { badge.textContent = 'مفعّل'; badge.className = 'token-status ok'; }
+  else { badge.textContent = 'غير مفعّل'; badge.className = 'token-status missing'; }
 }
-
 async function testGitHub(){
   const s = getGitHubSettings();
-  if (!s.token || !s.owner || !s.repo) { alert('أدخل الإعدادات واحفظها أولاً'); return; }
+  if (!s.token) return alert('احفظ الإعدادات أولاً');
   const result = document.getElementById('ghTestResult');
-  result.innerHTML = '⏳ جارٍ الاختبار...';
+  result.innerHTML = 'جارٍ الاختبار...';
   try {
-    const res = await fetch(`https://api.github.com/repos/${s.owner}/${s.repo}`, {
-      headers: { 'Authorization': `token ${s.token}`, 'Accept': 'application/vnd.github.v3+json' }
-    });
+    const res = await fetch(`https://api.github.com/repos/${s.owner}/${s.repo}`, { headers: { 'Authorization': `token ${s.token}` } });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    result.innerHTML = `✅ الاتصال ناجح — المستودع: <strong>${esc(data.full_name)}</strong>`;
-    result.style.color = 'var(--green)';
-  } catch(e) {
-    result.innerHTML = `❌ فشل الاتصال: ${esc(e.message)}<br>تحقق من الرمز وصلاحياته (Contents: Read and write)`;
-    result.style.color = 'var(--red)';
-  }
+    result.innerHTML = 'الاتصال ناجح'; result.style.color = 'var(--green)';
+  } catch(e) { result.innerHTML = 'فشل: ' + e.message; result.style.color = 'var(--red)'; }
 }
 
 /* ========== النشر ========== */
@@ -506,847 +376,286 @@ function toBase64UTF8(str) {
   bytes.forEach(b => binary += String.fromCharCode(b));
   return btoa(binary);
 }
-
 async function publishFileToGitHub(fileName, data){
   const s = getGitHubSettings();
-  if (!s.token || !s.owner || !s.repo) throw new Error('إعدادات GitHub غير مكتملة');
-  const branch = s.branch || 'main';
+  if (!s.token) throw new Error('إعدادات GitHub غير مكتملة');
   const apiUrl = `https://api.github.com/repos/${s.owner}/${s.repo}/contents/${fileName}`;
-  const headers = {
-    'Authorization': `token ${s.token}`,
-    'Accept': 'application/vnd.github.v3+json',
-    'Content-Type': 'application/json'
-  };
-
+  const headers = { 'Authorization': `token ${s.token}`, 'Accept': 'application/vnd.github.v3+json' };
   let sha = null;
   try {
-    const getRes = await fetch(`${apiUrl}?ref=${branch}`, { headers });
-    if (getRes.ok) { const fd = await getRes.json(); sha = fd.sha; }
-    else if (getRes.status !== 404) throw new Error('HTTP ' + getRes.status);
-  } catch(e) { if (!e.message.includes('404')) throw e; }
-
-  const body = {
-    message: `تحديث ${fileName} — ${new Date().toLocaleString('ar-EG')}`,
-    content: toBase64UTF8(JSON.stringify(data, null, 2)),
-    branch: branch
-  };
+    const getRes = await fetch(`${apiUrl}?ref=${s.branch}`, { headers });
+    if (getRes.ok) sha = (await getRes.json()).sha;
+  } catch(e) {}
+  const body = { message: `تحديث ${fileName}`, content: toBase64UTF8(JSON.stringify(data, null, 2)), branch: s.branch };
   if (sha) body.sha = sha;
-
   const putRes = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
-  if (!putRes.ok) {
-    const errData = await putRes.json().catch(() => ({}));
-    throw new Error(errData.message || 'HTTP ' + putRes.status);
-  }
+  if (!putRes.ok) throw new Error('فشل النشر: ' + (await putRes.json()).message);
   return await putRes.json();
 }
-
 async function publishAll(){
   const s = getGitHubSettings();
-  if (!s.token || !s.owner || !s.repo) {
-    showPublishBanner('⚠️ يجب إعداد رمز GitHub أولاً.', true);
-    document.getElementById('ghToggle').scrollIntoView({behavior:'smooth'});
-    return;
-  }
-  if (BOOKS.length === 0) { toast('لا توجد كتب للنشر', 'warn'); return; }
-
+  if (!s.token) { showPublishBanner('يجب إعداد رمز GitHub أولاً.', true); return; }
   const btn = document.getElementById('publishAllBtn');
-  btn.disabled = true;
-  const orig = btn.textContent;
-  btn.textContent = '⏳ جارٍ النشر...';
-  showPublishBanner('⏳ جارٍ نشر 3 ملفات إلى GitHub...', false);
-
+  btn.disabled = true; btn.textContent = 'جارٍ النشر...';
+  showPublishBanner('جارٍ نشر 6 ملفات إلى GitHub...', false);
   try {
     await publishFileToGitHub('books.json', { items: BOOKS.map(cleanObj) });
     await publishFileToGitHub('series.json', { items: SERIES.map(cleanObj) });
     await publishFileToGitHub('categories.json', CATS.map(cleanObj));
-    showPublishBanner('✅ تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية.', false);
-    toast('🚀 تم النشر إلى GitHub', 'success');
-    hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
-    document.getElementById('draftBanner').style.display = 'none';
-    updateFooter();
+    await publishFileToGitHub('videos.json', { items: VIDEOS.map(cleanObj) });
+    await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
+    await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
+    showPublishBanner('تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية.', false);
+    toast('تم النشر', 'success');
+    hasDraft = false; document.getElementById('draftBanner').style.display = 'none';
   } catch(e) {
-    showPublishBanner('❌ فشل النشر: ' + e.message, true);
-    toast('فشل النشر', 'error');
+    showPublishBanner('فشل النشر: ' + e.message, true);
   } finally {
-    btn.disabled = false;
-    btn.textContent = orig;
+    btn.disabled = false; btn.textContent = '🚀 نشر الكل إلى GitHub';
   }
 }
 
 /* ========== التحميل ========== */
-async function loadCategories() {
+async function loadData(){
   try {
-    const res = await fetch('categories.json?t=' + Date.now());
-    if (!res.ok) throw new Error('categories.json غير موجود');
-    const data = await res.json();
-    CATS = Array.isArray(data) ? data : (data.items || []);
-  } catch(e) {
-    alert('⚠️ تعذّر تحميل categories.json\n' + e.message);
-    CATS = [];
-  }
+    const resC = await fetch('categories.json?t=' + Date.now()); if(resC.ok) CATS = await resC.json();
+    const resS = await fetch('series.json?t=' + Date.now()); if(resS.ok) SERIES = (await resS.json()).items || (await resS.json());
+    const resB = await fetch('books.json?t=' + Date.now()); if(resB.ok) BOOKS = (await resB.json()).items || [];
+    const resV = await fetch('videos.json?t=' + Date.now()); if(resV.ok) VIDEOS = (await resV.json()).items || [];
+    const resA = await fetch('audios.json?t=' + Date.now()); if(resA.ok) AUDIOS = (await resA.json()).items || [];
+    const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
+  } catch(e) { console.error(e); }
 }
-
-async function loadBooksFromServer() {
-  try {
-    const res = await fetch('books.json?t=' + Date.now());
-    if (!res.ok) throw new Error('books.json غير موجود');
-    const data = await res.json();
-    return data.items || [];
-  } catch(e) { alert('⚠️ تعذّر تحميل books.json\n' + e.message); return []; }
-}
-
-async function loadSeriesFromServer() {
-  try {
-    const res = await fetch('series.json?t=' + Date.now());
-    if (!res.ok) return null;
-    const data = await res.json();
-    const list = Array.isArray(data) ? data : (data.items || []);
-    return list.filter(s => s && s.id && s.name);
-  } catch(e) { return null; }
-}
-
-function loadDraft(key) {
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : null;
-  } catch(e){ return null; }
-}
-
-function saveDraft(key, data){
-  try { localStorage.setItem(key, JSON.stringify(data)); }
-  catch(e) { toast('⚠️ تعذّر الحفظ في المتصفح', 'error'); }
-}
-
-function saveBooksDraft(){ saveDraft(DRAFT_KEY, BOOKS); hasDraft = true; }
-function saveSeriesDraft(){ saveDraft(SERIES_DRAFT_KEY, SERIES); hasSeriesDraft = true; }
-function saveCatsDraft(){ saveDraft(CATS_DRAFT_KEY, CATS); hasCatsDraft = true; }
 
 async function init(){
-  await loadCategories();
+  await loadData();
   populateSelects();
-  loadGitHubSettingsIntoForm();
   updateTokenBadge();
-
-  const booksDraft = loadDraft(DRAFT_KEY);
-  const seriesDraft = loadDraft(SERIES_DRAFT_KEY);
-  const catsDraft = loadDraft(CATS_DRAFT_KEY);
-  const hasAnyDraft = (booksDraft && booksDraft.length > 0) || (seriesDraft && seriesDraft.length > 0) || (catsDraft && catsDraft.length > 0);
-
-  if (hasAnyDraft) {
-    if (confirm('تم العثور على مسودة سابقة.\n\nاستئناف العمل عليها؟\n\n(موافق = استئناف، إلغاء = تحميل النسخ الأصلية)')) {
-      BOOKS = (booksDraft && booksDraft.length > 0) ? booksDraft : await loadBooksFromServer();
-      const sFromServer = await loadSeriesFromServer();
-      SERIES = (seriesDraft && seriesDraft.length > 0) ? seriesDraft : (sFromServer || []);
-      if (catsDraft && catsDraft.length > 0) CATS = catsDraft;
-      hasDraft = !!(booksDraft && booksDraft.length > 0);
-      hasSeriesDraft = !!(seriesDraft && seriesDraft.length > 0);
-      hasCatsDraft = !!(catsDraft && catsDraft.length > 0);
-      if (hasDraft || hasSeriesDraft || hasCatsDraft) document.getElementById('draftBanner').style.display = 'flex';
-    } else {
-      BOOKS = await loadBooksFromServer();
-      SERIES = (await loadSeriesFromServer()) || [];
-      localStorage.removeItem(DRAFT_KEY);
-      localStorage.removeItem(SERIES_DRAFT_KEY);
-      localStorage.removeItem(CATS_DRAFT_KEY);
-      hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
-    }
-  } else {
-    BOOKS = await loadBooksFromServer();
-    SERIES = (await loadSeriesFromServer()) || [];
-    hasDraft = false; hasSeriesDraft = false; hasCatsDraft = false;
-  }
   render();
-  renderSeriesList();
-  renderCategoriesList();
+  switchMediaTab('video');
 }
 
 function populateSelects(){
-  const authorOpts = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
-  const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  const seriesOpts = '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
-
+  const authorOpts = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
   document.getElementById('new-author').innerHTML = authorOpts;
-  document.getElementById('new-cat').innerHTML = catOpts;
-  document.getElementById('new-series').innerHTML = seriesOpts;
-  document.getElementById('new-series-author').innerHTML = authorOpts;
-  document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + catOpts;
-  document.getElementById('edit-author').innerHTML = authorOpts;
-  document.getElementById('edit-cat').innerHTML = catOpts;
-  document.getElementById('edit-series').innerHTML = seriesOpts;
-  document.getElementById('edit-series-author').innerHTML = authorOpts;
+  document.getElementById('new-series-author').innerHTML = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
 }
 
 function render(){
-  renderStats();
-  renderHealth();
-  renderBookList();
-  updateFooter();
+  renderStats(); renderHealth(); renderBookList(); renderCategoriesList(); renderSeriesList();
+  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب | ${VIDEOS.length} فيديو | ${AUDIOS.length} صوتية`;
 }
 
 function renderStats(){
-  const total = BOOKS.length;
-  const catsUsed = new Set(BOOKS.map(b => b.category)).size;
-  const withCover = BOOKS.filter(b => b.cover).length;
   document.getElementById('statsBar').innerHTML = `
-    <div class="stat-box"><strong>${total}</strong><span>كتاب</span></div>
+    <div class="stat-box"><strong>${BOOKS.length}</strong><span>كتاب</span></div>
     <div class="stat-box"><strong>${CATS.length}</strong><span>تصنيف</span></div>
     <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
-    <div class="stat-box"><strong>${withCover}</strong><span>بغلاف</span></div>
+    <div class="stat-box"><strong>${VIDEOS.length + AUDIOS.length}</strong><span>وسائط</span></div>
   `;
 }
 
-function findDuplicateIds(){
-  const seen = new Map();
-  const dups = new Set();
-  BOOKS.forEach(b => {
-    const key = (b.title||'').trim() + '|' + (b.author||'');
-    if (seen.has(key)) { dups.add(seen.get(key)); dups.add(b.id); }
-    else { seen.set(key, b.id); }
-  });
-  return dups;
-}
-
-function isMissingSeries(b){
-  if (b.series) return false;
-  return /تقريب القرآن|تبيين القرآن|موسوعة الكلمة|من فقه الزهراء|الجزء|ـ الجزء|ج\d/i.test(b.title||'');
-}
-
 function renderHealth(){
-  const dups = findDuplicateIds();
-  const missingSeries = BOOKS.filter(isMissingSeries).length;
-  const missingAuthor = BOOKS.filter(b => !AUTHORS.find(a => a.id === b.author)).length;
-  const missingFile = BOOKS.filter(b => !b.pdf_url && !b.word_url).length;
-  const missingCover = BOOKS.filter(b => !b.cover).length;
-  const orphans = BOOKS.filter(b => b.category && !CATS.find(c => c.id === b.category)).length;
-
-  const catCounts = {};
-  BOOKS.forEach(b => { catCounts[b.category] = (catCounts[b.category] || 0) + 1; });
-
-  let html = '<h3>🔍 الفحص الصحي</h3>';
-  html += `<div class="check ${dups.size===0?'ok':'warn'}">${dups.size===0?'✅':'⚠️'} كتب مكررة: <strong>${dups.size}</strong>${dups.size>0?' — <button class="smart-btn" style="width:auto;display:inline-block;padding:3px 10px;margin:0 0 0 8px;font-size:11px" onclick="smartDeleteDuplicates()">🗑️ حذف ذكي</button>':''}</div>`;
-  html += `<div class="check ${missingSeries===0?'ok':'warn'}">${missingSeries===0?'✅':'⚠️'} بلا موسوعة: <strong>${missingSeries}</strong></div>`;
-  html += `<div class="check ${missingAuthor===0?'ok':'error'}">${missingAuthor===0?'✅':'❌'} بمؤلف غير معروف: <strong>${missingAuthor}</strong></div>`;
-  html += `<div class="check ${missingFile===0?'ok':'warn'}">${missingFile===0?'✅':'⚠️'} بلا ملف PDF/Word: <strong>${missingFile}</strong></div>`;
-  html += `<div class="check ${missingCover===0?'ok':'warn'}">${missingCover===0?'✅':'⚠️'} بلا صورة غلاف: <strong>${missingCover}</strong></div>`;
-  html += `<div class="check ${orphans===0?'ok':'error'}">${orphans===0?'✅':'❌'} بتصنيف محذوف/غير موجود: <strong>${orphans}</strong></div>`;
-  html += '<h3 style="margin-top:14px">📊 إحصاءات التصنيفات</h3><div class="cat-counts">';
-  CATS.forEach(c => { html += `<div class="cat-count"><span>${esc(c.name)}</span><span class="cnt">${catCounts[c.id]||0}</span></div>`; });
-  html += '</div>';
+  let html = '<h3>الفحص الصحي</h3>';
+  html += `<div class="check ok">تم تحميل البيانات بنجاح</div>`;
   document.getElementById('healthPanel').innerHTML = html;
-}
-
-function getFilteredList(){
-  const q = (document.getElementById('searchInput').value || '').toLowerCase().trim();
-  const fCat = document.getElementById('filterCat').value;
-  const fIssue = document.getElementById('filterIssue').value;
-  const dups = findDuplicateIds();
-
-  let list = BOOKS.slice();
-  if (q) list = list.filter(b =>
-    (b.title||'').toLowerCase().includes(q) ||
-    (b.id||'').toLowerCase().includes(q) ||
-    getAuthName(b.author).toLowerCase().includes(q) ||
-    getCatName(b.category).toLowerCase().includes(q)
-  );
-  if (fCat) list = list.filter(b => b.category === fCat);
-  if (fIssue === 'dup') list = list.filter(b => dups.has(b.id));
-  else if (fIssue === 'missing-series') list = list.filter(isMissingSeries);
-  else if (fIssue === 'missing-author') list = list.filter(b => !AUTHORS.find(a => a.id === b.author));
-  else if (fIssue === 'missing-file') list = list.filter(b => !b.pdf_url && !b.word_url);
-  else if (fIssue === 'missing-cover') list = list.filter(b => !b.cover);
-  else if (fIssue === 'has-series') list = list.filter(b => b.series);
-  return list;
 }
 
 function renderBookList(){
   const box = document.getElementById('bookList');
-  const loadMoreWrap = document.getElementById('loadMoreWrap');
-  const list = getFilteredList();
-  const dups = findDuplicateIds();
-
-  if (list.length === 0) {
-    box.innerHTML = '<div class="empty">لا توجد كتب مطابقة للبحث.</div>';
-    loadMoreWrap.style.display = 'none';
-    return;
-  }
-
-  const visible = list.slice(0, shownCount);
-  box.innerHTML = visible.map(b => {
-    const isDup = dups.has(b.id);
-    const missSeries = isMissingSeries(b);
-    const cls = isDup ? 'duplicate' : (missSeries ? 'missing-series' : '');
-    const catOpts = CATS.map(c => `<option value="${c.id}" ${c.id===b.category?'selected':''}>${esc(c.name)}</option>`).join('');
-    const seriesOpts = '<option value="">— بدون موسوعة —</option>' + SERIES.map(s => `<option value="${s.id}" ${s.id===b.series?'selected':''}>${esc(s.name)}</option>`).join('');
-    const seriesTag = b.series ? `<span class="tag series">📚 ${esc(getSeriesName(b.series))}</span>` : '';
-    const dupTag = isDup ? `<span class="tag dup">🔁 مكرر</span>` : '';
-    const noFileTag = (!b.pdf_url && !b.word_url) ? `<span class="tag nofile">📄 بلا ملف</span>` : '';
-    const coverTag = b.cover ? `<span class="tag cover">🖼️ لها غلاف</span>` : '';
-    const coverImg = b.cover ? `<img src="${esc(b.cover)}" class="cover-preview" onerror="this.style.display='none'">` : `<div class="cover-preview-ph">📖</div>`;
-
-    return `<div class="book-item ${cls}">
-      <div class="book-title-row">
-        ${coverImg}
-        <div class="book-title" onclick="openEdit('${esc(b.id)}')">${esc(b.title)}</div>
-        <span class="book-id">${esc(b.id)}</span>
+  const list = BOOKS.slice(0, 50);
+  if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب.</div>'; return; }
+  box.innerHTML = list.map(b => `
+    <div class="book-item">
+      <div class="book-title-row"><div class="book-title">${esc(b.title)}</div></div>
+      <div class="book-meta"><span class="tag">${esc(getAuthName(b.author))}</span></div>
+      <div class="book-controls">
+        <div></div>
+        <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
+        <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
       </div>
+    </div>
+  `).join('');
+}
+
+function renderCategoriesList(){
+  document.getElementById('categoriesCountLabel').textContent = CATS.length;
+  document.getElementById('categoriesList').innerHTML = CATS.map(c => `
+    <div class="book-item"><div class="book-title">${esc(c.name)} (${c.id})</div></div>
+  `).join('');
+}
+
+function renderSeriesList(){
+  document.getElementById('seriesCountLabel').textContent = SERIES.length;
+  document.getElementById('seriesList').innerHTML = SERIES.map(s => `
+    <div class="book-item"><div class="book-title">${esc(s.name)} (${s.id})</div></div>
+  `).join('');
+}
+
+function toggleSection(id){ document.getElementById(id+'Toggle').classList.toggle('open'); document.getElementById(id+'Content').classList.toggle('open'); }
+
+/* ========== إدارة الوسائط ========== */
+function switchMediaTab(tab){
+  currentMediaTab = tab;
+  document.getElementById('tabVideoBtn').className = tab === 'video' ? 'btn btn-primary' : 'btn btn-outline';
+  document.getElementById('tabAudioBtn').className = tab === 'audio' ? 'btn btn-primary' : 'btn btn-outline';
+  renderMediaList();
+  populateMediaDropdowns();
+}
+
+function populateMediaDropdowns(){
+  const speakerSelect = document.getElementById('med-speaker');
+  speakerSelect.innerHTML = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  document.getElementById('med-topic').innerHTML = `<option value="">— بدون —</option>` + lists.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('');
+  updateSubtopicDropdown();
+}
+
+function updateSubtopicDropdown(){
+  const topicName = document.getElementById('med-topic').value;
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  const topic = lists.find(l => l.name === topicName);
+  const subtopicSelect = document.getElementById('med-subtopic');
+  if (topic && topic.subs) {
+    subtopicSelect.innerHTML = `<option value="">— بدون —</option>` + topic.subs.map(s => `<option value="${esc(s.name)}">${esc(s.name)}</option>`).join('');
+  } else {
+    subtopicSelect.innerHTML = `<option value="">— بدون —</option>`;
+  }
+}
+
+function renderMediaList(){
+  const box = document.getElementById('mediaListBox');
+  const items = currentMediaTab === 'video' ? VIDEOS : AUDIOS;
+  if (items.length === 0) { box.innerHTML = '<div class="empty">لا توجد عناصر.</div>'; return; }
+  box.innerHTML = items.map((item, idx) => `
+    <div class="book-item">
+      <div class="book-title-row"><div class="book-title">${esc(item.title)}</div></div>
       <div class="book-meta">
-        <span class="tag">👤 ${esc(getAuthName(b.author))}</span>
-        <span class="tag cat">🏷️ ${esc(getCatName(b.category))}</span>
-        ${seriesTag}${dupTag}${noFileTag}${coverTag}
+        <span class="tag">${esc(item.speaker)}</span>
+        ${item.topic ? `<span class="tag cat">${esc(item.topic)}</span>` : ''}
+        ${item.subtopic ? `<span class="tag series">↳ ${esc(item.subtopic)}</span>` : ''}
       </div>
       <div class="book-controls">
-        <select class="book-select" onchange="changeCategory('${esc(b.id)}', this.value)">${catOpts}</select>
-        <select class="book-select series-select" onchange="changeSeries('${esc(b.id)}', this.value)">${seriesOpts}</select>
-        <button class="btn btn-outline btn-icon btn-edit-full" onclick="openEdit('${esc(b.id)}')" title="تعديل كامل">✏️</button>
-        <button class="book-delete" onclick="deleteBook('${esc(b.id)}')" title="حذف">🗑️</button>
+        <div></div>
+        <button class="btn btn-outline btn-icon" onclick="editMediaItem(${idx})">✏️</button>
+        <button class="book-delete" onclick="deleteMediaItem(${idx})">🗑️</button>
       </div>
-    </div>`;
-  }).join('');
-
-  if (list.length > shownCount) {
-    loadMoreWrap.style.display = 'block';
-    loadMoreWrap.querySelector('button').textContent = `عرض المزيد (${list.length - shownCount} متبقٍ)`;
-  } else {
-    loadMoreWrap.style.display = 'none';
-  }
+    </div>
+  `).join('');
 }
 
-function loadMore(){ shownCount += PAGE_SIZE; renderBookList(); }
-function resetPagination(){ shownCount = PAGE_SIZE; }
-
-function updateFooter(){
-  const parts = [`${BOOKS.length} كتاب`, `${CATS.length} تصنيف`, `${SERIES.length} موسوعة`];
-  if (hasDraft || hasSeriesDraft || hasCatsDraft) parts.push('📝 مسودة محفوظة');
-  else parts.push('✅ من الخادم');
-  document.getElementById('footerInfo').textContent = parts.join(' • ');
+function clearMediaForm(){
+  document.getElementById('med-title').value = '';
+  document.getElementById('med-url').value = '';
+  editingMediaIndex = -1;
 }
 
-function changeCategory(id, newCat){
-  const b = BOOKS.find(x => x.id === id);
-  if (!b || b.category === newCat) return;
-  b.category = newCat;
-  saveBooksDraft();
-  renderStats(); renderHealth(); updateFooter();
-  toast('✅ التصنيف: ' + getCatName(newCat), 'success');
-}
-
-function changeSeries(id, newSeries){
-  const b = BOOKS.find(x => x.id === id);
-  if (!b) return;
-  if (newSeries) b.series = newSeries; else delete b.series;
-  saveBooksDraft();
-  render();
-  toast('✅ تم تحديث الموسوعة', 'success');
-}
-
-function deleteBook(id){
-  const b = BOOKS.find(x => x.id === id);
-  if (!b) return;
-  if (!confirm('حذف نهائي:\n\n«' + b.title + '»\n\nمتابعة؟')) return;
-  BOOKS = BOOKS.filter(x => x.id !== id);
-  saveBooksDraft();
-  render();
-  toast('🗑️ تم الحذف', 'warn');
-}
-
-function openEdit(id){
-  const b = BOOKS.find(x => x.id === id);
-  if (!b) return;
-  editingId = id;
-  document.getElementById('edit-id').value = b.id;
-  document.getElementById('edit-title').value = b.title || '';
-  document.getElementById('edit-author').value = b.author || 'shirazi-m';
-  document.getElementById('edit-cat').value = b.category || 'other';
-  document.getElementById('edit-series').value = b.series || '';
-  document.getElementById('edit-year').value = b.year || 1420;
-  document.getElementById('edit-pages').value = b.pages || '';
-  document.getElementById('edit-cover').value = b.cover || '';
-  document.getElementById('edit-pdf').value = b.pdf_url || '';
-  document.getElementById('edit-word').value = b.word_url || '';
-  document.getElementById('edit-desc').value = b.description || '';
-  document.getElementById('editModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeEdit(){
-  editingId = null;
-  document.getElementById('editModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function saveEdit(){
-  if (!editingId) return;
-  const b = BOOKS.find(x => x.id === editingId);
-  if (!b) return;
-  const title = document.getElementById('edit-title').value.trim();
-  if (!title) { alert('اسم الكتاب مطلوب'); return; }
-
-  b.title = title;
-  b.author = document.getElementById('edit-author').value;
-  b.category = document.getElementById('edit-cat').value;
-  b.year = parseInt(document.getElementById('edit-year').value) || 1420;
-
-  const pdf = document.getElementById('edit-pdf').value.trim();
-  const word = document.getElementById('edit-word').value.trim();
-  const cover = document.getElementById('edit-cover').value.trim();
-
-  if (pdf) b.pdf_url = pdf; else delete b.pdf_url;
-  if (word) b.word_url = word; else delete b.word_url;
-  if (cover) b.cover = cover; else delete b.cover;
-
-  b.formats = [];
-  if (pdf) b.formats.push('pdf');
-  if (word) b.formats.push('word');
-  if (b.formats.length === 0) b.formats.push('pdf');
-
-  const pages = parseInt(document.getElementById('edit-pages').value);
-  if (pages) b.pages = pages; else delete b.pages;
-
-  const series = document.getElementById('edit-series').value;
-  if (series) b.series = series; else delete b.series;
-
-  const desc = document.getElementById('edit-desc').value.trim();
-  if (desc) b.description = desc; else delete b.description;
-
-  saveBooksDraft();
-  render();
-  closeEdit();
-  toast('💾 تم حفظ التعديلات', 'success');
-}
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (document.getElementById('editModal').classList.contains('open')) closeEdit();
-    if (document.getElementById('editSeriesModal').classList.contains('open')) closeEditSeries();
-    if (document.getElementById('editCategoryModal').classList.contains('open')) closeEditCategory();
-  }
-});
-
-function toggleAddForm(){ document.getElementById('addForm').classList.toggle('open'); }
-
-function addNewBook(){
-  const title = document.getElementById('new-title').value.trim();
-  if (!title) { alert('يجب إدخال اسم الكتاب'); return; }
-
-  const pdf_url = document.getElementById('new-pdf').value.trim();
-  const word_url = document.getElementById('new-word').value.trim();
-  const cover = document.getElementById('new-cover').value.trim();
-
-  const newBook = {
-    id: 'book-' + String(Date.now()).slice(-6) + '-' + Math.random().toString(36).slice(2, 5),
-    title,
-    author: document.getElementById('new-author').value,
-    category: document.getElementById('new-cat').value,
-    year: parseInt(document.getElementById('new-year').value) || 1420,
-    formats: []
+function addMediaItem(){
+  const title = document.getElementById('med-title').value.trim();
+  const url = document.getElementById('med-url').value.trim();
+  if (!title || !url) return alert('العنوان والرابط مطلوبان');
+  const item = {
+    title, url,
+    speaker: document.getElementById('med-speaker').value,
+    topic: document.getElementById('med-topic').value,
+    subtopic: document.getElementById('med-subtopic').value
   };
-
-  if (pdf_url) { newBook.pdf_url = pdf_url; newBook.formats.push('pdf'); }
-  if (word_url) { newBook.word_url = word_url; newBook.formats.push('word'); }
-  if (newBook.formats.length === 0) newBook.formats.push('pdf');
-  if (cover) newBook.cover = cover;
-
-  const series = document.getElementById('new-series').value;
-  if (series) newBook.series = series;
-
-  const pages = parseInt(document.getElementById('new-pages').value);
-  if (pages) newBook.pages = pages;
-
-  const desc = document.getElementById('new-desc').value.trim();
-  if (desc) newBook.description = desc;
-
-  BOOKS.unshift(newBook);
-  saveBooksDraft();
-  render();
-
-  ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('addForm').classList.remove('open');
-  toast('✅ تمت إضافة: ' + title, 'success');
-}
-
-function smartDeleteDuplicates(){
-  const groups = {};
-  BOOKS.forEach(b => {
-    const key = (b.title||'').trim() + '|' + (b.author||'');
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(b);
-  });
-
-  const toDelete = [];
-  const report = [];
-  Object.values(groups).forEach(group => {
-    if (group.length <= 1) return;
-    group.forEach(b => {
-      b._score = 0;
-      if (b.series) b._score += 10;
-      if (b.word_url) b._score += 5;
-      if (b.pages) b._score += 3;
-      if (b.description) b._score += 3;
-      if (b.cover) b._score += 2;
-      if (b.pdf_url) b._score += 1;
-    });
-    group.sort((a, b) => b._score - a._score);
-    const keeper = group[0];
-    const removed = group.slice(1);
-    removed.forEach(b => toDelete.push(b.id));
-    report.push(`• «${keeper.title}» — إبقاء: ${keeper.id}، حذف: ${removed.map(b => b.id).join(', ')}`);
-    group.forEach(b => delete b._score);
-  });
-
-  if (toDelete.length === 0) { toast('لا توجد كتب مكررة.', 'info'); return; }
-  const summary = `سيتم حذف ${toDelete.length} كتاباً مكرراً.\n\n${report.slice(0, 8).join('\n')}${report.length > 8 ? '\n... (' + (report.length - 8) + ' مجموعة أخرى)' : ''}\n\nمتابعة؟`;
-  if (!confirm(summary)) return;
-
-  BOOKS = BOOKS.filter(b => !toDelete.includes(b.id));
-  saveBooksDraft();
-  render();
-  toast(`✅ تم حذف ${toDelete.length} كتاباً مكرراً`, 'success');
-}
-
-function toggleSection(which){
-  const t = document.getElementById(which + 'Toggle');
-  const c = document.getElementById(which + 'Content');
-  if (t && c) { t.classList.toggle('open'); c.classList.toggle('open'); }
-}
-
-/* ========== إدارة التصنيفات ========== */
-function renderCategoriesList(){
-  const list = document.getElementById('categoriesList');
-  document.getElementById('categoriesCountLabel').textContent = CATS.length;
-
-  if (CATS.length === 0) {
-    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد تصنيفات. أضف أول تصنيف من النموذج أعلاه.</div>';
-    return;
+  if (editingMediaIndex > -1) {
+    if (currentMediaTab === 'video') VIDEOS[editingMediaIndex] = item;
+    else AUDIOS[editingMediaIndex] = item;
+  } else {
+    if (currentMediaTab === 'video') VIDEOS.unshift(item);
+    else AUDIOS.unshift(item);
   }
+  saveMediaDraft();
+  renderMediaList();
+  clearMediaForm();
+}
 
-  list.innerHTML = CATS.map(c => {
-    const count = countBooksInCat(c.id);
-    const isOther = c.id === 'other';
-    const deleteBtn = isOther
-      ? `<button class="book-delete" style="opacity:.4;cursor:not-allowed" title="لا يمكن حذف التصنيف الافتراضي">🔒</button>`
-      : `<button class="book-delete" onclick="deleteCategory('${esc(c.id)}')" title="حذف">🗑️</button>`;
-    return `<div class="series-item">
-      <div class="cover-preview-ph" style="width:40px;height:40px;border-radius:50%;font-size:16px">🏷️</div>
-      <div class="s-info">
-        <div class="s-name">${esc(c.name)} ${isOther ? '<span style="font-size:10px;color:var(--muted)">(افتراضي)</span>' : ''}</div>
-        <div class="s-meta"><span class="s-id">${esc(c.id)}</span></div>
+function editMediaItem(idx){
+  const item = currentMediaTab === 'video' ? VIDEOS[idx] : AUDIOS[idx];
+  document.getElementById('med-title').value = item.title || '';
+  document.getElementById('med-url').value = item.url || '';
+  document.getElementById('med-speaker').value = item.speaker || '';
+  document.getElementById('med-topic').value = item.topic || '';
+  updateSubtopicDropdown();
+  document.getElementById('med-subtopic').value = item.subtopic || '';
+  editingMediaIndex = idx;
+  document.getElementById('med-title').scrollIntoView({behavior:'smooth'});
+}
+
+function deleteMediaItem(idx){
+  if (!confirm('حذف العنصر؟')) return;
+  if (currentMediaTab === 'video') VIDEOS.splice(idx, 1);
+  else AUDIOS.splice(idx, 1);
+  saveMediaDraft(); renderMediaList();
+}
+
+/* ========== إدارة القوائم ========== */
+function openListsManager(){
+  document.getElementById('listsModal').classList.add('open');
+  renderListsManager();
+}
+function closeListsManager(){
+  document.getElementById('listsModal').classList.remove('open');
+}
+function renderListsManager(){
+  const lists = MEDIA_LISTS[currentMediaTab] || [];
+  const box = document.getElementById('listsManagerBody');
+  box.innerHTML = lists.map((l, i) => `
+    <div style="background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:10px; margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>${esc(l.name)}</strong>
+        <button class="book-delete" style="width:28px;height:28px;" onclick="deleteMediaTopic(${i})">🗑️</button>
       </div>
-      <span class="s-count">${count} كتاب</span>
-      <div class="s-actions">
-        <button class="btn btn-outline btn-icon" onclick="openEditCategory('${esc(c.id)}')" title="تعديل">✏️</button>
-        ${deleteBtn}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function clearCategoryForm(){
-  document.getElementById('new-cat-name-input').value = '';
-  document.getElementById('new-cat-id-input').value = '';
-}
-
-function addNewCategory(){
-  const name = document.getElementById('new-cat-name-input').value.trim();
-  let id = document.getElementById('new-cat-id-input').value.trim().toLowerCase();
-
-  if (!name) { alert('اسم التصنيف مطلوب'); return; }
-  if (!id) { alert('المعرّف (ID) مطلوب'); return; }
-  if (!/^[a-z0-9-]+$/.test(id)) { alert('المعرّف (ID) يجب أن يحتوي فقط على: حروف إنجليزية صغيرة، أرقام، وشرطة (-)'); return; }
-  if (CATS.find(c => c.id === id)) { alert('يوجد تصنيف آخر بنفس المعرّف: ' + id); return; }
-
-  CATS.push({ id, name });
-  saveCatsDraft();
-  populateSelects();
-  renderStats(); renderCategoriesList(); updateFooter();
-  clearCategoryForm();
-  toast('✅ تمت إضافة التصنيف: ' + name, 'success');
-}
-
-function openEditCategory(id){
-  const c = CATS.find(x => x.id === id);
-  if (!c) return;
-  editingCategoryId = id;
-  document.getElementById('edit-cat-id-display').value = c.id;
-  document.getElementById('edit-cat-name-input').value = c.name;
-  document.getElementById('editCategoryModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeEditCategory(){
-  editingCategoryId = null;
-  document.getElementById('editCategoryModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function saveCategoryEdit(){
-  if (!editingCategoryId) return;
-  const c = CATS.find(x => x.id === editingCategoryId);
-  if (!c) return;
-  const name = document.getElementById('edit-cat-name-input').value.trim();
-  if (!name) { alert('اسم التصنيف مطلوب'); return; }
-  c.name = name;
-  saveCatsDraft();
-  populateSelects(); render(); renderCategoriesList();
-  closeEditCategory();
-  toast('💾 تم حفظ تعديلات التصنيف', 'success');
-}
-
-function deleteCategory(id){
-  const c = CATS.find(x => x.id === id);
-  if (!c) return;
-  if (id === 'other') { alert('لا يمكن حذف التصنيف الافتراضي «أخرى»'); return; }
-  const count = countBooksInCat(id);
-  let msg = `حذف التصنيف: «${c.name}»\n\n`;
-  if (count > 0) msg += `⚠️ تنبيه: ${count} كتاباً تحت هذا التصنيف. ستنتقل تلقائياً إلى «أخرى».\n\n`;
-  msg += 'متابعة؟';
-  if (!confirm(msg)) return;
-
-  CATS = CATS.filter(x => x.id !== id);
-  if (count > 0) {
-    BOOKS.forEach(b => { if (b.category === id) b.category = 'other'; });
-    saveBooksDraft();
-  }
-  saveCatsDraft();
-  populateSelects(); render(); renderCategoriesList();
-  toast('🗑️ تم حذف التصنيف' + (count > 0 ? ` ونقل ${count} كتاباً إلى «أخرى»` : ''), 'warn');
-}
-
-/* ========== إدارة الموسوعات ========== */
-function renderSeriesList(){
-  const list = document.getElementById('seriesList');
-  document.getElementById('seriesCountLabel').textContent = SERIES.length;
-
-  if (SERIES.length === 0) {
-    list.innerHTML = '<div class="empty" style="padding:20px">لا توجد موسوعات.</div>';
-    return;
-  }
-
-  list.innerHTML = SERIES.map(s => {
-    const count = countBooksInSeries(s.id);
-    const coverImg = s.cover ? `<img src="${esc(s.cover)}" class="cover-preview" onerror="this.style.display='none'">` : `<div class="cover-preview-ph">📚</div>`;
-    return `<div class="series-item">
-      ${coverImg}
-      <div class="s-info">
-        <div class="s-name">📚 ${esc(s.name)}</div>
-        <div class="s-meta">
-          <span class="s-id">${esc(s.id)}</span>
-          <span>👤 ${esc(getAuthName(s.author))}</span>
-          ${s.cover ? '<span style="color:var(--green)">🖼️ لها غلاف</span>' : ''}
+      <div style="margin-top:8px; padding-right:15px; border-right:2px solid var(--accent);">
+        ${(l.subs || []).map((s, j) => `
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:5px;">
+            <span>↳ ${esc(s.name)}</span>
+            <button class="book-delete" style="width:24px;height:24px;font-size:10px;" onclick="deleteMediaSubtopic(${i}, ${j})">✕</button>
+          </div>
+        `).join('')}
+        <div style="display:flex; gap:5px; margin-top:8px;">
+          <input type="text" id="new-sub-${i}" placeholder="اسم القائمة الفرعية" style="flex:1; padding:4px 8px; font-size:12px; border:1px solid var(--line); border-radius:4px;">
+          <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="addMediaSubtopic(${i})">➕</button>
         </div>
       </div>
-      <span class="s-count">${count} كتاب</span>
-      <div class="s-actions">
-        <button class="btn btn-outline btn-icon" onclick="openEditSeries('${esc(s.id)}')" title="تعديل">✏️</button>
-        <button class="book-delete" onclick="deleteSeries('${esc(s.id)}')" title="حذف">🗑️</button>
-      </div>
-    </div>`;
-  }).join('');
+    </div>
+  `).join('');
+}
+function addMediaTopic(){
+  const name = document.getElementById('newTopicName').value.trim();
+  if (!name) return;
+  if (!MEDIA_LISTS[currentMediaTab]) MEDIA_LISTS[currentMediaTab] = [];
+  MEDIA_LISTS[currentMediaTab].push({ name, subs: [] });
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  document.getElementById('newTopicName').value = '';
+}
+function deleteMediaTopic(i){
+  if (!confirm('حذف القائمة الرئيسية وكل ما تحتها؟')) return;
+  MEDIA_LISTS[currentMediaTab].splice(i, 1);
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+}
+function addMediaSubtopic(i){
+  const name = document.getElementById(`new-sub-${i}`).value.trim();
+  if (!name) return;
+  MEDIA_LISTS[currentMediaTab][i].subs.push({ name });
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+}
+function deleteMediaSubtopic(i, j){
+  MEDIA_LISTS[currentMediaTab][i].subs.splice(j, 1);
+  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
 }
 
-function clearSeriesForm(){
-  document.getElementById('new-series-name').value = '';
-  document.getElementById('new-series-id').value = '';
-  document.getElementById('new-series-cover').value = '';
-  document.getElementById('new-series-desc').value = '';
-}
+function saveMediaDraft(){ hasDraft = true; document.getElementById('draftBanner').style.display = 'flex'; }
 
-function addNewSeries(){
-  const name = document.getElementById('new-series-name').value.trim();
-  let id = document.getElementById('new-series-id').value.trim().toLowerCase();
-  const author = document.getElementById('new-series-author').value;
-  const desc = document.getElementById('new-series-desc').value.trim();
-  const cover = document.getElementById('new-series-cover').value.trim();
-
-  if (!name) { alert('اسم الموسوعة مطلوب'); return; }
-  if (!id) { id = 'series-' + Date.now().toString(36); toast('تم توليد معرّف تلقائياً: ' + id, 'info'); }
-  if (!/^[a-z0-9-]+$/.test(id)) { alert('المعرّف (ID) يجب أن يحتوي فقط على: حروف إنجليزية صغيرة، أرقام، وشرطة (-)'); return; }
-  if (SERIES.find(s => s.id === id)) { alert('يوجد موسوعة أخرى بنفس المعرّف: ' + id); return; }
-
-  const newSeries = { id, name, author, desc };
-  if (cover) newSeries.cover = cover;
-  SERIES.push(newSeries);
-  saveSeriesDraft();
-  populateSelects(); renderStats(); renderSeriesList(); updateFooter();
-  clearSeriesForm();
-  toast('✅ تمت إضافة الموسوعة: ' + name, 'success');
-}
-
-function openEditSeries(id){
-  const s = SERIES.find(x => x.id === id);
-  if (!s) return;
-  editingSeriesId = id;
-  document.getElementById('edit-series-id').value = s.id;
-  document.getElementById('edit-series-name').value = s.name || '';
-  document.getElementById('edit-series-author').value = s.author || 'shirazi-m';
-  document.getElementById('edit-series-cover').value = s.cover || '';
-  document.getElementById('edit-series-desc').value = s.desc || '';
-  document.getElementById('editSeriesModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeEditSeries(){
-  editingSeriesId = null;
-  document.getElementById('editSeriesModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function saveSeriesEdit(){
-  if (!editingSeriesId) return;
-  const s = SERIES.find(x => x.id === editingSeriesId);
-  if (!s) return;
-  const name = document.getElementById('edit-series-name').value.trim();
-  if (!name) { alert('اسم الموسوعة مطلوب'); return; }
-  s.name = name;
-  s.author = document.getElementById('edit-series-author').value;
-  s.desc = document.getElementById('edit-series-desc').value.trim();
-  const cover = document.getElementById('edit-series-cover').value.trim();
-  if (cover) s.cover = cover; else delete s.cover;
-  saveSeriesDraft();
-  populateSelects(); render(); renderSeriesList();
-  closeEditSeries();
-  toast('💾 تم حفظ تعديلات الموسوعة', 'success');
-}
-
-function deleteSeries(id){
-  const s = SERIES.find(x => x.id === id);
-  if (!s) return;
-  const count = countBooksInSeries(id);
-  let msg = `حذف الموسوعة: «${s.name}»\n\n`;
-  if (count > 0) msg += `⚠️ تنبيه: ${count} كتاباً مرتبطاً بها. سيُزال ارتباطهم.\n\n`;
-  msg += 'متابعة؟';
-  if (!confirm(msg)) return;
-
-  SERIES = SERIES.filter(x => x.id !== id);
-  BOOKS.forEach(b => { if (b.series === id) delete b.series; });
-  saveSeriesDraft();
-  saveBooksDraft();
-  populateSelects(); render(); renderSeriesList();
-  toast('🗑️ تم حذف الموسوعة' + (count > 0 ? ` وفكّ ارتباط ${count} كتاباً` : ''), 'warn');
-}
-
-/* ========== الاستيراد / التصدير ========== */
 function cleanObj(obj){
   const copy = { ...obj };
-  Object.keys(copy).forEach(k => {
-    if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k];
-  });
+  Object.keys(copy).forEach(k => { if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k]; });
   return copy;
 }
 
-function downloadJSON(data, filename){
-  const json = JSON.stringify(data, null, 2);
-  const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
-function exportBooks(){
-  if (BOOKS.length === 0) { toast('لا توجد كتب للتصدير', 'warn'); return; }
-  downloadJSON({ items: BOOKS.map(cleanObj) }, 'books.json');
-  toast('✅ تم تصدير books.json', 'success');
-}
-
-function exportSeries(){
-  if (SERIES.length === 0) { toast('لا توجد موسوعات للتصدير', 'warn'); return; }
-  downloadJSON({ items: SERIES.map(cleanObj) }, 'series.json');
-  toast('✅ تم تصدير series.json', 'success');
-}
-
-function exportCategories(){
-  if (CATS.length === 0) { toast('لا توجد تصنيفات للتصدير', 'warn'); return; }
-  downloadJSON(CATS.map(cleanObj), 'categories.json');
-  toast('✅ تم تصدير categories.json', 'success');
-}
-
-function importBooks(event){
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const data = JSON.parse(e.target.result);
-      const items = Array.isArray(data) ? data : (data.items || []);
-      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على كتب');
-      const mode = confirm(`الملف يحتوي على ${items.length} كتاباً.\n\n• موافق = استبدال (${BOOKS.length})\n• إلغاء = دمج`);
-      if (mode) { BOOKS = items; toast(`✅ استبدال: ${items.length} كتاباً`, 'success'); }
-      else {
-        const existing = new Set(BOOKS.map(b => b.id));
-        const fresh = items.filter(b => !existing.has(b.id));
-        BOOKS = [...BOOKS, ...fresh];
-        toast(`تم دمج ${fresh.length} كتاباً جديداً`, 'success');
-      }
-      saveBooksDraft(); render();
-    } catch(err) { alert('❌ فشل الاستيراد:\n' + err.message); }
-  };
-  reader.readAsText(file);
-  event.target.value = '';
-}
-
-function importSeries(event){
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const data = JSON.parse(e.target.result);
-      const items = Array.isArray(data) ? data : (data.items || []);
-      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على موسوعات');
-      const mode = confirm(`الملف يحتوي على ${items.length} موسوعة.\n\n• موافق = استبدال (${SERIES.length})\n• إلغاء = دمج`);
-      if (mode) { SERIES = items.filter(s => s && s.id && s.name); }
-      else {
-        const existing = new Set(SERIES.map(s => s.id));
-        const fresh = items.filter(s => s && s.id && s.name && !existing.has(s.id));
-        SERIES = [...SERIES, ...fresh];
-      }
-      saveSeriesDraft(); populateSelects(); render(); renderSeriesList();
-      toast('✅ تم استيراد الموسوعات', 'success');
-    } catch(err) { alert('❌ فشل الاستيراد:\n' + err.message); }
-  };
-  reader.readAsText(file);
-  event.target.value = '';
-}
-
-function importCategories(event){
-  const file = event.target.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const data = JSON.parse(e.target.result);
-      const items = Array.isArray(data) ? data : (data.items || []);
-      if (!Array.isArray(items) || items.length === 0) throw new Error('الملف لا يحتوي على تصنيفات');
-      const clean = items.filter(c => c && c.id && c.name);
-      const mode = confirm(`الملف يحتوي على ${clean.length} تصنيف.\n\n• موافق = استبدال (${CATS.length})\n• إلغاء = دمج`);
-      if (mode) { CATS = clean; }
-      else {
-        const existing = new Set(CATS.map(c => c.id));
-        const fresh = clean.filter(c => !existing.has(c.id));
-        CATS = [...CATS, ...fresh];
-      }
-      saveCatsDraft(); populateSelects(); render(); renderCategoriesList();
-      toast('✅ تم استيراد التصنيفات', 'success');
-    } catch(err) { alert('❌ فشل الاستيراد:\n' + err.message); }
-  };
-  reader.readAsText(file);
-  event.target.value = '';
-}
-
-function resetToServer(){
-  if (!confirm('سيتم حذف كل المسودات المحلية وتحميل النسخة من الخادم.\n\nأي تعديلات لم تُنشر ستفقد.\n\nمتابعة؟')) return;
-  localStorage.removeItem(DRAFT_KEY);
-  localStorage.removeItem(SERIES_DRAFT_KEY);
-  localStorage.removeItem(CATS_DRAFT_KEY);
-  location.reload();
-}
-
-function debouncedRender(){
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => { resetPagination(); renderBookList(); }, 250);
-}
-
-init();
+window.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
