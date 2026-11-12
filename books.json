@@ -372,7 +372,7 @@
       "id": "book-025",
       "title": "المدائح والمراثى",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -502,7 +502,7 @@
       "id": "book-035",
       "title": "الميلادية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -515,7 +515,7 @@
       "id": "book-036",
       "title": "الإنسان الحقيقي",
       "author": "shirazi-m",
-      "category": "languages",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -593,7 +593,7 @@
       "id": "book-042",
       "title": "العقل يرى هذه القوانين",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -918,7 +918,7 @@
       "id": "book-067",
       "title": "الامراض والاعراض سببا ووقاية و علاجا",
       "author": "shirazi-m",
-      "category": "other",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -931,7 +931,7 @@
       "id": "book-068",
       "title": "المنصورية في النحو والصرف",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -957,7 +957,7 @@
       "id": "book-070",
       "title": "الاسلام وشهر رمضان",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1048,7 +1048,7 @@
       "id": "book-077",
       "title": "العدل اساس الملك",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1126,7 +1126,7 @@
       "id": "book-083",
       "title": "الى الحوزات العلمية",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1139,7 +1139,7 @@
       "id": "book-084",
       "title": "الى الوكلاء في البلاد",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -1360,7 +1360,7 @@
       "id": "book-101",
       "title": "كيف ولماذا أسلموا؟",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "languages",
       "year": 1420,
       "formats": [
         "pdf",
@@ -2667,7 +2667,7 @@
       "id": "book-204",
       "title": "احترام الإنسان في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3434,7 +3434,7 @@
       "id": "book-263",
       "title": "النضج وأثره في حياة الإنسان",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3959,7 +3959,7 @@
       "id": "book-305",
       "title": "شهر رمضان",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3985,7 +3985,7 @@
       "id": "book-307",
       "title": "صلاح الدين والتعصب الطائفي",
       "author": "shirazi-m",
-      "category": "other",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3996,9 +3996,9 @@
     },
     {
       "id": "book-308",
-      "title": "ضرورة التفرغ للعمل في سبيل الله",
+      "title": "شهر شعبان",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4011,7 +4011,7 @@
       "id": "book-309",
       "title": "طريق التقدم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4024,7 +4024,7 @@
       "id": "book-310",
       "title": "طريق النزاهة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4076,7 +4076,7 @@
       "id": "book-314",
       "title": "في رحاب السيدة المعصومة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4102,7 +4102,7 @@
       "id": "book-316",
       "title": "قصص من اليهود",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4115,7 +4115,7 @@
       "id": "book-317",
       "title": "قواعد الإعراب",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4128,7 +4128,7 @@
       "id": "book-318",
       "title": "قيمة المرء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4141,7 +4141,7 @@
       "id": "book-319",
       "title": "لا للحسد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4167,7 +4167,7 @@
       "id": "book-321",
       "title": "مساوئ الفرقة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4206,7 +4206,7 @@
       "id": "book-324",
       "title": "مع الحرس والشرطة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4219,7 +4219,7 @@
       "id": "book-325",
       "title": "معالجة الأمراض النفسية",
       "author": "shirazi-m",
-      "category": "other",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4258,7 +4258,7 @@
       "id": "book-328",
       "title": "من أسباب الفقر والحرمان في العالم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4327,7 +4327,7 @@
       "id": "book-333",
       "title": "من خطى الأولياء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4366,7 +4366,7 @@
       "id": "book-336",
       "title": "من معاناة الإسلام والمسلمين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4392,7 +4392,7 @@
       "id": "book-338",
       "title": "مواصفات القيادة الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4431,7 +4431,7 @@
       "id": "book-341",
       "title": "نحو إدارة ناجحة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4470,7 +4470,7 @@
       "id": "book-344",
       "title": "هداية الناس وقضاء حوائجهم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4535,7 +4535,7 @@
       "id": "book-349",
       "title": "وصايا إلى الكوادر العراقية",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4548,7 +4548,7 @@
       "id": "book-350",
       "title": "وصايا لمجاوري المراقد المقدسة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4561,7 +4561,7 @@
       "id": "book-351",
       "title": "وصولا إلى حكومة إسلامية واحدة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4574,7 +4574,7 @@
       "id": "book-352",
       "title": "ولكم في رسول الله ص أسوة",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4639,7 +4639,7 @@
       "id": "book-357",
       "title": "السعي نحو مجتمع إسلامي",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4665,7 +4665,7 @@
       "id": "book-359",
       "title": "العبرة سبيل النجاة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4678,7 +4678,7 @@
       "id": "book-360",
       "title": "العقل رقي الإنسان",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4730,7 +4730,7 @@
       "id": "book-364",
       "title": "إلى العالم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4756,7 +4756,7 @@
       "id": "book-366",
       "title": "ثقافة التحرير",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4782,7 +4782,7 @@
       "id": "book-368",
       "title": "فقه المستقبل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4795,7 +4795,7 @@
       "id": "book-369",
       "title": "كل فرد حركة وفلسفة التأخر",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4835,7 +4835,7 @@
       "id": "book-372",
       "title": "إبراهيم عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4861,7 +4861,7 @@
       "id": "book-374",
       "title": "استمرارية المؤسسات الإسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4874,7 +4874,7 @@
       "id": "book-375",
       "title": "الإسلام هو الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4887,7 +4887,7 @@
       "id": "book-376",
       "title": "الأفلام المفسدة في الأقمار الصناعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4913,7 +4913,7 @@
       "id": "book-378",
       "title": "البلاغة علم البديع",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4926,7 +4926,7 @@
       "id": "book-379",
       "title": "البلاغة علم البيان",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4939,7 +4939,7 @@
       "id": "book-380",
       "title": "البلاغة علم المعاني",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4952,7 +4952,7 @@
       "id": "book-381",
       "title": "الحسن والحسين عليهما السلام إمامان قاما أو قعدا",
       "author": "shirazi-m",
-      "category": "shaair",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5030,7 +5030,7 @@
       "id": "book-387",
       "title": "الكليم عليه السلام وبنو اسرائيل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5043,7 +5043,7 @@
       "id": "book-388",
       "title": "الكليم وفرعون",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5095,7 +5095,7 @@
       "id": "book-392",
       "title": "إلى الكتّاب الإسلاميين",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5108,7 +5108,7 @@
       "id": "book-393",
       "title": "إلى حكومة ألف مليون مسلم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5121,7 +5121,7 @@
       "id": "book-394",
       "title": "بساط سليمان عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5134,7 +5134,7 @@
       "id": "book-395",
       "title": "بنو إسرائيل في التيه",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5147,7 +5147,7 @@
       "id": "book-396",
       "title": "بين الإسلام ودارون",
       "author": "shirazi-m",
-      "category": "aqaid",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5160,7 +5160,7 @@
       "id": "book-397",
       "title": "حقائق من تاريخ العلماء",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5212,7 +5212,7 @@
       "id": "book-401",
       "title": "سقوط بعد سقوط",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5225,7 +5225,7 @@
       "id": "book-402",
       "title": "سليمان عليه السلام وبلقيس",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5238,7 +5238,7 @@
       "id": "book-403",
       "title": "عشت في كربلاء",
       "author": "shirazi-m",
-      "category": "shaair",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5251,7 +5251,7 @@
       "id": "book-404",
       "title": "عيسى المسيح عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5277,7 +5277,7 @@
       "id": "book-406",
       "title": "فقه المال أخذاً وعطاءً وصرفاً",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5290,7 +5290,7 @@
       "id": "book-407",
       "title": "قصص وعبر",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5316,7 +5316,7 @@
       "id": "book-409",
       "title": "لين الكلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5329,7 +5329,7 @@
       "id": "book-410",
       "title": "ما هو الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5342,7 +5342,7 @@
       "id": "book-411",
       "title": "ماذا بعد النفط",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5368,7 +5368,7 @@
       "id": "book-413",
       "title": "مائة مسألة شرعية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5394,7 +5394,7 @@
       "id": "book-415",
       "title": "مريم الطاهرة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5407,7 +5407,7 @@
       "id": "book-416",
       "title": "مطاردة قرن ونصف",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5420,7 +5420,7 @@
       "id": "book-417",
       "title": "من القانون الاسلامي في المال والعمل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5446,7 +5446,7 @@
       "id": "book-419",
       "title": "موسى عليه السلام في البحر",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5459,7 +5459,7 @@
       "id": "book-420",
       "title": "موسى عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5472,7 +5472,7 @@
       "id": "book-421",
       "title": "نحو يقظة إٍسلامية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5485,7 +5485,7 @@
       "id": "book-422",
       "title": "نظام الحوزات العلمية في العراق",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5498,7 +5498,7 @@
       "id": "book-423",
       "title": "نوح عليه السلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5524,7 +5524,7 @@
       "id": "book-425",
       "title": "هل سيبقى الصلح بين العرب واسرائيل؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -5537,7 +5537,7 @@
       "id": "book-426",
       "title": "هل للشعوب قيمة؟",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -7244,7 +7244,7 @@
       "id": "kalima-1",
       "title": "كلمة الله عز وجل",
       "author": "shirazi-h",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "series": "kalima-encyclopedia",
       "formats": [
@@ -7256,7 +7256,7 @@
       "id": "kalima-2",
       "title": "كلمة الإسلام",
       "author": "shirazi-h",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "series": "kalima-encyclopedia",
       "formats": [
@@ -7508,7 +7508,7 @@
       "id": "kalima-23",
       "title": "كلمة الأنبياء والحكماء",
       "author": "shirazi-h",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "series": "kalima-encyclopedia",
       "formats": [
@@ -7520,7 +7520,7 @@
       "id": "kalima-24",
       "title": "كلمة الأصحاب ج1",
       "author": "shirazi-h",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "series": "kalima-encyclopedia",
       "formats": [
@@ -7532,7 +7532,7 @@
       "id": "kalima-25",
       "title": "كلمة الأصحاب ج2",
       "author": "shirazi-h",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "series": "kalima-encyclopedia",
       "formats": [
