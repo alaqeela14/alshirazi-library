@@ -1358,9 +1358,9 @@
     },
     {
       "id": "book-101",
-      "title": "لماذا يحاربون القران؟؟",
+      "title": "كيف ولماذا أسلموا؟",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "languages",
       "year": 1420,
       "formats": [
         "pdf",
@@ -2125,9 +2125,9 @@
     },
     {
       "id": "book-161",
-      "title": "استفتائات في التجويد",
+      "title": "أجوبة المسائل الفرنسية",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -2151,9 +2151,9 @@
     },
     {
       "id": "book-163",
-      "title": "استفتائات في القران الكريم والشعائر الحسينية",
+      "title": "أجوبة مسائل طلاب القطيف",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3289,9 +3289,9 @@
     },
     {
       "id": "book-252",
-      "title": "القرآن منهج وسلوك",
+      "title": "الفهم السياسي",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
