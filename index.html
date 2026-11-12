@@ -61,7 +61,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .moving-text-content span{font-family:'Amiri',serif;font-size:13px;color:#ffffff;padding-inline-end:60px}
 @keyframes scrollLeftToRight{0%{transform:translateX(0)}100%{transform:translateX(50%)}}
 
-/* تصغير شريط البحث العلوي */
 .topbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;box-shadow:var(--shadow-sm)}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0}
 .topbar-btn{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:22px;background:var(--paper-2);color:var(--primary-dark);font-size:12px;font-weight:700;border:1px solid var(--line);flex-shrink:0;transition:all var(--tr)}
@@ -312,66 +311,202 @@ main{flex:1;padding:22px 0 60px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
 [data-theme="dark"] footer { background: #000000; color: var(--accent); }
 
-/* تصغير بطاقة التصفية في المكتبة */
-.lib-controls{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow-sm)}
-.lib-search-box{display:flex;align-items:center;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;overflow:hidden;padding:0 8px}
-.lib-search-box input{flex:1;border:none;background:transparent;padding:6px 8px;outline:none;font-family:inherit;font-size:12px;color:var(--ink)}
-.lib-search-box svg{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2}
-.lib-filters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:2px}
-.lib-filter-group{display:flex;flex-direction:column;gap:3px}
-.lib-filter-group label{font-size:10.5px;font-weight:700;color:var(--primary-dark);padding-right:4px}
-[data-theme="dark"] .lib-filter-group label{color:var(--accent)}
-.lib-filter-select{width:100%;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-family:inherit;font-size:12px;color:var(--ink);cursor:pointer;outline:none;transition:border-color var(--tr)}
-.lib-filter-select:focus{border-color:var(--primary)}
-.lib-table{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:30px}
-.lib-thead{display:grid;grid-template-columns:2fr 1fr 100px;background:var(--primary);color:#fff;padding:12px 16px;font-weight:700;font-size:13px;text-align:center}
-[data-theme="dark"] .lib-thead{color:#212529}
-.lib-thead div:first-child{text-align:right}
-.lib-row{display:grid;grid-template-columns:2fr 1fr 100px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line-2);transition:background var(--tr)}
-.lib-row:last-child{border-bottom:none}
-.lib-row:hover{background:var(--paper-2)}
-.lib-title{font-weight:700;font-size:13.5px;color:var(--ink);line-height:1.4;text-align:right;cursor:pointer}
-.lib-title:hover{color:var(--primary);text-decoration:underline}
-.lib-auth{font-size:12px;color:var(--muted);text-align:center;line-height:1.4}
-.lib-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-.lib-btn{width:32px;height:32px;border-radius:6px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:all var(--tr);cursor:pointer;font-size:14px}
-.lib-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.lib-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ==== NEW UI: Smart Search & Filter Widget ==== */
+.smart-search-widget {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
 
-.form-container{background:var(--paper);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm);border:1px solid var(--line);max-width:600px;margin:0 auto}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:13px;font-weight:700;color:var(--primary-dark);margin-bottom:6px}
-[data-theme="dark"] .form-group label{color:var(--accent)}
-.form-control{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:14px;color:var(--ink);transition:all var(--tr)}
-.form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
-textarea.form-control{resize:vertical;min-height:100px}
-.btn-submit{width:100%;padding:12px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background var(--tr);margin-top:10px}
-[data-theme="dark"] .btn-submit{color:#212529}
-.btn-submit:hover{background:var(--primary-dark)}
+.smart-search-row {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: var(--paper-2);
+    cursor: text;
+    transition: background 0.2s;
+}
+.smart-search-row:focus-within {
+    background: var(--paper);
+}
 
-.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.link-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 20px;text-decoration:none;color:inherit;transition:all var(--tr);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-bottom:3px solid var(--line)}
-.link-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);border-bottom-color:var(--accent)}
-.link-card .title{font-weight:800;font-size:16px;color:var(--primary-dark);margin-bottom:8px}
-[data-theme="dark"] .link-card .title{color:var(--accent)}
-.link-card .desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px}
-.link-card .url{font-size:12px;color:var(--primary);font-family:monospace;direction:ltr;background:var(--paper-2);padding:4px 10px;border-radius:20px;font-weight:600;border:1px dashed var(--line)}
+.smart-search-row .icon-search {
+    width: 20px; height: 20px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+    transition: stroke 0.2s;
+}
+.smart-search-row:focus-within .icon-search {
+    stroke: var(--primary);
+}
 
-.donate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:30px}
-.donate-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:all var(--tr)}
-.donate-card:hover{border-color:var(--accent);box-shadow:var(--shadow)}
-.donate-card h3{font-size:17px;font-family:'Amiri',serif;color:var(--primary-dark);margin-bottom:8px}
-.donate-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;flex:1}
-.btn-donate{display:block;text-align:center;padding:10px;background:var(--primary);color:#fff;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background var(--tr)}
-[data-theme="dark"] .btn-donate{color:#212529}
-.btn-donate:hover{background:var(--primary-dark)}
-.payment-methods{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;margin-bottom:24px}
-.payment-methods h3{font-family:'Amiri',serif;font-size:20px;margin-bottom:16px;color:var(--primary-dark);border-bottom:1px solid var(--line);padding-bottom:10px}
-.pay-item{margin-bottom:12px;font-size:14px;display:flex;align-items:center;gap:8px}
-.pay-item strong{color:var(--primary)}
-[data-theme="dark"] .pay-item strong{color:var(--accent)}
+.smart-search-row input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--ink);
+    outline: none;
+}
+.smart-search-row input::placeholder {
+    color: var(--muted);
+}
 
-.side-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;margin-left:8px;vertical-align:middle;border:1px solid var(--line)}
+.smart-search-row .btn-filter-toggle {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    color: var(--muted);
+}
+.smart-search-row .btn-filter-toggle:hover,
+.smart-search-row .btn-filter-toggle.active {
+    background: var(--paper);
+    border-color: var(--line);
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+.smart-search-row .btn-filter-toggle svg {
+    width: 18px; height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.smart-filter-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+    background: var(--paper);
+    padding: 0 16px;
+    border-top: 1px solid transparent;
+}
+.smart-filter-panel.expanded {
+    max-height: 300px;
+    padding: 16px;
+    border-top-color: var(--line-2);
+}
+
+.smart-filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.smart-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.smart-filter-group label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+.smart-filter-group select {
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper-2);
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--ink);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.smart-filter-group select:focus {
+    border-color: var(--primary);
+}
+
+.smart-filter-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+.smart-filter-actions button {
+    padding: 7px 16px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+.smart-filter-actions .btn-apply {
+    background: var(--primary);
+    color: #fff;
+}
+.smart-filter-actions .btn-apply:hover {
+    background: var(--primary-dark);
+}
+.smart-filter-actions .btn-reset {
+    background: var(--paper-2);
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+}
+.smart-filter-actions .btn-reset:hover {
+    background: var(--paper);
+    border-color: var(--muted);
+}
+
+.smart-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 16px;
+    background: var(--paper-2);
+    border-top: 1px solid var(--line-2);
+}
+.smart-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+    box-shadow: var(--shadow-sm);
+}
+.smart-chip .remove-chip {
+    display: grid;
+    place-items: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--paper-2);
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.smart-chip .remove-chip:hover {
+    background: var(--red);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .smart-filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* ==== نافذة المشغل (Video/Audio Player) ==== */
 .media-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
@@ -1136,24 +1271,113 @@ window.shareList = async function(listName){
   } catch(e) {}
 };
 
-function renderMediaLibrary(type, initialQuery = ''){
+/* ===== Media Library Smart Search & Filter State ===== */
+let mediaFilterState = {
+  q: '',
+  topic: 'all',
+  speaker: 'all',
+  expanded: false
+};
+
+window.toggleMediaFilterPanel = function(e) {
+  if(e) e.stopPropagation();
+  mediaFilterState.expanded = !mediaFilterState.expanded;
+  const panel = document.getElementById('smartFilterPanel');
+  const btn = document.getElementById('btnFilterToggle');
+  if (panel) {
+    if (mediaFilterState.expanded) {
+      panel.classList.add('expanded');
+      if(btn) btn.classList.add('active');
+    } else {
+      panel.classList.remove('expanded');
+      if(btn) btn.classList.remove('active');
+    }
+  }
+};
+
+window.updateMediaFilterState = function(key, val) {
+  mediaFilterState[key] = val;
+};
+
+window.applyMediaFilters = function() {
+  mediaFilterState.expanded = false;
+  const panel = document.getElementById('smartFilterPanel');
+  const btn = document.getElementById('btnFilterToggle');
+  if (panel) panel.classList.remove('expanded');
+  if (btn) btn.classList.remove('active');
+  
+  // This will trigger a re-render of the whole media library
+  if (location.hash === '#/videos') renderMediaLibrary('video');
+  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+};
+
+window.resetMediaFilters = function() {
+  mediaFilterState.q = '';
+  mediaFilterState.topic = 'all';
+  mediaFilterState.speaker = 'all';
+  mediaFilterState.expanded = false;
+  
+  const input = document.getElementById('mediaSmartSearchInput');
+  if(input) input.value = '';
+  
+  if (location.hash === '#/videos') renderMediaLibrary('video');
+  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+};
+
+window.removeMediaFilterChip = function(key) {
+  mediaFilterState[key] = (key === 'q') ? '' : 'all';
+  
+  // update UI
+  const panel = document.getElementById('smartFilterPanel');
+  if (panel) {
+    if (key === 'topic') {
+       const sel = document.getElementById('mediaTopicSelect');
+       if(sel) sel.value = 'all';
+    }
+    if (key === 'speaker') {
+       const sel = document.getElementById('mediaSpeakerSelect');
+       if(sel) sel.value = 'all';
+    }
+  }
+  const input = document.getElementById('mediaSmartSearchInput');
+  if (key === 'q' && input) input.value = '';
+  
+  // re-render to update chips and list
+  if (location.hash === '#/videos') renderMediaLibrary('video');
+  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+};
+
+window.onMediaSmartSearchInput = function(val) {
+  mediaFilterState.q = val;
+  // Live search
+  const panel = document.getElementById('smartFilterPanel');
+  if (panel) {
+      drawMediaResults();
+  }
+};
+
+function renderMediaLibrary(type){
   const isAudio = type === "audio";
   const data = isAudio ? AUDIOS : VIDEOS;
   const typeKey = isAudio ? 'audio' : 'video';
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
   
+  // Reset filters on new page load, but preserve if navigating within
+  if (window.lastMediaType !== typeKey) {
+      mediaFilterState = { q: '', topic: 'all', speaker: 'all', expanded: false };
+      window.lastMediaType = typeKey;
+  }
+  
   const lists = MEDIA_LISTS[typeKey] || [];
   const allTopics = lists.map(l => l.name);
   const allSpeakers = [...new Set(data.map(a => a.speaker).filter(Boolean))];
-  
-  let fTopic = 'all', fSpeaker = 'all', searchQuery = initialQuery;
 
-  const drawContent = () => {
+  const drawMediaResults = () => {
     let filtered = data;
-    if (fTopic !== 'all') filtered = filtered.filter(a => a.topic === fTopic);
-    if (fSpeaker !== 'all') filtered = filtered.filter(a => a.speaker === fSpeaker);
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
+    if (mediaFilterState.topic !== 'all') filtered = filtered.filter(a => a.topic === mediaFilterState.topic);
+    if (mediaFilterState.speaker !== 'all') filtered = filtered.filter(a => a.speaker === mediaFilterState.speaker);
+    if (mediaFilterState.q) {
+      const q = mediaFilterState.q.toLowerCase();
       filtered = filtered.filter(a => (a.title||"").toLowerCase().includes(q) || (a.speaker||"").toLowerCase().includes(q));
     }
 
@@ -1170,43 +1394,17 @@ function renderMediaLibrary(type, initialQuery = ''){
       return acc;
     }, {});
 
-    // حذف العنوان الرئيسي (المكتبة المرئية) بناء على طلبك
-    let html = `
-      <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div>
-      <div class="lib-controls">
-        <div class="lib-search-box">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="بحث..." value="${searchQuery}" oninput="window.mediaSearch(this.value)">
-        </div>
-        <div class="lib-filters-grid">
-          <div class="lib-filter-group">
-            <label>القائمة الرئيسية</label>
-            <select class="lib-filter-select" onchange="window.updateFilter('topic', this.value)">
-              <option value="all">الكل</option>
-              ${allTopics.map(t => `<option value="${esc(t)}" ${fTopic===t?'selected':''}>${esc(t)}</option>`).join('')}
-            </select>
-          </div>
-          <div class="lib-filter-group">
-            <label>المتحدث</label>
-            <select class="lib-filter-select" onchange="window.updateFilter('speaker', this.value)">
-              <option value="all">الكل</option>
-              ${allSpeakers.map(s => `<option value="${esc(s)}" ${fSpeaker===s?'selected':''}>${esc(s)}</option>`).join('')}
-            </select>
-          </div>
-        </div>
-      </div>
-    `;
-
+    let resultsHtml = '';
     if (Object.keys(grouped).length === 0) {
-      html += '<div class="empty-state">لا توجد عناصر مطابقة.</div>';
+      resultsHtml = '<div class="empty-state">لا توجد عناصر مطابقة.</div>';
     } else {
       for (const [topicName, group] of Object.entries(grouped)) {
-        html += `<div class="list-header-row"><div class="sec-title" style="font-size: 18px; margin-bottom:0;">${esc(topicName)}</div><button class="share-list-btn" onclick="shareList('${esc(topicName).replace(/'/g,"\\'")}')">مشاركة القائمة</button></div>`;
+        resultsHtml += `<div class="list-header-row"><div class="sec-title" style="font-size: 18px; margin-bottom:0;">${esc(topicName)}</div><button class="share-list-btn" onclick="shareList('${esc(topicName).replace(/'/g,"\\'")}')">مشاركة القائمة</button></div>`;
         
         if (group.items.length > 0) {
-          html += `<div class="lib-table">
+          resultsHtml += `<div class="lib-table">
             <div class="lib-thead"><div>العنوان</div><div>الأستاذ</div><div>الخدمات</div></div>`;
-          html += group.items.map(a => `
+          resultsHtml += group.items.map(a => `
             <div class="lib-row">
               <div class="lib-title" onclick="openMediaPlayer('${esc(a.url)}', '${esc(a.title)}', '${typeKey}')">${esc(a.title)}</div>
               <div class="lib-auth">${esc(a.speaker || a.author || '—')}</div>
@@ -1215,11 +1413,11 @@ function renderMediaLibrary(type, initialQuery = ''){
               </div>
             </div>
           `).join('');
-          html += `</div>`;
+          resultsHtml += `</div>`;
         }
 
         for (const [subName, subItems] of Object.entries(group.subs)) {
-          html += `<div style="margin-right: 15px; margin-top: 15px; margin-bottom: 10px;">
+          resultsHtml += `<div style="margin-right: 15px; margin-top: 15px; margin-bottom: 10px;">
             <div class="list-header-row"><div class="sec-title" style="font-size: 15px; color: var(--muted); border-right: 3px solid var(--accent); padding-right: 8px; margin-bottom:0;">↳ ${esc(subName)}</div></div>
             <div class="lib-table">
               <div class="lib-thead"><div>العنوان</div><div>الأستاذ</div><div>الخدمات</div></div>
@@ -1237,17 +1435,66 @@ function renderMediaLibrary(type, initialQuery = ''){
         }
       }
     }
-    app.innerHTML = html;
+    const box = document.getElementById('mediaResultsBox');
+    if (box) box.innerHTML = resultsHtml;
   };
 
-  window.updateFilter = (type, val) => {
-    if (type === 'topic') fTopic = val;
-    if (type === 'speaker') fSpeaker = val;
-    drawContent();
-  };
+  window.drawMediaResults = drawMediaResults;
 
-  window.mediaSearch = (val) => { searchQuery = val; drawContent(); };
-  drawContent();
+  // Build Chips
+  let chipsHtml = '';
+  if (mediaFilterState.q || mediaFilterState.topic !== 'all' || mediaFilterState.speaker !== 'all') {
+    chipsHtml = '<div class="smart-chips-container">';
+    if (mediaFilterState.q) chipsHtml += `<div class="smart-chip">بحث: ${esc(mediaFilterState.q)} <span class="remove-chip" onclick="removeMediaFilterChip('q')">×</span></div>`;
+    if (mediaFilterState.topic !== 'all') chipsHtml += `<div class="smart-chip">قسم: ${esc(mediaFilterState.topic)} <span class="remove-chip" onclick="removeMediaFilterChip('topic')">×</span></div>`;
+    if (mediaFilterState.speaker !== 'all') chipsHtml += `<div class="smart-chip">متحدث: ${esc(mediaFilterState.speaker)} <span class="remove-chip" onclick="removeMediaFilterChip('speaker')">×</span></div>`;
+    chipsHtml += '</div>';
+  }
+
+  app.innerHTML = `
+    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${pageTitle}</span></div>
+    
+    <div class="smart-search-widget">
+      <div class="smart-search-row" onclick="if(!event.target.closest('button')) toggleMediaFilterPanel()">
+        <svg class="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="mediaSmartSearchInput" placeholder="ابحث عن محاضرة أو موضوع..." value="${esc(mediaFilterState.q)}" oninput="onMediaSmartSearchInput(this.value)">
+        <button type="button" class="btn-filter-toggle ${mediaFilterState.expanded ? 'active' : ''}" id="btnFilterToggle" onclick="toggleMediaFilterPanel(event)">
+          <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        </button>
+      </div>
+      
+      <div class="smart-filter-panel ${mediaFilterState.expanded ? 'expanded' : ''}" id="smartFilterPanel">
+        <div class="smart-filter-grid">
+          <div class="smart-filter-group">
+            <label>القسم أو السلسلة</label>
+            <select id="mediaTopicSelect" onchange="updateMediaFilterState('topic', this.value)">
+              <option value="all">جميع الأقسام</option>
+              ${allTopics.map(t => `<option value="${esc(t)}" ${mediaFilterState.topic===t?'selected':''}>${esc(t)}</option>`).join('')}
+            </select>
+          </div>
+          <div class="smart-filter-group">
+            <label>المتحدث</label>
+            <select id="mediaSpeakerSelect" onchange="updateMediaFilterState('speaker', this.value)">
+              <option value="all">جميع المتحدثين</option>
+              ${allSpeakers.map(s => `<option value="${esc(s)}" ${mediaFilterState.speaker===s?'selected':''}>${esc(s)}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="smart-filter-actions">
+          <button class="btn-reset" onclick="resetMediaFilters()">إعادة تعيين</button>
+          <button class="btn-apply" onclick="applyMediaFilters()">عرض النتائج</button>
+        </div>
+      </div>
+      
+      ${chipsHtml}
+    </div>
+
+    <div id="mediaResultsBox">
+      <!-- Results will render here -->
+    </div>
+  `;
+
+  drawMediaResults();
 }
 
 function renderAbout(){
@@ -1385,12 +1632,14 @@ function doSearch(v){
   const context = getCurrentSearchContext();
   
   if (context === 'videos') {
-    renderMediaLibrary('video', v);
+    mediaFilterState.q = v;
+    renderMediaLibrary('video');
     sug.classList.remove("show");
     return;
   }
   if (context === 'audios') {
-    renderMediaLibrary('audio', v);
+    mediaFilterState.q = v;
+    renderMediaLibrary('audio');
     sug.classList.remove("show");
     return;
   }
