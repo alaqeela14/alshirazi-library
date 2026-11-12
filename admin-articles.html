@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة المقالات والبحوث | مكتبة آل الشيرازي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2eb;--paper:#ffffff;--paper-2:#faf8f3;
+  --ink:#2b2520;--ink-2:#4a4034;--muted:#8a7e6f;
+  --line:#e5ddd0;--line-2:#f0ebe2;
+  --primary:#343a40;--primary-dark:#212529;
+  --accent:#d4af37;--accent-light:#f8e7b9;
+  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;
+  --radius:10px;--radius-lg:14px;
+  --shadow-sm:0 1px 3px rgba(33,37,41,.06);
+  --shadow:0 4px 14px rgba(33,37,41,.08);
+  --shadow-lg:0 12px 32px rgba(33,37,41,.15);
+  --tr:.18s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:14px;padding-bottom:100px}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit}
+.container{width:min(1100px,96%);margin-inline:auto}
+
+.admin-header{background:var(--primary-dark);color:#fff;padding:16px 0;margin-bottom:16px;box-shadow:var(--shadow)}
+.admin-header .inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.admin-header h1{font-size:19px;margin-bottom:3px}
+.admin-header p{font-size:12px;opacity:.85}
+.admin-header .header-links{display:flex;gap:8px;flex-wrap:wrap}
+.admin-header .header-links a{padding:7px 14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:#fff;font-size:12px;font-weight:700;text-decoration:none;transition:all .2s}
+.admin-header .header-links a:hover{background:var(--accent);color:var(--primary-dark);border-color:var(--accent)}
+
+.btn{padding:9px 16px;border-radius:8px;font-size:13px;font-weight:700;transition:all var(--tr);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-success{background:var(--green);color:#fff}
+.btn-warning{background:var(--orange);color:#fff}
+.btn-outline{background:var(--paper);border:1px solid var(--line);color:var(--ink)}
+.btn-outline:hover{background:var(--paper-2);border-color:var(--accent)}
+.btn-icon{width:34px;height:34px;padding:0;border-radius:6px;display:inline-grid;place-items:center;font-size:14px}
+.btn-publish{background:linear-gradient(135deg,#4a6b4a,#2e4a2e);color:#fff;padding:10px 18px;font-size:14px;font-weight:800}
+.btn-publish:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(74,107,74,.4)}
+.btn-publish:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-danger{background:var(--red);color:#fff}
+.btn-sm{padding:5px 10px;font-size:11.5px}
+
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
+.filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
+.filters input:focus,.filters select:focus{border-color:var(--primary)}
+@media(max-width:700px){.filters{grid-template-columns:1fr 1fr}}
+
+.article-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.article-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
+.article-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+.article-item.draft{border-inline-start:4px solid var(--orange)}
+.article-item.published{border-inline-start:4px solid var(--green)}
+.article-item.featured{border-inline-start:4px solid var(--accent)}
+.article-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.article-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;flex:1}
+.article-id{font-size:10px;color:var(--muted);font-family:monospace;background:var(--paper-2);padding:2px 6px;border-radius:5px}
+.article-meta{font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
+.article-meta .tag{background:var(--paper-2);padding:2px 8px;border-radius:9px;font-weight:600}
+.article-meta .tag.type-research{color:#8a6b2c;background:#f5ede0}
+.article-meta .tag.type-article{color:#4a5c78;background:#e8f0f8}
+.article-meta .tag.status-draft{color:var(--orange);background:#fff0e0}
+.article-meta .tag.status-published{color:var(--green);background:#e8f5e8}
+.article-meta .tag.featured{color:var(--accent);background:#fdf6e3}
+.article-actions{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+
+.empty{text-align:center;padding:40px 20px;color:var(--muted);background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg)}
+
+/* ============ Editor ============ */
+.editor-shell{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.editor-topbar{padding:12px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:50}
+.editor-topbar h2{font-size:16px;color:var(--primary-dark)}
+.editor-topbar .actions{display:flex;gap:6px;flex-wrap:wrap}
+.editor-section{padding:16px;border-bottom:1px solid var(--line-2)}
+.editor-section:last-child{border-bottom:none}
+.editor-section h3{font-size:14px;color:var(--primary-dark);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--line-2);font-weight:800}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.ff{display:flex;flex-direction:column;gap:4px}
+.ff label{font-size:12px;font-weight:700;color:var(--primary-dark)}
+.ff input,.ff select,.ff textarea{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--primary)}
+.ff textarea{resize:vertical;min-height:80px}
+.ff.full{grid-column:1/-1}
+.ff .hint{font-size:11px;color:var(--muted);margin-top:2px}
+
+.rich-toolbar{display:flex;gap:4px;flex-wrap:wrap;padding:8px;background:var(--paper-2);border:1px solid var(--line);border-bottom:none;border-radius:6px 6px 0 0}
+.rich-toolbar button{padding:5px 10px;border:1px solid var(--line);border-radius:5px;background:var(--paper);font-size:11.5px;font-weight:700;color:var(--ink);transition:all .15s;cursor:pointer}
+.rich-toolbar button:hover{background:var(--accent);color:var(--primary-dark);border-color:var(--accent)}
+.rich-toolbar .divider{width:1px;background:var(--line);margin:0 4px}
+.rich-editor{min-height:400px;padding:16px;border:1px solid var(--line);border-radius:0 0 6px 6px;background:#fdfbf6;font-family:'Noto Naskh Arabic','Amiri',serif;font-size:16px;line-height:2;color:var(--ink);outline:none;overflow-y:auto;max-height:600px;direction:rtl}
+.rich-editor:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(212,175,55,.1)}
+.rich-editor h2{font-family:'Amiri',serif;font-size:22px;color:#8a6b2c;border-bottom:1px solid #e0d6c4;padding-bottom:6px;margin:20px 0 12px}
+.rich-editor h3{font-family:'Amiri',serif;font-size:18px;color:#3d3122;margin:16px 0 8px}
+.rich-editor p{margin-bottom:12px;text-align:justify}
+.rich-editor blockquote{background:#faf6f0;padding:12px 16px;border-right:3px solid #d4af37;margin:12px 0;border-radius:4px}
+.rich-editor .quran-box{background:rgba(74,107,74,.08);border:1px solid rgba(74,107,74,.25);padding:14px;text-align:center;font-family:'Amiri',serif;font-size:18px;color:#3d5c3d;border-radius:6px;margin:14px 0}
+.rich-editor .quran-box .quran-src{display:block;font-size:13px;color:#6b6255;margin-top:6px}
+.rich-editor table{width:100%;border-collapse:collapse;margin:12px 0}
+.rich-editor th,.rich-editor td{border:1px solid #e0d6c4;padding:8px 10px;text-align:right;font-family:'Cairo',sans-serif;font-size:14px}
+.rich-editor th{background:#faf6f0;font-weight:700;color:#8a6b2c}
+.rich-editor img{max-width:100%;border-radius:6px;margin:10px 0}
+.rich-editor .fn-ref{color:#d4af37;font-size:11px;font-weight:700;vertical-align:super;font-family:'Cairo',sans-serif}
+
+.footnotes-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.footnote-row{display:grid;grid-template-columns:40px 1fr auto;gap:6px;align-items:start;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:8px}
+.footnote-row .fn-num{background:var(--primary);color:#fff;font-weight:800;font-size:12px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center}
+.footnote-row textarea{padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);font-size:12.5px;font-family:'Cairo',sans-serif;outline:none;resize:vertical;min-height:50px}
+.footnote-row textarea:focus{border-color:var(--primary)}
+.footnote-row .btn-delete{width:28px;height:28px;border-radius:50%;background:#fde8e8;color:var(--red);font-size:12px;display:grid;place-items:center;cursor:pointer;border:none}
+.footnote-row .btn-delete:hover{background:var(--red);color:#fff}
+
+.refs-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.ref-row{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;position:relative}
+.ref-row input{padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);font-size:12px;outline:none}
+.ref-row input:focus{border-color:var(--primary)}
+.ref-row .ref-del{position:absolute;top:6px;left:6px;width:24px;height:24px;border-radius:50%;background:#fde8e8;color:var(--red);font-size:11px;display:grid;place-items:center;cursor:pointer;border:none;z-index:1}
+.ref-row .ref-del:hover{background:var(--red);color:#fff}
+
+/* Modals */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:10000;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--paper);border-radius:var(--radius-lg);width:min(650px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
+.modal-head{padding:14px 18px;background:var(--primary-dark);color:#fff;display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{font-size:15px}
+.modal-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:15px;display:grid;place-items:center}
+.modal-body{padding:16px 18px;overflow-y:auto;flex:1}
+.modal-foot{padding:12px 18px;background:var(--paper-2);border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+.toast.warn{background:var(--orange)}
+
+.token-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 10px;border-radius:9px;font-weight:700}
+.token-status.ok{background:#d4edda;color:#155724}
+.token-status.missing{background:#f8d7da;color:#721c24}
+
+.floating-save{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px;display:none;justify-content:space-between;align-items:center;gap:10px;z-index:60;box-shadow:0 -4px 14px rgba(0,0,0,.05);flex-wrap:wrap}
+.floating-save.show{display:flex}
+.floating-save .info{font-size:12px;color:var(--muted);flex:1}
+</style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="container inner">
+    <div>
+      <h1>إدارة المقالات والبحوث</h1>
+      <p>أضف، عدّل، وانشر المحتوى العلمي بضغطة زر.</p>
+    </div>
+    <div class="header-links">
+      <a href="admin.html">← لوحة التحكم الرئيسية</a>
+      <a href="articles.html" target="_blank">← معاينة القسم</a>
+      <span id="tokenBadge" class="token-status missing">غير مفعّل</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <!-- List View -->
+  <div id="listView">
+    <div class="top-actions">
+      <button class="btn btn-primary" onclick="newArticle('article')">➕ إضافة مقال</button>
+      <button class="btn btn-primary" onclick="newArticle('research')">➕ إضافة بحث علمي</button>
+      <button class="btn btn-success" onclick="exportJson()">💾 تصدير JSON</button>
+      <button class="btn btn-warning" onclick="openPublishModal()">🚀 نشر إلى GitHub</button>
+      <button class="btn btn-outline" onclick="openAuthorsModal()">👥 إدارة الكتّاب</button>
+      <button class="btn btn-outline" onclick="openCategoriesModal()">🏷️ إدارة التصنيفات</button>
+      <label class="btn btn-outline">
+        📁 استيراد articles.json
+        <input type="file" accept=".json" onchange="importJson(event)" style="display:none">
+      </label>
+    </div>
+
+    <div class="filters">
+      <input type="search" id="searchInput" placeholder="🔍 ابحث في العنوان..." oninput="renderList()">
+      <select id="filterType" onchange="renderList()">
+        <option value="all">كل الأنواع</option>
+        <option value="article">مقالات</option>
+        <option value="research">بحوث</option>
+      </select>
+      <select id="filterCat" onchange="renderList()">
+        <option value="all">كل التصنيفات</option>
+      </select>
+      <select id="filterStatus" onchange="renderList()">
+        <option value="all">كل الحالات</option>
+        <option value="published">منشور</option>
+        <option value="draft">مسودة</option>
+      </select>
+    </div>
+
+    <div class="article-list" id="articleList"></div>
+  </div>
+
+  <!-- Editor View -->
+  <div id="editorView" style="display:none">
+    <div class="editor-shell">
+      <div class="editor-topbar">
+        <button class="btn btn-outline btn-sm" onclick="closeEditor()">← رجوع للقائمة</button>
+        <h2 id="editorTitle">إضافة جديدة</h2>
+        <div class="actions">
+          <button class="btn btn-outline btn-sm" onclick="previewArticle()">👁 معاينة</button>
+          <button class="btn btn-primary btn-sm" onclick="saveArticle()">💾 حفظ</button>
+        </div>
+      </div>
+
+      <div class="editor-section">
+        <h3>المعلومات الأساسية</h3>
+        <div class="form-grid">
+          <div class="ff">
+            <label>نوع المحتوى *</label>
+            <select id="edType" onchange="onTypeChange()">
+              <option value="article">مقال</option>
+              <option value="research">بحث علمي</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label>الحالة</label>
+            <select id="edStatus">
+              <option value="draft">مسودة</option>
+              <option value="published">منشور</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label>التصنيف *</label>
+            <select id="edCategory"></select>
+          </div>
+          <div class="ff">
+            <label>الكاتب / الباحث *</label>
+            <select id="edAuthor"></select>
+          </div>
+          <div class="ff">
+            <label>تاريخ النشر</label>
+            <input type="date" id="edPublished">
+          </div>
+          <div class="ff">
+            <label>المحتوى المميز</label>
+            <select id="edFeatured">
+              <option value="false">عادي</option>
+              <option value="true">مميز (يظهر في الأعلى)</option>
+            </select>
+          </div>
+          <div class="ff full">
+            <label>العنوان *</label>
+            <input type="text" id="edTitle" placeholder="عنوان المقال أو البحث">
+          </div>
+          <div class="ff full">
+            <label>صورة الغلاف (رابط)</label>
+            <input type="url" id="edCover" placeholder="https://i.ibb.co/...">
+          </div>
+          <div class="ff full">
+            <label>الملخص (يظهر في القائمة وفي صفحة البحث)</label>
+            <textarea id="edSummary" rows="3"></textarea>
+          </div>
+          <div class="ff full">
+            <label>الكلمات المفتاحية (افصل بينها بفاصلة)</label>
+            <input type="text" id="edKeywords" placeholder="القرآن، التربية، الأخلاق">
+          </div>
+        </div>
+      </div>
+
+      <div class="editor-section" id="journalSection">
+        <h3>بيانات النشر العلمي (للبحوث)</h3>
+        <div class="form-grid">
+          <div class="ff"><label>اسم المجلة</label><input type="text" id="edJournalName" placeholder="مثال: مجلة الدراسات الإسلامية"></div>
+          <div class="ff"><label>المجلد</label><input type="text" id="edJournalVolume" placeholder="12"></div>
+          <div class="ff"><label>العدد</label><input type="text" id="edJournalIssue" placeholder="3"></div>
+          <div class="ff"><label>الصفحات</label><input type="text" id="edJournalPages" placeholder="45-78"></div>
+          <div class="ff full"><label>DOI</label><input type="text" id="edJournalDoi" placeholder="10.xxxx/xxxxx"></div>
+        </div>
+      </div>
+
+      <div class="editor-section">
+        <h3>محتوى المقال / البحث</h3>
+        <div class="rich-toolbar">
+          <button type="button" onclick="ins('h2')">عنوان رئيسي</button>
+          <button type="button" onclick="ins('h3')">عنوان فرعي</button>
+          <button type="button" onclick="ins('p')">فقرة</button>
+          <span class="divider"></span>
+          <button type="button" onclick="ins('quote')">اقتباس</button>
+          <button type="button" onclick="ins('quran')">آية قرآنية</button>
+          <button type="button" onclick="ins('hadith')">رواية</button>
+          <button type="button" onclick="ins('table')">جدول</button>
+          <button type="button" onclick="ins('image')">صورة</button>
+          <span class="divider"></span>
+          <button type="button" onclick="execCmd('bold')"><b>عريض</b></button>
+          <button type="button" onclick="execCmd('italic')"><i>مائل</i></button>
+          <button type="button" onclick="insertFootnote()">حاشية</button>
+        </div>
+        <div id="richEditor" class="rich-editor" contenteditable="true"></div>
+      </div>
+
+      <div class="editor-section">
+        <h3>الحواشي السفلية</h3>
+        <div class="footnotes-list" id="footnotesList"></div>
+        <button class="btn btn-outline btn-sm" onclick="addFootnoteManual()">+ إضافة حاشية</button>
+      </div>
+
+      <div class="editor-section">
+        <h3>المصادر والمراجع</h3>
+        <div class="refs-list" id="refsList"></div>
+        <button class="btn btn-outline btn-sm" onclick="addReference()">+ إضافة مرجع</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Authors Modal -->
+<div class="modal-overlay" id="authorsModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>إدارة الكتّاب والباحثين</h3>
+      <button class="modal-close" onclick="closeModal('authorsModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="authorsList"></div>
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--primary-dark);font-size:13px">إضافة كاتب جديد</h4>
+      <div class="form-grid">
+        <div class="ff"><label>الاسم الكامل *</label><input type="text" id="newAuthName"></div>
+        <div class="ff"><label>الاسم المختصر</label><input type="text" id="newAuthShort"></div>
+        <div class="ff"><label>الصفة</label><select id="newAuthRole"><option value="باحث">باحث</option><option value="كاتب">كاتب</option><option value="أستاذ">أستاذ</option></select></div>
+        <div class="ff full"><label>نبذة</label><textarea id="newAuthBio" rows="2"></textarea></div>
+        <div class="ff full"><label>رابط الصورة</label><input type="url" id="newAuthImage"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addAuthor()" style="margin-top:10px">+ إضافة الكاتب</button>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('authorsModal')">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- Categories Modal -->
+<div class="modal-overlay" id="categoriesModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>إدارة التصنيفات</h3>
+      <button class="modal-close" onclick="closeModal('categoriesModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="categoriesList"></div>
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--primary-dark);font-size:13px">إضافة تصنيف جديد</h4>
+      <div class="form-grid">
+        <div class="ff"><label>الاسم *</label><input type="text" id="newCatName"></div>
+        <div class="ff"><label>المعرّف (ID إنجليزي) *</label><input type="text" id="newCatId" placeholder="مثال: falsafa"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="addCategory()" style="margin-top:10px">+ إضافة التصنيف</button>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('categoriesModal')">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- Publish Modal -->
+<div class="modal-overlay" id="publishModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>نشر إلى GitHub</h3>
+      <button class="modal-close" onclick="closeModal('publishModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:15px">يجب أن يكون رمز GitHub محفوظاً في لوحة التحكم الرئيسية (admin.html). للتحقق:</p>
+      <div id="publishStatus" style="margin-bottom:15px"></div>
+      <button class="btn btn-primary" onclick="doPublish()" style="width:100%;padding:14px;font-size:15px">🚀 نشر جميع ملفات المقالات</button>
+      <div id="publishResult" style="margin-top:15px;font-size:13px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="floating-save" id="floatingSave">
+  <span class="info" id="floatInfo">—</span>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn btn-outline btn-sm" onclick="closeEditor()">إلغاء</button>
+    <button class="btn btn-primary btn-sm" onclick="saveArticle()">💾 حفظ</button>
+  </div>
+</div>
+
+<script>
+/* ============ الحالة ============ */
+let ARTICLES = [];
+let ARTICLE_CATS = [];
+let ARTICLE_AUTHORS = [];
+let editingArticle = null;
+let isNewArticle = false;
+const GH_KEY = 'admin_github_settings_v1';
+
+/* ============ أدوات مساعدة ============ */
+const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function toast(msg, type='info') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warn' ? 'warn' : '') + ' show';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function getCatName(id) { return (ARTICLE_CATS.find(c=>c.id===id)||{}).name || 'غير مصنف'; }
+function getAuthName(id) { return (ARTICLE_AUTHORS.find(a=>a.id===id)||{}).short || (ARTICLE_AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف'; }
+function fmtDate(d) { if(!d) return '—'; try { return new Intl.DateTimeFormat('ar-EG',{year:'numeric',month:'short',day:'numeric'}).format(new Date(d)); } catch(e) { return d; } }
+
+/* ============ التحميل ============ */
+async function loadAll() {
+  try {
+    const [r1, r2, r3] = await Promise.all([
+      fetch('articles.json?t=' + Date.now()),
+      fetch('article-categories.json?t=' + Date.now()),
+      fetch('article-authors.json?t=' + Date.now())
+    ]);
+    if (r1.ok) { const d = await r1.json(); ARTICLES = d.items || []; }
+    if (r2.ok) { const d = await r2.json(); ARTICLE_CATS = d.items || []; }
+    if (r3.ok) { const d = await r3.json(); ARTICLE_AUTHORS = d.items || []; }
+  } catch(e) {
+    console.error(e);
+    toast('تعذر تحميل بعض الملفات. تأكد من وجودها في نفس المجلد.', 'warn');
+  }
+  updateTokenBadge();
+  populateFilters();
+  renderList();
+}
+
+function updateTokenBadge() {
+  const s = getGithubSettings();
+  const badge = document.getElementById('tokenBadge');
+  if (s.token && s.owner && s.repo) {
+    badge.textContent = '✓ رمز GitHub مفعّل';
+    badge.className = 'token-status ok';
+  } else {
+    badge.textContent = '⚠ رمز GitHub غير مفعّل';
+    badge.className = 'token-status missing';
+  }
+}
+
+function getGithubSettings() {
+  try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); } catch(e) { return {}; }
+}
+
+/* ============ Populate ============ */
+function populateFilters() {
+  const catSel = document.getElementById('filterCat');
+  catSel.innerHTML = '<option value="all">كل التصنيفات</option>' + ARTICLE_CATS.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
+}
+
+function populateEditorSelects() {
+  const catSel = document.getElementById('edCategory');
+  catSel.innerHTML = ARTICLE_CATS.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
+  const authSel = document.getElementById('edAuthor');
+  authSel.innerHTML = ARTICLE_AUTHORS.map(a => `<option value="${esc(a.id)}">${esc(a.name)}</option>`).join('');
+}
+
+/* ============ Render List ============ */
+function renderList() {
+  const box = document.getElementById('articleList');
+  const q = (document.getElementById('searchInput').value || '').toLowerCase();
+  const fType = document.getElementById('filterType').value;
+  const fCat = document.getElementById('filterCat').value;
+  const fStat = document.getElementById('filterStatus').value;
+
+  let list = ARTICLES.slice();
+  if (q) list = list.filter(a => (a.title||'').toLowerCase().includes(q));
+  if (fType !== 'all') list = list.filter(a => a.type === fType);
+  if (fCat !== 'all') list = list.filter(a => a.category === fCat);
+  if (fStat !== 'all') list = list.filter(a => a.status === fStat);
+  list.sort((a,b) => new Date(b.publishedAt||0) - new Date(a.publishedAt||0));
+
+  if (list.length === 0) {
+    box.innerHTML = '<div class="empty">لا توجد مقالات أو بحوث. اضغط "إضافة" للبدء.</div>';
+    return;
+  }
+
+  box.innerHTML = list.map(a => `
+    <div class="article-item ${a.status === 'draft' ? 'draft' : 'published'} ${a.featured ? 'featured' : ''}">
+      <div class="article-title-row">
+        <div class="article-title">${esc(a.title)}</div>
+        <span class="article-id">${esc(a.id)}</span>
+      </div>
+      <div class="article-meta">
+        <span class="tag type-${a.type}">${a.type === 'research' ? 'بحث علمي' : 'مقال'}</span>
+        <span class="tag">${esc(getCatName(a.category))}</span>
+        <span class="tag">${esc(getAuthName(a.authorId))}</span>
+        <span class="tag status-${a.status}">${a.status === 'draft' ? 'مسودة' : 'منشور'}</span>
+        ${a.featured ? '<span class="tag featured">⭐ مميز</span>' : ''}
+        <span class="tag">📅 ${fmtDate(a.publishedAt)}</span>
+        <span class="tag">👁 ${a.views || 0}</span>
+      </div>
+      <div class="article-actions">
+        <button class="btn btn-outline btn-sm" onclick="editArticle('${esc(a.id)}')">✏️ تعديل</button>
+        <button class="btn btn-outline btn-sm" onclick="window.open('articles.html#/article/${esc(a.id)}', '_blank')">👁 معاينة</button>
+        <button class="btn btn-outline btn-sm" onclick="toggleStatus('${esc(a.id)}')">${a.status === 'draft' ? '📤 نشر' : '📥 مسودة'}</button>
+        <button class="btn btn-outline btn-sm" onclick="toggleFeatured('${esc(a.id)}')">${a.featured ? '⭐ إلغاء التمييز' : '⭐ تمييز'}</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteArticle('${esc(a.id)}')">🗑 حذف</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ New / Edit ============ */
+function newArticle(type) {
+  isNewArticle = true;
+  editingArticle = {
+    id: 'art-' + Date.now(),
+    type: type || 'article',
+    title: '',
+    authorId: ARTICLE_AUTHORS[0]?.id || '',
+    category: ARTICLE_CATS[0]?.id || 'other',
+    summary: '',
+    keywords: [],
+    publishedAt: new Date().toISOString().slice(0, 10),
+    updatedAt: new Date().toISOString().slice(0, 10),
+    status: 'draft',
+    featured: false,
+    views: 0,
+    coverImage: '',
+    content: '',
+    footnotes: [],
+    references: [],
+    journal: null,
+    attachments: []
+  };
+  openEditor();
+}
+
+function editArticle(id) {
+  const found = ARTICLES.find(a => a.id === id);
+  if (!found) return;
+  isNewArticle = false;
+  editingArticle = JSON.parse(JSON.stringify(found));
+  openEditor();
+}
+
+function openEditor() {
+  document.getElementById('listView').style.display = 'none';
+  document.getElementById('editorView').style.display = 'block';
+  document.getElementById('floatingSave').classList.add('show');
+  document.getElementById('editorTitle').textContent = isNewArticle ? 'إضافة جديدة' : 'تعديل: ' + editingArticle.title;
+
+  populateEditorSelects();
+
+  document.getElementById('edType').value = editingArticle.type || 'article';
+  document.getElementById('edStatus').value = editingArticle.status || 'draft';
+  document.getElementById('edCategory').value = editingArticle.category || 'other';
+  document.getElementById('edAuthor').value = editingArticle.authorId || '';
+  document.getElementById('edPublished').value = editingArticle.publishedAt || '';
+  document.getElementById('edFeatured').value = editingArticle.featured ? 'true' : 'false';
+  document.getElementById('edTitle').value = editingArticle.title || '';
+  document.getElementById('edCover').value = editingArticle.coverImage || '';
+  document.getElementById('edSummary').value = editingArticle.summary || '';
+  document.getElementById('edKeywords').value = (editingArticle.keywords || []).join(', ');
+
+  const j = editingArticle.journal || {};
+  document.getElementById('edJournalName').value = j.name || '';
+  document.getElementById('edJournalVolume').value = j.volume || '';
+  document.getElementById('edJournalIssue').value = j.issue || '';
+  document.getElementById('edJournalPages').value = j.pages || '';
+  document.getElementById('edJournalDoi').value = j.doi || '';
+
+  document.getElementById('richEditor').innerHTML = editingArticle.content || '<p><br></p>';
+  renderFootnotes();
+  renderRefs();
+  onTypeChange();
+
+  document.getElementById('floatInfo').textContent = isNewArticle ? 'مقال جديد' : 'تعديل: ' + editingArticle.title;
+}
+
+function closeEditor() {
+  if (!confirm('هل تريد إغلاق المحرر؟ أي تغييرات غير محفوظة ستفقد.')) return;
+  editingArticle = null;
+  isNewArticle = false;
+  document.getElementById('editorView').style.display = 'none';
+  document.getElementById('listView').style.display = 'block';
+  document.getElementById('floatingSave').classList.remove('show');
+  renderList();
+}
+
+function onTypeChange() {
+  const type = document.getElementById('edType').value;
+  document.getElementById('journalSection').style.display = type === 'research' ? 'block' : 'none';
+}
+
+/* ============ المحرر الغني ============ */
+function execCmd(cmd) {
+  document.getElementById('richEditor').focus();
+  document.execCommand(cmd, false, null);
+}
+
+function ins(type) {
+  const editor = document.getElementById('richEditor');
+  editor.focus();
+  let html = '';
+  switch(type) {
+    case 'h2': html = '<h2>عنوان رئيسي جديد</h2><p><br></p>'; break;
+    case 'h3': html = '<h3>عنوان فرعي جديد</h3><p><br></p>'; break;
+    case 'p': html = '<p>فقرة جديدة</p>'; break;
+    case 'quote': html = '<blockquote>اقتباس نصي هنا</blockquote>'; break;
+    case 'quran': html = '<blockquote class="quran-box">﴿النص القرآني هنا﴾<span class="quran-src">السورة: الآية</span></blockquote><p><br></p>'; break;
+    case 'hadith': html = '<blockquote>«نص الرواية هنا»<br><span style="font-size:12px;color:#888">— المصدر</span></blockquote>'; break;
+    case 'table': html = '<table><thead><tr><th>العنوان 1</th><th>العنوان 2</th></tr></thead><tbody><tr><td>محتوى 1</td><td>محتوى 2</td></tr></tbody></table><p><br></p>'; break;
+    case 'image': {
+      const url = prompt('أدخل رابط الصورة:');
+      if (url) html = `<img src="${esc(url)}" alt="صورة"><p><br></p>`;
+      break;
+    }
+  }
+  if (html) document.execCommand('insertHTML', false, html);
+}
+
+function insertFootnote() {
+  const editor = document.getElementById('richEditor');
+  editor.focus();
+  const nextId = editingArticle.footnotes.length > 0 ? Math.max(...editingArticle.footnotes.map(f => f.id)) + 1 : 1;
+  const sup = `<sup class="fn-ref"><a href="#fn-${nextId}">[${nextId}]</a></sup>`;
+  document.execCommand('insertHTML', false, sup);
+  editingArticle.footnotes.push({ id: nextId, text: '' });
+  renderFootnotes();
+  toast('تمت إضافة الحاشية رقم ' + nextId + ' — اكتب نصها في القسم أدناه', 'success');
+}
+
+function renderFootnotes() {
+  const box = document.getElementById('footnotesList');
+  if (!editingArticle.footnotes || editingArticle.footnotes.length === 0) {
+    box.innerHTML = '<div style="font-size:12px;color:var(--muted);padding:10px">لا توجد حواشٍ. استخدم زر «حاشية» في شريط المحرر لإدراج حاشية.</div>';
+    return;
+  }
+  box.innerHTML = editingArticle.footnotes.map((fn, i) => `
+    <div class="footnote-row">
+      <div class="fn-num">${fn.id}</div>
+      <textarea placeholder="نص الحاشية (اسم المؤلف، الكتاب، الصفحة...)" onchange="updateFootnote(${i}, this.value)">${esc(fn.text)}</textarea>
+      <button class="btn-delete" onclick="removeFootnote(${i})">✕</button>
+    </div>
+  `).join('');
+}
+
+function updateFootnote(i, val) {
+  editingArticle.footnotes[i].text = val;
+}
+
+function removeFootnote(i) {
+  if (!confirm('حذف هذه الحاشية؟')) return;
+  editingArticle.footnotes.splice(i, 1);
+  renderFootnotes();
+}
+
+function addFootnoteManual() {
+  const nextId = editingArticle.footnotes.length > 0 ? Math.max(...editingArticle.footnotes.map(f => f.id)) + 1 : 1;
+  editingArticle.footnotes.push({ id: nextId, text: '' });
+  renderFootnotes();
+}
+
+/* ============ المراجع ============ */
+function renderRefs() {
+  const box = document.getElementById('refsList');
+  if (!editingArticle.references || editingArticle.references.length === 0) {
+    box.innerHTML = '<div style="font-size:12px;color:var(--muted);padding:10px">لا توجد مراجع. اضغط الزر أدناه لإضافة مرجع.</div>';
+    return;
+  }
+  box.innerHTML = editingArticle.references.map((r, i) => `
+    <div class="ref-row">
+      <button class="ref-del" onclick="removeRef(${i})">✕</button>
+      <input placeholder="المؤلف" value="${esc(r.author||'')}" onchange="updateRef(${i}, 'author', this.value)">
+      <input placeholder="العنوان" value="${esc(r.title||'')}" onchange="updateRef(${i}, 'title', this.value)">
+      <input placeholder="الناشر" value="${esc(r.publisher||'')}" onchange="updateRef(${i}, 'publisher', this.value)">
+      <input placeholder="المدينة" value="${esc(r.city||'')}" onchange="updateRef(${i}, 'city', this.value)">
+      <input placeholder="الطبعة" value="${esc(r.edition||'')}" onchange="updateRef(${i}, 'edition', this.value)">
+      <input placeholder="المجلد" value="${esc(r.volume||'')}" onchange="updateRef(${i}, 'volume', this.value)">
+      <input placeholder="الصفحة" value="${esc(r.page||'')}" onchange="updateRef(${i}, 'page', this.value)">
+      <input placeholder="السنة" value="${esc(r.year||'')}" onchange="updateRef(${i}, 'year', this.value)">
+    </div>
+  `).join('');
+}
+
+function updateRef(i, field, val) { editingArticle.references[i][field] = val; }
+function removeRef(i) { if (!confirm('حذف هذا المرجع؟')) return; editingArticle.references.splice(i, 1); renderRefs(); }
+function addReference() {
+  editingArticle.references.push({ author: '', title: '', publisher: '', city: '', edition: '', volume: '', page: '', year: '' });
+  renderRefs();
+}
+
+/* ============ Save ============ */
+function saveArticle() {
+  const title = document.getElementById('edTitle').value.trim();
+  if (!title) { toast('العنوان مطلوب', 'error'); return; }
+
+  const jName = document.getElementById('edJournalName').value.trim();
+  const journal = jName ? {
+    name: jName,
+    volume: document.getElementById('edJournalVolume').value.trim(),
+    issue: document.getElementById('edJournalIssue').value.trim(),
+    pages: document.getElementById('edJournalPages').value.trim(),
+    doi: document.getElementById('edJournalDoi').value.trim()
+  } : null;
+
+  const updated = {
+    id: editingArticle.id,
+    type: document.getElementById('edType').value,
+    title: title,
+    authorId: document.getElementById('edAuthor').value,
+    category: document.getElementById('edCategory').value,
+    summary: document.getElementById('edSummary').value.trim(),
+    keywords: document.getElementById('edKeywords').value.split(',').map(k => k.trim()).filter(Boolean),
+    publishedAt: document.getElementById('edPublished').value || new Date().toISOString().slice(0, 10),
+    updatedAt: new Date().toISOString().slice(0, 10),
+    status: document.getElementById('edStatus').value,
+    featured: document.getElementById('edFeatured').value === 'true',
+    views: editingArticle.views || 0,
+    coverImage: document.getElementById('edCover').value.trim(),
+    content: document.getElementById('richEditor').innerHTML,
+    footnotes: editingArticle.footnotes || [],
+    references: editingArticle.references || [],
+    journal: journal,
+    attachments: editingArticle.attachments || []
+  };
+
+  if (isNewArticle) {
+    ARTICLES.unshift(updated);
+    isNewArticle = false;
+  } else {
+    const idx = ARTICLES.findIndex(a => a.id === updated.id);
+    if (idx > -1) ARTICLES[idx] = updated;
+  }
+
+  editingArticle = updated;
+  toast('تم الحفظ. لا تنسَ النشر إلى GitHub.', 'success');
+  document.getElementById('editorTitle').textContent = 'تعديل: ' + updated.title;
+}
+
+function previewArticle() {
+  saveArticle();
+  window.open('articles.html#/article/' + editingArticle.id, '_blank');
+}
+
+/* ============ Toggle / Delete ============ */
+function toggleStatus(id) {
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) return;
+  a.status = a.status === 'draft' ? 'published' : 'draft';
+  renderList();
+  toast(a.status === 'draft' ? 'نُقل إلى المسودات' : 'تم النشر', 'success');
+}
+
+function toggleFeatured(id) {
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) return;
+  a.featured = !a.featured;
+  renderList();
+  toast(a.featured ? 'أصبح مميزاً' : 'أُلغي التمييز', 'success');
+}
+
+function deleteArticle(id) {
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) return;
+  if (!confirm('حذف نهائي للمقال/البحث:\n\n«' + a.title + '»؟')) return;
+  ARTICLES = ARTICLES.filter(x => x.id !== id);
+  renderList();
+  toast('تم الحذف', 'warn');
+}
+
+/* ============ Import / Export ============ */
+function exportJson() {
+  const blob = new Blob([JSON.stringify({ items: ARTICLES }, null, 2)], {type: 'application/json;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'articles.json';
+  a.click();
+  toast('تم تصدير articles.json', 'success');
+}
+
+function importJson(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      const items = Array.isArray(data) ? data : (data.items || []);
+      if (!Array.isArray(items)) throw new Error('صيغة غير صحيحة');
+      if (!confirm(`استيراد ${items.length} مقال/بحث؟ سيتم استبدال القائمة الحالية.`)) return;
+      ARTICLES = items;
+      renderList();
+      toast('تم الاستيراد', 'success');
+    } catch(err) {
+      alert('فشل: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+/* ============ Modals ============ */
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+/* ============ Authors ============ */
+function openAuthorsModal() {
+  renderAuthorsModal();
+  openModal('authorsModal');
+}
+
+function renderAuthorsModal() {
+  const box = document.getElementById('authorsList');
+  if (ARTICLE_AUTHORS.length === 0) {
+    box.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:10px">لا يوجد كتاب بعد.</div>';
+    return;
+  }
+  box.innerHTML = ARTICLE_AUTHORS.map((a, i) => `
+    <div class="article-item" style="margin-bottom:6px">
+      <div class="article-title-row">
+        <div class="article-title">${esc(a.name)} <span style="font-size:11px;color:var(--muted);font-weight:400">(${esc(a.role||'')})</span></div>
+        <span class="article-id">${esc(a.id)}</span>
+      </div>
+      ${a.bio ? `<div style="font-size:11px;color:var(--muted);margin-bottom:6px">${esc(a.bio)}</div>` : ''}
+      <div class="article-actions">
+        <button class="btn btn-outline btn-sm" onclick="editAuthorPrompt(${i})">✏️ تعديل</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteAuthor(${i})">🗑 حذف</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addAuthor() {
+  const name = document.getElementById('newAuthName').value.trim();
+  const short = document.getElementById('newAuthShort').value.trim() || name;
+  const role = document.getElementById('newAuthRole').value;
+  const bio = document.getElementById('newAuthBio').value.trim();
+  const image = document.getElementById('newAuthImage').value.trim();
+  if (!name) { toast('الاسم مطلوب', 'error'); return; }
+  const id = 'auth-' + Date.now();
+  ARTICLE_AUTHORS.push({ id, name, short, role, bio, image });
+  document.getElementById('newAuthName').value = '';
+  document.getElementById('newAuthShort').value = '';
+  document.getElementById('newAuthBio').value = '';
+  document.getElementById('newAuthImage').value = '';
+  renderAuthorsModal();
+  toast('تمت إضافة الكاتب', 'success');
+}
+
+function editAuthorPrompt(i) {
+  const a = ARTICLE_AUTHORS[i];
+  const newName = prompt('الاسم الكامل:', a.name);
+  if (newName === null) return;
+  const newBio = prompt('النبذة:', a.bio || '');
+  if (newBio === null) return;
+  a.name = newName.trim() || a.name;
+  a.short = newName.trim() || a.short;
+  a.bio = newBio.trim();
+  renderAuthorsModal();
+  toast('تم التعديل', 'success');
+}
+
+function deleteAuthor(i) {
+  if (!confirm('حذف هذا الكاتب؟ (لن تُحذف مقالاته)')) return;
+  ARTICLE_AUTHORS.splice(i, 1);
+  renderAuthorsModal();
+}
+
+/* ============ Categories ============ */
+function openCategoriesModal() {
+  renderCategoriesModal();
+  openModal('categoriesModal');
+}
+
+function renderCategoriesModal() {
+  const box = document.getElementById('categoriesList');
+  if (ARTICLE_CATS.length === 0) {
+    box.innerHTML = '<div style="color:var(--muted);font-size:12px;padding:10px">لا توجد تصنيفات.</div>';
+    return;
+  }
+  box.innerHTML = ARTICLE_CATS.map((c, i) => `
+    <div class="article-item" style="margin-bottom:6px">
+      <div class="article-title-row">
+        <div class="article-title">${esc(c.name)}</div>
+        <span class="article-id">${esc(c.id)}</span>
+      </div>
+      <div class="article-actions">
+        <button class="btn btn-outline btn-sm" onclick="editCategoryPrompt(${i})">✏️ تعديل</button>
+        ${c.id === 'other' ? '' : `<button class="btn btn-danger btn-sm" onclick="deleteCategory(${i})">🗑 حذف</button>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+function addCategory() {
+  const name = document.getElementById('newCatName').value.trim();
+  const id = document.getElementById('newCatId').value.trim().toLowerCase();
+  if (!name || !id) { toast('الاسم والمعرّف مطلوبان', 'error'); return; }
+  if (!/^[a-z0-9-]+$/.test(id)) { toast('المعرّف بحروف إنجليزية صغيرة وأرقام فقط', 'error'); return; }
+  if (ARTICLE_CATS.find(c => c.id === id)) { toast('المعرّف مستخدم', 'error'); return; }
+  ARTICLE_CATS.push({ id, name });
+  document.getElementById('newCatName').value = '';
+  document.getElementById('newCatId').value = '';
+  renderCategoriesModal();
+  populateFilters();
+  toast('تمت إضافة التصنيف', 'success');
+}
+
+function editCategoryPrompt(i) {
+  const c = ARTICLE_CATS[i];
+  const newName = prompt('اسم التصنيف:', c.name);
+  if (newName === null) return;
+  c.name = newName.trim() || c.name;
+  renderCategoriesModal();
+  populateFilters();
+  toast('تم التعديل', 'success');
+}
+
+function deleteCategory(i) {
+  if (!confirm('حذف هذا التصنيف؟ المقالات المرتبطة به ستنقل إلى "أخرى".')) return;
+  const removedId = ARTICLE_CATS[i].id;
+  ARTICLE_CATS.splice(i, 1);
+  ARTICLES.forEach(a => { if (a.category === removedId) a.category = 'other'; });
+  renderCategoriesModal();
+  populateFilters();
+  renderList();
+}
+
+/* ============ Publish ============ */
+function openPublishModal() {
+  const s = getGithubSettings();
+  const status = document.getElementById('publishStatus');
+  if (s.token && s.owner && s.repo) {
+    status.innerHTML = `<div style="background:#d4edda;color:#155724;padding:10px 14px;border-radius:6px;font-size:13px;font-weight:700">✓ الإعدادات محفوظة: <br><small style="font-weight:400">المستودع: ${s.owner}/${s.repo} — الفرع: ${s.branch || 'main'}</small></div>`;
+  } else {
+    status.innerHTML = `<div style="background:#f8d7da;color:#721c24;padding:10px 14px;border-radius:6px;font-size:13px;font-weight:700">⚠ لم يتم إعداد رمز GitHub. افتح لوحة التحكم الرئيسية (admin.html) وأدخل الرمز أولاً.</div>`;
+  }
+  document.getElementById('publishResult').innerHTML = '';
+  openModal('publishModal');
+}
+
+function toBase64UTF8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+
+async function publishFile(fileName, data) {
+  const s = getGithubSettings();
+  const apiUrl = `https://api.github.com/repos/${s.owner}/${s.repo}/contents/${fileName}`;
+  const headers = { 'Authorization': `token ${s.token}`, 'Accept': 'application/vnd.github.v3+json' };
+  let sha = null;
+  try {
+    const r = await fetch(`${apiUrl}?ref=${s.branch || 'main'}`, { headers });
+    if (r.ok) sha = (await r.json()).sha;
+  } catch(e) {}
+  const body = { message: `تحديث ${fileName} — ${new Date().toLocaleString('ar-EG')}`, content: toBase64UTF8(JSON.stringify(data, null, 2)), branch: s.branch || 'main' };
+  if (sha) body.sha = sha;
+  const put = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
+  if (!put.ok) {
+    const err = await put.json().catch(()=>({}));
+    throw new Error(err.message || 'HTTP ' + put.status);
+  }
+}
+
+async function doPublish() {
+  const s = getGithubSettings();
+  if (!s.token || !s.owner || !s.repo) { toast('أدخل رمز GitHub في لوحة التحكم أولاً', 'error'); return; }
+  const btn = document.querySelector('#publishModal .btn-primary');
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = 'جارٍ النشر...';
+  const res = document.getElementById('publishResult');
+  try {
+    res.innerHTML = 'جارٍ رفع articles.json...';
+    await publishFile('articles.json', { items: ARTICLES });
+    res.innerHTML += '<br>جارٍ رفع article-categories.json...';
+    await publishFile('article-categories.json', { items: ARTICLE_CATS });
+    res.innerHTML += '<br>جارٍ رفع article-authors.json...';
+    await publishFile('article-authors.json', { items: ARTICLE_AUTHORS });
+    res.innerHTML = '<div style="background:#d4edda;color:#155724;padding:10px 14px;border-radius:6px;font-weight:700">✅ تم النشر بنجاح! سيظهر المحتوى خلال 30-90 ثانية بعد تحديث Cloudflare.</div>';
+    toast('تم النشر بنجاح', 'success');
+  } catch(e) {
+    res.innerHTML = `<div style="background:#f8d7da;color:#721c24;padding:10px 14px;border-radius:6px;font-weight:700">❌ فشل النشر: ${esc(e.message)}</div>`;
+    toast('فشل النشر', 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = orig;
+  }
+}
+
+/* ============ Init ============ */
+window.addEventListener('DOMContentLoaded', loadAll);
+</script>
+</body>
+</html>
