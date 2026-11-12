@@ -12,7 +12,7 @@
   --line:#e5ddd0;--line-2:#f0ebe2;
   --primary:#343a40;--primary-dark:#212529;
   --accent:#d4af37;--accent-light:#f8e7b9;
-  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;--gold:#b8860b;
+  --green:#4a6b4a;--blue:#4a5c78;--red:#8b3a3a;--orange:#b8703a;
   --radius:10px;--radius-lg:14px;
   --shadow-sm:0 1px 3px rgba(33,37,41,.06);
   --shadow:0 4px 14px rgba(33,37,41,.08);
@@ -61,28 +61,11 @@ input,select,textarea{font-family:inherit}
 .ff.full{grid-column:1/-1}
 .ff .hint{font-size:11px;color:var(--muted);margin-top:2px}
 .form-actions{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px}
-.stat-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px 8px;text-align:center}
-.stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
-.stat-box span{font-size:11px;color:var(--muted)}
-.health-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px}
-.health-panel h3{font-size:14px;color:var(--primary-dark);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.check{margin-bottom:6px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.check.ok{color:var(--green)}.check.warn{color:var(--orange)}.check.error{color:var(--red)}
-.cat-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:10px}
-.cat-count{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:6px}
-.cat-count .cnt{font-weight:800;color:var(--primary);font-size:13px;background:var(--paper);padding:1px 7px;border-radius:9px}
-.smart-btn{margin-top:10px;width:100%;padding:9px;background:#fff3cd;color:#856404;border:1px dashed #d4a017;border-radius:6px;font-weight:700;font-size:12.5px;cursor:pointer;transition:all var(--tr)}
-.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
-.filters input:focus,.filters select:focus{border-color:var(--primary)}
-@media(max-width:700px){.filters{grid-template-columns:1fr}}
 .book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
 .book-item:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
 .book-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
-.book-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word;cursor:pointer;flex:1}
-.book-id{font-size:10px;color:var(--muted);font-family:monospace;direction:ltr;background:var(--paper-2);padding:2px 6px;border-radius:5px;flex-shrink:0}
+.book-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;word-break:break-word;flex:1}
 .book-meta{font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
 .book-meta .tag{display:inline-flex;align-items:center;gap:3px;background:var(--paper-2);padding:2px 8px;border-radius:9px;line-height:1.6}
 .book-meta .tag.cat{color:var(--primary);font-weight:700;background:#f5ede0}
@@ -92,7 +75,7 @@ input,select,textarea{font-family:inherit}
 .book-delete:hover{background:var(--red);color:#fff}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
 .modal-overlay.open{display:flex}
-.modal{background:var(--paper);border-radius:var(--radius-lg);width:min(600px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
+.modal{background:var(--paper);border-radius:var(--radius-lg);width:min(700px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);overflow:hidden}
 .modal-head{padding:14px 18px;background:var(--primary-dark);color:#fff;display:flex;justify-content:space-between;align-items:center}
 .modal-head h3{font-size:16px}
 .modal-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:16px;display:grid;place-items:center}
@@ -103,11 +86,16 @@ input,select,textarea{font-family:inherit}
 .toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--primary-dark);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .3s;z-index:200;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.success{background:var(--green)}.toast.error{background:var(--red)}.toast.warn{background:var(--orange)}
-.cover-preview{width:40px;height:54px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:var(--paper-2);flex-shrink:0;margin-left:6px}
-.cover-preview-ph{width:40px;height:54px;border-radius:4px;border:1px dashed var(--line);display:grid;place-items:center;font-size:16px;color:var(--muted);flex-shrink:0;margin-left:6px}
 .token-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:9px;font-weight:700}
 .token-status.ok{background:#d4edda;color:#155724}
 .token-status.missing{background:#f8d7da;color:#721c24}
+.list-edit-box{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}
+.media-item-row{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 8px;background:var(--paper);border:1px solid var(--line-2);border-radius:6px;margin-bottom:4px;font-size:12px}
+.media-item-row .mi-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+.media-item-row .mi-speaker{font-size:10px;color:var(--muted);margin-right:4px}
+.media-item-actions{display:flex;gap:3px}
+.mini-btn{width:24px;height:24px;border-radius:4px;display:grid;place-items:center;font-size:11px;background:var(--paper);border:1px solid var(--line);cursor:pointer}
+.mini-btn:hover{background:var(--accent);color:#212529}
 </style>
 </head>
 <body>
@@ -129,13 +117,9 @@ input,select,textarea{font-family:inherit}
   <div id="publishBanner" class="publish-banner" style="display:none"></div>
 
   <div class="top-actions">
-    <button class="btn btn-primary" onclick="toggleAddForm()">➕ إضافة كتاب جديد</button>
     <button class="btn btn-publish" id="publishAllBtn" onclick="publishAll()">🚀 نشر الكل إلى GitHub</button>
     <button class="btn btn-success" onclick="exportBooks()">💾 تصدير books.json</button>
-    <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
-    <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
-    <label class="btn btn-outline">📁 استيراد books.json<input type="file" accept=".json" onchange="importBooks(event)" style="display:none"></label>
-    <label class="btn btn-outline">📁 استيراد series.json<input type="file" accept=".json" onchange="importSeries(event)" style="display:none"></label>
+    <button class="btn btn-warning" onclick="exportMedia()">📁 تصدير videos + audios + lists</button>
   </div>
 
   <div class="section-toggle" id="ghToggle" onclick="toggleSection('gh')">
@@ -143,7 +127,6 @@ input,select,textarea{font-family:inherit}
     <span class="arrow">▼</span>
   </div>
   <div class="section-content" id="ghContent">
-    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">أدخل رمز GitHub لتفعيل النشر بضغطة زر.</p>
     <div class="form-grid">
       <div class="ff"><label>صاحب المستودع</label><input type="text" id="gh-owner" value="alaqeela14"></div>
       <div class="ff"><label>اسم المستودع</label><input type="text" id="gh-repo" value="alshirazi-library"></div>
@@ -166,7 +149,7 @@ input,select,textarea{font-family:inherit}
     <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
       <button class="btn btn-primary" id="tabVideoBtn" onclick="switchMediaTab('video')">المرئية</button>
       <button class="btn btn-outline" id="tabAudioBtn" onclick="switchMediaTab('audio')">الصوتية</button>
-      <button class="btn btn-warning" onclick="openListsManager()">📁 إدارة القوائم (السلاسل)</button>
+      <button class="btn btn-warning" onclick="openListsManager()">📁 إدارة القوائم والسلاسل</button>
     </div>
 
     <div class="add-form open" style="border:2px solid var(--green); margin-bottom:15px;">
@@ -174,7 +157,7 @@ input,select,textarea{font-family:inherit}
       <div class="form-grid">
         <div class="ff full"><label>العنوان *</label><input type="text" id="med-title" placeholder="مثال: 1- أهمية الإصلاح"></div>
         <div class="ff full"><label>الرابط (URL) *</label><input type="url" id="med-url" placeholder="https://youtu.be/..."></div>
-        <div class="ff"><label>المتحدث / المؤلف</label><select id="med-speaker"></select></div>
+        <div class="ff"><label>المتحدث / المؤلف</label><input type="text" id="med-speaker" placeholder="مثال: السيد مهدي الحسيني الشيرازي"></div>
         <div class="ff"><label>القائمة (Topic)</label><select id="med-topic" onchange="updateSubtopicDropdown()"></select></div>
         <div class="ff"><label>القائمة الفرعية (Subtopic)</label><select id="med-subtopic"></select></div>
       </div>
@@ -187,59 +170,10 @@ input,select,textarea{font-family:inherit}
     <div class="book-list" id="mediaListBox"></div>
   </div>
 
-  <div class="section-toggle" id="catToggle" onclick="toggleSection('cat')">
-    <h3>🏷️ إدارة التصنيفات (<span id="categoriesCountLabel">0</span>)</h3>
-    <span class="arrow">▼</span>
+  <div class="filters" style="margin-top:20px;">
+    <input type="search" id="searchInput" placeholder="🔍 ابحث في الكتب..." oninput="renderBookList()">
   </div>
-  <div class="section-content" id="catContent">
-    <div class="add-form open" style="border:2px solid var(--green);margin-bottom:14px">
-      <h3 style="color:var(--green)">➕ إضافة تصنيف جديد</h3>
-      <div class="form-grid">
-        <div class="ff"><label>اسم التصنيف *</label><input type="text" id="new-cat-name-input" placeholder="مثال: أدعية وأذكار"></div>
-        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-cat-id-input" placeholder="dua-azkar"></div>
-      </div>
-      <div class="form-actions">
-        <button class="btn btn-primary" onclick="addNewCategory()">➕ إضافة</button>
-      </div>
-    </div>
-    <div class="series-list" id="categoriesList"></div>
-  </div>
-
-  <div class="section-toggle" id="seriesToggle" onclick="toggleSection('series')">
-    <h3>📚 إدارة الموسوعات (<span id="seriesCountLabel">0</span>)</h3>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="section-content" id="seriesContent">
-    <div class="add-form open" style="border:2px solid var(--blue);margin-bottom:14px">
-      <h3 style="color:var(--blue)">➕ إضافة موسوعة جديدة</h3>
-      <div class="form-grid">
-        <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name"></div>
-        <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-series-id"></div>
-        <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
-        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="new-series-cover"></div>
-        <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc"></textarea></div>
-      </div>
-      <div class="form-actions">
-        <button class="btn btn-primary" onclick="addNewSeries()">➕ إضافة</button>
-      </div>
-    </div>
-    <div class="series-list" id="seriesList"></div>
-  </div>
-
-  <div class="filters">
-    <input type="search" id="searchInput" placeholder="🔍 ابحث..." oninput="debouncedRender()">
-    <select id="filterCat" onchange="resetPagination(); renderBookList()"><option value="">كل التصنيفات</option></select>
-    <select id="filterIssue" onchange="resetPagination(); renderBookList()">
-      <option value="">كل الكتب</option>
-      <option value="dup">🔁 المكررة فقط</option>
-      <option value="missing-cover">🖼️ بلا غلاف</option>
-    </select>
-  </div>
-
   <div class="book-list" id="bookList"></div>
-  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
-    <button class="load-more-btn" onclick="loadMore()">عرض المزيد</button>
-  </div>
 
 </main>
 
@@ -251,37 +185,12 @@ input,select,textarea{font-family:inherit}
   </div>
 </footer>
 
-<div class="modal-overlay" id="editModal">
-  <div class="modal">
-    <div class="modal-head"><h3>✏️ تعديل الكتاب</h3><button class="modal-close" onclick="closeEdit()">✕</button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
-        <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="edit-title"></div>
-        <div class="ff"><label>المؤلف</label><select id="edit-author"></select></div>
-        <div class="ff"><label>الموسوعة</label><select id="edit-series"></select></div>
-        <div class="ff"><label>السنة</label><input type="number" id="edit-year"></div>
-        <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
-        <div class="ff full"><label>التصنيفات * (يمكن اختيار أكثر من واحد)</label><div id="edit-cats-checkboxes" class="cat-checkboxes"></div></div>
-        <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-cover"></div>
-        <div class="ff full"><label>رابط PDF</label><input type="url" id="edit-pdf"></div>
-        <div class="ff full"><label>رابط Word</label><input type="url" id="edit-word"></div>
-        <div class="ff full"><label>وصف الكتاب</label><textarea id="edit-desc"></textarea></div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-outline" onclick="closeEdit()">إلغاء</button>
-      <button class="btn btn-primary" onclick="saveEdit()">💾 حفظ</button>
-    </div>
-  </div>
-</div>
-
 <div class="modal-overlay" id="listsModal">
   <div class="modal">
-    <div class="modal-head"><h3>📁 إدارة القوائم (السلاسل)</h3><button class="modal-close" onclick="closeListsManager()">✕</button></div>
+    <div class="modal-head"><h3>📁 إدارة القوائم والسلاسل</h3><button class="modal-close" onclick="closeListsManager()">✕</button></div>
     <div class="modal-body">
       <div style="display:flex; gap:8px; margin-bottom:15px;">
-        <input type="text" id="newTopicName" placeholder="اسم القائمة الرئيسية (مثال: الإصلاح الاجتماعي)" style="flex:1; padding:8px; border:1px solid var(--line); border-radius:6px;">
+        <input type="text" id="newTopicName" placeholder="اسم القائمة الرئيسية الجديدة (مثال: الإصلاح الاجتماعي)" style="flex:1; padding:8px; border:1px solid var(--line); border-radius:6px;">
         <button class="btn btn-primary" onclick="addMediaTopic()">إضافة قائمة</button>
       </div>
       <div id="listsManagerBody"></div>
@@ -307,20 +216,10 @@ const AUTHORS = [
 
 let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [];
 let MEDIA_LISTS = { video: [], audio: [] };
-let hasDraft = false;
-let editingId = null, editingSeriesId = null, editingCategoryId = null;
 let currentMediaTab = 'video', editingMediaIndex = -1;
-let shownCount = 50;
-const PAGE_SIZE = 50;
 const GH_KEY = 'admin_github_settings_v1';
-let searchTimer = null;
 
 const esc = s => String(s||"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const getCatName = id => (CATS.find(c=>c.id===id)||{}).name || 'غير مصنّف';
-const getAuthName = id => (AUTHORS.find(a=>a.id===id)||{}).name || 'غير معروف';
-const getSeriesName = id => id ? ((SERIES.find(s=>s.id===id)||{}).name || id) : '';
-const countBooksInSeries = sid => BOOKS.filter(b => b.series === sid).length;
-const countBooksInCat = cid => BOOKS.filter(b => (b.categories||[b.category]).includes(cid)).length;
 
 function toast(msg, type='info'){
   const t = document.getElementById('toast');
@@ -330,15 +229,6 @@ function toast(msg, type='info'){
   t._timer = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-function showPublishBanner(msg, isError){
-  const b = document.getElementById('publishBanner');
-  b.textContent = msg;
-  b.className = 'publish-banner' + (isError ? ' error' : '');
-  b.style.display = 'flex';
-  setTimeout(() => { b.style.display = 'none'; }, 8000);
-}
-
-/* ========== إعدادات GitHub ========== */
 function getGitHubSettings(){ try { return JSON.parse(localStorage.getItem(GH_KEY) || '{}'); } catch(e) { return {}; } }
 function saveGitHubSettings(){
   const owner = document.getElementById('gh-owner').value.trim();
@@ -369,7 +259,6 @@ async function testGitHub(){
   } catch(e) { result.innerHTML = 'فشل: ' + e.message; result.style.color = 'var(--red)'; }
 }
 
-/* ========== النشر ========== */
 function toBase64UTF8(str) {
   const bytes = new TextEncoder().encode(str);
   let binary = '';
@@ -394,107 +283,79 @@ async function publishFileToGitHub(fileName, data){
 }
 async function publishAll(){
   const s = getGitHubSettings();
-  if (!s.token) { showPublishBanner('يجب إعداد رمز GitHub أولاً.', true); return; }
+  if (!s.token) { alert('يجب إعداد رمز GitHub أولاً.'); return; }
   const btn = document.getElementById('publishAllBtn');
   btn.disabled = true; btn.textContent = 'جارٍ النشر...';
-  showPublishBanner('جارٍ نشر 6 ملفات إلى GitHub...', false);
   try {
-    await publishFileToGitHub('books.json', { items: BOOKS.map(cleanObj) });
-    await publishFileToGitHub('series.json', { items: SERIES.map(cleanObj) });
-    await publishFileToGitHub('categories.json', CATS.map(cleanObj));
     await publishFileToGitHub('videos.json', { items: VIDEOS.map(cleanObj) });
     await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
     await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
-    showPublishBanner('تم النشر بنجاح! Cloudflare ستنشر الموقع خلال 30-90 ثانية.', false);
+    alert('تم النشر بنجاح!');
     toast('تم النشر', 'success');
-    hasDraft = false; document.getElementById('draftBanner').style.display = 'none';
   } catch(e) {
-    showPublishBanner('فشل النشر: ' + e.message, true);
+    alert('فشل النشر: ' + e.message);
   } finally {
     btn.disabled = false; btn.textContent = '🚀 نشر الكل إلى GitHub';
   }
 }
 
-/* ========== التحميل ========== */
 async function loadData(){
   try {
-    const resC = await fetch('categories.json?t=' + Date.now()); if(resC.ok) CATS = await resC.json();
-    const resS = await fetch('series.json?t=' + Date.now()); if(resS.ok) SERIES = (await resS.json()).items || (await resS.json());
     const resB = await fetch('books.json?t=' + Date.now()); if(resB.ok) BOOKS = (await resB.json()).items || [];
     const resV = await fetch('videos.json?t=' + Date.now()); if(resV.ok) VIDEOS = (await resV.json()).items || [];
     const resA = await fetch('audios.json?t=' + Date.now()); if(resA.ok) AUDIOS = (await resA.json()).items || [];
     const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
+    // ملء القوائم تلقائياً من العناصر الموجودة
+    autoPopulateListsFromItems();
   } catch(e) { console.error(e); }
+}
+
+function autoPopulateListsFromItems(){
+  ['video', 'audio'].forEach(type => {
+    if (!MEDIA_LISTS[type]) MEDIA_LISTS[type] = [];
+    const items = type === 'video' ? VIDEOS : AUDIOS;
+    const topics = new Set(items.map(i => i.topic).filter(Boolean));
+    topics.forEach(topicName => {
+      if (!MEDIA_LISTS[type].find(l => l.name === topicName)) {
+        MEDIA_LISTS[type].push({ name: topicName, subs: [] });
+      }
+    });
+    // إضافة القوائم الفرعية
+    items.forEach(item => {
+      if (!item.topic || !item.subtopic) return;
+      const list = MEDIA_LISTS[type].find(l => l.name === item.topic);
+      if (list && !list.subs.find(s => s.name === item.subtopic)) {
+        list.subs.push({ name: item.subtopic });
+      }
+    });
+  });
 }
 
 async function init(){
   await loadData();
-  populateSelects();
   updateTokenBadge();
-  render();
   switchMediaTab('video');
-}
-
-function populateSelects(){
-  const authorOpts = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
-  document.getElementById('new-author').innerHTML = authorOpts;
-  document.getElementById('new-series-author').innerHTML = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
-}
-
-function render(){
-  renderStats(); renderHealth(); renderBookList(); renderCategoriesList(); renderSeriesList();
-  document.getElementById('footerInfo').textContent = `${BOOKS.length} كتاب | ${VIDEOS.length} فيديو | ${AUDIOS.length} صوتية`;
-}
-
-function renderStats(){
-  document.getElementById('statsBar').innerHTML = `
-    <div class="stat-box"><strong>${BOOKS.length}</strong><span>كتاب</span></div>
-    <div class="stat-box"><strong>${CATS.length}</strong><span>تصنيف</span></div>
-    <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
-    <div class="stat-box"><strong>${VIDEOS.length + AUDIOS.length}</strong><span>وسائط</span></div>
-  `;
-}
-
-function renderHealth(){
-  let html = '<h3>الفحص الصحي</h3>';
-  html += `<div class="check ok">تم تحميل البيانات بنجاح</div>`;
-  document.getElementById('healthPanel').innerHTML = html;
+  renderBookList();
+  document.getElementById('footerInfo').textContent = `${VIDEOS.length} فيديو | ${AUDIOS.length} صوتية | ${BOOKS.length} كتاب`;
 }
 
 function renderBookList(){
   const box = document.getElementById('bookList');
-  const list = BOOKS.slice(0, 50);
+  const q = (document.getElementById('searchInput').value||'').toLowerCase();
+  const list = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q)).slice(0, 50);
   if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب.</div>'; return; }
   box.innerHTML = list.map(b => `
     <div class="book-item">
       <div class="book-title-row"><div class="book-title">${esc(b.title)}</div></div>
-      <div class="book-meta"><span class="tag">${esc(getAuthName(b.author))}</span></div>
-      <div class="book-controls">
-        <div></div>
-        <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
-        <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
-      </div>
     </div>
   `).join('');
 }
 
-function renderCategoriesList(){
-  document.getElementById('categoriesCountLabel').textContent = CATS.length;
-  document.getElementById('categoriesList').innerHTML = CATS.map(c => `
-    <div class="book-item"><div class="book-title">${esc(c.name)} (${c.id})</div></div>
-  `).join('');
+function toggleSection(id){
+  document.getElementById(id+'Toggle').classList.toggle('open');
+  document.getElementById(id+'Content').classList.toggle('open');
 }
 
-function renderSeriesList(){
-  document.getElementById('seriesCountLabel').textContent = SERIES.length;
-  document.getElementById('seriesList').innerHTML = SERIES.map(s => `
-    <div class="book-item"><div class="book-title">${esc(s.name)} (${s.id})</div></div>
-  `).join('');
-}
-
-function toggleSection(id){ document.getElementById(id+'Toggle').classList.toggle('open'); document.getElementById(id+'Content').classList.toggle('open'); }
-
-/* ========== إدارة الوسائط ========== */
 function switchMediaTab(tab){
   currentMediaTab = tab;
   document.getElementById('tabVideoBtn').className = tab === 'video' ? 'btn btn-primary' : 'btn btn-outline';
@@ -504,8 +365,6 @@ function switchMediaTab(tab){
 }
 
 function populateMediaDropdowns(){
-  const speakerSelect = document.getElementById('med-speaker');
-  speakerSelect.innerHTML = AUTHORS.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
   const lists = MEDIA_LISTS[currentMediaTab] || [];
   document.getElementById('med-topic').innerHTML = `<option value="">— بدون —</option>` + lists.map(l => `<option value="${esc(l.name)}">${esc(l.name)}</option>`).join('');
   updateSubtopicDropdown();
@@ -515,11 +374,11 @@ function updateSubtopicDropdown(){
   const topicName = document.getElementById('med-topic').value;
   const lists = MEDIA_LISTS[currentMediaTab] || [];
   const topic = lists.find(l => l.name === topicName);
-  const subtopicSelect = document.getElementById('med-subtopic');
+  const subSelect = document.getElementById('med-subtopic');
   if (topic && topic.subs) {
-    subtopicSelect.innerHTML = `<option value="">— بدون —</option>` + topic.subs.map(s => `<option value="${esc(s.name)}">${esc(s.name)}</option>`).join('');
+    subSelect.innerHTML = `<option value="">— بدون —</option>` + topic.subs.map(s => `<option value="${esc(s.name)}">${esc(s.name)}</option>`).join('');
   } else {
-    subtopicSelect.innerHTML = `<option value="">— بدون —</option>`;
+    subSelect.innerHTML = `<option value="">— بدون —</option>`;
   }
 }
 
@@ -535,10 +394,12 @@ function renderMediaList(){
         ${item.topic ? `<span class="tag cat">${esc(item.topic)}</span>` : ''}
         ${item.subtopic ? `<span class="tag series">↳ ${esc(item.subtopic)}</span>` : ''}
       </div>
-      <div class="book-controls">
+      <div class="book-controls" style="grid-template-columns:1fr auto;">
         <div></div>
-        <button class="btn btn-outline btn-icon" onclick="editMediaItem(${idx})">✏️</button>
-        <button class="book-delete" onclick="deleteMediaItem(${idx})">🗑️</button>
+        <div style="display:flex;gap:4px;">
+          <button class="btn btn-outline btn-icon" onclick="editMediaItem(${idx})">✏️</button>
+          <button class="book-delete" onclick="deleteMediaItem(${idx})">🗑️</button>
+        </div>
       </div>
     </div>
   `).join('');
@@ -547,6 +408,7 @@ function renderMediaList(){
 function clearMediaForm(){
   document.getElementById('med-title').value = '';
   document.getElementById('med-url').value = '';
+  document.getElementById('med-speaker').value = '';
   editingMediaIndex = -1;
 }
 
@@ -556,18 +418,20 @@ function addMediaItem(){
   if (!title || !url) return alert('العنوان والرابط مطلوبان');
   const item = {
     title, url,
-    speaker: document.getElementById('med-speaker').value,
+    speaker: document.getElementById('med-speaker').value.trim(),
     topic: document.getElementById('med-topic').value,
     subtopic: document.getElementById('med-subtopic').value
   };
   if (editingMediaIndex > -1) {
     if (currentMediaTab === 'video') VIDEOS[editingMediaIndex] = item;
     else AUDIOS[editingMediaIndex] = item;
+    toast('تم التعديل', 'success');
   } else {
     if (currentMediaTab === 'video') VIDEOS.unshift(item);
     else AUDIOS.unshift(item);
+    toast('تمت الإضافة', 'success');
   }
-  saveMediaDraft();
+  autoPopulateListsFromItems();
   renderMediaList();
   clearMediaForm();
 }
@@ -588,10 +452,9 @@ function deleteMediaItem(idx){
   if (!confirm('حذف العنصر؟')) return;
   if (currentMediaTab === 'video') VIDEOS.splice(idx, 1);
   else AUDIOS.splice(idx, 1);
-  saveMediaDraft(); renderMediaList();
+  renderMediaList();
 }
 
-/* ========== إدارة القوائم ========== */
 function openListsManager(){
   document.getElementById('listsModal').classList.add('open');
   renderListsManager();
@@ -601,59 +464,101 @@ function closeListsManager(){
 }
 function renderListsManager(){
   const lists = MEDIA_LISTS[currentMediaTab] || [];
+  const items = currentMediaTab === 'video' ? VIDEOS : AUDIOS;
   const box = document.getElementById('listsManagerBody');
-  box.innerHTML = lists.map((l, i) => `
-    <div style="background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:10px; margin-bottom:10px;">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <strong>${esc(l.name)}</strong>
+  if (lists.length === 0) {
+    box.innerHTML = '<div class="empty">لا توجد قوائم. أضف قائمة جديدة من الأعلى.</div>';
+    return;
+  }
+  box.innerHTML = lists.map((l, i) => {
+    const listItems = items.filter(it => it.topic === l.name);
+    return `
+    <div class="list-edit-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <strong>${esc(l.name)} (${listItems.length} عنصر)</strong>
         <button class="book-delete" style="width:28px;height:28px;" onclick="deleteMediaTopic(${i})">🗑️</button>
       </div>
-      <div style="margin-top:8px; padding-right:15px; border-right:2px solid var(--accent);">
-        ${(l.subs || []).map((s, j) => `
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:5px;">
+      ${(l.subs && l.subs.length > 0) ? `
+      <div style="margin-bottom:8px;">
+        ${l.subs.map((s, j) => `
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; padding:4px 8px; background:var(--paper); border-radius:4px; margin-bottom:4px;">
             <span>↳ ${esc(s.name)}</span>
-            <button class="book-delete" style="width:24px;height:24px;font-size:10px;" onclick="deleteMediaSubtopic(${i}, ${j})">✕</button>
+            <button class="mini-btn" onclick="deleteMediaSubtopic(${i}, ${j})">✕</button>
           </div>
         `).join('')}
-        <div style="display:flex; gap:5px; margin-top:8px;">
-          <input type="text" id="new-sub-${i}" placeholder="اسم القائمة الفرعية" style="flex:1; padding:4px 8px; font-size:12px; border:1px solid var(--line); border-radius:4px;">
-          <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="addMediaSubtopic(${i})">➕</button>
-        </div>
       </div>
+      ` : ''}
+      <div style="display:flex; gap:5px; margin-bottom:8px;">
+        <input type="text" id="new-sub-${i}" placeholder="اسم قائمة فرعية" style="flex:1; padding:4px 8px; font-size:12px; border:1px solid var(--line); border-radius:4px;">
+        <button class="btn btn-outline" style="padding:4px 8px; font-size:11px;" onclick="addMediaSubtopic(${i})">➕ إضافة فرعية</button>
+      </div>
+      ${listItems.length > 0 ? `
+      <div style="border-top:1px dashed var(--line); padding-top:8px;">
+        <div style="font-size:11px; color:var(--muted); margin-bottom:6px;">العناصر داخل هذه القائمة:</div>
+        ${listItems.map((item, k) => {
+          const realIdx = items.indexOf(item);
+          return `<div class="media-item-row">
+            <div class="mi-title">${esc(item.title)}</div>
+            <span class="mi-speaker">${esc(item.speaker||'')}</span>
+            <div class="media-item-actions">
+              <button class="mini-btn" onclick="editMediaItem(${realIdx}); closeListsManager();">✏️</button>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      ` : '<div style="font-size:11px; color:var(--muted);">لا توجد عناصر بعد.</div>'}
     </div>
-  `).join('');
+    `;
+  }).join('');
 }
 function addMediaTopic(){
   const name = document.getElementById('newTopicName').value.trim();
   if (!name) return;
   if (!MEDIA_LISTS[currentMediaTab]) MEDIA_LISTS[currentMediaTab] = [];
+  if (MEDIA_LISTS[currentMediaTab].find(l => l.name === name)) return alert('القائمة موجودة مسبقاً');
   MEDIA_LISTS[currentMediaTab].push({ name, subs: [] });
-  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  renderListsManager(); populateMediaDropdowns();
   document.getElementById('newTopicName').value = '';
 }
 function deleteMediaTopic(i){
-  if (!confirm('حذف القائمة الرئيسية وكل ما تحتها؟')) return;
+  if (!confirm('حذف القائمة الرئيسية وكل ما تحتها؟ (لن تُحذف العناصر من المكتبة)')) return;
   MEDIA_LISTS[currentMediaTab].splice(i, 1);
-  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  renderListsManager(); populateMediaDropdowns();
 }
 function addMediaSubtopic(i){
   const name = document.getElementById(`new-sub-${i}`).value.trim();
   if (!name) return;
   MEDIA_LISTS[currentMediaTab][i].subs.push({ name });
-  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  renderListsManager(); populateMediaDropdowns();
 }
 function deleteMediaSubtopic(i, j){
   MEDIA_LISTS[currentMediaTab][i].subs.splice(j, 1);
-  saveMediaDraft(); renderListsManager(); populateMediaDropdowns();
+  renderListsManager(); populateMediaDropdowns();
 }
-
-function saveMediaDraft(){ hasDraft = true; document.getElementById('draftBanner').style.display = 'flex'; }
 
 function cleanObj(obj){
   const copy = { ...obj };
   Object.keys(copy).forEach(k => { if (copy[k] === undefined || copy[k] === null || copy[k] === '') delete copy[k]; });
   return copy;
 }
+function exportBooks(){
+  const blob = new Blob([JSON.stringify({items: BOOKS}, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'books.json'; a.click();
+}
+function exportMedia(){
+  const files = [
+    { name: 'videos.json', data: { items: VIDEOS } },
+    { name: 'audios.json', data: { items: AUDIOS } },
+    { name: 'media_lists.json', data: MEDIA_LISTS }
+  ];
+  files.forEach((f, i) => {
+    setTimeout(() => {
+      const blob = new Blob([JSON.stringify(f.data, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = f.name; a.click();
+    }, i * 300);
+  });
+}
+function resetToServer(){ if(confirm('إعادة تحميل؟ ستفقد التعديلات غير المحفوظة')) location.reload(); }
 
 window.addEventListener('DOMContentLoaded', init);
 </script>
