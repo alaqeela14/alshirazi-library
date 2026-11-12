@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "id": "book-608843",
+      "title": "الاشتقاق",
+      "author": "shirazi-h",
+      "categories": [
+        "other"
+      ],
+      "category": "other",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/kalima-volumes/Derivation.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/kalima-volumes/Derivation.DOC"
+    },
+    {
+      "id": "book-566739",
+      "title": "الشعائر الحسينية",
+      "author": "shirazi-h",
+      "categories": [
+        "shaair"
+      ],
+      "category": "shaair",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/kalima-volumes/Husseini-rituals.pdf"
+    },
+    {
       "id": "book-985577",
       "title": "ديوان السيد حسن الشيرازي",
       "author": "shirazi-h",
