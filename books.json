@@ -1,6 +1,210 @@
 {
   "items": [
     {
+      "id": "book-276636",
+      "title": "تبيين الأصول ج٨",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.08.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-249040",
+      "title": "تبيين الأصول ج٧",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.07.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-217327",
+      "title": "تبيين الأصول ج٦",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.06.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-186297",
+      "title": "تبيين الأصول ج٥",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.05.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-159666",
+      "title": "تبيين الأصول ج٤",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.04.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-098722",
+      "title": "تبيين الأصول ج٣",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.03.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-028347",
+      "title": "تبيين الأصول ج٢",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.02.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-820810",
+      "title": "تبيين الأصول ج١",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Tabyin_Al_Usul.01.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-695871",
+      "title": "ومضات",
+      "author": "shirazi-mr",
+      "categories": [
+        "other"
+      ],
+      "category": "other",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/wamadat.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/wamadat.doc"
+    },
+    {
+      "id": "book-539519",
+      "title": "تبيين الفقه ج٢",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tabyin-al-fiqh-vol2.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tabyin-al-fiqh-vol2.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-498599",
+      "title": "تبيين الفقه ج١",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tabyin-al-fiqh-vol1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tabyin-al-fiqh-vol1.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-333281",
+      "title": "التدبر في القرآن ج٢",
+      "author": "shirazi-mr",
+      "categories": [
+        "quran"
+      ],
+      "category": "quran",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tadabbur-fi-al-quran-vol2.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tadabbur-fi-al-quran-vol2.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-277724",
+      "title": "التدبر في القرآن ج١",
+      "author": "shirazi-mr",
+      "categories": [
+        "quran"
+      ],
+      "category": "quran",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tadabbur-fi-al-quran-vol1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tadabbur-fi-al-quran-vol1.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
       "id": "book-608843",
       "title": "الاشتقاق",
       "author": "shirazi-h",
