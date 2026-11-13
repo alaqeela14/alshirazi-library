@@ -266,8 +266,8 @@ main{flex:1;padding:22px 0 60px}
 .author-stats span{color:var(--primary)}
 [data-theme="dark"] .author-stats span{color:var(--accent)}
 
-/* صورة غلاف الموسوعة العريضة */
-.series-cover-img { width: 100%; aspect-ratio: 2820 / 950; border-radius: 10px; object-fit: cover; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(0,0,0,.15); border: 2px solid var(--accent); display: block; }
+/* صورة غلاف الموسوعة (مرنة تقبل أي مقاس) */
+.series-cover-img { width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 10px; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(0,0,0,.15); border: 2px solid var(--accent); display: block; }
 
 /* زر مشاركة الموسوعة في الزاوية العلوية اليسرى */
 .share-btn-compact { position: absolute; top: 10px; left: 10px; padding: 3px 10px; font-size: 10px; background: var(--primary); color: #fff; border-radius: 4px; font-weight: 700; transition: all var(--tr); display: inline-flex; align-items: center; gap: 4px; z-index: 2;}
@@ -558,7 +558,7 @@ textarea.form-control{resize:vertical;min-height:100px}
     <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
     <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
   </ul></div>
-  <!-- تم إخفاء روابط لوحة التحكم من هنا، وتظهر برمجياً عند إدخال كلمة المرور -->
+  <!-- لوحة التحكم مخفية وتظهر بالزر السري -->
 </aside>
 
 <main class="container"><section id="app"></section></main>
@@ -590,14 +590,12 @@ let secretClickCount = 0;
 let secretClickTimer = null;
 const ADMIN_PASSWORD = "shirazali2024"; // يمكنك تغيير كلمة المرور من هنا
 
-document.getElementById('secretHeader').addEventListener('click', () => {
-  // تجاهل النقر إذا كان المستخدم يضغط على أزرار الترويسة (مثل الوضع الليلي أو المفضلة)
-  if (event.target.closest('.head-actions')) return;
+document.getElementById('secretHeader').addEventListener('click', (e) => {
+  if (e.target.closest('.head-actions')) return;
 
   secretClickCount++;
   clearTimeout(secretClickTimer);
   
-  // إعادة تصفير العداد إذا تأخر المستخدم بين النقرات (أكثر من 1.5 ثانية)
   secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 1500);
 
   if (secretClickCount === 5) {
@@ -613,7 +611,6 @@ document.getElementById('secretHeader').addEventListener('click', () => {
 });
 
 function showAdminLinks() {
-  // التأكد من عدم تكرار القائمة إذا تم إدخال كلمة المرور أكثر من مرة
   if (document.getElementById('admin-widget')) {
     alert("لوحة التحكم مفعلة بالفعل في القائمة الجانبية.");
     return;
@@ -902,6 +899,7 @@ function router(){
   else renderHome();
 }
 
+// إزالة إيموجي الكتاب نهائياً
 function coverHtmlSmall(b, showAuth=true){
   if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}" onerror="this.style.display='none';" decoding="async" loading="lazy">`;
   return `<div class="cover-ph"></div>`;
@@ -916,6 +914,7 @@ function bookCardHtml(b){
   return `<a href="#/book/${b.id}" class="book-card"><div class="cover">${coverHtmlSmall(b,false)}</div><div class="info"><div class="title">${esc(b.t)}</div><div class="auth">${esc(authorName(b.a, b.authorText))}</div></div></a>`;
 }
 
+// إزالة أزرار PDF والمفضلة من القائمة الخارجية
 function bookRowHtml(b){
   const catsTags = getBookCats(b).map(cid => `<span><strong>التصنيف:</strong> ${esc(getCat(cid)?.name||"")}</span>`).join("");
   return `<div class="book-row"><a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a><div class="info"><div><a href="#/book/${b.id}" class="title">${esc(b.t)}</a><div class="meta"><span><strong>المؤلف:</strong> ${esc(authorName(b.a, b.authorText))}</span>${catsTags}${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}</div>${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}</div></div></div>`;
@@ -928,6 +927,7 @@ function authorCardHtml(a){
   return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">${imgHtml}${fallbackHtml}</div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
 }
 
+// إزالة صورة الغلاف من بطاقة الموسوعة في الصفحة الرئيسية لتظل نظيفة
 function seriesCardHtml(s){
   const c = countBySeries(s.id);
   return `<a href="#/series-one/${s.id}" class="series-card"><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
@@ -938,7 +938,9 @@ function catCardHtml(c){
 }
 
 function renderHome(){
-  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0)).slice(0, 3);
+  // تعديل: عرض آخر 3 كتب تمت إضافتها في الملف
+  const latest = [...BOOKS].slice(-3).reverse();
+  
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
   const activeCats = CATS.filter(c => countIn(c.id) > 0);
@@ -971,7 +973,9 @@ function renderHome(){
 
 function renderLatestPage(){
   state.limit = 40;
-  const latest = [...BOOKS].sort((a,b)=>(b.y||0)-(a.y||0));
+  // تعديل: عرض بقية الكتب (تخطي أول 3 كتب ظهرت في الرئيسية)
+  const latest = [...BOOKS].reverse().slice(3);
+  
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
   <div class="sec-title">أحدث الإصدارات</div>
   <div id="booksBox" class="books-grid"></div>`;
@@ -1179,6 +1183,7 @@ function renderReader(id){
       rawUrl = new URL(FILES_BASE + rawUrl, window.location.href).href; 
   }
   
+  // استخدام عارض PDF.js لضمان الفتح على الجوال
   let viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
 
   app.innerHTML = `
@@ -1196,6 +1201,11 @@ function renderReader(id){
       <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy" onload="document.getElementById('readerLoading').style.display='none';"></iframe>
     </div>
   `;
+  // مؤقت زمني لإخفاء شاشة التحميل في حال تعليق العارض (بعد 5 ثواني)
+  setTimeout(() => {
+    const l = document.getElementById('readerLoading');
+    if(l) l.style.display='none';
+  }, 5000);
 }
 
 /* ===== مشغل المرئيات والصوتيات ===== */
@@ -1557,6 +1567,7 @@ function getFiltered(){
   return list;
 }
 
+// نظام عرض المزيد (Pagination)
 function renderList(passedList){
   const list = passedList || getFiltered();
   const box = document.getElementById("booksBox");
