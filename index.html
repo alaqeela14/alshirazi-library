@@ -137,11 +137,11 @@ main{flex:1;padding:22px 0 60px}
 .tg-banner:hover{border-color:#229ED9;background:var(--paper-2);}
 .tg-banner svg{width:16px;height:16px;fill:currentColor;}
 
-.continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:8px 10px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr)}
+.continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:8px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr)}
 .continue-reading:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:12px;color:var(--primary-dark);margin-bottom:0;text-align:center;}
+.continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:12px;color:var(--primary-dark);margin-bottom:2px;text-align:center;}
 [data-theme="dark"] .continue-reading .cr-text h3{color:var(--accent)}
-.continue-reading .cr-text p{display:none;}
+.continue-reading .cr-text p{display:block; font-size:9.5px; color:var(--muted); text-align:center; line-height:1.2;}
 .continue-reading .cr-icon{display:none;}
 
 /* تعديل شريط الأدوات ليكون أصغر وأكثر ترتيباً */
@@ -266,11 +266,11 @@ main{flex:1;padding:22px 0 60px}
 .author-stats span{color:var(--primary)}
 [data-theme="dark"] .author-stats span{color:var(--accent)}
 
-/* صورة غلاف الموسوعة */
-.series-cover-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 8px; box-shadow: 0 4px 10px rgba(0,0,0,.15); border: 2px solid var(--accent); display: block; }
+/* صورة غلاف الموسوعة العريضة */
+.series-cover-img { width: 100%; aspect-ratio: 2820 / 950; border-radius: 10px; object-fit: cover; margin: 0 auto 12px; box-shadow: 0 4px 10px rgba(0,0,0,.15); border: 2px solid var(--accent); display: block; }
 
 /* زر مشاركة الموسوعة في الزاوية العلوية اليسرى */
-.share-btn-compact { position: absolute; top: 10px; left: 10px; padding: 3px 10px; font-size: 10px; background: var(--primary); color: #fff; border-radius: 4px; font-weight: 700; transition: all var(--tr); display: inline-flex; align-items: center; gap: 4px; }
+.share-btn-compact { position: absolute; top: 10px; left: 10px; padding: 3px 10px; font-size: 10px; background: var(--primary); color: #fff; border-radius: 4px; font-weight: 700; transition: all var(--tr); display: inline-flex; align-items: center; gap: 4px; z-index: 2;}
 .share-btn-compact:hover { background: var(--primary-dark); }
 
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
@@ -361,8 +361,9 @@ textarea.form-control{resize:vertical;min-height:100px}
 .btn-submit:hover{background:var(--primary-dark)}
 
 .links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.link-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 20px;text-decoration:none;color:inherit;transition:all var(--tr);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-bottom:3px solid var(--line)}
+.link-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:15px;text-decoration:none;color:inherit;transition:all var(--tr);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;border-bottom:3px solid var(--line)}
 .link-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);border-bottom-color:var(--accent)}
+.link-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: var(--paper-2); }
 .link-card .title{font-weight:800;font-size:16px;color:var(--primary-dark);margin-bottom:8px}
 [data-theme="dark"] .link-card .title{color:var(--accent)}
 .link-card .desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px}
@@ -556,6 +557,13 @@ textarea.form-control{resize:vertical;min-height:100px}
     <li><a href="#/contact" onclick="closeSidebar()">تواصل معنا</a></li>
     <li><a href="#/favorites" onclick="closeSidebar()" class="fav-link"><span>المفضلة</span><span class="side-cnt" id="favCountSide">0</span></a></li>
     <li><a href="#/about" onclick="closeSidebar()">عن المكتبة</a></li>
+  </ul></div>
+  <div class="side-widget"><h4>لوحة التحكم</h4><ul class="side-list">
+    <li><a href="admin.html">إدارة الكتب</a></li>
+    <li><a href="admin-articles.html">إدارة المقالات</a></li>
+    <li><a href="articles.html">المقالات</a></li>
+    <li><a href="sorter.html">أداة الفرز</a></li>
+    <li><a href="tool.html">أداة مساعدة</a></li>
   </ul></div>
 </aside>
 
@@ -878,11 +886,10 @@ function authorCardHtml(a){
   return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">${imgHtml}${fallbackHtml}</div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
 }
 
+// إزالة صورة الغلاف من بطاقة الموسوعة في الصفحة الرئيسية لتظل نظيفة
 function seriesCardHtml(s){
   const c = countBySeries(s.id);
-  const cls = s.cover ? 'series-card has-cover' : 'series-card';
-  const styleAttr = s.cover ? `style="background-image:url('${esc(s.cover)}')"` : '';
-  return `<a href="#/series-one/${s.id}" class="${cls}" ${styleAttr}><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
+  return `<a href="#/series-one/${s.id}" class="series-card"><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
 }
 
 function catCardHtml(c){
@@ -902,13 +909,12 @@ function renderHome(){
       <div class="stats"><div class="stat"><strong>${BOOKS.length}</strong><span>كتاب</span></div><div class="stat"><strong>${SERIES.length}</strong><span>موسوعة</span></div><div class="stat"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div><div class="stat"><strong>PDF · Word</strong><span>صيغ التحميل</span></div></div>
     </section>
 
-    <!-- الصف الجديد: عرض التيليجرام ومتابعة القراءة بجانب بعضهما -->
     <div class="home-action-row">
       <a href="https://t.me/shirazi_lib" target="_blank" class="tg-banner">
         <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        متابعة التيليجرام
+        متابعة المكتبة على التيليجرام
       </a>
-      ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>${esc(lastReadBook.t)}</p></div></a>`:""}
+      ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div></a>`:""}
     </div>
     
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -983,7 +989,6 @@ function renderAuthor(id){
   const imgBig = a.img ? `<img src="${a.img}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;box-shadow:0 8px 20px rgba(0,0,0,.25);border:3px solid var(--accent);" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">` : '';
   const fallbackBig = `<div class="author-avatar-big" style="display:${a.img ? 'none' : 'grid'}">${esc(a.short.charAt(0))}</div>`;
   
-  // ميزة "عن المؤلف"
   const longBioHtml = a.longBio ? `
     <div class="sec-title" style="margin-top: 26px;">عن المؤلف</div>
     <div class="about-box" style="margin-top: 14px;">
@@ -1009,7 +1014,6 @@ function renderSeriesPage(id){
     bulkHtml = `<div style="background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;"><h3 style="font-family:'Amiri',serif;font-size:18px;color:var(--primary-dark);margin:0;">تحميل الموسوعة كاملة</h3><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px;"><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;">تحميل الكل (PDF)</a><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;">تحميل الكل (Word)</a></div></div>`;
   }
   
-  // تصغير البطاقة هنا باستخدام compact وإضافة كلاس لصورة الغلاف
   const seriesCoverHtml = s.cover
     ? `<img src="${esc(s.cover)}" class="series-cover-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="author-avatar-big" style="display:none;width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`
     : `<div class="author-avatar-big" style="width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`;
@@ -1098,15 +1102,16 @@ function renderIstifta(){
 
 function renderUsefulLinks(){
   const links = [
-    { title: "مؤسسة العقيلة", desc: "مؤسسة ثقافية إسلامية", url: "al-aqila.org", link: "https://al-aqila.org" }, // تمت الإضافة
-    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "alshirazi.com", link: "https://alshirazi.com" },
-    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "arabic.shirazi.ir", link: "http://arabic.shirazi.ir" },
-    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "m-alshirazi.com", link: "http://m-alshirazi.com/" },
-    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "mahdialshirazi.com", link: "https://mahdialshirazi.com" },
-    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تيليجرام", url: "t.me/shirazi_lib", link: "https://t.me/shirazi_lib" },
-    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "m.annabaa.org", link: "http://m.annabaa.org" }
+    { title: "موقع الإمام الشيرازي رحمه الله", desc: "الموقع الرسمي لآية الله العظمى السيد محمد الحسيني الشيرازي", url: "alshirazi.com", link: "https://alshirazi.com", img: "link-alshirazi.jpg" },
+    { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "arabic.shirazi.ir", link: "http://arabic.shirazi.ir", img: "link-shirazi-ir.jpg" },
+    { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "m-alshirazi.com", link: "http://m-alshirazi.com/", img: "link-murtadha.jpg" },
+    { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "mahdialshirazi.com", link: "https://mahdialshirazi.com", img: "link-mahdi.jpg" },
+    { title: "مؤسسة العقيلة", desc: "مؤسسة ثقافية إسلامية", url: "al-aqila.org", link: "#", img: "link-aqila.jpg" }, // رابط محذوف مؤقتاً
+    { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تيليجرام", url: "t.me/shirazi_lib", link: "https://t.me/shirazi_lib", img: "link-telegram.jpg" },
+    { title: "مؤسسة الإمام الشيرازي العالمية", desc: "المؤسسة العالمية لتراث الإمام الشيرازي", url: "alshirazionline.org", link: "https://alshirazionline.org", img: "link-alshirazionline.jpg" },
+    { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "m.annabaa.org", link: "http://m.annabaa.org", img: "link-annabaa.jpg" }
   ];
-  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>مواقع مفيدة</span></div><div class="sec-title">مواقع مفيدة</div><div class="links-grid">${links.map(l => `<a href="${l.link}" target="_blank" class="link-card"><div class="title">${esc(l.title)}</div><div class="desc">${esc(l.desc)}</div><div class="url">${esc(l.url)}</div></a>`).join("")}</div>`;
+  app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>مواقع مفيدة</span></div><div class="sec-title">مواقع مفيدة</div><div class="links-grid">${links.map(l => `<a href="${l.link}" target="${l.link==='#'?'_self':'_blank'}" class="link-card"><img src="${l.img}" class="link-img" alt="${esc(l.title)}" onerror="this.style.display='none';"><div class="title">${esc(l.title)}</div><div class="desc">${esc(l.desc)}</div><div class="url">${esc(l.url)}</div></a>`).join("")}</div>`;
 }
 
 function renderDonate(){
@@ -1145,7 +1150,6 @@ function renderReader(id){
         <p style="font-family:'Cairo',sans-serif; color:var(--primary); font-weight:700;">جاري تحميل الكتاب...</p>
       </div>
       <div class="reader-header">
-        <!-- إصلاح زر الرجوع ليعمل عبر المتصفح مباشرة دون حلقة مفرغة -->
         <button onclick="history.back()" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; cursor:pointer; font-family:inherit;">← رجوع</button>
         <h1>${esc(b.t)}</h1>
         <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink); cursor:pointer; font-family:inherit;">🌙 ليلي</button>
