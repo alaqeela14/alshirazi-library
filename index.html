@@ -1184,8 +1184,8 @@ function renderReader(id){
       rawUrl = new URL(FILES_BASE + rawUrl, window.location.href).href; 
   }
   
-  // استخدام العارض المحلي (المجلد web الذي رفعته)
-  let viewerUrl = "./web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  // استخدام العارض المحلي (المجلد pdfjs الذي رفعته)
+  let viewerUrl = "./pdfjs/viewer.html?file=" + encodeURIComponent(rawUrl);
 
   app.innerHTML = `
     <div class="reader-wrap">
