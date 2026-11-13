@@ -1179,12 +1179,13 @@ function renderReader(id){
   else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; }
   else { rawUrl = b.id + ".pdf"; }
   
+  // تحويل المسار إلى رابط مطلق
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) { 
       rawUrl = new URL(FILES_BASE + rawUrl, window.location.href).href; 
   }
   
-  // استخدام عارض PDF.js لضمان الفتح على الجوال
-  let viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  // استخدام PDF.js من CDN موثوق
+  let viewerUrl = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/web/viewer.html?file=" + encodeURIComponent(rawUrl);
 
   app.innerHTML = `
     <div class="reader-wrap">
@@ -1201,11 +1202,11 @@ function renderReader(id){
       <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy" onload="document.getElementById('readerLoading').style.display='none';"></iframe>
     </div>
   `;
-  // مؤقت زمني لإخفاء شاشة التحميل في حال تعليق العارض (بعد 5 ثواني)
+  // مؤقت زمني لإخفاء شاشة التحميل في حال تعليق العارض (بعد 8 ثواني)
   setTimeout(() => {
     const l = document.getElementById('readerLoading');
     if(l) l.style.display='none';
-  }, 5000);
+  }, 8000);
 }
 
 /* ===== مشغل المرئيات والصوتيات ===== */
