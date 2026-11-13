@@ -34,6 +34,13 @@
       "id": "masoomeen-lives",
       "name": "من حياة المعصومين عليهم السلام",
       "author": "shirazi-m"
+    },
+    {
+      "id": "alfaqihalshirazi",
+      "name": "موسوعة الفقيه الشيرازي",
+      "author": "shirazi-mr",
+      "desc": "موسوعة الفقيه الشيرازي | 21 مجلداً\nتضم الموسوعة مجموعة من مؤلفات الفقيه الفقيد آية الله السيد محمد رضا الحسيني الشيرازي (رحمه الله تعالى) في الفقه والأصول وعلوم القرآن، إضافة إلى تعليقاته العلمية على عدد من الكتب الفقهية. وتُعد من كنوز التراث العلمي والفقهي.",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/book-covers/AlFaqihAlShirazi.jpg"
     }
   ]
 }
