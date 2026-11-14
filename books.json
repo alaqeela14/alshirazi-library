@@ -1,6 +1,23 @@
 {
   "items": [
     {
+      "id": "book-533624",
+      "title": "المنهج القرآني بين النص والتطبيق",
+      "author": "shirazi-me",
+      "categories": [
+        "quran"
+      ],
+      "category": "quran",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mahdi-shirazi-v1.0.0/al-manhaj-al-qurani-bayn-al-nass-wa-al-tatbiq.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mahdi-shirazi-v1.0.0/al-manhaj-al-qurani-bayn-al-nass-wa-al-tatbiq.docx",
+      "description": "مقتبس من بعض محاضرات سماحة السيد مهدي الحسيني الشيرازي (دامت تأييداته)"
+    },
+    {
       "id": "book-568940",
       "title": "تبيين القرآن",
       "author": "shirazi-m",
