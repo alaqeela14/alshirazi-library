@@ -160,6 +160,9 @@ input,select,textarea{font-family:inherit}
 </head>
 <body>
 
+<datalist id="author-suggestions"></datalist>
+<datalist id="series-suggestions"></datalist>
+
 <header class="admin-header">
   <div class="container inner">
     <div>
@@ -261,7 +264,7 @@ input,select,textarea{font-family:inherit}
       <div class="form-grid">
         <div class="ff"><label>اسم الموسوعة *</label><input type="text" id="new-series-name"></div>
         <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-series-id"></div>
-        <div class="ff"><label>المؤلف</label><select id="new-series-author"></select></div>
+        <div class="ff"><label>المؤلف</label><input type="text" id="new-series-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
         <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="new-series-cover"></div>
         <div class="ff full"><label>وصف الموسوعة</label><textarea id="new-series-desc"></textarea></div>
       </div>
@@ -304,9 +307,8 @@ input,select,textarea{font-family:inherit}
     <h3>➕ إضافة كتاب جديد</h3>
     <div class="form-grid">
       <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="new-title"></div>
-      <div class="ff"><label>المؤلف *</label><select id="new-author" onchange="toggleCustomAuthor('new')"></select></div>
-      <div class="ff full" id="new-author-custom-wrap" style="display:none"><label>اسم المؤلف الجديد</label><input type="text" id="new-author-custom"></div>
-      <div class="ff"><label>الموسوعة</label><select id="new-series"><option value="">— بدون —</option></select></div>
+      <div class="ff"><label>المؤلف *</label><input type="text" id="new-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
+      <div class="ff"><label>الموسوعة</label><input type="text" id="new-series" list="series-suggestions" placeholder="اكتب اسم الموسوعة..."></div>
       <div class="ff"><label>السنة</label><input type="number" id="new-year" value="1420"></div>
       <div class="ff"><label>الصفحات</label><input type="number" id="new-pages"></div>
       <div class="ff full"><label>التصنيفات * (يمكن اختيار أكثر من واحد)</label><div id="new-cats-checkboxes" class="cat-checkboxes"></div></div>
@@ -351,9 +353,8 @@ input,select,textarea{font-family:inherit}
       <div class="form-grid">
         <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-id" disabled style="background:#e5ddd0"></div>
         <div class="ff full"><label>اسم الكتاب *</label><input type="text" id="edit-title"></div>
-        <div class="ff"><label>المؤلف</label><select id="edit-author" onchange="toggleCustomAuthor('edit')"></select></div>
-        <div class="ff full" id="edit-author-custom-wrap" style="display:none"><label>اسم المؤلف الجديد</label><input type="text" id="edit-author-custom"></div>
-        <div class="ff"><label>الموسوعة</label><select id="edit-series"></select></div>
+        <div class="ff"><label>المؤلف</label><input type="text" id="edit-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
+        <div class="ff"><label>الموسوعة</label><input type="text" id="edit-series" list="series-suggestions" placeholder="اكتب اسم الموسوعة..."></div>
         <div class="ff"><label>السنة</label><input type="number" id="edit-year"></div>
         <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
         <div class="ff full"><label>التصنيفات *</label><div id="edit-cats-checkboxes" class="cat-checkboxes"></div></div>
@@ -378,7 +379,7 @@ input,select,textarea{font-family:inherit}
       <div class="form-grid">
         <div class="ff full"><label>المعرّف (ID)</label><input type="text" id="edit-series-id" disabled style="background:#e5ddd0"></div>
         <div class="ff full"><label>اسم الموسوعة *</label><input type="text" id="edit-series-name"></div>
-        <div class="ff"><label>المؤلف</label><select id="edit-series-author"></select></div>
+        <div class="ff"><label>المؤلف</label><input type="text" id="edit-series-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
         <div class="ff full"><label>رابط صورة الغلاف</label><input type="url" id="edit-series-cover"></div>
         <div class="ff full"><label>وصف الموسوعة</label><textarea id="edit-series-desc"></textarea></div>
       </div>
@@ -584,31 +585,25 @@ async function init(){
 }
 
 function populateSelects(){
-  const authorOpts = AUTHORS.map(a => `<option value="${a.id}">${esc(a.short || a.name)}</option>`).join('') + '<option value="__custom__">➕ إضافة مؤلف جديد...</option>';
-  const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  const seriesOpts = '<option value="">— بدون —</option>' + SERIES.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  // تعبئة قوائم الاقتراحات (Datalists)
+  const authorSuggestions = document.getElementById('author-suggestions');
+  if (authorSuggestions) {
+    authorSuggestions.innerHTML = AUTHORS.map(a => `<option value="${esc(a.name)}"></option>`).join('');
+  }
+  
+  const seriesSuggestions = document.getElementById('series-suggestions');
+  if (seriesSuggestions) {
+    seriesSuggestions.innerHTML = SERIES.map(s => `<option value="${esc(s.name)}"></option>`).join('');
+  }
 
-  document.getElementById('new-author').innerHTML = authorOpts;
-  document.getElementById('new-series').innerHTML = seriesOpts;
-  document.getElementById('new-series-author').innerHTML = authorOpts.replace('__custom__','');
+  const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
   document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + catOpts;
-  document.getElementById('edit-author').innerHTML = authorOpts;
-  document.getElementById('edit-series').innerHTML = seriesOpts;
-  document.getElementById('edit-series-author').innerHTML = authorOpts.replace('__custom__','');
 
   renderCatCheckboxes('new-cats-checkboxes', []);
   if (editingId) {
     const b = BOOKS.find(x => x.id === editingId);
     if (b) renderCatCheckboxes('edit-cats-checkboxes', getBookCats(b));
   }
-}
-
-function toggleCustomAuthor(mode) {
-  const sel = document.getElementById(mode + '-author');
-  const wrap = document.getElementById(mode + '-author-custom-wrap');
-  if (!sel || !wrap) return;
-  if (sel.value === '__custom__') wrap.style.display = 'flex';
-  else wrap.style.display = 'none';
 }
 
 function renderStats(){
@@ -760,19 +755,40 @@ function addNewBook(){
   const cats = getSelectedCats('new-cats-checkboxes');
   if (cats.length === 0) return alert('اختر تصنيفاً واحداً على الأقل');
 
-  let authorId = document.getElementById('new-author').value;
-  let authorText = '';
-  if (authorId === '__custom__') {
-    authorText = document.getElementById('new-author-custom').value.trim();
-    if (!authorText) return alert('اسم المؤلف مطلوب');
-    authorId = 'custom-' + Date.now();
+  // معالجة المؤلف (نص حر + إنشاء تلقائي)
+  const authorInput = document.getElementById('new-author').value.trim();
+  if (!authorInput) return alert('اسم المؤلف مطلوب');
+  let authorId = '';
+  const existingAuth = AUTHORS.find(a => a.name === authorInput || a.short === authorInput);
+  if (existingAuth) {
+    authorId = existingAuth.id;
+  } else {
+    authorId = 'auth-' + Date.now();
+    const newAuth = { id: authorId, name: authorInput, short: authorInput, img: '', bio: '' };
+    CUSTOM_AUTHORS.push(newAuth);
+    localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+    AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+    renderAuthorsList();
+  }
+
+  // معالجة الموسوعة (نص حر + إنشاء تلقائي)
+  const seriesInput = document.getElementById('new-series').value.trim();
+  let seriesId = '';
+  if (seriesInput) {
+    const existingSeries = SERIES.find(s => s.name === seriesInput);
+    if (existingSeries) {
+      seriesId = existingSeries.id;
+    } else {
+      seriesId = 'series-' + Date.now();
+      SERIES.push({ id: seriesId, name: seriesInput, desc: '', author: authorId });
+      renderSeriesList();
+    }
   }
 
   const newBook = {
     id: 'book-' + String(Date.now()).slice(-6),
     title,
     author: authorId,
-    authorText: authorText,
     categories: cats,
     category: cats[0],
     year: parseInt(document.getElementById('new-year').value) || 1420,
@@ -781,7 +797,6 @@ function addNewBook(){
   const pdf = document.getElementById('new-pdf').value.trim();
   const word = document.getElementById('new-word').value.trim();
   const cover = document.getElementById('new-cover').value.trim();
-  const series = document.getElementById('new-series').value;
   const pages = parseInt(document.getElementById('new-pages').value);
   const desc = document.getElementById('new-desc').value.trim();
 
@@ -789,13 +804,14 @@ function addNewBook(){
   if (word) { newBook.word_url = word; newBook.formats.push('word'); }
   if (newBook.formats.length === 0) newBook.formats.push('pdf');
   if (cover) newBook.cover = cover;
-  if (series) newBook.series = series;
+  if (seriesId) newBook.series = seriesId;
   if (pages) newBook.pages = pages;
   if (desc) newBook.description = desc;
 
   BOOKS.unshift(newBook);
+  populateSelects(); // تحديث الاقتراحات
   renderBookList(); renderStats(); updateFooter();
-  ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc','new-author-custom'].forEach(id => document.getElementById(id).value = '');
+  ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc','new-author','new-series'].forEach(id => document.getElementById(id).value = '');
   renderCatCheckboxes('new-cats-checkboxes', []);
   toggleAddForm();
   toast('تمت الإضافة', 'success');
@@ -808,19 +824,12 @@ function openEdit(id){
   document.getElementById('edit-id').value = b.id;
   document.getElementById('edit-title').value = b.title || '';
   
-  const isCustom = !AUTHORS_BASE.find(x => x.id === b.author) && !AUTHORS.find(x => x.id === b.author && x.id.startsWith('auth-'));
-  const editAuthorSelect = document.getElementById('edit-author');
+  const authorObj = AUTHORS.find(x => x.id === b.author);
+  document.getElementById('edit-author').value = b.authorText || (authorObj ? authorObj.name : '');
   
-  if (b.authorText) {
-    editAuthorSelect.value = '__custom__';
-    document.getElementById('edit-author-custom-wrap').style.display = 'flex';
-    document.getElementById('edit-author-custom').value = b.authorText;
-  } else {
-    editAuthorSelect.value = b.author || 'shirazi-m';
-    document.getElementById('edit-author-custom-wrap').style.display = 'none';
-  }
-
-  document.getElementById('edit-series').value = b.series || '';
+  const seriesObj = SERIES.find(x => x.id === b.series);
+  document.getElementById('edit-series').value = seriesObj ? seriesObj.name : '';
+  
   document.getElementById('edit-year').value = b.year || 1420;
   document.getElementById('edit-pages').value = b.pages || '';
   document.getElementById('edit-cover').value = b.cover || '';
@@ -841,15 +850,23 @@ function saveEdit(){
 
   b.title = title;
   
-  let authorId = document.getElementById('edit-author').value;
-  let authorText = '';
-  if (authorId === '__custom__') {
-    authorText = document.getElementById('edit-author-custom').value.trim();
-    if (!authorText) return alert('اسم المؤلف مطلوب');
-    authorId = 'custom-' + Date.now();
+  // معالجة المؤلف
+  const authorInput = document.getElementById('edit-author').value.trim();
+  if (!authorInput) return alert('اسم المؤلف مطلوب');
+  let authorId = '';
+  const existingAuth = AUTHORS.find(a => a.name === authorInput || a.short === authorInput);
+  if (existingAuth) {
+    authorId = existingAuth.id;
+  } else {
+    authorId = 'auth-' + Date.now();
+    const newAuth = { id: authorId, name: authorInput, short: authorInput, img: '', bio: '' };
+    CUSTOM_AUTHORS.push(newAuth);
+    localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+    AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+    renderAuthorsList();
   }
   b.author = authorId;
-  b.authorText = authorText;
+  b.authorText = '';
 
   b.categories = cats; b.category = cats[0];
   b.year = parseInt(document.getElementById('edit-year').value) || 1420;
@@ -865,12 +882,28 @@ function saveEdit(){
   if (b.formats.length === 0) b.formats.push('pdf');
   const pages = parseInt(document.getElementById('edit-pages').value);
   if (pages) b.pages = pages; else delete b.pages;
-  const series = document.getElementById('edit-series').value;
-  if (series) b.series = series; else delete b.series;
+
+  // معالجة الموسوعة
+  const seriesInput = document.getElementById('edit-series').value.trim();
+  if (seriesInput) {
+    const existingSeries = SERIES.find(s => s.name === seriesInput);
+    if (existingSeries) {
+      b.series = existingSeries.id;
+    } else {
+      const newSeriesId = 'series-' + Date.now();
+      SERIES.push({ id: newSeriesId, name: seriesInput, desc: '', author: authorId });
+      b.series = newSeriesId;
+      renderSeriesList();
+    }
+  } else {
+    delete b.series;
+  }
+
   const desc = document.getElementById('edit-desc').value.trim();
   if (desc) b.description = desc; else delete b.description;
 
-  closeEdit(); renderBookList(); toast('تم الحفظ', 'success');
+  populateSelects();
+  closeEdit(); renderBookList(); renderStats(); updateFooter(); toast('تم الحفظ', 'success');
 }
 function deleteBook(id){
   if (!confirm('حذف الكتاب؟')) return;
@@ -989,20 +1022,39 @@ function moveSeries(id, dir) {
 function addNewSeries(){
   const name = document.getElementById('new-series-name').value.trim();
   let id = document.getElementById('new-series-id').value.trim().toLowerCase();
-  const author = document.getElementById('new-series-author').value;
+  const authorInput = document.getElementById('new-series-author').value.trim();
   const desc = document.getElementById('new-series-desc').value.trim();
   const cover = document.getElementById('new-series-cover').value.trim();
   if (!name || !id) return alert('الاسم والمعرّف مطلوبان');
   if (!/^[a-z0-9-]+$/.test(id)) return alert('المعرّف بحروف إنجليزية صغيرة فقط');
   if (SERIES.find(s => s.id === id)) return alert('المعرّف مستخدم مسبقاً');
   
-  const newS = { id, name, author, desc };
+  // معالجة المؤلف (إنشاء تلقائي)
+  let authorId = '';
+  if (authorInput) {
+    const existingAuth = AUTHORS.find(a => a.name === authorInput || a.short === authorInput);
+    if (existingAuth) {
+      authorId = existingAuth.id;
+    } else {
+      authorId = 'auth-' + Date.now();
+      const newAuth = { id: authorId, name: authorInput, short: authorInput, img: '', bio: '' };
+      CUSTOM_AUTHORS.push(newAuth);
+      localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+      AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+      renderAuthorsList();
+    }
+  }
+
+  const newS = { id, name, author: authorId, desc };
   if (cover) newS.cover = cover;
   SERIES.push(newS);
+  
   document.getElementById('new-series-name').value = '';
   document.getElementById('new-series-id').value = '';
   document.getElementById('new-series-desc').value = '';
   document.getElementById('new-series-cover').value = '';
+  document.getElementById('new-series-author').value = '';
+  
   renderSeriesList(); renderStats(); populateSelects();
   toast('تمت إضافة الموسوعة', 'success');
 }
@@ -1012,7 +1064,10 @@ function openEditSeries(id){
   editingSeriesId = id;
   document.getElementById('edit-series-id').value = s.id;
   document.getElementById('edit-series-name').value = s.name || '';
-  document.getElementById('edit-series-author').value = s.author || 'shirazi-m';
+  
+  const authorObj = AUTHORS.find(x => x.id === s.author);
+  document.getElementById('edit-series-author').value = authorObj ? authorObj.name : '';
+  
   document.getElementById('edit-series-cover').value = s.cover || '';
   document.getElementById('edit-series-desc').value = s.desc || '';
   document.getElementById('editSeriesModal').classList.add('open');
@@ -1024,7 +1079,25 @@ function saveEditSeries(){
   const name = document.getElementById('edit-series-name').value.trim();
   if (!name) return alert('الاسم مطلوب');
   s.name = name;
-  s.author = document.getElementById('edit-series-author').value;
+  
+  // معالجة المؤلف
+  const authorInput = document.getElementById('edit-series-author').value.trim();
+  let authorId = '';
+  if (authorInput) {
+    const existingAuth = AUTHORS.find(a => a.name === authorInput || a.short === authorInput);
+    if (existingAuth) {
+      authorId = existingAuth.id;
+    } else {
+      authorId = 'auth-' + Date.now();
+      const newAuth = { id: authorId, name: authorInput, short: authorInput, img: '', bio: '' };
+      CUSTOM_AUTHORS.push(newAuth);
+      localStorage.setItem(CUSTOM_AUTHORS_KEY, JSON.stringify(CUSTOM_AUTHORS));
+      AUTHORS = [...AUTHORS_BASE, ...CUSTOM_AUTHORS];
+      renderAuthorsList();
+    }
+  }
+  s.author = authorId;
+
   s.desc = document.getElementById('edit-series-desc').value.trim();
   const cover = document.getElementById('edit-series-cover').value.trim();
   if (cover) s.cover = cover; else delete s.cover;
