@@ -1230,29 +1230,35 @@
     },
     {
       "id": "book-072",
-      "title": "الحجاب الدرع الواقي",
+      "title": "قواعد الإعراب",
       "author": "shirazi-m",
-      "category": "ijtimaiya",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/072.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/072.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/072.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-073",
-      "title": "الحرية الاسلامية",
+      "title": "إذا قام الإسلام في العراق",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/073.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/073.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/073.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-074",
