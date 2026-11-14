@@ -296,17 +296,14 @@ main{flex:1;padding:22px 0 60px}
 .empty-box{background:var(--paper);border:2px dashed var(--line);border-radius:var(--radius-lg);padding:44px 24px;text-align:center;color:var(--muted)}
 .empty-box .ef-icon{width:64px;height:64px;border-radius:50%;background:var(--paper-2);display:grid;place-items:center;margin:0 auto 14px;font-size:28px}
 
-.reader-wrap{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;flex-direction:column}
-.reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+/* ---- بداية كود تنسيق القارئ ---- */
+.reader-wrap{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;flex-direction:column;}
+.reader-header{padding:10px 16px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.reader-header h1{font-family:'Amiri',serif;font-size:16px;color:var(--primary-dark);margin:0;flex:1;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 [data-theme="dark"] .reader-header h1{color:var(--accent)}
-.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1;transition:filter .3s}
-.reader-iframe.dark-pdf{filter:invert(1) hue-rotate(180deg);background:#000}
-
-/* ==== شاشة تحميل القارئ ==== */
-.reader-loading { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--paper); z-index:10; }
-.spinner { width: 40px; height: 40px; border: 4px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 10px; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
+.reader-iframe{width:100%;height:100%;border:none;display:block;background:var(--paper);flex:1; transition: filter 0.3s;}
+.reader-iframe.dark-pdf { filter: invert(1) hue-rotate(180deg); background: #000; }
+/* ---- نهاية كود تنسيق القارئ ---- */
 
 .about-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);font-size:14.5px;line-height:2;color:var(--ink-2)}
 .about-box p{margin-bottom:14px}
@@ -899,7 +896,6 @@ function router(){
   else renderHome();
 }
 
-// إزالة إيموجي الكتاب نهائياً
 function coverHtmlSmall(b, showAuth=true){
   if(b.cover) return `<img src="${b.cover}" alt="${esc(b.t)}" onerror="this.style.display='none';" decoding="async" loading="lazy">`;
   return `<div class="cover-ph"></div>`;
@@ -914,7 +910,6 @@ function bookCardHtml(b){
   return `<a href="#/book/${b.id}" class="book-card"><div class="cover">${coverHtmlSmall(b,false)}</div><div class="info"><div class="title">${esc(b.t)}</div><div class="auth">${esc(authorName(b.a, b.authorText))}</div></div></a>`;
 }
 
-// إزالة أزرار PDF والمفضلة من القائمة الخارجية
 function bookRowHtml(b){
   const catsTags = getBookCats(b).map(cid => `<span><strong>التصنيف:</strong> ${esc(getCat(cid)?.name||"")}</span>`).join("");
   return `<div class="book-row"><a href="#/book/${b.id}" class="cover">${coverHtmlSmall(b,false)}</a><div class="info"><div><a href="#/book/${b.id}" class="title">${esc(b.t)}</a><div class="meta"><span><strong>المؤلف:</strong> ${esc(authorName(b.a, b.authorText))}</span>${catsTags}${b.pages?`<span><strong>الصفحات:</strong> ${b.pages}</span>`:""}</div>${b.desc?`<div class="desc">${esc(b.desc)}</div>`:""}</div></div></div>`;
@@ -927,7 +922,6 @@ function authorCardHtml(a){
   return `<a href="#/author/${a.id}" class="book-card" style="padding:14px;flex-direction:row;align-items:center;gap:12px"><div class="author-chip" style="margin:0;padding:0;background:none;border:none;flex-shrink:0">${imgHtml}${fallbackHtml}</div><div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4">${esc(a.short)}</div><div style="font-size:11.5px;color:var(--muted);margin-top:3px">${c} كتاب</div></div></a>`;
 }
 
-// إزالة صورة الغلاف من بطاقة الموسوعة في الصفحة الرئيسية لتظل نظيفة
 function seriesCardHtml(s){
   const c = countBySeries(s.id);
   return `<a href="#/series-one/${s.id}" class="series-card"><div style="flex:1;min-width:0"><div class="sc-name">${esc(s.name)}</div><div class="sc-desc">${esc(s.desc)}</div><div class="sc-meta">المؤلف: ${esc(authorName(s.author))}</div></div><div class="sc-badge">${c}<small>كتاب</small></div></a>`;
@@ -938,7 +932,6 @@ function catCardHtml(c){
 }
 
 function renderHome(){
-  // تعديل: عرض آخر 3 كتب تمت إضافتها في الملف
   const latest = [...BOOKS].slice(-3).reverse();
   
   const lastReadId = localStorage.getItem("alsh_last_read");
@@ -973,7 +966,6 @@ function renderHome(){
 
 function renderLatestPage(){
   state.limit = 40;
-  // تعديل: عرض بقية الكتب (تخطي أول 3 كتب ظهرت في الرئيسية)
   const latest = [...BOOKS].reverse().slice(3);
   
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
@@ -1151,7 +1143,7 @@ function renderUsefulLinks(){
     { title: "موقع المرجع الشيرازي دام ظله", desc: "الموقع الرسمي لآية الله العظمى السيد صادق الحسيني الشيرازي", url: "arabic.shirazi.ir", link: "http://arabic.shirazi.ir", img: "link-shirazi-ir.jpg" },
     { title: "موقع التقى / السيد مرتضى الشيرازي", desc: "الموقع الرسمي لآية الله السيد مرتضى الحسيني الشيرازي", url: "m-alshirazi.com", link: "http://m-alshirazi.com/", img: "link-murtadha.jpg" },
     { title: "موقع السيد مهدي الشيرازي", desc: "الموقع الرسمي للسيد مهدي الحسيني الشيرازي", url: "mahdialshirazi.com", link: "https://mahdialshirazi.com", img: "link-mahdi.jpg" },
-    { title: "مؤسسة العقيلة", desc: "مؤسسة ثقافية إسلامية", url: "al-aqila.org", link: "#", img: "link-aqila.jpg" }, // رابط محذوف مؤقتاً
+    { title: "مؤسسة العقيلة", desc: "مؤسسة ثقافية إسلامية", url: "al-aqila.org", link: "#", img: "link-aqila.jpg" }, 
     { title: "مكتبة آل الشيرازي / تيليجرام", desc: "القناة الرسمية للمكتبة على تيليجرام", url: "t.me/shirazi_lib", link: "https://t.me/shirazi_lib", img: "link-telegram.jpg" },
     { title: "مؤسسة الإمام الشيرازي العالمية", desc: "المؤسسة العالمية لتراث الإمام الشيرازي", url: "alshirazionline.org", link: "https://alshirazionline.org", img: "link-alshirazionline.jpg" },
     { title: "شبكة النبأ", desc: "موقع إخباري وبحثي", url: "m.annabaa.org", link: "http://m.annabaa.org", img: "link-annabaa.jpg" }
@@ -1173,41 +1165,41 @@ function renderFavorites(){
 function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
-  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF."); location.hash = "#/book/" + id; return; }
-  let rawUrl = "";
-  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; }
-  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; }
-  else { rawUrl = b.id + ".pdf"; }
+  if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
   
-  // تحويل المسار إلى رابط مطلق
-  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) { 
-      rawUrl = new URL(FILES_BASE + rawUrl, window.location.href).href; 
+  let rawUrl = "";
+  // التحقق من وجود رابط مباشر أو اسم ملف
+  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
+  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
+  else { rawUrl = b.id + ".pdf"; }
+
+  // إذا كان الملف محلياً (داخل مجلد الموقع)، نضيف المسار الأساسي
+  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
+     rawUrl = FILES_BASE + rawUrl;
   }
   
-  // استخدام العارض المحلي (المجلد pdfjs الذي رفعته)
-  let viewerUrl = "./pdfjs/viewer.html?file=" + encodeURIComponent(rawUrl);
+  let viewerUrl = "";
+  // نظام العارض المزدوج:
+  // 1. إذا كان الرابط خارجياً (مثل GitHub)، نستخدم Google Docs Viewer لتجاوز مشكلة CORS (مشاركة الموارد عبر الأصول)
+  if (rawUrl.startsWith("http")) {
+     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
+  } else {
+     // 2. إذا كان الرابط محلياً، نستخدم Mozilla PDF.js
+     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  }
 
+  // بناء واجهة القارئ
   app.innerHTML = `
     <div class="reader-wrap">
-      <div class="reader-loading" id="readerLoading">
-        <div class="spinner"></div>
-        <p style="font-family:'Cairo',sans-serif; color:var(--primary); font-weight:700;">جاري تحميل الكتاب...</p>
-      </div>
       <div class="reader-header">
-        <button onclick="history.back()" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; cursor:pointer; font-family:inherit;">← رجوع</button>
+        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
-        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink); cursor:pointer; font-family:inherit;">🌙 ليلي</button>
+        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
         ${favBtnHtml("book",b.id)}
       </div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy" onload="document.getElementById('readerLoading').style.display='none';"></iframe>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
     </div>
   `;
-  
-  // مؤقت زمني لإخفاء شاشة التحميل في حال تعليق العارض (بعد 8 ثواني)
-  setTimeout(() => {
-    const l = document.getElementById('readerLoading');
-    if(l) l.style.display='none';
-  }, 8000);
 }
 
 /* ===== مشغل المرئيات والصوتيات ===== */
@@ -1569,7 +1561,6 @@ function getFiltered(){
   return list;
 }
 
-// نظام عرض المزيد (Pagination)
 function renderList(passedList){
   const list = passedList || getFiltered();
   const box = document.getElementById("booksBox");
