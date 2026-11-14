@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "id": "book-539072",
+      "title": "الترتّب",
+      "author": "shirazi-mr",
+      "categories": [
+        "al-usul"
+      ],
+      "category": "al-usul",
+      "year": 1429,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tarattub.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tarattub.doc",
+      "series": "alfaqihalshirazi",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-tarattub.jpg",
+      "description": "الترتّب في اصطلاح الأصوليين والفقهاء هو عبارة عن إجتماع حكمين في موضوع واحد، أو في موضوعين وفي وقت واحد بحيث لا يقدر المكلف على إتيانهما معاً، وحكم الأول هو المطلق والثاني هو المشروط.\n\nيأتي في هذا الكتاب الموسوم ب (الترتّب) الذي ألفه \"محمد رضا الشيرازي\" بحث متواضع في مسألة \"الترتّب\".\n\nيشترط في تحقق \"الترتب\" أمور:\n\nالأول: وجود التضاد بين الأمرين، وإلا لم يكن محذور في الجمع بينهما. الثاني: كون التكليفين إلزاميين.",
+      "pages": 256
+    },
+    {
       "id": "book-746257",
       "title": "في بلادي في بلادي",
       "author": "shirazi-m",
