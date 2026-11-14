@@ -1,6 +1,22 @@
 {
   "items": [
     {
+      "id": "book-746257",
+      "title": "في بلادي في بلادي",
+      "author": "shirazi-m",
+      "categories": [
+        "other"
+      ],
+      "category": "other",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "http://www.m-alshirazi.net/book/moalfat/pdf/098.pdf",
+      "word_url": "http://www.m-alshirazi.net/book/moalfat/word/098.doc"
+    },
+    {
       "id": "book-533624",
       "title": "المنهج القرآني بين النص والتطبيق",
       "author": "shirazi-me",
