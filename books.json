@@ -1,6 +1,25 @@
 {
   "items": [
     {
+      "id": "book-568940",
+      "title": "تبيين القرآن",
+      "author": "shirazi-m",
+      "categories": [
+        "quran",
+        "li-talabat-al-uloom"
+      ],
+      "category": "quran",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/tabyin-al-quran.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/tabyin-al-quran.doc",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/tabyin-al-quran.jpg",
+      "description": "تفسير مختصر ومبسّط للقرآن الكريم لآية الله العظمى السيد محمد الحسيني الشيرازي(رحمه الله تعالى)، كتبه في ظروف مطاردة واختفاء في كربلاء بعيداً عن أهله، فكان العلم مؤنسه في الوحشة. يشرح معاني الآيات والمفردات بأسلوب واضح، ويغطي جميع سور القرآن، ويجمع بين الإيجاز والعمق ورد الشبهات، وهو مناسب للقراء والمبتدئين في فهم القرآن الكريم."
+    },
+    {
       "id": "book-276636",
       "title": "تبيين الأصول ج8",
       "author": "shirazi-mr",
