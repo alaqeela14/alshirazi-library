@@ -1,6 +1,38 @@
 {
   "items": [
     {
+      "id": "book-990285",
+      "title": "توضيح العروة الوثقى",
+      "author": "shirazi-mr",
+      "categories": [
+        "other"
+      ],
+      "category": "other",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tawdih-al-urwa-al-wuthqa.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/tawdih-al-urwa-al-wuthqa.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-925267",
+      "title": "المدخل",
+      "author": "shirazi-mr",
+      "categories": [
+        "other"
+      ],
+      "category": "other",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/al-madkhal.pdf",
+      "series": "alfaqihalshirazi"
+    },
+    {
       "id": "book-539072",
       "title": "الترتّب",
       "author": "shirazi-mr",
