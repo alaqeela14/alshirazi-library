@@ -2929,16 +2929,19 @@
     },
     {
       "id": "book-205",
-      "title": "احذروا اليهود",
+      "title": "أثر النشاط والحكمة في تقدم المسلمين",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/205.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/205.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/205.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-206",
@@ -3423,7 +3426,7 @@
     },
     {
       "id": "book-243",
-      "title": "الصلح مع اليهود استسلام لا سلام",
+      "title": "الشعور بالمسؤولية",
       "author": "shirazi-m",
       "category": "siyasah",
       "year": 1420,
@@ -3432,7 +3435,11 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/243.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/243.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/243.doc",
+      "categories": [
+        "siyasah",
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-244",
@@ -3800,16 +3807,19 @@
     },
     {
       "id": "book-272",
-      "title": "بين المسلمين واليهود",
+      "title": "إنقاذ العتبات المقدسة",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/272.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/272.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/272.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-275",
@@ -4380,16 +4390,19 @@
     },
     {
       "id": "book-316",
-      "title": "قصص من اليهود",
+      "title": "في رحاب السيدة المعصومة عليها السلام",
       "author": "shirazi-m",
-      "category": "other",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/316.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/316.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/316.doc",
+      "categories": [
+        "ahlulbayt"
+      ]
     },
     {
       "id": "book-317",
@@ -4774,16 +4787,19 @@
     },
     {
       "id": "book-346",
-      "title": "هؤلاء اليهود",
+      "title": "هداية الناس وقضاء حوائجهم",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/346.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/346.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/346.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-347",
@@ -4800,16 +4816,19 @@
     },
     {
       "id": "book-348",
-      "title": "وصايا إلى الشباب المسلم",
+      "title": "هؤلاء اليهود",
       "author": "shirazi-m",
-      "category": "youth",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/348.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/348.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/348.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-349",
@@ -5021,16 +5040,19 @@
     },
     {
       "id": "book-365",
-      "title": "انتهاء أمد اليهود في اغتصاب فلسطين",
+      "title": "حقوق الحيوان وأحكامه",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/365.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/365.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/365.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-366",
