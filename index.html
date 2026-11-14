@@ -8,6 +8,16 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#212529">
 <link rel="icon" href="logo.png" type="image/png">
+<!-- أكواد معاينة الروابط (Open Graph) -->
+<meta property="og:title" content="مكتبة آل الشيرازي | موسوعة تراث أسرة آل الشيرازي العلمي">
+<meta property="og:description" content="موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي عبر أجيالها، مع تصنيف علمي يسهّل الوصول إلى مئات المؤلفات.">
+<meta property="og:image" content="https://shirazilib.dpdns.org/logo.png">
+<meta property="og:url" content="https://shirazilib.dpdns.org">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مكتبة آل الشيرازي | موسوعة تراث أسرة آل الشيرازي العلمي">
+<meta name="twitter:description" content="موسوعة إلكترونية شاملة تجمع تراث أسرة آل الشيرازي الكرام العلمي.">
+<meta name="twitter:image" content="https://shirazilib.dpdns.org/logo.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -42,6 +52,11 @@ body.no-scroll{overflow:hidden}
 a{color:inherit;text-decoration:none;transition:color var(--tr)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .container{width:min(1240px,94%);margin-inline:auto}
+
+/* إخفاء الترويسة في الصفحات الداخلية */
+body.inner-page .site-head,
+body.inner-page .moving-text-bar,
+body.inner-page .topbar { display: none !important; }
 
 .site-head{background-image:url('header-bg.jpg');background-size:cover;background-position:center top;background-repeat:no-repeat;position:relative;height:250px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .date-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);color:var(--accent-light);padding:2px 0;font-size:9.5px;border-top:none;z-index:10}
@@ -100,15 +115,21 @@ body.sidebar-open .sidebar{transform:translateX(0)}
 [data-theme="dark"] .sidebar-head h3{color:var(--accent)}
 .sidebar-close{width:34px;height:34px;border-radius:50%;background:var(--paper-2);color:var(--ink);display:grid;place-items:center;font-size:14px}
 .sidebar-close:hover{background:var(--primary);color:#fff}
+
+/* بحث القائمة الجانبية */
+.sidebar-search-wrap{padding:0 0 10px 0;margin-bottom:10px;}
+.sidebar-search-input{width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper-2);font-family:inherit;font-size:12.5px;color:var(--ink);outline:none;}
+.sidebar-search-input:focus{border-color:var(--primary);}
+
 .side-widget{margin-bottom:20px}
-.side-widget h4{font-size:13px;color:var(--primary-dark);border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px;font-weight:800}
+.side-widget h4{font-size:12px;color:var(--primary-dark);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px;font-weight:800}
 [data-theme="dark"] .side-widget h4{color:var(--accent)}
 .side-list{list-style:none}
-.side-list li a{display:flex;justify-content:space-between;align-items:center;padding:8px 11px;border-radius:8px;font-size:13px;color:var(--ink-2);transition:all var(--tr);margin-bottom:2px}
+.side-list li a{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:600;color:var(--ink-2);transition:all var(--tr);margin-bottom:2px}
 .side-list li a:hover{background:var(--paper-2);color:var(--primary-dark)}
 .side-list li a.active{background:var(--primary);color:#fff}
 [data-theme="dark"] .side-list li a.active{color:#212529;}
-.side-cnt{background:var(--paper-2);color:var(--muted);font-size:11px;padding:1px 8px;border-radius:9px;font-weight:600}
+.side-cnt{background:var(--paper-2);color:var(--muted);font-size:10px;padding:1px 6px;border-radius:9px;font-weight:600}
 .side-list li a.fav-link{background:linear-gradient(135deg,var(--paper-2),var(--paper));border:1px solid var(--accent);color:var(--primary-dark);font-weight:700}
 .side-list li a.fav-link:hover{background:var(--accent);color:#212529}
 
@@ -133,15 +154,15 @@ main{flex:1;padding:22px 0 60px}
 /* ==== تعديل أزرار الصفحة الرئيسية (عرضية وصغيرة) ==== */
 .home-action-row{display:flex;gap:8px;margin-bottom:20px;width:100%}
 .home-action-row > * { flex:1; margin-bottom:0 !important; }
-.tg-banner{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--paper);border:1px solid var(--line);padding:8px 10px;border-radius:var(--radius-lg);color:#229ED9;font-weight:700;font-size:11.5px;transition:all 0.2s;box-shadow:var(--shadow-sm);text-decoration:none;}
+.tg-banner{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--paper);border:1px solid var(--line);padding:6px 10px;border-radius:var(--radius-lg);color:#229ED9;font-weight:700;font-size:10.5px;transition:all 0.2s;box-shadow:var(--shadow-sm);text-decoration:none; min-height: 50px;}
 .tg-banner:hover{border-color:#229ED9;background:var(--paper-2);}
 .tg-banner svg{width:16px;height:16px;fill:currentColor;}
 
-.continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:8px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr)}
+.continue-reading{background:var(--paper);border:2px solid var(--accent);border-radius:var(--radius-lg);padding:6px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:all var(--tr); min-height: 50px;}
 .continue-reading:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:12px;color:var(--primary-dark);margin-bottom:2px;text-align:center;}
+.continue-reading .cr-text h3{font-family:'Amiri',serif;font-size:11px;color:var(--primary-dark);margin-bottom:2px;text-align:center;}
 [data-theme="dark"] .continue-reading .cr-text h3{color:var(--accent)}
-.continue-reading .cr-text p{display:block; font-size:9.5px; color:var(--muted); text-align:center; line-height:1.2;}
+.continue-reading .cr-text p{display:block; font-size:9px; color:var(--muted); text-align:center; line-height:1.2;}
 .continue-reading .cr-icon{display:none;}
 
 /* تعديل شريط الأدوات ليكون أصغر وأكثر ترتيباً */
@@ -324,7 +345,7 @@ main{flex:1;padding:22px 0 60px}
 .contact-card h3{font-family:'Amiri',serif;font-size:22px;color:var(--primary-dark);margin-bottom:10px}
 .contact-card p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px}
 
-.back-btn{display:inline-flex;align-items:center;gap:7px;background:var(--paper);color:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:8px 16px;font:inherit;font-size:13px;font-weight:600;margin-bottom:16px;transition:all var(--tr);cursor:pointer;}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:var(--paper);color:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:6px 14px;font:inherit;font-size:12px;font-weight:600;margin-bottom:16px;transition:all var(--tr);cursor:pointer;}
 .back-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
@@ -538,6 +559,12 @@ textarea.form-control{resize:vertical;min-height:100px}
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-head"><h3>التصفح</h3><button class="sidebar-close" id="sidebarClose">✕</button></div>
+  
+  <!-- بحث القائمة الجانبية -->
+  <div class="sidebar-search-wrap">
+    <input type="text" id="sidebarSearch" class="sidebar-search-input" placeholder="ابحث في القائمة..." oninput="filterSidebar(this.value)">
+  </div>
+
   <div class="side-widget"><h4>التصنيفات</h4><ul class="side-list" id="sideCats"></ul></div>
   <div class="side-widget"><h4>الوسائط المتعددة</h4><ul class="side-list">
     <li><a href="#/audios" onclick="closeSidebar()">المكتبة الصوتية</a></li>
@@ -630,6 +657,31 @@ function showAdminLinks() {
   alert("تم تفعيل لوحة التحكم بنجاح! افتح القائمة الجانبية للوصول إليها.");
 }
 // ==========================================
+
+// بحث القائمة الجانبية
+window.filterSidebar = function(val) {
+  val = val.toLowerCase().trim();
+  const lists = document.querySelectorAll('.sidebar .side-list');
+  
+  lists.forEach(list => {
+    let hasVisible = false;
+    list.querySelectorAll('li').forEach(li => {
+      const text = li.textContent.toLowerCase();
+      if(text.includes(val)) {
+        li.style.display = 'block';
+        hasVisible = true;
+      } else {
+        li.style.display = 'none';
+      }
+    });
+    
+    // إخفاء عنوان القسم (h4) إذا لم تكن هناك عناصر ظاهرة
+    const header = list.previousElementSibling;
+    if(header && header.tagName === 'H4') {
+      header.style.display = hasVisible ? 'block' : 'none';
+    }
+  });
+};
 
 let CATS = [], MEDIA_LISTS = { video: [], audio: [] };
 
@@ -872,6 +924,14 @@ function router(){
   
   if (route !== "read") state.limit = 40; 
 
+  // إخفاء الشريط العلوي في الصفحات الداخلية
+  const innerPages = ["book", "read", "category", "series-one", "author", "library", "latest", "favorites", "audios", "videos", "masoomeen", "printed", "contact", "about", "istifta", "useful-links", "donate"];
+  if (innerPages.includes(route)) {
+      document.body.classList.add('inner-page');
+  } else {
+      document.body.classList.remove('inner-page');
+  }
+
   if(route==="home") renderHome();
   else if(route==="library") renderLibrary();
   else if(route==="latest") renderLatestPage();
@@ -932,7 +992,8 @@ function catCardHtml(c){
 }
 
 function renderHome(){
-  const latest = [...BOOKS].slice(-3).reverse();
+  // أحدث الإصدارات: أول 3 كتب
+  const latest = [...BOOKS].slice(0, 3);
   
   const lastReadId = localStorage.getItem("alsh_last_read");
   const lastReadBook = lastReadId ? getBook(lastReadId) : null;
@@ -950,7 +1011,7 @@ function renderHome(){
         <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         متابعة المكتبة على التيليجرام
       </a>
-      ${lastReadBook?`<a href="#/book/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div></a>`:""}
+      ${lastReadBook?`<a href="#/read/${lastReadBook.id}" class="continue-reading"><div class="cr-text"><h3>متابعة القراءة</h3><p>لقد توقفت عند: ${esc(lastReadBook.t)}</p></div></a>`:""}
     </div>
     
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -966,16 +1027,16 @@ function renderHome(){
 
 function renderLatestPage(){
   state.limit = 40;
-  // عرض كل الكتب ما عدا أول 3 كتب (التي تظهر في الرئيسية)
-  const latest = [...BOOKS].slice(0, 3); 
+  // عرض بقية الكتب (تخطي أول 3 كتب)
+  const latest = [...BOOKS].slice(3);
   
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
   <div class="sec-title">أحدث الإصدارات</div>
   ${toolbarHtml()}
   <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   
-  bindToolbar(); // تفعيل أزرار الترتيب والتبديل
-  renderList(latest); // عرض الكتب
+  bindToolbar();
+  renderList(latest);
 }
 
 window.goToRandomBook = () => {
@@ -999,7 +1060,8 @@ function renderCategory(id){
   if (id === 'ahlulbayt') {
     specialBanner = `<a href="#/masoomeen" class="series-banner"><div class="sb-text"><h2>سلسلة من حياة المعصومين عليهم السلام</h2><p>مجموعة مباركة من 13 كتاباً تروي سير أهل البيت (عليهم السلام) مرتبة حسب التسلسل العقائدي.</p></div><div class="sb-icon">🕌</div></a>`;
   }
-  app.innerHTML = `${specialBanner}<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div><div class="sec-title">${esc(cat.name)}</div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
+  // إخفاء العنوان الكبير
+  app.innerHTML = `${specialBanner}<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>${esc(cat.name)}</span></div>${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar(); renderList();
 }
 
@@ -1055,18 +1117,8 @@ function renderSeriesPage(id){
     bulkHtml = `<div style="background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;"><h3 style="font-family:'Amiri',serif;font-size:18px;color:var(--primary-dark);margin:0;">تحميل الموسوعة كاملة</h3><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px;"><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_PDF.zip" class="dl-btn dl-pdf" style="text-decoration:none;">تحميل الكل (PDF)</a><a href="https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-volumes/Fiqh_Encyclopedia_Word.zip" class="dl-btn dl-word" style="text-decoration:none;">تحميل الكل (Word)</a></div></div>`;
   }
   
-  const seriesCoverHtml = s.cover
-    ? `<img src="${esc(s.cover)}" class="series-cover-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="author-avatar-big" style="display:none;width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`
-    : `<div class="author-avatar-big" style="width:64px;height:64px;font-size:24px;margin-bottom:8px;">${esc(s.name.charAt(0))}</div>`;
-
+  // إخفاء بطاقة الموسوعة
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/series">الموسوعات</a> <span>/</span> <span>${esc(s.name)}</span></div>
-  <div class="author-header compact">
-    <button onclick="shareSeries('${s.id}')" class="share-btn-compact">مشاركة</button>
-    ${seriesCoverHtml}
-    <h1>${esc(s.name)}</h1>
-    <p>${esc(s.desc)}</p>
-    <div class="author-stats"><span>عدد الكتب: ${count}</span><span>المؤلف: ${esc(authorName(s.author))}</span></div>
-  </div>
   ${bulkHtml}${toolbarHtml()}<div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
   bindToolbar(); renderList();
 }
@@ -1085,7 +1137,7 @@ function renderBookPage(id){
   const catsLinks = getBookCats(b).map(cid => `<a href="#/category/${cid}" style="color:var(--primary);text-decoration:underline">${esc(getCat(cid)?.name||"غير مصنف")}</a>`).join(" • ");
   
   app.innerHTML = `
-  <button onclick="history.back()" class="back-btn" style="cursor:pointer;">← رجوع</button>
+  <a href="#/home" class="back-btn" style="cursor:pointer;">← رجوع</a>
   <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span><a href="#/category/${getBookCats(b)[0]}">${esc(getCat(getBookCats(b)[0])?.name||"تصنيف")}</a> <span>/</span><span>${esc(b.t)}</span></div>
   <div class="book-page">
     <div class="book-main">
@@ -1172,33 +1224,27 @@ function renderReader(id){
   if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
   
   let rawUrl = "";
-  // التحقق من وجود رابط مباشر أو اسم ملف
   if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
   else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
   else { rawUrl = b.id + ".pdf"; }
 
-  // إذا كان الملف محلياً (داخل مجلد الموقع)، نضيف المسار الأساسي
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
      rawUrl = FILES_BASE + rawUrl;
   }
   
   let viewerUrl = "";
-  // نظام العارض المزدوج:
-  // 1. إذا كان الرابط خارجياً (مثل GitHub)، نستخدم Google Docs Viewer لتجاوز مشكلة CORS (مشاركة الموارد عبر الأصول)
   if (rawUrl.startsWith("http")) {
      viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
   } else {
-     // 2. إذا كان الرابط محلياً، نستخدم Mozilla PDF.js
      viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
   }
 
-  // بناء واجهة القارئ
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
-        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px;">← رجوع</a>
+        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
-        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:6px 12px; font-size:12px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
+        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
         ${favBtnHtml("book",b.id)}
       </div>
       <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
