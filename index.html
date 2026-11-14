@@ -967,7 +967,7 @@ function renderHome(){
 function renderLatestPage(){
   state.limit = 40;
   // عرض كل الكتب ما عدا أول 3 كتب (التي تظهر في الرئيسية)
-  const latest = [...BOOKS].slice(3); 
+  const latest = [...BOOKS].slice(0, 3); 
   
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
   <div class="sec-title">أحدث الإصدارات</div>
