@@ -966,12 +966,16 @@ function renderHome(){
 
 function renderLatestPage(){
   state.limit = 40;
-  const latest = [...BOOKS].reverse().slice(3);
+  // عرض كل الكتب ما عدا أول 3 كتب (التي تظهر في الرئيسية)
+  const latest = [...BOOKS].slice(3); 
   
   app.innerHTML = `<div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <span>أحدث الإصدارات</span></div>
   <div class="sec-title">أحدث الإصدارات</div>
-  <div id="booksBox" class="books-grid"></div>`;
-  renderList(latest);
+  ${toolbarHtml()}
+  <div id="booksBox" class="${state.view==='table'?'books-list':'books-grid'}"></div>`;
+  
+  bindToolbar(); // تفعيل أزرار الترتيب والتبديل
+  renderList(latest); // عرض الكتب
 }
 
 window.goToRandomBook = () => {
