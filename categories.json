@@ -8,32 +8,44 @@
     "name": "أهل البيت (عليهم السلام)"
   },
   {
-    "id": "shaair",
-    "name": "الشعائر"
+    "id": "aqaid",
+    "name": "عقائدية"
   },
   {
     "id": "fiqh",
     "name": "فقهية"
   },
   {
-    "id": "aqaid",
-    "name": "عقائدية"
-  },
-  {
     "id": "akhlaq",
     "name": "أخلاقية"
+  },
+  {
+    "id": "al-usul",
+    "name": "الأصول"
+  },
+  {
+    "id": "shaair",
+    "name": "الشعائر"
   },
   {
     "id": "siyasah",
     "name": "السياسة والاقتصاد"
   },
   {
+    "id": "youth",
+    "name": "الشباب"
+  },
+  {
     "id": "ijtimaiya",
     "name": "المجتمع والأسرة"
   },
   {
-    "id": "youth",
-    "name": "الشباب"
+    "id": "li-talabat-al-uloom",
+    "name": "لطلبة العلوم"
+  },
+  {
+    "id": "about-the-al-shirazi-family",
+    "name": "حول السادة آل الشيرازي"
   },
   {
     "id": "other",
@@ -42,17 +54,5 @@
   {
     "id": "languages",
     "name": "لغات أخرى"
-  },
-  {
-    "id": "about-the-al-shirazi-family",
-    "name": "حول السادة آل الشيرازي"
-  },
-  {
-    "id": "al-usul",
-    "name": "الأصول"
-  },
-  {
-    "id": "li-talabat-al-uloom",
-    "name": "لطلبة العلوم"
   }
 ]
