@@ -2443,7 +2443,7 @@
     },
     {
       "id": "book-151",
-      "title": "الأمراض والأعراض",
+      "title": "وتلك الأيام",
       "author": "shirazi-m",
       "category": "other",
       "year": 1420,
@@ -2452,7 +2452,10 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/151.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/151.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/151.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-152",
@@ -3235,16 +3238,19 @@
     },
     {
       "id": "book-213",
-      "title": "الأخلاق المثالية",
+      "title": "أقسام الجهاد",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/213.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/213.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/213.doc",
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-214",
@@ -3599,16 +3605,19 @@
     },
     {
       "id": "book-241",
-      "title": "الشعور بالمسؤولية",
+      "title": "الزواج وتشكيل الأسرة في الإسلام",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/241.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/241.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/241.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-242",
@@ -4076,7 +4085,7 @@
     },
     {
       "id": "book-280",
-      "title": "تقريب القرآن إلى الأذهان الجزء ١",
+      "title": "تقريب القرآن إلى الأذهان الجزء 1",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4093,7 +4102,7 @@
     },
     {
       "id": "book-281",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٢",
+      "title": "تقريب القرآن إلى الأذهان الجزء 2",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4109,7 +4118,7 @@
     },
     {
       "id": "book-282",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٣",
+      "title": "تقريب القرآن إلى الأذهان الجزء 3",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4126,7 +4135,7 @@
     },
     {
       "id": "book-283",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٤",
+      "title": "تقريب القرآن إلى الأذهان الجزء 4",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4142,7 +4151,7 @@
     },
     {
       "id": "book-284",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٥",
+      "title": "تقريب القرآن إلى الأذهان الجزء 5",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4159,7 +4168,7 @@
     },
     {
       "id": "book-285",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٦",
+      "title": "تقريب القرآن إلى الأذهان الجزء 6",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4175,7 +4184,7 @@
     },
     {
       "id": "book-286",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٧",
+      "title": "تقريب القرآن إلى الأذهان الجزء 7",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4192,7 +4201,7 @@
     },
     {
       "id": "book-287",
-      "title": "تقريب القرآن إلى الأذهان الجزء ٨",
+      "title": "تقريب القرآن إلى الأذهان الجزء 8",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -8041,20 +8050,6 @@
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/kalima-volumes/kalima-26.pdf"
     },
     {
-      "id": "taqrib-quran-vol-1",
-      "title": "تقريب القرآن إلى الأذهان - الجزء 1",
-      "author": "shirazi-m",
-      "category": "quran",
-      "year": 1420,
-      "series": "taqrib-quran",
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-1.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-1.doc"
-    },
-    {
       "id": "taqrib-quran-vol-2",
       "title": "تقريب القرآن إلى الأذهان - الجزء 2",
       "author": "shirazi-m",
@@ -8095,20 +8090,6 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-4.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-4.doc"
-    },
-    {
-      "id": "taqrib-quran-vol-5",
-      "title": "تقريب القرآن إلى الأذهان - الجزء 5",
-      "author": "shirazi-m",
-      "category": "quran",
-      "year": 1420,
-      "series": "taqrib-quran",
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-5.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-quran-vol-5.doc"
     },
     {
       "id": "taqrib-quran-vol-6",
