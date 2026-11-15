@@ -3061,16 +3061,20 @@
     },
     {
       "id": "book-196",
-      "title": "متى جمع القران؟",
+      "title": "من فقه الزهراء عليها السلام ــ الجزء الرابع",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.doc",
+      "categories": [
+        "fiqh"
+      ],
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-197",
@@ -4260,7 +4264,7 @@
       "id": "book-288",
       "title": "تلخيص منية المريد",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
@@ -4269,7 +4273,7 @@
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/290.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/290.doc",
       "categories": [
-        "ahlulbayt"
+        "other"
       ]
     },
     {
