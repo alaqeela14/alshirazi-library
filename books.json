@@ -1,23 +1,6 @@
 {
   "items": [
     {
-      "id": "book-458676",
-      "title": "من فقه الزهراء عليها السلام - ج5",
-      "author": "shirazi-m",
-      "categories": [
-        "fiqh"
-      ],
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.doc",
-      "series": "fiqh-zahra"
-    },
-    {
       "id": "book-100802",
       "title": "تقريب القرآن إلى الأذهان الجزء 10",
       "author": "shirazi-m",
@@ -33,23 +16,6 @@
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.doc",
       "series": "taqrib-quran"
-    },
-    {
-      "id": "book-368730",
-      "title": "من فقه الزهراء عليها السلام - ج6",
-      "author": "shirazi-m",
-      "categories": [
-        "fiqh"
-      ],
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/373.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/373.doc",
-      "series": "fiqh-zahra"
     },
     {
       "id": "book-387621",
@@ -70,8 +36,8 @@
       "series": "ahadith-wa-mujizat-al-masumin"
     },
     {
-      "id": "book-290958",
-      "title": "من فقه الزهراء عليها السلام - ج7",
+      "id": "book-368730",
+      "title": "من فقه الزهراء عليها السلام - ج6",
       "author": "shirazi-m",
       "categories": [
         "fiqh"
@@ -82,8 +48,8 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/374.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/374.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/373.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/373.doc",
       "series": "fiqh-zahra"
     },
     {
@@ -123,6 +89,23 @@
       "series": "ahadith-wa-mujizat-al-masumin"
     },
     {
+      "id": "book-458676",
+      "title": "من فقه الزهراء عليها السلام - ج5",
+      "author": "shirazi-m",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.doc",
+      "series": "fiqh-zahra"
+    },
+    {
       "id": "book-662544",
       "title": "أحاديث ومعجزات المعصومين ج4",
       "author": "auth-1794679870767",
@@ -156,6 +139,23 @@
       "description": "يتناول كتاب «تيسير مقاصد الأصول» مباحث علم أصول الفقه الإمامي في صيغته المعاصرة من خلال تقريرات دروس آية الله السيد محمد رضا الشيرازي، كما دوّنها مقرِّره الشيخ مهدي تاج الدين. يركز الكتاب على مجموعة من الأبحاث الأصولية المتقدمة، ولا سيما أبحاث القطع والظن والتجري، مع بيان أحكام القطع وآثاره وحدود معذريته، وإمكان ردع الشارع عن العمل على وفقه، ووجوب اتباعه عقلاً. ويبحث المؤلف في مفهوم التجري وحقيقته، وحكم الفعل المتجرَّى به من حيث القبح وعدمه، واستحقاق المتجري للعقاب، وانعكاس ذلك على عدالة المكلف وسلوكه الباطني. كما يعرض الكتاب أدلة الأعلام من الأصوليين كالمحقق الأصفهاني، المحقق النائيني، الآخوند، الشيخ الأنصاري، والسيد الحكيم، ويناقشها بتحليل نقدي ومقارن. ويتميّز العمل بمحاولة تيسير المقاصد العميقة لعلم الأصول مع المحافظة على العمق العلمي والدقة العقلية، مما يجعله نصاً دراسياً وبحثياً لطلبة الحوزة ودارسي أصول الفقه في القرن الرابع عشر الهجري.",
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Facilitating-the-objectives-of-thefundamentals.pdf",
       "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/Facilitating-the-objectives-of-thefundamentals.jpg"
+    },
+    {
+      "id": "book-290958",
+      "title": "من فقه الزهراء عليها السلام - ج7",
+      "author": "shirazi-m",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/374.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/374.doc",
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-990285",
@@ -2816,6 +2816,23 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/172.doc"
     },
     {
+      "id": "book-193",
+      "title": "من فقه الزهراء عليها السلام ــ ج1",
+      "author": "shirazi-m",
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.doc",
+      "series": "fiqh-zahra",
+      "categories": [
+        "fiqh"
+      ]
+    },
+    {
       "id": "book-173",
       "title": "مسائل حديثة",
       "author": "shirazi-m",
@@ -3011,23 +3028,6 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/187.doc"
     },
     {
-      "id": "book-193",
-      "title": "من فقه الزهراء عليها السلام ــ ج1",
-      "author": "shirazi-m",
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.doc",
-      "series": "fiqh-zahra",
-      "categories": [
-        "fiqh"
-      ]
-    },
-    {
       "id": "book-189",
       "title": "الاستفتاءت الدمشقية",
       "author": "shirazi-m",
@@ -3109,23 +3109,6 @@
       ]
     },
     {
-      "id": "book-196",
-      "title": "من فقه الزهراء عليها السلام ــ ج4",
-      "author": "shirazi-m",
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.doc",
-      "categories": [
-        "fiqh"
-      ],
-      "series": "fiqh-zahra"
-    },
-    {
       "id": "book-195",
       "title": "من فقه الزهراء عليها السلام ــ ج3",
       "author": "shirazi-m",
@@ -3141,6 +3124,23 @@
       "categories": [
         "fiqh"
       ]
+    },
+    {
+      "id": "book-196",
+      "title": "من فقه الزهراء عليها السلام ــ ج4",
+      "author": "shirazi-m",
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/196.doc",
+      "categories": [
+        "fiqh"
+      ],
+      "series": "fiqh-zahra"
     },
     {
       "id": "book-197",
