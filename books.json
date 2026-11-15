@@ -1,6 +1,23 @@
 {
   "items": [
     {
+      "id": "book-114343",
+      "title": "جامع المسائل الشرعية",
+      "author": "shirazi-s",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-sadiq-al-shirazi-v1.0.0/jami-al-masailal-shariyyah.pdf",
+      "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-sadiq-al-shirazi-v1.0.0/jami-al-masailal-shariyyah.jpg",
+      "pages": 863,
+      "description": "يحتوي هذا الكتاب على مسائل في كل الأبواب الفقهية، من الاجتهاد والتقليد إلى الشؤون الجزائية والعقوبات. ويختلف هذا الكتاب عن الرسالة العملية بأنّه يتطرّق وبشكل مفصّل إلى المسائل الحديثة والمسائل التي يكثر ابتلاء المؤمنين بها في العصر الحاضر، وبالخصوص المؤمنين والجالية المسلمة القاطنين في بلاد الغرب. وحُرّرت عبارات الكتاب بأسلوب مبسّط، أي خال من المصطلحات الفقهية، بحيث يسهل فهمها على القارئ في أي مستوى علمي كان. ويقع الكتاب في عشرة أبواب بالشكل التالي: الباب الأول: الشؤون العبادية، الباب الثاني: الجهاد واصلاح المجتمعات، الباب الثالث: الشؤون الاجتماعية والأُسَرية، الباب الرابع: الأخلاق وبناء الشخصية، الباب الخامس: شؤون الأطعمة والأشربة، الباب السادس: الثقافة والتوطّر الإنساني، الباب السابع: الشؤون الاقتصادية والمعاملات، الباب الثامن: الهجرة إلى البلاد غير الإسلامية، الباب التاسع: المؤسسات والوقف، الباب العاشر: الشؤون الجزائية والعقوبات."
+    },
+    {
       "id": "book-280",
       "title": "تقريب القرآن إلى الأذهان الجزء 1",
       "author": "shirazi-m",
@@ -3016,7 +3033,7 @@
     },
     {
       "id": "book-187",
-      "title": "جامع المسائل الشرعية",
+      "title": "استفتاءات حول السياسة الإسلامية",
       "author": "shirazi-m",
       "category": "fiqh",
       "year": 1420,
@@ -3025,7 +3042,10 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/187.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/187.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/187.doc",
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-189",
@@ -3075,22 +3095,6 @@
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/fiqh-al-zahra-v1.0.0/197.doc",
       "series": "fiqh-zahra"
-    },
-    {
-      "id": "book-191",
-      "title": "جامع المسائل الشرعية",
-      "author": "shirazi-s",
-      "category": "fiqh",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.doc",
-      "categories": [
-        "fiqh"
-      ]
     },
     {
       "id": "book-192",
