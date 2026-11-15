@@ -585,20 +585,16 @@ async function init(){
 }
 
 function populateSelects(){
-  // تعبئة قوائم الاقتراحات (Datalists)
   const authorSuggestions = document.getElementById('author-suggestions');
   if (authorSuggestions) {
     authorSuggestions.innerHTML = AUTHORS.map(a => `<option value="${esc(a.name)}"></option>`).join('');
   }
-  
   const seriesSuggestions = document.getElementById('series-suggestions');
   if (seriesSuggestions) {
     seriesSuggestions.innerHTML = SERIES.map(s => `<option value="${esc(s.name)}"></option>`).join('');
   }
-
   const catOpts = CATS.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
   document.getElementById('filterCat').innerHTML = '<option value="">كل التصنيفات</option>' + catOpts;
-
   renderCatCheckboxes('new-cats-checkboxes', []);
   if (editingId) {
     const b = BOOKS.find(x => x.id === editingId);
@@ -688,21 +684,27 @@ function getSelectedCats(containerId) {
   return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(cb => cb.value);
 }
 
-function renderBookList(){
-  const box = document.getElementById('bookList');
+/* دالة تجمع الفلترة الحالية وتُرجع القائمة المفلترة — تستخدم في العرض والترتيب معاً */
+function getFilteredBooks(){
   const q = (document.getElementById('searchInput').value || '').toLowerCase();
   const fCat = document.getElementById('filterCat').value;
   const fIssue = document.getElementById('filterIssue').value;
-  
   let list = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q));
   if (fCat) list = list.filter(b => getBookCats(b).includes(fCat));
   if (fIssue === 'missing-cover') list = list.filter(b => !b.cover);
+  return list;
+}
+
+function renderBookList(){
+  const box = document.getElementById('bookList');
+  const list = getFilteredBooks();
 
   if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب مطابقة.</div>'; return; }
   
-  box.innerHTML = list.map((b, idx) => {
-    const realIdx = BOOKS.findIndex(x => x.id === b.id);
+  box.innerHTML = list.map((b, visibleIdx) => {
     const authorName = AUTHORS.find(a => a.id === b.author)?.short || b.author || 'غير معروف';
+    const isFirst = visibleIdx === 0;
+    const isLast = visibleIdx === list.length - 1;
     return `
     <div class="book-item">
       <div class="book-title-row">
@@ -719,8 +721,8 @@ function renderBookList(){
           <option value="">— بدون موسوعة —</option>
           ${SERIES.map(s => `<option value="${s.id}" ${s.id===b.series?'selected':''}>${esc(s.name)}</option>`).join('')}
         </select>
-        <button class="move-btn" onclick="moveBook('${b.id}', -1)" ${realIdx === 0 ? 'disabled' : ''} title="أعلى">⬆️</button>
-        <button class="move-btn" onclick="moveBook('${b.id}', 1)" ${realIdx === BOOKS.length - 1 ? 'disabled' : ''} title="أسفل">⬇️</button>
+        <button class="move-btn" onclick="moveBook('${esc(b.id)}', -1)" ${isFirst ? 'disabled' : ''} title="أعلى">⬆️</button>
+        <button class="move-btn" onclick="moveBook('${esc(b.id)}', 1)" ${isLast ? 'disabled' : ''} title="أسفل">⬇️</button>
         <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
         <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
       </div>
@@ -728,14 +730,23 @@ function renderBookList(){
   }).join('');
 }
 
+/* الدالة المُصلحة: تبحث عن الجار المرئي (داخل الفلتر) وتبدّل الموضعين في المصفوفة الأصلية */
 function moveBook(id, dir) {
-  const idx = BOOKS.findIndex(b => b.id === id);
-  if (idx < 0) return;
-  const newIdx = idx + dir;
-  if (newIdx < 0 || newIdx >= BOOKS.length) return;
-  const temp = BOOKS[idx];
-  BOOKS[idx] = BOOKS[newIdx];
-  BOOKS[newIdx] = temp;
+  const filtered = getFilteredBooks();
+  const visibleIdx = filtered.findIndex(b => b.id === id);
+  if (visibleIdx < 0) return;
+  const targetVisibleIdx = visibleIdx + dir;
+  if (targetVisibleIdx < 0 || targetVisibleIdx >= filtered.length) return;
+
+  const targetId = filtered[targetVisibleIdx].id;
+  const origIdxA = BOOKS.findIndex(b => b.id === id);
+  const origIdxB = BOOKS.findIndex(b => b.id === targetId);
+  if (origIdxA < 0 || origIdxB < 0) return;
+
+  const temp = BOOKS[origIdxA];
+  BOOKS[origIdxA] = BOOKS[origIdxB];
+  BOOKS[origIdxB] = temp;
+
   renderBookList();
   toast('تم تغيير الترتيب', 'success');
 }
@@ -755,7 +766,6 @@ function addNewBook(){
   const cats = getSelectedCats('new-cats-checkboxes');
   if (cats.length === 0) return alert('اختر تصنيفاً واحداً على الأقل');
 
-  // معالجة المؤلف (نص حر + إنشاء تلقائي)
   const authorInput = document.getElementById('new-author').value.trim();
   if (!authorInput) return alert('اسم المؤلف مطلوب');
   let authorId = '';
@@ -771,7 +781,6 @@ function addNewBook(){
     renderAuthorsList();
   }
 
-  // معالجة الموسوعة (نص حر + إنشاء تلقائي)
   const seriesInput = document.getElementById('new-series').value.trim();
   let seriesId = '';
   if (seriesInput) {
@@ -809,7 +818,7 @@ function addNewBook(){
   if (desc) newBook.description = desc;
 
   BOOKS.unshift(newBook);
-  populateSelects(); // تحديث الاقتراحات
+  populateSelects();
   renderBookList(); renderStats(); updateFooter();
   ['new-title','new-pages','new-pdf','new-word','new-cover','new-desc','new-author','new-series'].forEach(id => document.getElementById(id).value = '');
   renderCatCheckboxes('new-cats-checkboxes', []);
@@ -850,7 +859,6 @@ function saveEdit(){
 
   b.title = title;
   
-  // معالجة المؤلف
   const authorInput = document.getElementById('edit-author').value.trim();
   if (!authorInput) return alert('اسم المؤلف مطلوب');
   let authorId = '';
@@ -883,7 +891,6 @@ function saveEdit(){
   const pages = parseInt(document.getElementById('edit-pages').value);
   if (pages) b.pages = pages; else delete b.pages;
 
-  // معالجة الموسوعة
   const seriesInput = document.getElementById('edit-series').value.trim();
   if (seriesInput) {
     const existingSeries = SERIES.find(s => s.name === seriesInput);
@@ -1029,7 +1036,6 @@ function addNewSeries(){
   if (!/^[a-z0-9-]+$/.test(id)) return alert('المعرّف بحروف إنجليزية صغيرة فقط');
   if (SERIES.find(s => s.id === id)) return alert('المعرّف مستخدم مسبقاً');
   
-  // معالجة المؤلف (إنشاء تلقائي)
   let authorId = '';
   if (authorInput) {
     const existingAuth = AUTHORS.find(a => a.name === authorInput || a.short === authorInput);
@@ -1080,7 +1086,6 @@ function saveEditSeries(){
   if (!name) return alert('الاسم مطلوب');
   s.name = name;
   
-  // معالجة المؤلف
   const authorInput = document.getElementById('edit-series-author').value.trim();
   let authorId = '';
   if (authorInput) {
