@@ -2977,9 +2977,9 @@
     },
     {
       "id": "book-190",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الثاني",
+      "title": "الفقه - القواعد الفقهية",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -2987,13 +2987,15 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/190.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/190.doc",
-      "series": "fiqh-zahra"
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-191",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الثالث",
-      "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "title": "جامع المسائل الشرعية",
+      "author": "shirazi-s",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3001,13 +3003,15 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/191.doc",
-      "series": "fiqh-zahra"
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-192",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الرابع",
+      "title": "مناسك الحج",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3015,13 +3019,15 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/192.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/192.doc",
-      "series": "fiqh-zahra"
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-193",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الخامس",
+      "title": "من فقه الزهراء عليها السلام ــ ج1",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3029,13 +3035,16 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/193.doc",
-      "series": "fiqh-zahra"
+      "series": "fiqh-zahra",
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-194",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء السادس",
+      "title": "من فقه الزهراء عليها السلام ــ ج2",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3043,13 +3052,16 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/194.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/194.doc",
-      "series": "fiqh-zahra"
+      "series": "fiqh-zahra",
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-195",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء السابع",
+      "title": "من فقه الزهراء عليها السلام ــ ج3",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -3057,11 +3069,14 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/195.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/195.doc",
-      "series": "fiqh-zahra"
+      "series": "fiqh-zahra",
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-196",
-      "title": "من فقه الزهراء عليها السلام ــ الجزء الرابع",
+      "title": "من فقه الزهراء عليها السلام ــ ج4",
       "author": "shirazi-m",
       "category": "fiqh",
       "year": 1420,
