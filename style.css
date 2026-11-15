@@ -323,7 +323,8 @@ main{flex:1;padding:22px 0 60px}
 .contact-card h3{font-family:'Amiri',serif;font-size:22px;color:var(--primary-dark);margin-bottom:10px}
 .contact-card p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px}
 
-.back-btn{display:inline-flex;align-items:center;gap:7px;background:var(--paper);color:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:6px 14px;font:inherit;font-size:12px;font-weight:600;margin-bottom:16px;transition:all var(--tr);cursor:pointer;}
+/* ==== زر الرجوع (تم تصغيره) ==== */
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:var(--paper);color:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:4px 12px;font:inherit;font-size:12px;font-weight:600;line-height:1.4;margin-bottom:16px;transition:all var(--tr);cursor:pointer;}
 .back-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
 footer{background:var(--primary-dark);color:var(--accent-light);padding:26px 0;text-align:center;font-size:13px;margin-top:auto}
@@ -454,13 +455,23 @@ textarea.form-control{resize:vertical;min-height:100px}
   .book-row .cover{width:65px;height:88px}
   .book-row .desc{display:none}
   .book-row .title{font-size:14px}
-  .book-page{padding:15px}
-  .book-main{flex-direction:column;align-items:center;width:100%}
-  .book-cover-wrap{width:170px}
+
+  /* ===== تصغير بطاقة صفحة الكتاب على الجوال ===== */
+  .book-page{padding:10px;margin-bottom:16px}
+  .book-main{flex-direction:column;align-items:center;width:100%;gap:14px}
+  .book-cover-wrap{width:110px}
   .book-info{width:100%;min-width:0;text-align:center}
-  .author-chip{margin-inline:auto;flex-wrap:wrap;justify-content:center;text-align:center}
-  .book-meta-grid{justify-content:center;width:100%}
+  .book-title{font-size:20px;margin-bottom:10px}
+  .author-chip{margin-inline:auto;flex-wrap:wrap;justify-content:center;text-align:center;padding:4px 12px 4px 4px;margin-bottom:12px}
+  .author-chip .avatar-letter{width:30px;height:30px;font-size:13px}
+  .author-chip span{font-size:12px}
+  .book-meta-grid{justify-content:center;width:100%;padding:10px;gap:6px;margin-bottom:14px}
+  .meta-item{font-size:12px}
   .download-body{justify-content:flex-start;padding-bottom:12px;width:100%}
+
+  /* ===== تصغير زر الرجوع على الجوال ===== */
+  .back-btn{padding:3px 10px;font-size:11px;line-height:1.2;margin-bottom:10px}
+
   .series-card{padding:14px 16px}
   .series-card .sc-name{font-size:16px}
   .author-header{padding:20px}
