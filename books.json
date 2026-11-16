@@ -1,34 +1,6 @@
 {
   "items": [
     {
-      "id": "book-001",
-      "title": "من حياة الرسول الاعظم صلى الله عليه واله",
-      "author": "shirazi-m",
-      "category": "ahlulbayt",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.doc",
-      "series": "masoomeen-lives"
-    },
-    {
-      "id": "book-002",
-      "title": "من حياة الإمام أمير المؤمنين (عليه السلام)",
-      "author": "shirazi-m",
-      "category": "ahlulbayt",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.doc",
-      "series": "masoomeen-lives"
-    },
-    {
       "id": "book-905273",
       "title": "توضيح نهج البلاغة ج1",
       "author": "shirazi-m",
@@ -661,9 +633,9 @@
       "title": "ديوان السيد حسن الشيرازي",
       "author": "shirazi-h",
       "categories": [
-        "about-the-al-shirazi-family"
+        "other"
       ],
-      "category": "about-the-al-shirazi-family",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf"
@@ -720,8 +692,8 @@
       "cover": "https://github.com/alaqeela14/alshirazi-library/releases/download/book-covers/shr7sahedasjaddiahmhdshirazii001cover.1.jpg"
     },
     {
-      "id": "book-004",
-      "title": "من حياة الامام الحسن (عليه السلام)",
+      "id": "book-001",
+      "title": "من حياة الرسول الاعظم صلى الله عليه واله",
       "author": "shirazi-m",
       "category": "ahlulbayt",
       "year": 1420,
@@ -729,22 +701,22 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/001.doc",
       "series": "masoomeen-lives"
     },
     {
-      "id": "book-007",
-      "title": "من حياة الإمام الحسين (عليه السلام)",
+      "id": "book-002",
+      "title": "من حياة الإمام أمير المؤمنين (عليه السلام)",
       "author": "shirazi-m",
-      "category": "shaair",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/002.doc",
       "series": "masoomeen-lives"
     },
     {
@@ -803,20 +775,17 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/006.doc"
     },
     {
-      "id": "book-991456",
-      "title": "من حياة الإمام السجاد عليه السلام",
+      "id": "book-004",
+      "title": "من حياة الامام الحسن (عليه السلام)",
       "author": "shirazi-m",
-      "categories": [
-        "ahlulbayt"
-      ],
       "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/333.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/333.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/004.doc",
       "series": "masoomeen-lives"
     },
     {
@@ -885,6 +854,20 @@
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/012.doc"
     },
     {
+      "id": "book-007",
+      "title": "من حياة الإمام الحسين (عليه السلام)",
+      "author": "shirazi-m",
+      "category": "shaair",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/007.doc",
+      "series": "masoomeen-lives"
+    },
+    {
       "id": "book-331",
       "title": "من حياة الإمام الباقر عليه السلام",
       "author": "shirazi-m",
@@ -900,23 +883,6 @@
       "categories": [
         "ahlulbayt"
       ]
-    },
-    {
-      "id": "book-258844",
-      "title": "من حياة الإمام الصادق عليه السلام",
-      "author": "shirazi-m",
-      "categories": [
-        "ahlulbayt"
-      ],
-      "category": "ahlulbayt",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/334.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/334.doc",
-      "series": "masoomeen-lives"
     },
     {
       "id": "book-329",
@@ -2375,29 +2341,35 @@
     },
     {
       "id": "book-126",
-      "title": "لا للحدود الجغرافيائية",
+      "title": "طريقنا إلى الحضارة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/126.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/126.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/126.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-127",
-      "title": "لا للحدود",
+      "title": "كيف تدير الأمور",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/127.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/127.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/127.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-128",
@@ -4256,16 +4228,19 @@
     },
     {
       "id": "book-271",
-      "title": "بيان التجويد",
+      "title": "انفقوا لكي تتقدموا",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "ijtimaiya",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/271.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/271.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/271.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-272",
@@ -4990,16 +4965,19 @@
     },
     {
       "id": "book-326",
-      "title": "مكانة القرآن الكريم في المجتمع الإسلامي",
+      "title": "مع الحرس والشرطة",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-327",
@@ -5325,16 +5303,19 @@
     },
     {
       "id": "book-351",
-      "title": "وصولا إلى حكومة إسلامية واحدة",
+      "title": "وصايا إلى الكوادر العراقية",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/351.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/351.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/351.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-352",
@@ -6291,7 +6272,7 @@
     },
     {
       "id": "book-425",
-      "title": "هل سيبقى الصلح بين العرب واسرائيل؟",
+      "title": "نحو يقظة اسلامية",
       "author": "shirazi-m",
       "category": "siyasah",
       "year": 1420,
@@ -6300,7 +6281,10 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/425.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/425.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/425.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-426",
