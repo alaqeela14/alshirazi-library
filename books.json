@@ -1,6 +1,22 @@
 {
   "items": [
     {
+      "id": "book-752063",
+      "title": "منتخب المسائل الإسلامية",
+      "author": "shirazi-m",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/182.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/182.doc"
+    },
+    {
       "id": "book-002247",
       "title": "من حياة فاطمة الزهراء عليها السلام",
       "author": "shirazi-m",
@@ -2942,7 +2958,7 @@
     },
     {
       "id": "book-178",
-      "title": "منتخب المسائل الاسلامية",
+      "title": "مسائل شرعية تهم الشباب",
       "author": "shirazi-m",
       "category": "fiqh",
       "year": 1420,
@@ -2951,7 +2967,11 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/178.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/178.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/178.doc",
+      "categories": [
+        "fiqh",
+        "youth"
+      ]
     },
     {
       "id": "book-179",
