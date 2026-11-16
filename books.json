@@ -1,6 +1,66 @@
 {
   "items": [
     {
+      "id": "book-033484",
+      "title": "توضيح نهج البلاغة ج4",
+      "author": "shirazi-m",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "category": "ahlulbayt",
+      "year": 1420,
+      "formats": [
+        "word"
+      ],
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.4.doc"
+    },
+    {
+      "id": "book-011253",
+      "title": "توضيح نهج البلاغة ج3",
+      "author": "shirazi-m",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "category": "ahlulbayt",
+      "year": 1420,
+      "formats": [
+        "word"
+      ],
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.3.doc"
+    },
+    {
+      "id": "book-961950",
+      "title": "توضيح نهج البلاغة ج2",
+      "author": "shirazi-m",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "category": "ahlulbayt",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.2.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.2.doc"
+    },
+    {
+      "id": "book-905273",
+      "title": "توضيح نهج البلاغة ج1",
+      "author": "shirazi-m",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "category": "ahlulbayt",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-shirazi-v1.0.0/Tawdih.Nahj.al-Balagha.Volume.1.doc"
+    },
+    {
       "id": "book-752063",
       "title": "منتخب المسائل الإسلامية",
       "author": "shirazi-m",
