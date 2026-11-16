@@ -129,7 +129,8 @@
       "series": "taqrib-quran",
       "categories": [
         "quran"
-      ]
+      ],
+      "cover": "covers/img-1794849495128.jpg"
     },
     {
       "id": "book-387621",
@@ -303,7 +304,8 @@
       "categories": [
         "quran"
       ],
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "covers/img-1794849516439.jpg"
     },
     {
       "id": "book-925267",
@@ -4262,7 +4264,8 @@
       "series": "taqrib-quran",
       "categories": [
         "quran"
-      ]
+      ],
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-275",
@@ -4336,7 +4339,8 @@
       "categories": [
         "quran"
       ],
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "covers/img-1794849548595.jpg"
     },
     {
       "id": "book-284",
@@ -4353,7 +4357,8 @@
       "series": "taqrib-quran",
       "categories": [
         "quran"
-      ]
+      ],
+      "cover": "covers/img-1794849562217.jpg"
     },
     {
       "id": "book-285",
@@ -4370,7 +4375,8 @@
       "categories": [
         "quran"
       ],
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "covers/img-1794849595460.jpg"
     },
     {
       "id": "book-286",
@@ -4387,7 +4393,8 @@
       "series": "taqrib-quran",
       "categories": [
         "quran"
-      ]
+      ],
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-287",
@@ -4404,7 +4411,8 @@
       "categories": [
         "quran"
       ],
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-021851",
@@ -4421,7 +4429,8 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/288.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/288.doc",
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-100802",
@@ -4438,7 +4447,8 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.doc",
-      "series": "taqrib-quran"
+      "series": "taqrib-quran",
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-288",
