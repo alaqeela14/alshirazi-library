@@ -1,6 +1,23 @@
 {
   "items": [
     {
+      "id": "book-002247",
+      "title": "من حياة فاطمة الزهراء عليها السلام",
+      "author": "shirazi-m",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "category": "ahlulbayt",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/372.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/372.doc",
+      "series": "masoomeen-lives"
+    },
+    {
       "id": "book-114343",
       "title": "جامع المسائل الشرعية",
       "author": "shirazi-s",
@@ -635,9 +652,9 @@
     },
     {
       "id": "book-370",
-      "title": "من حياة فاطمة الزهراء عليها السلام",
+      "title": "فقه المستقبل",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "fiqh",
       "year": 1420,
       "formats": [
         "pdf",
@@ -645,7 +662,9 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/370.doc",
-      "series": "masoomeen-lives"
+      "categories": [
+        "fiqh"
+      ]
     },
     {
       "id": "book-005",
@@ -768,7 +787,7 @@
     },
     {
       "id": "book-331",
-      "title": "من حياة الإمام السجاد عليه السلام",
+      "title": "من حياة الإمام الباقر عليه السلام",
       "author": "shirazi-m",
       "category": "ahlulbayt",
       "year": 1420,
@@ -778,13 +797,16 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/331.doc",
-      "series": "masoomeen-lives"
+      "series": "masoomeen-lives",
+      "categories": [
+        "ahlulbayt"
+      ]
     },
     {
       "id": "book-329",
-      "title": "من حياة الإمام الباقر عليه السلام",
+      "title": "من أخلاق الرسول (صلى الله عليه وآله) وإرشاداته",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "akhlaq",
       "year": 1420,
       "formats": [
         "pdf",
@@ -792,13 +814,15 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/329.doc",
-      "series": "masoomeen-lives"
+      "categories": [
+        "akhlaq"
+      ]
     },
     {
       "id": "book-332",
-      "title": "من حياة الإمام الصادق عليه السلام",
+      "title": "من أسباب الفقر والحرمان في العالم",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
@@ -806,7 +830,9 @@
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.pdf",
       "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/332.doc",
-      "series": "masoomeen-lives"
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-017",
