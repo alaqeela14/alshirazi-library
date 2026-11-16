@@ -1378,3 +1378,100 @@ window.shareResearchArticle = async function(id){
     else { await navigator.clipboard.writeText(url); alert("تم نسخ الرابط"); }
   } catch(e){}
 };
+/* ===== مزايا صفحة البحث ===== */
+
+function estimateReadingTime(content){
+  const temp = document.createElement('div');
+  temp.innerHTML = content || '';
+  const words = temp.textContent.split(/\s+/).filter(w => w.length > 0).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+function getRelatedArticles(currentId){
+  const current = ARTICLES.find(x => x.id === currentId);
+  if(!current) return [];
+  return ARTICLES
+    .filter(x => x.id !== currentId)
+    .map(x => {
+      let score = 0;
+      if (x.category === current.category) score += 3;
+      x.keywords.forEach(k => { if (current.keywords.includes(k)) score += 1; });
+      return { art: x, score };
+    })
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(x => x.art);
+}
+
+function enhanceArticleBody(){
+  const body = document.getElementById('articleBody');
+  if(!body) return;
+  const headings = body.querySelectorAll('h2, h3');
+  if(headings.length < 3) return;
+  const toc = document.createElement('div');
+  toc.className = 'article-toc';
+  let html = '<h4>محتويات البحث</h4><ol>';
+  headings.forEach((h, i) => {
+    const id = 'toc-' + i;
+    h.id = id;
+    const level = h.tagName === 'H2' ? 'lvl-2' : 'lvl-3';
+    html += `<li class="${level}"><a href="#${id}">${h.textContent}</a></li>`;
+  });
+  html += '</ol>';
+  toc.innerHTML = html;
+  body.parentNode.insertBefore(toc, body);
+  toc.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      e.preventDefault();
+      const target = document.getElementById(e.target.getAttribute('href').slice(1));
+      if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  });
+}
+
+function updateReadingProgress(){
+  const bar = document.getElementById('readingProgress');
+  if(!bar) return;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  bar.style.width = progress + '%';
+}
+
+window.addEventListener('scroll', updateReadingProgress, {passive: true});
+
+window.copyArticleText = function(id){
+  const a = ARTICLES.find(x => x.id === id);
+  if(!a) return;
+  const temp = document.createElement('div');
+  temp.innerHTML = a.content || '';
+  const text = `${a.title}\n\n${articleAuthorDisplay(a)}\n\n${temp.textContent}`;
+  navigator.clipboard.writeText(text)
+    .then(() => alert('✅ تم نسخ نص البحث كاملاً'))
+    .catch(() => alert('تعذر النسخ، جرّب تحديد النص يدوياً.'));
+};
+
+window.printArticle = function(){
+  window.print();
+};
+
+window.downloadArticlePDF = function(id){
+  const a = ARTICLES.find(x => x.id === id);
+  if(!a) return;
+  if(a.pdf_url){
+    window.open(a.pdf_url, '_blank');
+  } else {
+    alert('لا يوجد ملف PDF مرفق.\nسيتم فتح نافذة الطباعة — اختر "حفظ كـ PDF".');
+    setTimeout(() => window.print(), 300);
+  }
+};
+
+window.changeArticleFontSize = function(delta){
+  const body = document.getElementById('articleBody');
+  if(!body) return;
+  const current = parseFloat(getComputedStyle(body).fontSize);
+  const next = Math.max(12, Math.min(24, current + delta));
+  body.style.fontSize = next + 'px';
+  try { localStorage.setItem('alsh_article_font', next); } catch(e){}
+};
