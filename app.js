@@ -317,12 +317,15 @@ function router(){
   const decodedParam = param ? decodeURIComponent(param) : param;
   window.scrollTo({top:0,behavior:"smooth"}); closeSidebar();
   if (route !== "read") state.limit = 40;
-  const innerPages = ["book", "read", "category", "series-one", "author", "library", "latest", "favorites", "audios", "videos", "masoomeen", "printed", "contact", "about", "istifta", "useful-links", "donate", "articles"];
+  
+  const innerPages = ["book", "read", "category", "series-one", "author", "library", "latest", "favorites", "audios", "videos", "masoomeen", "printed", "contact", "about", "istifta", "useful-links", "donate", "articles", "article"];
+  
   if (innerPages.includes(route)) {
       document.body.classList.add('inner-page');
   } else {
       document.body.classList.remove('inner-page');
   }
+
   if(route==="home") renderHome();
   else if(route==="library") renderLibrary();
   else if(route==="latest") renderLatestPage();
@@ -345,6 +348,7 @@ function router(){
   else if(route==="useful-links") renderUsefulLinks();
   else if(route==="donate") renderDonate();
   else if(route==="articles") renderArticles();
+  else if(route==="article") renderArticlePage(decodedParam);
   else renderHome();
 }
 
@@ -1163,7 +1167,7 @@ function researchCardHtml(a){
   return `
     <article class="research-card">
       <div class="rc-badges">${typeBadge}${featuredBadge}</div>
-      <h3>${esc(a.title)}</h3>
+      <h3 style="cursor:pointer" onclick="location.hash='#/article/${a.id}'">${esc(a.title)}</h3>
       <div class="rc-author"><strong>${esc(articleAuthorDisplay(a))}</strong></div>
       ${publishLine ? `<div class="rc-publish">${esc(publishLine)}${a.year ? " • " + a.year + "م" : ""}</div>` : (a.year ? `<div class="rc-publish">${a.year}م</div>` : "")}
       <div class="rc-stats">
@@ -1173,10 +1177,10 @@ function researchCardHtml(a){
       </div>
       ${a.summary ? `<div class="rc-abstract">${esc(a.summary)}</div>` : ""}
       <div class="rc-actions">
+        <button class="rc-btn primary" onclick="location.hash='#/article/${a.id}'">📖 قراءة البحث</button>
         ${pdfBtns}
         <button class="rc-btn ${favActive?'active':''}" data-article-fav="${esc(a.id)}" onclick="toggleArticleFav('${esc(a.id)}', event)">★ ${favActive?'محفوظ':'حفظ'}</button>
-        <button class="rc-btn" onclick="copyArticleCitation('${esc(a.id)}')">استشهاد</button>
-        <button class="rc-btn" onclick="shareResearchArticle('${esc(a.id)}')">مشاركة</button>
+        <button class="rc-btn" onclick="shareResearchArticle('${esc(a.id)}')">🔗 مشاركة</button>
       </div>
     </article>
   `;
@@ -1346,39 +1350,136 @@ window.toggleArticleFav = function(id, ev){
   document.querySelectorAll(`[data-article-fav="${id}"]`).forEach(btn => {
     const active = isArticleFav(id);
     btn.classList.toggle("active", active);
-    btn.textContent = "★ " + (active ? "محفوظ" : "حفظ");
+    btn.textContent = (active ? "★ محفوظ" : "★ حفظ");
+    const span = btn.querySelector('span');
+    if(span) span.textContent = (active ? "محفوظ" : "حفظ");
   });
-};
-
-window.copyArticleCitation = function(id){
-  const a = ARTICLES.find(x => x.id === id); if(!a) return;
-  const url = location.origin + location.pathname + "#/articles";
-  const author = articleAuthorFull(a);
-  const year = a.year || "—";
-  const title = a.title;
-  const j = a.journal || {};
-  const journal = j.name || "";
-  const volume = j.volume || "";
-  const issue = j.issue || "";
-  const pages = j.pages || "";
-  const apa = `${author} (${year}). ${title}. ${journal}${volume ? "، " + volume : ""}${issue ? "(" + issue + ")" : ""}${pages ? "، " + pages : ""}.`;
-  const mla = `${author}. "${title}." ${journal}${volume ? "، المجلد " + volume : ""}${issue ? "، العدد " + issue : ""}، ${year}${pages ? "، ص " + pages : ""}.`;
-  const text = `APA:\n${apa}\n\nMLA:\n${mla}\n\nالرابط: ${url}`;
-  navigator.clipboard.writeText(text)
-    .then(()=>alert("تم نسخ الاستشهاد (APA + MLA) والرابط."))
-    .catch(()=>{ alert("تعذّر النسخ تلقائياً:\n\n" + text); });
 };
 
 window.shareResearchArticle = async function(id){
   const a = ARTICLES.find(x => x.id === id); if(!a) return;
-  const url = location.origin + location.pathname + "#/articles";
+  const url = location.origin + location.pathname + "#/article/" + id;
   const data = { title: a.title, text: `${a.title} — ${articleAuthorDisplay(a)}`, url };
   try {
     if (navigator.share) await navigator.share(data);
     else { await navigator.clipboard.writeText(url); alert("تم نسخ الرابط"); }
   } catch(e){}
 };
-/* ===== مزايا صفحة البحث ===== */
+
+function renderArticlePage(id){
+  const a = ARTICLES.find(x => x.id === id);
+  if(!a){ location.hash = "#/articles"; return; }
+
+  const catName = a.categories.map(cid => getArticleCatName(cid)).join(" • ");
+  const j = a.journal || {};
+  const journalHtml = j.name ? `
+    <div class="meta-item"><strong>المجلة:</strong> ${esc(j.name)}</div>
+    ${j.volume ? `<div class="meta-item"><strong>المجلد:</strong> ${esc(j.volume)}</div>` : ""}
+    ${j.issue ? `<div class="meta-item"><strong>العدد:</strong> ${esc(j.issue)}</div>` : ""}
+    ${j.pages ? `<div class="meta-item"><strong>الصفحات:</strong> ${esc(j.pages)}</div>` : ""}
+    ${j.doi ? `<div class="meta-item"><strong>DOI:</strong> ${esc(j.doi)}</div>` : ""}
+  ` : "";
+
+  const footnotesHtml = a.footnotes.length ? `
+    <div class="sec-title" style="margin-top:26px">الهوامش</div>
+    <div class="article-footnotes">
+      ${a.footnotes.map(f => `<p id="fn-${f.id}"><span class="fn-num">[${f.id}]</span> ${esc(f.text)}</p>`).join("")}
+    </div>
+  ` : "";
+
+  const referencesHtml = a.references.length ? `
+    <div class="sec-title" style="margin-top:26px">المراجع</div>
+    <div class="article-references">
+      ${a.references.map(r => `
+        <div class="ref-item">
+          <strong>${esc(r.author)}</strong>، <em>${esc(r.title)}</em>
+          ${r.publisher ? `، ${esc(r.publisher)}` : ""}
+          ${r.city ? `، ${esc(r.city)}` : ""}
+          ${r.edition ? `، الطبعة ${esc(r.edition)}` : ""}
+          ${r.volume ? `، ${esc(r.volume)}` : ""}
+          ${r.year ? `، ${esc(r.year)}` : ""}.
+        </div>
+      `).join("")}
+    </div>
+  ` : "";
+
+  const favActive = isArticleFav(a.id);
+  const readTime = estimateReadingTime(a.content);
+  const related = getRelatedArticles(a.id);
+
+  app.innerHTML = `
+    <div class="reading-progress" id="readingProgress"></div>
+    <a href="#/articles" class="back-btn">← العودة للبحوث</a>
+    <div class="breadcrumbs"><a href="#/home">الرئيسية</a> <span>/</span> <a href="#/articles">بحوث ومقالات</a> <span>/</span> <span>${esc(a.title)}</span></div>
+
+    <div class="article-page" id="articlePage">
+
+      <div class="article-top-bar">
+        <div class="article-toolbar">
+          <button class="at-btn" onclick="copyArticleText('${esc(a.id)}')" title="نسخ النص">📋 <span>نسخ</span></button>
+          <button class="at-btn" onclick="shareResearchArticle('${esc(a.id)}')" title="مشاركة">🔗 <span>مشاركة</span></button>
+          <button class="at-btn" onclick="printArticle()" title="طباعة">🖨️ <span>طباعة</span></button>
+          <button class="at-btn" onclick="downloadArticlePDF('${esc(a.id)}')" title="تحميل PDF">⬇ <span>PDF</span></button>
+          <button class="at-btn ${favActive?'active':''}" data-article-fav="${esc(a.id)}" onclick="toggleArticleFav('${esc(a.id)}', event)" title="حفظ">★ <span>${favActive?'محفوظ':'حفظ'}</span></button>
+        </div>
+        <div class="article-font-controls">
+          <button class="at-btn" onclick="changeArticleFontSize(-1)" title="تصغير الخط">A−</button>
+          <button class="at-btn" onclick="changeArticleFontSize(1)" title="تكبير الخط">A+</button>
+        </div>
+      </div>
+
+      <div class="rc-badges" style="margin-bottom:10px">
+        <span class="rc-badge type-${esc(a.type)}">${esc(articleTypeLabel(a.type))}</span>
+        ${a.featured ? `<span class="rc-badge featured">★ مميز</span>` : ""}
+      </div>
+      <h1 class="article-title">${esc(a.title)}</h1>
+
+      <div class="article-author-line">
+        <a href="#/author/${a.authorId}" class="author-chip">
+          <div class="avatar-letter">${esc(articleAuthorDisplay(a).charAt(0))}</div>
+          <span>${esc(articleAuthorDisplay(a))}</span>
+        </a>
+        ${catName ? `<span class="article-cat-tag">📁 ${esc(catName)}</span>` : ""}
+      </div>
+
+      <div class="book-meta-grid">
+        ${a.year ? `<div class="meta-item"><strong>السنة:</strong> ${a.year}م</div>` : ""}
+        ${a.views ? `<div class="meta-item"><strong>المشاهدات:</strong> ${a.views}</div>` : ""}
+        <div class="meta-item"><strong>وقت القراءة:</strong> ~${readTime} دقيقة</div>
+        ${journalHtml}
+      </div>
+
+      ${a.summary ? `<div class="article-summary"><strong>الملخص:</strong> ${esc(a.summary)}</div>` : ""}
+
+      ${a.keywords.length ? `<div class="article-keywords"><strong>الكلمات المفتاحية:</strong> ${a.keywords.map(k => `<span class="kw-chip">${esc(k)}</span>`).join(" ")}</div>` : ""}
+
+      <div class="article-body" id="articleBody">${a.content || "<p>لم يُضف محتوى نصي بعد.</p>"}</div>
+
+      ${footnotesHtml}
+      ${referencesHtml}
+
+      <div class="article-bottom-actions">
+        <button class="at-btn" onclick="copyArticleText('${esc(a.id)}')">📋 نسخ النص</button>
+        <button class="at-btn" onclick="shareResearchArticle('${esc(a.id)}')">🔗 مشاركة</button>
+        <button class="at-btn" onclick="printArticle()">🖨️ طباعة</button>
+        <button class="at-btn" onclick="downloadArticlePDF('${esc(a.id)}')">⬇ تحميل PDF</button>
+      </div>
+    </div>
+
+    ${related.length ? `<div class="sec-title" style="margin-top:26px">بحوث ذات صلة</div><div class="articles-cards">${related.map(researchCardHtml).join("")}</div>` : ""}
+
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="العودة للأعلى">↑</button>
+  `;
+
+  try {
+    const savedSize = localStorage.getItem('alsh_article_font');
+    const body = document.getElementById('articleBody');
+    if (savedSize && body) body.style.fontSize = savedSize + 'px';
+  } catch(e){}
+
+  setTimeout(enhanceArticleBody, 50);
+  setTimeout(updateReadingProgress, 100);
+}
 
 function estimateReadingTime(content){
   const temp = document.createElement('div');
