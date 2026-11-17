@@ -4817,16 +4817,19 @@
     },
     {
       "id": "book-300",
-      "title": "رسول الإسلام ص في المدينة ج2",
+      "title": "دور الشباب في إنهاض الأمة",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "youth",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/300.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/300.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/300.doc",
+      "categories": [
+        "youth"
+      ]
     },
     {
       "id": "book-301",
