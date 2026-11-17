@@ -2118,16 +2118,19 @@
     },
     {
       "id": "book-097",
-      "title": "كيف ولماذا اسلموا؟؟",
+      "title": "شهر رمضان شهر البناء والتقدم",
       "author": "shirazi-m",
-      "category": "siyasah",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/097.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/097.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/097.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-098",
