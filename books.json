@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "id": "book-503506",
+      "title": "فقه النظر",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/buhuth-fi-fiqh-al-nazar.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/buhuth-fi-fiqh-al-nazar.doc",
+      "cover": "covers/img-1794924497386.jpg",
+      "series": "alfaqihalshirazi"
+    },
+    {
       "id": "book-001",
       "title": "من حياة الرسول الاعظم صلى الله عليه واله",
       "author": "shirazi-m",
