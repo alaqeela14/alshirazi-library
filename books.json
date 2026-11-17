@@ -1,6 +1,91 @@
 {
   "items": [
     {
+      "id": "book-112112",
+      "title": "تعليقات على كتاب الدلائل ج2",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.book.al-dala.il.vol.2.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.book.al-dala.il.vol.2.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-068489",
+      "title": "تعليقات على كتاب الدلائل ج1",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.book.al-dala.il.vol.1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.book.al-dala.il.vol.1.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-946099",
+      "title": "تعليقات على مباني منهاج الصالحين",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.foundations.of.minhaj.al-salihin.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.the.foundations.of.minhaj.al-salihin.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-761676",
+      "title": "تعليقات على المسائل المتجددة ج2",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.contemporary.issues.vol.1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.contemporary.issues.vol.2.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
+      "id": "book-680857",
+      "title": "تعليقات على المسائل المتجددة ج1",
+      "author": "shirazi-mr",
+      "categories": [
+        "fiqh"
+      ],
+      "category": "fiqh",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.contemporary.issues.vol.1.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-mr-shirazi-v1.0.0/ta.liqa.on.contemporary.issues.vol.1.doc",
+      "series": "alfaqihalshirazi"
+    },
+    {
       "id": "book-503506",
       "title": "فقه النظر",
       "author": "shirazi-mr",
