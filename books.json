@@ -4200,6 +4200,38 @@
     },
     {
       "id": "book-255",
+      "title": "القرآن يتحدى",
+      "author": "shirazi-m",
+      "category": "quran",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/255.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/255.doc",
+      "categories": [
+        "quran"
+      ]
+    },
+    {
+      "id": "book-256",
+      "title": "اللاعنف منهج وسلوك",
+      "author": "shirazi-m",
+      "category": "siyasah",
+      "year": 1420,
+      "formats": [
+        "pdf",
+        "word"
+      ],
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/256.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/256.doc",
+      "categories": [
+        "siyasah"
+      ]
+    },
+    {
+      "id": "book-257",
       "title": "المرأة المسلمة والوصايا الأخيرة",
       "author": "shirazi-m",
       "category": "ijtimaiya",
@@ -4208,11 +4240,14 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/255.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/255.doc"
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/257.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/257.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
-      "id": "book-256",
+      "id": "book-258",
       "title": "المرأة في المجتمع المعاصر",
       "author": "shirazi-m",
       "category": "ijtimaiya",
@@ -4221,34 +4256,11 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/256.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/256.doc"
-    },
-    {
-      "id": "book-257",
-      "title": "المرأة في المنظار الاسلامي",
-      "author": "shirazi-m",
-      "category": "ijtimaiya",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/257.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/257.doc"
-    },
-    {
-      "id": "book-258",
-      "title": "المرأة في ظل الإسلام",
-      "author": "shirazi-m",
-      "category": "ijtimaiya",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/258.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/258.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/258.doc",
+      "categories": [
+        "ijtimaiya"
+      ]
     },
     {
       "id": "book-259",
