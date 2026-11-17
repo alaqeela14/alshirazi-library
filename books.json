@@ -1396,7 +1396,11 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/050.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/050.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/050.doc",
+      "categories": [
+        "akhlaq"
+      ],
+      "cover": "covers/img-1794918046172.jpg"
     },
     {
       "id": "book-051",
@@ -1952,16 +1956,19 @@
     },
     {
       "id": "book-093",
-      "title": "شهر رمضان شهر البناء والتقدم",
+      "title": "حكم العراق بعد نجاة العراق وأفغانستان",
       "author": "shirazi-m",
-      "category": "akhlaq",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/093.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/093.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/093.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-094",
@@ -3597,14 +3604,18 @@
       "id": "book-218",
       "title": "الأقصى المبارك",
       "author": "shirazi-m",
-      "category": "ahlulbayt",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/218.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/218.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/218.doc",
+      "categories": [
+        "other"
+      ],
+      "cover": "covers/img-1794917736408.jpg"
     },
     {
       "id": "book-219",
@@ -4804,16 +4815,20 @@
     },
     {
       "id": "book-309",
-      "title": "طريق التقدم",
+      "title": "صلاح الدين والتعصب الطائفي",
       "author": "shirazi-m",
-      "category": "ijtimaiya",
+      "category": "ahlulbayt",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/309.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/309.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/309.doc",
+      "categories": [
+        "ahlulbayt",
+        "siyasah"
+      ]
     },
     {
       "id": "book-310",
@@ -5701,7 +5716,11 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/376.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/376.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/376.doc",
+      "categories": [
+        "ijtimaiya"
+      ],
+      "cover": "covers/img-1794917709913.jpg"
     },
     {
       "id": "book-377",
