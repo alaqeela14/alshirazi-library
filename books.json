@@ -1064,7 +1064,11 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/017.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/017.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/017.doc",
+      "categories": [
+        "ahlulbayt"
+      ],
+      "cover": "covers/img-1794925944440.jpg"
     },
     {
       "id": "book-018",
