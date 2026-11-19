@@ -633,12 +633,6 @@ function renderReader(id){
     </div>
   `;
 }
-  let viewerUrl = "";
-  if (rawUrl.startsWith("http")) {
-     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
-  } else {
-     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
-  }
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
