@@ -774,3 +774,27 @@ textarea.form-control{resize:vertical;min-height:100px}
   .at-btn { padding: 7px 10px; }
   .back-to-top { bottom: 70px; left: 12px; width: 40px; height: 40px; }
 }
+/* ==== شريط التنبيهات الأحمر (الجديد) ==== */
+.red-alert-bar {
+    background-color: #cc0000 !important; /* لون الخلفية الأحمر */
+    border-bottom: 1px solid #990000;
+}
+
+.red-alert-bar .moving-text-content span {
+    font-family: 'Cairo', system-ui, sans-serif !important; /* استخدام خط القاهرة ليكون أوضح للقراءة */
+    font-size: 13px;
+    color: #ffffff !important; /* لون النص الأبيض */
+    font-weight: 600;
+}
+
+.red-alert-bar a {
+    color: #ffffff !important;
+    text-decoration: underline;
+    font-weight: 800;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.red-alert-bar a:hover {
+    color: #f8e7b9 !important; /* لون ذهبي فاتح عند تمرير الماوس على الروابط */
+}
