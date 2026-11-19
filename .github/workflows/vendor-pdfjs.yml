@@ -1,0 +1,29 @@
+name: Build local PDF.js
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'pdfjs/build/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          npm pack pdfjs-dist@4.10.38
+          mkdir -p pdfjs/build
+          tar -xzf pdfjs-dist-4.10.38.tgz
+          cp package/build/pdf.mjs pdfjs/build/
+          cp package/build/pdf.worker.mjs pdfjs/build/
+          rm -rf package pdfjs-dist-4.10.38.tgz
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pdfjs/build/
+          if git diff --cached --quiet; then echo "No updates"; else git commit -m "Add local PDF.js runtime"; git push; fi
