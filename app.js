@@ -625,10 +625,13 @@ function renderReader(id){
       <div class="reader-header">
         <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
+        <a href="${esc(rawUrl)}" target="_blank" rel="noopener" class="reader-action">فتح الملف</a>
+        <a href="${esc(rawUrl)}" download class="reader-action reader-download">تحميل PDF</a>
         <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
         ${favBtnHtml("book",b.id)}
       </div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
+      <div class="reader-loading" id="readerLoading"><span class="reader-spinner"></span><p>جارٍ تجهيز صفحات الكتاب… قد يستغرق ذلك بعض الوقت في الكتب الكبيرة.</p><p class="reader-help">إذا لم يظهر الكتاب، يمكنك فتح الملف أو تحميله مباشرة.</p></div>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF" allowfullscreen loading="lazy" onload="document.getElementById('readerLoading')?.classList.add('reader-loaded')"></iframe>
     </div>
   `;
 }
