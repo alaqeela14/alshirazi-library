@@ -612,8 +612,7 @@ function renderReader(id){
   else if (b.filename && b.filename.trim() !== "") rawUrl = b.filename;
   else rawUrl = b.id + ".pdf";
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) rawUrl = FILES_BASE + rawUrl;
-  // توحيد القراءة باستخدام PDF.js لجميع الكتب
-  const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  const viewerUrl = "pdfjs/viewer.html?file=" + encodeURIComponent(rawUrl);
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
@@ -621,12 +620,10 @@ function renderReader(id){
         <h1>${esc(b.t)}</h1>
         <a href="${esc(rawUrl)}" target="_blank" rel="noopener" class="reader-action">فتح الملف</a>
         <a href="${esc(rawUrl)}" download class="reader-action reader-download">تحميل PDF</a>
-        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
         ${favBtnHtml("book",b.id)}
       </div>
       <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF: ${esc(b.t)}" allowfullscreen loading="lazy"></iframe>
-    </div>
-  `;
+    </div>`;
 }
 function extractYouTubeId(url){
   const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shorts\/|watch\?v=|watch\?.+&v=))([^&?\s]+)/);
