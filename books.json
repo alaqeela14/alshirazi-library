@@ -1959,7 +1959,7 @@
     },
     {
       "id": "book-085",
-      "title": "الى نهضة ثقافية اسلامية",
+      "title": "المسلمون يتضررون",
       "author": "shirazi-m",
       "category": "siyasah",
       "year": 1420,
@@ -1968,7 +1968,10 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/085.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/085.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/085.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-086",
@@ -2175,14 +2178,17 @@
       "id": "book-101",
       "title": "كيف ولماذا أسلموا؟",
       "author": "shirazi-m",
-      "category": "languages",
+      "category": "other",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/101.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/101.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/101.doc",
+      "categories": [
+        "other"
+      ]
     },
     {
       "id": "book-102",
@@ -5078,16 +5084,19 @@
     },
     {
       "id": "book-326",
-      "title": "مكانة القرآن الكريم في المجتمع الإسلامي",
+      "title": "مع الحرس والشرطة",
       "author": "shirazi-m",
-      "category": "quran",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/326.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-327",
