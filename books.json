@@ -247,7 +247,7 @@
     },
     {
       "id": "book-280",
-      "title": "تقريب القرآن إلى الأذهان الجزء 1",
+      "title": "تقريب القرآن إلى الأذهان - المجلد 1",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -255,13 +255,13 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/280.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/280.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-01.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-01.doc",
       "series": "taqrib-quran",
       "categories": [
         "quran"
       ],
-      "cover": "covers/img-1794849495128.jpg"
+      "cover": "covers/img-1795099927919.jpg"
     },
     {
       "id": "book-387621",
@@ -422,7 +422,7 @@
     },
     {
       "id": "book-281",
-      "title": "تقريب القرآن إلى الأذهان الجزء 2",
+      "title": "تقريب القرآن إلى الأذهان - المجلد 2",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -430,13 +430,13 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/281.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/281.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-02.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-02.doc",
       "categories": [
         "quran"
       ],
       "series": "taqrib-quran",
-      "cover": "covers/img-1794849516439.jpg"
+      "cover": "covers/img-1795099949497.jpg"
     },
     {
       "id": "book-925267",
@@ -4456,7 +4456,7 @@
     },
     {
       "id": "book-282",
-      "title": "تقريب القرآن إلى الأذهان الجزء 3",
+      "title": "تقريب القرآن إلى الأذهان - المجلد 3",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4464,13 +4464,13 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/282.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/282.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-03.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-03.doc",
       "series": "taqrib-quran",
       "categories": [
         "quran"
       ],
-      "cover": "⏳ جارٍ الرفع إلى GitHub..."
+      "cover": "covers/img-1795099978476.jpg"
     },
     {
       "id": "book-275",
@@ -4531,7 +4531,7 @@
     },
     {
       "id": "book-283",
-      "title": "تقريب القرآن إلى الأذهان الجزء 4",
+      "title": "تقريب القرآن إلى الأذهان - المجلد 4",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4539,35 +4539,17 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/283.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/283.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-04.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-04.doc",
       "categories": [
         "quran"
       ],
       "series": "taqrib-quran",
-      "cover": "covers/img-1794849548595.jpg"
-    },
-    {
-      "id": "book-284",
-      "title": "تقريب القرآن إلى الأذهان الجزء 5",
-      "author": "shirazi-m",
-      "category": "quran",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/284.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/284.doc",
-      "series": "taqrib-quran",
-      "categories": [
-        "quran"
-      ],
-      "cover": "covers/img-1794849562217.jpg"
+      "cover": "⏳ جارٍ الرفع إلى GitHub..."
     },
     {
       "id": "book-285",
-      "title": "تقريب القرآن إلى الأذهان الجزء 6",
+      "title": "تقريب القرآن إلى الأذهان - المجلد 5",
       "author": "shirazi-m",
       "category": "quran",
       "year": 1420,
@@ -4575,85 +4557,13 @@
         "pdf",
         "word"
       ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/285.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/285.doc",
+      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-05.pdf",
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/v1.0/taqrib-alquran-05.doc",
       "categories": [
         "quran"
       ],
       "series": "taqrib-quran",
-      "cover": "covers/img-1794849595460.jpg"
-    },
-    {
-      "id": "book-286",
-      "title": "تقريب القرآن إلى الأذهان الجزء 7",
-      "author": "shirazi-m",
-      "category": "quran",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/286.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/286.doc",
-      "series": "taqrib-quran",
-      "categories": [
-        "quran"
-      ],
-      "cover": "⏳ جارٍ الرفع إلى GitHub..."
-    },
-    {
-      "id": "book-287",
-      "title": "تقريب القرآن إلى الأذهان الجزء 8",
-      "author": "shirazi-m",
-      "category": "quran",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/287.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/287.doc",
-      "categories": [
-        "quran"
-      ],
-      "series": "taqrib-quran",
-      "cover": "⏳ جارٍ الرفع إلى GitHub..."
-    },
-    {
-      "id": "book-021851",
-      "title": "تقريب القرآن إلى الأذهان الجزء 9",
-      "author": "shirazi-m",
-      "categories": [
-        "quran"
-      ],
-      "category": "quran",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/288.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/288.doc",
-      "series": "taqrib-quran",
-      "cover": "⏳ جارٍ الرفع إلى GitHub..."
-    },
-    {
-      "id": "book-100802",
-      "title": "تقريب القرآن إلى الأذهان الجزء 10",
-      "author": "shirazi-m",
-      "categories": [
-        "quran"
-      ],
-      "category": "quran",
-      "year": 1420,
-      "formats": [
-        "pdf",
-        "word"
-      ],
-      "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/289.doc",
-      "series": "taqrib-quran",
-      "cover": "⏳ جارٍ الرفع إلى GitHub..."
+      "cover": "covers/img-1795100013018.jpg"
     },
     {
       "id": "book-288",
