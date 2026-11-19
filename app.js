@@ -608,18 +608,12 @@ function renderReader(id){
   if(!b){ location.hash = "#/home"; return; }
   if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
   let rawUrl = "";
-  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
-  else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
-  else { rawUrl = b.id + ".pdf"; }
-  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
-     rawUrl = FILES_BASE + rawUrl;
-  }
-  let viewerUrl = "";
-  if (rawUrl.startsWith("http")) {
-     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
-  } else {
-     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
-  }
+  if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") rawUrl = b.pdf_url;
+  else if (b.filename && b.filename.trim() !== "") rawUrl = b.filename;
+  else rawUrl = b.id + ".pdf";
+  if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) rawUrl = FILES_BASE + rawUrl;
+  // توحيد القراءة باستخدام PDF.js لجميع الكتب
+  const viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
@@ -630,12 +624,10 @@ function renderReader(id){
         <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
         ${favBtnHtml("book",b.id)}
       </div>
-      <div class="reader-loading" id="readerLoading"><span class="reader-spinner"></span><p>جارٍ تجهيز صفحات الكتاب… قد يستغرق ذلك بعض الوقت في الكتب الكبيرة.</p><p class="reader-help">إذا لم يظهر الكتاب، يمكنك فتح الملف أو تحميله مباشرة.</p></div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF" allowfullscreen loading="lazy" onload="var loading=document.getElementById('readerLoading');if(loading){loading.style.display='none';loading.setAttribute('aria-hidden','true')}"></iframe>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF: ${esc(b.t)}" allowfullscreen loading="lazy"></iframe>
     </div>
   `;
 }
-
 function extractYouTubeId(url){
   const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|shorts\/|watch\?v=|watch\?.+&v=))([^&?\s]+)/);
   return m ? m[1] : null;
