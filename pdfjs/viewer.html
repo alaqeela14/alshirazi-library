@@ -11,6 +11,23 @@ async function draw(){if(!pdf||busy)return;busy=true;pages.innerHTML='';try{cons
 function goto(n){if(!pdf)return;current=Math.max(1,Math.min(pdf.numPages,n));draw();}
 document.getElementById('prev').onclick=()=>goto(current-1);document.getElementById('next').onclick=()=>goto(current+1);document.getElementById('plus').onclick=()=>{scale=Math.min(3,scale+.15);draw();};document.getElementById('minus').onclick=()=>{scale=Math.max(.4,scale-.15);draw();};document.getElementById('fit').onclick=async()=>{if(!pdf)return;const p=await pdf.getPage(current);scale=(innerWidth-24)/p.getViewport({scale:1}).width;draw();};
 if(!file){status.textContent='لم يتم تحديد الملف';}
-else try{status.textContent='جارٍ الاتصال بالملف…';const task=pdfjsLib.getDocument({url:file,disableStream:true,disableAutoFetch:true,disableRange:false,rangeChunkSize:65536});task.onProgress=({loaded,total})=>{if(total)status.textContent='جارٍ تحميل البيانات: '+Math.round(loaded/total*100)+'%';else status.textContent='جارٍ تحميل الكتاب الكبير…';};pdf=await task.promise;status.textContent='تم فتح الكتاب';label();await draw();}
-catch(e){status.textContent='';error.textContent='تعذر فتح PDF: '+(e?.message||String(e))+' — تحقق من رابط الملف، دعم الخادم للطلبات الجزئية (Range)، أو صلاحية الوصول.';console.error('PDF load failure',e);}
+else try{
+ status.textContent='جارٍ الاتصال بالملف…';
+ try{
+  let task=pdfjsLib.getDocument({url:file,disableStream:true,disableAutoFetch:true,disableRange:false,rangeChunkSize:65536});
+  task.onProgress=({loaded,total})=>{if(total)status.textContent='تحميل البيانات: '+Math.round(loaded/total*100)+'%';};
+  pdf=await task.promise;
+ }catch(firstError){
+  console.warn('Range request failed; retrying full download',firstError);
+  status.textContent='تعذر التحميل الجزئي؛ نجرب التحميل الكامل…';
+  let task=pdfjsLib.getDocument({url:file,disableRange:true,disableStream:false});
+  task.onProgress=({loaded,total})=>{if(total)status.textContent='تحميل كامل الملف: '+Math.round(loaded/total*100)+'%';};
+  pdf=await task.promise;
+ }
+ status.textContent='تم فتح الكتاب';label();await draw();
+}catch(e){
+ status.textContent='';
+ error.innerHTML='تعذر تحميل PDF. قد تكون المشكلة في صلاحيات الوصول (CORS) أو الخادم.<br><a href="'+file+'" target="_blank" rel="noopener" style="color:white;text-decoration:underline">افتح الملف مباشرة</a>';
+ console.error('PDF load failure',e);
+}
 </script></body></html>
