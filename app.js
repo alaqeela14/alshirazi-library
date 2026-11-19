@@ -607,13 +607,32 @@ function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
   if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
+  
+  // 1. تحديد رابط ملف PDF
   let rawUrl = "";
   if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
   else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
   else { rawUrl = b.id + ".pdf"; }
+  
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
      rawUrl = FILES_BASE + rawUrl;
   }
+
+  // 2. استخدام العارض السحابي الجاهز من Mozilla
+  const viewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(rawUrl)}`;
+
+  app.innerHTML = `
+    <div class="reader-wrap">
+      <div class="reader-header">
+        <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px;">← رجوع</a>
+        <h1>${esc(b.t)}</h1>
+        <button onclick="document.getElementById('pdfFrame').classList.toggle('dark-pdf')" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px; background:var(--ink); color:#fff; border-color:var(--ink);">🌙 ليلي</button>
+        ${favBtnHtml("book",b.id)}
+      </div>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe" allowfullscreen loading="lazy"></iframe>
+    </div>
+  `;
+}
   let viewerUrl = "";
   if (rawUrl.startsWith("http")) {
      viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
