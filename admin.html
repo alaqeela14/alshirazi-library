@@ -86,10 +86,12 @@ input,select,textarea{font-family:inherit}
 .stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
 .stat-box span{font-size:11px;color:var(--muted)}
 
-.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+/* تنسيق شريط البحث المحدث */
+.filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px}
 .filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
 .filters input:focus,.filters select:focus{border-color:var(--primary)}
-@media(max-width:700px){.filters{grid-template-columns:1fr}}
+@media(max-width:800px){.filters{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.filters{grid-template-columns:1fr;}}
 
 .book-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .book-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:12px;transition:all var(--tr)}
@@ -218,7 +220,7 @@ input,select,textarea{font-family:inherit}
     <div id="ghTestResult" style="margin-top:10px;font-size:13px;"></div>
   </div>
 
-  <!-- Sidebar Management (NEW) -->
+  <!-- Sidebar Management -->
   <div class="section-toggle" id="sidebarToggle" onclick="toggleSection('sidebar')">
     <h3>🧭 إدارة القائمة الجانبية (<span id="sidebarCountLabel">0</span>)</h3>
     <span class="arrow">▼</span>
@@ -374,13 +376,22 @@ input,select,textarea{font-family:inherit}
     </div>
   </div>
 
-  <!-- Filters -->
+  <!-- Global Search & Filters -->
   <div class="filters">
-    <input type="search" id="searchInput" placeholder="🔍 ابحث في الكتب..." oninput="renderBookList()">
+    <input type="search" id="searchInput" placeholder="🔍 ابحث في كل المحتوى (كتب، مرئيات، صوتيات)..." oninput="renderBookList()">
+    
+    <select id="filterType" onchange="renderBookList()">
+      <option value="">كل الأنواع</option>
+      <option value="book">📚 كتب</option>
+      <option value="video">🎬 مرئيات</option>
+      <option value="audio">🎙️ صوتيات</option>
+    </select>
+
     <select id="filterCat" onchange="renderBookList()"><option value="">كل التصنيفات</option></select>
+    
     <select id="filterIssue" onchange="renderBookList()">
-      <option value="">كل الكتب</option>
-      <option value="missing-cover">🖼️ بلا غلاف</option>
+      <option value="">كل الحالات</option>
+      <option value="missing-cover">🖼️ كتب بلا غلاف</option>
     </select>
   </div>
 
@@ -735,7 +746,7 @@ async function init(){
   updateFooter();
 }
 
-/* Sidebar Logic (NEW) */
+/* Sidebar Logic */
 function renderSidebarList() {
   document.getElementById('sidebarCountLabel').textContent = SIDEBAR_LINKS.length;
   document.getElementById('sidebarList').innerHTML = SIDEBAR_LINKS.map((link, idx) => `
@@ -872,7 +883,7 @@ function deleteAuthor(id){
   renderAuthorsList(); populateSelects(); renderStats(); renderBookList();
 }
 
-/* Book Logic */
+/* Book & Media Logic (البحث الشامل) */
 const getBookCats = b => (b.categories && Array.isArray(b.categories) && b.categories.length > 0) ? b.categories : (b.category ? [b.category] : ['other']);
 
 function renderCatCheckboxes(containerId, selectedIds) {
@@ -890,53 +901,123 @@ function getSelectedCats(containerId) {
   return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(cb => cb.value);
 }
 
-function getFilteredBooks(){
+// دالة البحث الشاملة الجديدة
+function getFilteredContent(){
   const q = (document.getElementById('searchInput').value || '').toLowerCase();
+  const fType = document.getElementById('filterType').value;
   const fCat = document.getElementById('filterCat').value;
   const fIssue = document.getElementById('filterIssue').value;
-  let list = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q));
-  if (fCat) list = list.filter(b => getBookCats(b).includes(fCat));
-  if (fIssue === 'missing-cover') list = list.filter(b => !b.cover);
-  return list;
+  
+  let results = [];
+
+  // 1. البحث في الكتب
+  if (!fType || fType === 'book') {
+    let books = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q) || (b.description||'').toLowerCase().includes(q));
+    if (fCat) books = books.filter(b => getBookCats(b).includes(fCat));
+    if (fIssue === 'missing-cover') books = books.filter(b => !b.cover);
+    results.push(...books.map(b => ({...b, _type: 'book'})));
+  }
+
+  // 2. البحث في المرئيات
+  if (!fType || fType === 'video') {
+    let vids = VIDEOS.filter(v => !q || (v.title||'').toLowerCase().includes(q) || (v.speaker||'').toLowerCase().includes(q) || (v.topic||'').toLowerCase().includes(q));
+    results.push(...vids.map(v => ({...v, _type: 'video'})));
+  }
+
+  // 3. البحث في الصوتيات
+  if (!fType || fType === 'audio') {
+    let auds = AUDIOS.filter(a => !q || (a.title||'').toLowerCase().includes(q) || (a.speaker||'').toLowerCase().includes(q) || (a.topic||'').toLowerCase().includes(q));
+    results.push(...auds.map(a => ({...a, _type: 'audio'})));
+  }
+
+  return results;
+}
+
+// دالة فتح المرئية أو الصوتية من نتائج البحث الشامل
+function openMediaForEdit(type, idx) {
+  switchMediaTab(type);
+  const toggle = document.getElementById('mediaToggle');
+  const content = document.getElementById('mediaContent');
+  if (!content.classList.contains('open')) {
+    toggle.classList.add('open');
+    content.classList.add('open');
+  }
+  editMediaItem(idx);
+  document.getElementById('med-title').scrollIntoView({behavior:'smooth'});
 }
 
 function renderBookList(){
   const box = document.getElementById('bookList');
-  const list = getFilteredBooks();
+  const list = getFilteredContent();
 
-  if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد كتب مطابقة.</div>'; return; }
+  if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد نتائج مطابقة.</div>'; return; }
 
-  box.innerHTML = list.map((b, visibleIdx) => {
-    const authorName = AUTHORS.find(a => a.id === b.author)?.short || b.author || 'غير معروف';
-    const isFirst = visibleIdx === 0;
-    const isLast = visibleIdx === list.length - 1;
-    return `
-    <div class="book-item">
-      <div class="book-title-row">
-        <div class="book-title" onclick="openEdit('${esc(b.id)}')">${esc(b.title)}</div>
-        <span class="book-id">${esc(b.id)}</span>
-      </div>
-      <div class="book-meta">
-        <span class="tag">👤 ${esc(authorName)}</span>
-        ${getBookCats(b).map(cid => `<span class="tag cat">${esc((CATS.find(x=>x.id===cid)||{}).name||cid)}</span>`).join('')}
-        ${b.series ? `<span class="tag series">📚 ${esc((SERIES.find(x=>x.id===b.series)||{}).name||b.series)}</span>` : ''}
-      </div>
-      <div class="book-controls">
-        <select class="book-select" onchange="changeBookSeries('${esc(b.id)}', this.value)">
-          <option value="">— بدون موسوعة —</option>
-          ${SERIES.map(s => `<option value="${s.id}" ${s.id===b.series?'selected':''}>${esc(s.name)}</option>`).join('')}
-        </select>
-        <button class="move-btn" onclick="moveBook('${esc(b.id)}', -1)" ${isFirst ? 'disabled' : ''} title="أعلى">⬆️</button>
-        <button class="move-btn" onclick="moveBook('${esc(b.id)}', 1)" ${isLast ? 'disabled' : ''} title="أسفل">⬇️</button>
-        <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(b.id)}')">✏️</button>
-        <button class="book-delete" onclick="deleteBook('${esc(b.id)}')">🗑️</button>
-      </div>
-    </div>`;
+  box.innerHTML = list.map((item, visibleIdx) => {
+    // إذا كان كتاباً
+    if (item._type === 'book') {
+      const authorName = AUTHORS.find(a => a.id === item.author)?.short || item.author || 'غير معروف';
+      
+      // نتحقق من الترتيب فقط للكتب
+      const bookVisibleIndex = list.filter(x => x._type === 'book').findIndex(x => x.id === item.id);
+      const totalBooksVisible = list.filter(x => x._type === 'book').length;
+      const isFirst = bookVisibleIndex === 0;
+      const isLast = bookVisibleIndex === totalBooksVisible - 1;
+
+      return `
+      <div class="book-item">
+        <div class="book-title-row">
+          <div class="book-title" onclick="openEdit('${esc(item.id)}')">${esc(item.title)}</div>
+          <span class="book-id">${esc(item.id)}</span>
+        </div>
+        <div class="book-meta">
+          <span class="tag" style="background:#e8f0f8;color:#4a5c78">📚 كتاب</span>
+          <span class="tag">👤 ${esc(authorName)}</span>
+          ${getBookCats(item).map(cid => `<span class="tag cat">${esc((CATS.find(x=>x.id===cid)||{}).name||cid)}</span>`).join('')}
+          ${item.series ? `<span class="tag series">📚 ${esc((SERIES.find(x=>x.id===item.series)||{}).name||item.series)}</span>` : ''}
+        </div>
+        <div class="book-controls">
+          <select class="book-select" onchange="changeBookSeries('${esc(item.id)}', this.value)">
+            <option value="">— بدون موسوعة —</option>
+            ${SERIES.map(s => `<option value="${s.id}" ${s.id===item.series?'selected':''}>${esc(s.name)}</option>`).join('')}
+          </select>
+          <button class="move-btn" onclick="moveBook('${esc(item.id)}', -1)" ${isFirst ? 'disabled' : ''} title="أعلى">⬆️</button>
+          <button class="move-btn" onclick="moveBook('${esc(item.id)}', 1)" ${isLast ? 'disabled' : ''} title="أسفل">⬇️</button>
+          <button class="btn btn-outline btn-icon" onclick="openEdit('${esc(item.id)}')">✏️</button>
+          <button class="book-delete" onclick="deleteBook('${esc(item.id)}')">🗑️</button>
+        </div>
+      </div>`;
+    } 
+    // إذا كان فيديو أو صوتية
+    else {
+      const isVideo = item._type === 'video';
+      const originalList = isVideo ? VIDEOS : AUDIOS;
+      const realIdx = originalList.findIndex(x => x.url === item.url && x.title === item.title);
+      
+      return `
+      <div class="book-item" style="border-inline-start: 3px solid ${isVideo ? 'var(--orange)' : 'var(--green)'}">
+        <div class="book-title-row">
+          <div class="book-title">${esc(item.title)}</div>
+        </div>
+        <div class="book-meta">
+          <span class="tag" style="background:${isVideo ? '#fff3cd' : '#d4edda'}; color:${isVideo ? '#856404' : '#155724'}">${isVideo ? '🎬 مرئية' : '🎙️ صوتية'}</span>
+          ${item.speaker ? `<span class="tag">👤 ${esc(item.speaker)}</span>` : ''}
+          ${item.topic ? `<span class="tag cat">${esc(item.topic)}</span>` : ''}
+          ${item.subtopic ? `<span class="tag series">↳ ${esc(item.subtopic)}</span>` : ''}
+        </div>
+        <div class="book-controls" style="grid-template-columns:1fr auto;">
+          <div></div>
+          <div style="display:flex;gap:4px;">
+            <button class="btn btn-outline btn-icon" onclick="openMediaForEdit('${isVideo?'video':'audio'}', ${realIdx})">✏️</button>
+            <button class="book-delete" onclick="if(confirm('حذف العنصر؟')) { if('${isVideo?'video':'audio'}' === 'video') VIDEOS.splice(${realIdx}, 1); else AUDIOS.splice(${realIdx}, 1); renderMediaList(); renderBookList(); updateFooter(); }">🗑️</button>
+          </div>
+        </div>
+      </div>`;
+    }
   }).join('');
 }
 
 function moveBook(id, dir) {
-  const filtered = getFilteredBooks();
+  const filtered = getFilteredContent().filter(x => x._type === 'book');
   const visibleIdx = filtered.findIndex(b => b.id === id);
   if (visibleIdx < 0) return;
   const targetVisibleIdx = visibleIdx + dir;
@@ -1392,7 +1473,7 @@ function addMediaItem(){
     toast('تمت الإضافة', 'success');
   }
   autoPopulateListsFromItems();
-  renderMediaList(); clearMediaForm(); updateFooter();
+  renderMediaList(); clearMediaForm(); updateFooter(); renderBookList();
 }
 function editMediaItem(idx){
   const item = currentMediaTab === 'video' ? VIDEOS[idx] : AUDIOS[idx];
