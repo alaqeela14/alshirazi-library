@@ -798,3 +798,18 @@ textarea.form-control{resize:vertical;min-height:100px}
 .red-alert-bar a:hover {
     color: #f8e7b9 !important; /* لون ذهبي فاتح عند تمرير الماوس على الروابط */
 }
+
+/* تحسين قارئ PDF للكتب الكبيرة والأجهزة المحمولة */
+.reader-wrap { overflow:hidden; border-radius:14px; }
+.reader-header { display:flex; align-items:center; flex-wrap:wrap; gap:9px; padding:12px; }
+.reader-header h1 { flex:1 1 100%; font-size:clamp(16px,2.5vw,22px); line-height:1.5; margin:8px 0; overflow-wrap:anywhere; }
+.reader-action { display:inline-flex; align-items:center; justify-content:center; padding:9px 13px; min-height:40px; border:1px solid #ddd; border-radius:9px; background:var(--paper-2,#f4f4f4); color:var(--ink,#222); text-decoration:none; font:inherit; font-size:13px; cursor:pointer; }
+.reader-download { background:var(--primary,#285c48); color:#fff; border-color:transparent; }
+.improved-reader-iframe { display:block; width:100%; height:min(82vh,1000px); min-height:620px; border:0; background:#f2f2f2; }
+.reader-loading { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px 12px; gap:8px; }
+.reader-loading p { margin:0; font-size:14px; }
+.reader-help { opacity:.7; font-size:12px !important; }
+.reader-spinner { width:36px; height:36px; border:4px solid #ddd; border-top-color:var(--primary,#285c48); border-radius:50%; animation:reader-spin .8s linear infinite; }
+@keyframes reader-spin { to { transform:rotate(360deg); } }
+.reader-loaded { display:none; }
+@media(max-width:768px){ .reader-header { gap:7px; padding:8px; } .reader-action { padding:8px 10px; font-size:12px; min-height:38px; } .improved-reader-iframe { height:75vh; min-height:480px; } .reader-header h1 { font-size:16px; } }
