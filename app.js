@@ -612,7 +612,8 @@ function renderReader(id){
   else if (b.filename && b.filename.trim() !== "") rawUrl = b.filename;
   else rawUrl = b.id + ".pdf";
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) rawUrl = FILES_BASE + rawUrl;
-  const previewUrl = "./pdfjs/viewer.html?file=" + encodeURIComponent(rawUrl);
+  const proxyUrl = "https://alshirazi-pdf-proxy.alaqeelafoundation.workers.dev/?url=" + encodeURIComponent(rawUrl);
+  const previewUrl = "./pdfjs/viewer.html?file=" + encodeURIComponent(proxyUrl);
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
