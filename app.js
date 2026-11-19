@@ -618,13 +618,12 @@ function renderReader(id){
       <div class="reader-header">
         <a href="#/book/${b.id}" class="back-btn" style="margin:0; padding:4px 10px; font-size:11px;">← رجوع</a>
         <h1>${esc(b.t)}</h1>
-        <a href="${esc(rawUrl)}" target="_blank" rel="noopener" class="reader-action">فتح الملف مباشرة</a>
-        <a href="${esc(rawUrl)}" target="_blank" rel="noopener" class="reader-action reader-download">تحميل PDF</a>
         ${favBtnHtml("book",b.id)}
       </div>
-      <div style="width:100%;height:calc(100vh - 150px);min-height:500px;background:#333;">
-        <iframe id="pdfFrame" src="${esc(previewUrl)}" style="width:100%;height:100%;border:0;background:#333;" title="قراءة: ${esc(b.t)}" allowfullscreen></iframe>
+      <div style="width:100%;height:calc(100vh - 150px);min-height:500px;background:var(--paper);">
+        <iframe id="pdfFrame" src="${esc(previewUrl)}" style="width:100%;height:100%;border:0;background:var(--paper);" title="قراءة: ${esc(b.t)}" allowfullscreen loading="eager"></iframe>
       </div>
+      <p style="text-align:center;color:var(--muted);padding:10px;font-size:13px;">إذا لم يظهر الكتاب، فقد يتعذر على عارض القراءة الوصول إلى الملف.</p>
     </div>`;
 }
 function extractYouTubeId(url){
