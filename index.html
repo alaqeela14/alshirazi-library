@@ -31,6 +31,7 @@
   <div class="date-strip"><div class="container"><span><strong id="clock">—</strong></span><span><strong id="gregDate">—</strong></span></div></div>
 </header>
 
+<!-- شريط الدعاء -->
 <div class="moving-text-bar">
   <div class="moving-text-content">
     <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ اللَّهُمَّ كُنْ لِوَلِيِّكَ الْحُجَّة ابْن الحَسَن صَلَوَاتُكَ عَلَيْهِ وَعَلَى آبَائِهِ فِي هَذِهِ السَّاعَةِ وَفِي كُلِّ سَاعَة وَلِيَّاً وَحَافِظَاً وَقَائِدَاً وَنَاصِرَاً وَدَلِيلَاً وَعَيْنَاً حَتَّى تُسْكِنهُ أَرْضَكَ طَوْعَاً وَتُمَتِّعَهُ فِيهَا طَوِيلاً بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ.</span>
@@ -38,14 +39,14 @@
   </div>
 </div>
 
-<!-- ====== شريط التنبيهات الجديد (أحمر) ====== -->
+<!-- ====== شريط التنبيهات الأحمر ====== -->
 <div class="moving-text-bar red-alert-bar">
   <div class="moving-text-content">
     <span>
-      ملاحظة: قد توجد أخطاء في أسماء الكتب، نرجو إبلاغنا عند اكتشاف أي خطأ عبر واتساب: <a href="https://wa.me/9677779018414" target="_blank">+٩٦٧٧٧٩٠١٨٤١٤</a>، أو تيليجرام: <a href="https://t.me/alaqeela14" target="_blank">@alaqeela14</a>
+      ملاحظة: قد توجد أخطاء في أسماء الكتب، نرجو إبلاغنا عند اكتشاف أي خطأ عبر واتساب: <a href="https://wa.me/9677779018414" target="_blank">+٩٦٧٧٧٩٠١٨٤١٤</a>، أو تيليجرام: <a href="https://t.me/askariayyash" target="_blank">@askariayyash</a>
     </span>
     <span>
-      ملاحظة: قد توجد أخطاء في أسماء الكتب، نرجو إبلاغنا عند اكتشاف أي خطأ عبر واتساب: <a href="https://wa.me/+967779018414" target="_blank">+٩٦٧٧٧٩٠١٨٤١٤</a>، أو تيليجرام: <a href="https://t.me/alaqeela14" target="_blank">@alaqeela14</a>
+      ملاحظة: قد توجد أخطاء في أسماء الكتب، نرجو إبلاغنا عند اكتشاف أي خطأ عبر واتساب: <a href="https://wa.me/9677779018414" target="_blank">+٩٦٧٧٧٩٠١٨٤١٤</a>، أو تيليجرام: <a href="https://t.me/askariayyash" target="_blank">@askariayyash</a>
     </span>
   </div>
 </div>
@@ -79,6 +80,16 @@
     <li><a href="#/videos" onclick="closeSidebar()">المكتبة المرئية</a></li>
   </ul></div>
   <div class="side-widget"><h4>الموسوعات</h4><ul class="side-list" id="sideSeries"></ul></div>
+  
+  <!-- ====== القسم الديناميكي الجديد (أقسام إضافية) ====== -->
+  <div class="side-widget" id="dynamicSidebarWidget" style="display: none;">
+    <h4>أقسام إضافية</h4>
+    <ul class="side-list" id="dynamicSidebarLinks">
+      <!-- سيتم تعبئة الروابط هنا تلقائياً من ملف sidebar.json -->
+    </ul>
+  </div>
+  <!-- ==================================================== -->
+
   <div class="side-widget"><h4>روابط سريعة</h4><ul class="side-list">
     <li><a href="#/library" onclick="closeSidebar()">كل الكتب</a></li>
     <li><a href="#/series" onclick="closeSidebar()">كل الموسوعات</a></li>
@@ -106,6 +117,30 @@
     <div class="media-modal-foot" id="mediaPlayerFoot"></div>
   </div>
 </div>
+
+<!-- كود جلب روابط القائمة الجانبية من ملف sidebar.json -->
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const res = await fetch('sidebar.json?t=' + Date.now()); // إضافة الوقت لمنع الكاش
+      if (res.ok) {
+        const links = await res.json();
+        const container = document.getElementById('dynamicSidebarLinks');
+        const widget = document.getElementById('dynamicSidebarWidget');
+        
+        if (container && widget && links.length > 0) {
+          // إظهار القسم وإضافة الروابط
+          widget.style.display = 'block';
+          container.innerHTML = links.map(link => `
+            <li><a href="${link.url}" onclick="if(typeof closeSidebar === 'function') closeSidebar();">${link.title}</a></li>
+          `).join('');
+        }
+      }
+    } catch (error) {
+      console.log('لا توجد روابط إضافية في القائمة الجانبية بعد.');
+    }
+  });
+</script>
 
 <script src="app.js"></script>
 </body>
