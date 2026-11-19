@@ -86,7 +86,6 @@ input,select,textarea{font-family:inherit}
 .stat-box strong{display:block;font-size:20px;color:var(--primary-dark);font-weight:800;line-height:1.2}
 .stat-box span{font-size:11px;color:var(--muted)}
 
-/* تنسيق شريط البحث المحدث */
 .filters{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px;margin-bottom:14px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px}
 .filters input,.filters select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);font-size:13px;outline:none;width:100%}
 .filters input:focus,.filters select:focus{border-color:var(--primary)}
@@ -196,6 +195,7 @@ input,select,textarea{font-family:inherit}
     <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
     <button class="btn btn-warning" onclick="exportAuthors()">✍️ تصدير authors.json</button>
     <button class="btn btn-warning" onclick="exportSidebar()">🧭 تصدير sidebar.json</button>
+    <button class="btn btn-warning" onclick="exportNoor()">✨ تصدير noor.json</button>
   </div>
 
   <div class="stats-bar" id="statsBar"></div>
@@ -235,6 +235,28 @@ input,select,textarea{font-family:inherit}
       <div class="form-actions"><button class="btn btn-primary" onclick="addSidebarLink()">➕ إضافة</button></div>
     </div>
     <div class="series-list" id="sidebarList"></div>
+  </div>
+
+  <!-- Noor Al-Usbou Management (NEW) -->
+  <div class="section-toggle" id="noorToggle" onclick="toggleSection('noor')">
+    <h3>✨ إدارة نور الأسبوع (<span id="noorCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="noorContent">
+    <div class="add-form open" style="border:2px solid var(--accent);margin-bottom:14px">
+      <h3 style="color:var(--primary-dark)">➕ إضافة/تعديل (نص وصوت)</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اليوم *</label><input type="text" id="noor-day" placeholder="مثال: السبت"></div>
+        <div class="ff"><label>العنوان *</label><input type="text" id="noor-title" placeholder="مثال: دعاء يوم السبت"></div>
+        <div class="ff full"><label>رابط الصوت (URL)</label><input type="text" id="noor-audio" placeholder="https://github.com/.../Du.a0.mp3"></div>
+        <div class="ff full"><label>النص *</label><textarea id="noor-text" rows="6" placeholder="اكتب نص الدعاء أو الزيارة هنا..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline" onclick="clearNoorForm()">مسح الحقول</button>
+        <button class="btn btn-primary" onclick="saveNoorItem()">💾 حفظ العنصر</button>
+      </div>
+    </div>
+    <div class="series-list" id="noorList"></div>
   </div>
 
   <!-- Authors Management -->
@@ -522,9 +544,9 @@ const AUTHORS_BASE = [
 
 let CUSTOM_AUTHORS = [];
 let AUTHORS = [...AUTHORS_BASE];
-let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [], SIDEBAR_LINKS = [];
+let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [], SIDEBAR_LINKS = [], NOOR_DATA = [];
 let MEDIA_LISTS = { video: [], audio: [] };
-let currentMediaTab = 'video', editingMediaIndex = -1;
+let currentMediaTab = 'video', editingMediaIndex = -1, editingNoorIndex = -1;
 let editingId = null, editingSeriesId = null, editingCategoryId = null;
 const GH_KEY = 'admin_github_settings_v1';
 const CUSTOM_AUTHORS_KEY = 'admin_custom_authors';
@@ -681,6 +703,7 @@ async function publishAll(){
     await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
     await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
     await publishFileToGitHub('sidebar.json', SIDEBAR_LINKS.map(cleanObj));
+    await publishFileToGitHub('noor.json', NOOR_DATA.map(cleanObj));
     alert('تم النشر بنجاح!');
     toast('تم النشر', 'success');
   } catch(e) {
@@ -701,6 +724,7 @@ async function loadData(){
     const resAu = await fetch('audios.json?t=' + Date.now()); if(resAu.ok) AUDIOS = (await resAu.json()).items || [];
     const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
     const resSb = await fetch('sidebar.json?t=' + Date.now()); if(resSb.ok) SIDEBAR_LINKS = await resSb.json();
+    const resN = await fetch('noor.json?t=' + Date.now()); if(resN.ok) NOOR_DATA = await resN.json();
 
     const localAuth = localStorage.getItem(CUSTOM_AUTHORS_KEY);
     if (localAuth) {
@@ -741,9 +765,97 @@ async function init(){
   renderSeriesList();
   renderAuthorsList();
   renderSidebarList();
+  renderNoorList();
   renderBookList();
   switchMediaTab('video');
   updateFooter();
+}
+
+/* Noor Logic (NEW) */
+function renderNoorList() {
+  document.getElementById('noorCountLabel').textContent = NOOR_DATA.length;
+  document.getElementById('noorList').innerHTML = NOOR_DATA.map((item, idx) => `
+    <div class="series-item">
+      <div class="s-info">
+        <div class="s-name">${esc(item.title)} <span style="font-size:11px;color:var(--accent);background:#fff3cd;padding:2px 6px;border-radius:4px;margin-right:6px;">${esc(item.day)}</span></div>
+        <div class="s-meta">
+          <span class="s-id" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.text ? item.text.substring(0, 50) + '...' : 'بلا نص'}</span>
+          ${item.audio ? '<span style="color:var(--green);font-weight:700;">🎙️ يوجد صوت</span>' : '<span style="color:var(--red);">⚠ بلا صوت</span>'}
+        </div>
+      </div>
+      <div style="display:flex;gap:4px;">
+        <button class="move-btn" onclick="moveNoor(${idx}, -1)" ${idx === 0 ? 'disabled' : ''}>⬆️</button>
+        <button class="move-btn" onclick="moveNoor(${idx}, 1)" ${idx === NOOR_DATA.length - 1 ? 'disabled' : ''}>⬇️</button>
+      </div>
+      <div></div>
+      <div style="display:flex;gap:4px;">
+        <button class="btn btn-outline btn-icon" onclick="editNoorItem(${idx})">✏️</button>
+        <button class="book-delete" onclick="deleteNoorItem(${idx})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveNoorItem() {
+  const day = document.getElementById('noor-day').value.trim();
+  const title = document.getElementById('noor-title').value.trim();
+  const audio = document.getElementById('noor-audio').value.trim();
+  const text = document.getElementById('noor-text').value.trim();
+
+  if (!day || !title || !text) return alert('اليوم والعنوان والنص مطلوبة');
+
+  const item = { day, title, text, audio };
+
+  if (editingNoorIndex > -1) {
+    NOOR_DATA[editingNoorIndex] = item;
+    toast('تم التعديل بنجاح', 'success');
+  } else {
+    NOOR_DATA.push(item);
+    toast('تمت الإضافة بنجاح', 'success');
+  }
+  
+  clearNoorForm();
+  renderNoorList();
+}
+
+function editNoorItem(idx) {
+  const item = NOOR_DATA[idx];
+  document.getElementById('noor-day').value = item.day || '';
+  document.getElementById('noor-title').value = item.title || '';
+  document.getElementById('noor-audio').value = item.audio || '';
+  document.getElementById('noor-text').value = item.text || '';
+  editingNoorIndex = idx;
+  document.getElementById('noor-day').scrollIntoView({behavior:'smooth'});
+  document.getElementById('noor-day').focus();
+}
+
+function deleteNoorItem(idx) {
+  if (!confirm('هل أنت متأكد من حذف هذا العنصر؟')) return;
+  NOOR_DATA.splice(idx, 1);
+  renderNoorList();
+  toast('تم الحذف', 'warn');
+}
+
+function clearNoorForm() {
+  document.getElementById('noor-day').value = '';
+  document.getElementById('noor-title').value = '';
+  document.getElementById('noor-audio').value = '';
+  document.getElementById('noor-text').value = '';
+  editingNoorIndex = -1;
+}
+
+function moveNoor(idx, dir) {
+  if (idx + dir < 0 || idx + dir >= NOOR_DATA.length) return;
+  const temp = NOOR_DATA[idx];
+  NOOR_DATA[idx] = NOOR_DATA[idx + dir];
+  NOOR_DATA[idx + dir] = temp;
+  renderNoorList();
+  toast('تم تغيير الترتيب', 'success');
+}
+
+function exportNoor(){
+  downloadJSON(NOOR_DATA.map(cleanObj), 'noor.json');
+  toast('تم تصدير noor.json', 'success');
 }
 
 /* Sidebar Logic */
@@ -800,7 +912,6 @@ function exportSidebar(){
   toast('تم تصدير sidebar.json', 'success');
 }
 
-
 function populateSelects(){
   const authorSuggestions = document.getElementById('author-suggestions');
   if (authorSuggestions) {
@@ -826,6 +937,7 @@ function renderStats(){
     <div class="stat-box"><strong>${SERIES.length}</strong><span>موسوعة</span></div>
     <div class="stat-box"><strong>${AUTHORS.length}</strong><span>مؤلف</span></div>
     <div class="stat-box"><strong>${VIDEOS.length + AUDIOS.length}</strong><span>وسائط</span></div>
+    <div class="stat-box"><strong>${NOOR_DATA.length}</strong><span>نور الأسبوع</span></div>
   `;
 }
 
@@ -901,7 +1013,6 @@ function getSelectedCats(containerId) {
   return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(cb => cb.value);
 }
 
-// دالة البحث الشاملة الجديدة
 function getFilteredContent(){
   const q = (document.getElementById('searchInput').value || '').toLowerCase();
   const fType = document.getElementById('filterType').value;
@@ -910,7 +1021,6 @@ function getFilteredContent(){
   
   let results = [];
 
-  // 1. البحث في الكتب
   if (!fType || fType === 'book') {
     let books = BOOKS.filter(b => !q || (b.title||'').toLowerCase().includes(q) || (b.description||'').toLowerCase().includes(q));
     if (fCat) books = books.filter(b => getBookCats(b).includes(fCat));
@@ -918,13 +1028,11 @@ function getFilteredContent(){
     results.push(...books.map(b => ({...b, _type: 'book'})));
   }
 
-  // 2. البحث في المرئيات
   if (!fType || fType === 'video') {
     let vids = VIDEOS.filter(v => !q || (v.title||'').toLowerCase().includes(q) || (v.speaker||'').toLowerCase().includes(q) || (v.topic||'').toLowerCase().includes(q));
     results.push(...vids.map(v => ({...v, _type: 'video'})));
   }
 
-  // 3. البحث في الصوتيات
   if (!fType || fType === 'audio') {
     let auds = AUDIOS.filter(a => !q || (a.title||'').toLowerCase().includes(q) || (a.speaker||'').toLowerCase().includes(q) || (a.topic||'').toLowerCase().includes(q));
     results.push(...auds.map(a => ({...a, _type: 'audio'})));
@@ -933,7 +1041,6 @@ function getFilteredContent(){
   return results;
 }
 
-// دالة فتح المرئية أو الصوتية من نتائج البحث الشامل
 function openMediaForEdit(type, idx) {
   switchMediaTab(type);
   const toggle = document.getElementById('mediaToggle');
@@ -953,11 +1060,9 @@ function renderBookList(){
   if (list.length === 0) { box.innerHTML = '<div class="empty">لا توجد نتائج مطابقة.</div>'; return; }
 
   box.innerHTML = list.map((item, visibleIdx) => {
-    // إذا كان كتاباً
     if (item._type === 'book') {
       const authorName = AUTHORS.find(a => a.id === item.author)?.short || item.author || 'غير معروف';
       
-      // نتحقق من الترتيب فقط للكتب
       const bookVisibleIndex = list.filter(x => x._type === 'book').findIndex(x => x.id === item.id);
       const totalBooksVisible = list.filter(x => x._type === 'book').length;
       const isFirst = bookVisibleIndex === 0;
@@ -987,7 +1092,6 @@ function renderBookList(){
         </div>
       </div>`;
     } 
-    // إذا كان فيديو أو صوتية
     else {
       const isVideo = item._type === 'video';
       const originalList = isVideo ? VIDEOS : AUDIOS;
