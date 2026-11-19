@@ -338,8 +338,8 @@ function router(){
   else if(route==="book") renderBookPage(decodedParam);
   else if(route==="favorites") renderFavorites();
   else if(route==="read") renderReader(decodedParam);
-  else if(route==="audios") renderMediaLibrary("audio");
-  else if(route==="videos") renderMediaLibrary("video");
+  else if(route==="audios") renderMediaLibrary("audio", decodedParam);
+  else if(route==="videos") renderMediaLibrary("video", decodedParam);
   else if(route==="masoomeen") renderMasoomeenPage();
   else if(route==="printed") renderPrintedBooks();
   else if(route==="contact") renderContact();
@@ -744,8 +744,8 @@ window.applyMediaFilters = function() {
   const btn = document.getElementById('btnFilterToggle');
   if (panel) panel.classList.remove('expanded');
   if (btn) btn.classList.remove('active');
-  if (location.hash === '#/videos') renderMediaLibrary('video');
-  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+  if (location.hash.startsWith('#/videos')) renderMediaLibrary('video', window.activeMediaCategory);
+  else if (location.hash.startsWith('#/audios')) renderMediaLibrary('audio', window.activeMediaCategory);
 };
 
 window.resetMediaFilters = function() {
@@ -755,8 +755,8 @@ window.resetMediaFilters = function() {
   mediaFilterState.expanded = false;
   const input = document.getElementById('mediaSmartSearchInput');
   if(input) input.value = '';
-  if (location.hash === '#/videos') renderMediaLibrary('video');
-  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+  if (location.hash.startsWith('#/videos')) renderMediaLibrary('video', window.activeMediaCategory);
+  else if (location.hash.startsWith('#/audios')) renderMediaLibrary('audio', window.activeMediaCategory);
 };
 
 window.removeMediaFilterChip = function(key) {
@@ -774,8 +774,8 @@ window.removeMediaFilterChip = function(key) {
   }
   const input = document.getElementById('mediaSmartSearchInput');
   if (key === 'q' && input) input.value = '';
-  if (location.hash === '#/videos') renderMediaLibrary('video');
-  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+  if (location.hash.startsWith('#/videos')) renderMediaLibrary('video', window.activeMediaCategory);
+  else if (location.hash.startsWith('#/audios')) renderMediaLibrary('audio', window.activeMediaCategory);
 };
 
 window.onMediaSmartSearchInput = function(val) {
@@ -786,16 +786,15 @@ window.onMediaSmartSearchInput = function(val) {
   }
 };
 
-function renderMediaLibrary(type){
+function renderMediaLibrary(type, categoryParam = null){
   const isAudio = type === "audio";
   const data = isAudio ? AUDIOS : VIDEOS;
   const typeKey = isAudio ? 'audio' : 'video';
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
-  window.activeMediaCategory = window.activeMediaCategory || null;
-  if (window.lastMediaType !== typeKey) {
-      window.activeMediaCategory = null;
-      window.lastMediaType = typeKey;
-  }
+  
+  // قراءة القسم من الرابط مباشرة
+  window.activeMediaCategory = categoryParam ? decodeURIComponent(categoryParam) : null;
+
   const lists = MEDIA_LISTS[typeKey] || [];
   if (!window.activeMediaCategory) {
     app.innerHTML = `
@@ -836,10 +835,14 @@ function renderMediaLibrary(type){
   `;
 }
 
+// تحديث الرابط عند فتح قسم (هذا ما يحل مشكلة زر الرجوع)
 window.openMediaCategory = function(catName) {
-  window.activeMediaCategory = catName;
-  if (location.hash === '#/videos') renderMediaLibrary('video');
-  else if (location.hash === '#/audios') renderMediaLibrary('audio');
+  const type = location.hash.includes('videos') ? 'videos' : 'audios';
+  if (catName) {
+    location.hash = `#/${type}/${encodeURIComponent(catName)}`;
+  } else {
+    location.hash = `#/${type}`;
+  }
 };
 
 function renderAbout(){
@@ -1001,13 +1004,13 @@ function doSearch(v){
   const context = getCurrentSearchContext();
   if (context === 'videos') {
     mediaFilterState.q = v;
-    renderMediaLibrary('video');
+    renderMediaLibrary('video', window.activeMediaCategory);
     sug.classList.remove("show");
     return;
   }
   if (context === 'audios') {
     mediaFilterState.q = v;
-    renderMediaLibrary('audio');
+    renderMediaLibrary('audio', window.activeMediaCategory);
     sug.classList.remove("show");
     return;
   }
