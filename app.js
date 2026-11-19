@@ -612,7 +612,6 @@ function renderReader(id){
   else if (b.filename && b.filename.trim() !== "") rawUrl = b.filename;
   else rawUrl = b.id + ".pdf";
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) rawUrl = FILES_BASE + rawUrl;
-  const viewerUrl = "pdfjs/viewer.html?file=" + encodeURIComponent(rawUrl);
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
@@ -622,7 +621,10 @@ function renderReader(id){
         <a href="${esc(rawUrl)}" download class="reader-action reader-download">تحميل PDF</a>
         ${favBtnHtml("book",b.id)}
       </div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF: ${esc(b.t)}" allowfullscreen loading="lazy"></iframe>
+      <div style="width:100%;height:calc(100vh - 150px);min-height:500px;background:#333;">
+        <iframe id="pdfFrame" src="${esc(rawUrl)}" style="width:100%;height:100%;border:0;background:#333;" title="قراءة: ${esc(b.t)}"></iframe>
+      </div>
+      <p style="padding:10px;text-align:center">إذا لم يظهر الكتاب داخل الصفحة، استخدم زر «فتح الملف» لعرضه مباشرة.</p>
     </div>`;
 }
 function extractYouTubeId(url){
