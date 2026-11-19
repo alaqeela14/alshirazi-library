@@ -607,18 +607,19 @@ function renderReader(id){
   const b = getBook(id);
   if(!b){ location.hash = "#/home"; return; }
   if(!b.hasPdf){ alert("هذا الكتاب غير متوفر بصيغة PDF للقراءة المباشرة."); location.hash = "#/book/" + id; return; }
-  
   let rawUrl = "";
   if (b.pdf_url && b.pdf_url.trim() !== "" && b.pdf_url !== "#") { rawUrl = b.pdf_url; } 
   else if (b.filename && b.filename.trim() !== "") { rawUrl = b.filename; } 
   else { rawUrl = b.id + ".pdf"; }
-  
   if (!rawUrl.startsWith("http") && !rawUrl.startsWith("//")) {
      rawUrl = FILES_BASE + rawUrl;
   }
-
-  const viewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(rawUrl)}`;
-
+  let viewerUrl = "";
+  if (rawUrl.startsWith("http")) {
+     viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(rawUrl) + "&embedded=true";
+  } else {
+     viewerUrl = "https://mozilla.github.io/pdf.js/web/viewer.html?file=" + encodeURIComponent(rawUrl);
+  }
   app.innerHTML = `
     <div class="reader-wrap">
       <div class="reader-header">
@@ -791,6 +792,7 @@ function renderMediaLibrary(type, categoryParam = null){
   const typeKey = isAudio ? 'audio' : 'video';
   const pageTitle = isAudio ? "المكتبة الصوتية" : "المكتبة المرئية";
   
+  // قراءة القسم من الرابط مباشرة
   window.activeMediaCategory = categoryParam ? decodeURIComponent(categoryParam) : null;
 
   const lists = MEDIA_LISTS[typeKey] || [];
@@ -833,6 +835,7 @@ function renderMediaLibrary(type, categoryParam = null){
   `;
 }
 
+// تحديث الرابط عند فتح قسم (هذا ما يحل مشكلة زر الرجوع)
 window.openMediaCategory = function(catName) {
   const type = location.hash.includes('videos') ? 'videos' : 'audios';
   if (catName) {
