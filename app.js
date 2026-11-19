@@ -631,7 +631,7 @@ function renderReader(id){
         ${favBtnHtml("book",b.id)}
       </div>
       <div class="reader-loading" id="readerLoading"><span class="reader-spinner"></span><p>جارٍ تجهيز صفحات الكتاب… قد يستغرق ذلك بعض الوقت في الكتب الكبيرة.</p><p class="reader-help">إذا لم يظهر الكتاب، يمكنك فتح الملف أو تحميله مباشرة.</p></div>
-      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF" allowfullscreen loading="lazy" onload="document.getElementById('readerLoading')?.classList.add('reader-loaded')"></iframe>
+      <iframe id="pdfFrame" src="${viewerUrl}" class="reader-iframe improved-reader-iframe" title="قارئ PDF" allowfullscreen loading="lazy" onload="var loading=document.getElementById('readerLoading');if(loading){loading.style.display='none';loading.setAttribute('aria-hidden','true')}"></iframe>
     </div>
   `;
 }
