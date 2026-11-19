@@ -193,6 +193,7 @@ input,select,textarea{font-family:inherit}
     <button class="btn btn-warning" onclick="exportSeries()">📚 تصدير series.json</button>
     <button class="btn btn-warning" onclick="exportCategories()">🏷️ تصدير categories.json</button>
     <button class="btn btn-warning" onclick="exportAuthors()">✍️ تصدير authors.json</button>
+    <button class="btn btn-warning" onclick="exportSidebar()">🧭 تصدير sidebar.json</button>
   </div>
 
   <div class="stats-bar" id="statsBar"></div>
@@ -217,6 +218,23 @@ input,select,textarea{font-family:inherit}
     <div id="ghTestResult" style="margin-top:10px;font-size:13px;"></div>
   </div>
 
+  <!-- Sidebar Management (NEW) -->
+  <div class="section-toggle" id="sidebarToggle" onclick="toggleSection('sidebar')">
+    <h3>🧭 إدارة القائمة الجانبية (<span id="sidebarCountLabel">0</span>)</h3>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-content" id="sidebarContent">
+    <div class="add-form open" style="border:2px solid var(--orange);margin-bottom:14px">
+      <h3 style="color:var(--orange)">➕ إضافة رابط جديد للقائمة</h3>
+      <div class="form-grid">
+        <div class="ff"><label>اسم القسم (العنوان) *</label><input type="text" id="new-sidebar-title" placeholder="مثال: زيارات أيام الأسبوع"></div>
+        <div class="ff"><label>الرابط (URL أو #/path) *</label><input type="text" id="new-sidebar-url" placeholder="مثال: #/audios"></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" onclick="addSidebarLink()">➕ إضافة</button></div>
+    </div>
+    <div class="series-list" id="sidebarList"></div>
+  </div>
+
   <!-- Authors Management -->
   <div class="section-toggle" id="authorsToggle" onclick="toggleSection('authors')">
     <h3>✍️ إدارة المؤلفين</h3>
@@ -229,7 +247,6 @@ input,select,textarea{font-family:inherit}
         <div class="ff"><label>الاسم الكامل *</label><input type="text" id="new-auth-name"></div>
         <div class="ff"><label>الاسم المختصر</label><input type="text" id="new-auth-short"></div>
 
-        <!-- ✅ ميزة رفع صورة المؤلف من الهاتف -->
         <div class="ff full">
           <label>صورة المؤلف</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -278,7 +295,6 @@ input,select,textarea{font-family:inherit}
         <div class="ff"><label>المعرّف (ID) *</label><input type="text" id="new-series-id"></div>
         <div class="ff"><label>المؤلف</label><input type="text" id="new-series-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
 
-        <!-- ✅ ميزة رفع غلاف الموسوعة من الهاتف -->
         <div class="ff full">
           <label>صورة الغلاف</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -337,7 +353,6 @@ input,select,textarea{font-family:inherit}
       <div class="ff"><label>الصفحات</label><input type="number" id="new-pages"></div>
       <div class="ff full"><label>التصنيفات * (يمكن اختيار أكثر من واحد)</label><div id="new-cats-checkboxes" class="cat-checkboxes"></div></div>
 
-      <!-- ✅ ميزة رفع غلاف الكتاب من الهاتف -->
       <div class="ff full">
         <label>صورة الغلاف</label>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -395,7 +410,6 @@ input,select,textarea{font-family:inherit}
         <div class="ff"><label>الصفحات</label><input type="number" id="edit-pages"></div>
         <div class="ff full"><label>التصنيفات *</label><div id="edit-cats-checkboxes" class="cat-checkboxes"></div></div>
 
-        <!-- ✅ ميزة رفع غلاف الكتاب من الهاتف (تعديل) -->
         <div class="ff full">
           <label>صورة الغلاف</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -429,7 +443,6 @@ input,select,textarea{font-family:inherit}
         <div class="ff full"><label>اسم الموسوعة *</label><input type="text" id="edit-series-name"></div>
         <div class="ff"><label>المؤلف</label><input type="text" id="edit-series-author" list="author-suggestions" placeholder="اكتب اسم المؤلف..."></div>
 
-        <!-- ✅ ميزة رفع غلاف الموسوعة من الهاتف (تعديل) -->
         <div class="ff full">
           <label>صورة الغلاف</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -498,7 +511,7 @@ const AUTHORS_BASE = [
 
 let CUSTOM_AUTHORS = [];
 let AUTHORS = [...AUTHORS_BASE];
-let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [];
+let CATS = [], SERIES = [], BOOKS = [], VIDEOS = [], AUDIOS = [], SIDEBAR_LINKS = [];
 let MEDIA_LISTS = { video: [], audio: [] };
 let currentMediaTab = 'video', editingMediaIndex = -1;
 let editingId = null, editingSeriesId = null, editingCategoryId = null;
@@ -546,7 +559,7 @@ async function testGitHub(){
   } catch(e) { result.innerHTML = 'فشل: ' + e.message; result.style.color = 'var(--red)'; }
 }
 
-/* Upload Image Helper (مشترك للكتب والموسوعات والمؤلفين) */
+/* Upload Image Helper */
 async function uploadCoverImage(inputElement, targetInputId, maxW = 600, maxH = 800) {
   const file = inputElement.files[0];
   if (!file) return;
@@ -656,6 +669,7 @@ async function publishAll(){
     await publishFileToGitHub('videos.json', { items: VIDEOS.map(cleanObj) });
     await publishFileToGitHub('audios.json', { items: AUDIOS.map(cleanObj) });
     await publishFileToGitHub('media_lists.json', MEDIA_LISTS);
+    await publishFileToGitHub('sidebar.json', SIDEBAR_LINKS.map(cleanObj));
     alert('تم النشر بنجاح!');
     toast('تم النشر', 'success');
   } catch(e) {
@@ -675,6 +689,7 @@ async function loadData(){
     const resV = await fetch('videos.json?t=' + Date.now()); if(resV.ok) VIDEOS = (await resV.json()).items || [];
     const resAu = await fetch('audios.json?t=' + Date.now()); if(resAu.ok) AUDIOS = (await resAu.json()).items || [];
     const resL = await fetch('media_lists.json?t=' + Date.now()); if(resL.ok) MEDIA_LISTS = await resL.json();
+    const resSb = await fetch('sidebar.json?t=' + Date.now()); if(resSb.ok) SIDEBAR_LINKS = await resSb.json();
 
     const localAuth = localStorage.getItem(CUSTOM_AUTHORS_KEY);
     if (localAuth) {
@@ -714,10 +729,66 @@ async function init(){
   renderCategoriesList();
   renderSeriesList();
   renderAuthorsList();
+  renderSidebarList();
   renderBookList();
   switchMediaTab('video');
   updateFooter();
 }
+
+/* Sidebar Logic (NEW) */
+function renderSidebarList() {
+  document.getElementById('sidebarCountLabel').textContent = SIDEBAR_LINKS.length;
+  document.getElementById('sidebarList').innerHTML = SIDEBAR_LINKS.map((link, idx) => `
+    <div class="series-item">
+      <div class="s-info">
+        <div class="s-name">${esc(link.title)}</div>
+        <div class="s-meta"><span class="s-id">${esc(link.url)}</span></div>
+      </div>
+      <div style="display:flex;gap:4px;">
+        <button class="move-btn" onclick="moveSidebarLink(${idx}, -1)" ${idx === 0 ? 'disabled' : ''}>⬆️</button>
+        <button class="move-btn" onclick="moveSidebarLink(${idx}, 1)" ${idx === SIDEBAR_LINKS.length - 1 ? 'disabled' : ''}>⬇️</button>
+      </div>
+      <div></div>
+      <div style="display:flex;gap:4px;">
+        <button class="book-delete" onclick="deleteSidebarLink(${idx})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addSidebarLink() {
+  const title = document.getElementById('new-sidebar-title').value.trim();
+  const url = document.getElementById('new-sidebar-url').value.trim();
+  if (!title || !url) return alert('اسم القسم والرابط مطلوبان');
+  
+  SIDEBAR_LINKS.push({ title, url });
+  document.getElementById('new-sidebar-title').value = '';
+  document.getElementById('new-sidebar-url').value = '';
+  renderSidebarList();
+  toast('تمت إضافة الرابط بنجاح', 'success');
+}
+
+function moveSidebarLink(idx, dir) {
+  if (idx + dir < 0 || idx + dir >= SIDEBAR_LINKS.length) return;
+  const temp = SIDEBAR_LINKS[idx];
+  SIDEBAR_LINKS[idx] = SIDEBAR_LINKS[idx + dir];
+  SIDEBAR_LINKS[idx + dir] = temp;
+  renderSidebarList();
+  toast('تم تغيير الترتيب', 'success');
+}
+
+function deleteSidebarLink(idx) {
+  if (!confirm('هل أنت متأكد من حذف هذا الرابط من القائمة؟')) return;
+  SIDEBAR_LINKS.splice(idx, 1);
+  renderSidebarList();
+  toast('تم الحذف', 'warn');
+}
+
+function exportSidebar(){
+  downloadJSON(SIDEBAR_LINKS.map(cleanObj), 'sidebar.json');
+  toast('تم تصدير sidebar.json', 'success');
+}
+
 
 function populateSelects(){
   const authorSuggestions = document.getElementById('author-suggestions');
