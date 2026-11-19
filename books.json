@@ -2952,16 +2952,19 @@
     },
     {
       "id": "book-159",
-      "title": "اجوبة مسائل القطيف",
+      "title": "ممارسة التغيير لإنقاذ المسلمين",
       "author": "shirazi-m",
-      "category": "fiqh",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/159.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/159.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/159.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-160",
@@ -5071,16 +5074,19 @@
     },
     {
       "id": "book-325",
-      "title": "معالجة الأمراض النفسية",
+      "title": "مع الإمام موسى بن جعفر عليه السلام والتغيير في العراق",
       "author": "shirazi-m",
-      "category": "ijtimaiya",
+      "category": "siyasah",
       "year": 1420,
       "formats": [
         "pdf",
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/325.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/325.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/325.doc",
+      "categories": [
+        "siyasah"
+      ]
     },
     {
       "id": "book-326",
@@ -5208,7 +5214,7 @@
     },
     {
       "id": "book-335",
-      "title": "من قضاء المعصومين عليهم السلام",
+      "title": "من خطى الأولياء",
       "author": "shirazi-m",
       "category": "ahlulbayt",
       "year": 1420,
@@ -5217,7 +5223,10 @@
         "word"
       ],
       "pdf_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/335.pdf",
-      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/335.doc"
+      "word_url": "https://github.com/alaqeela14/alshirazi-library/releases/download/books-files/335.doc",
+      "categories": [
+        "ahlulbayt"
+      ]
     },
     {
       "id": "book-336",
