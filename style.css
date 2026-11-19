@@ -782,7 +782,7 @@ textarea.form-control{resize:vertical;min-height:100px}
 
 .red-alert-bar .moving-text-content span {
     font-family: 'Cairo', system-ui, sans-serif !important; /* استخدام خط القاهرة ليكون أوضح للقراءة */
-    font-size: 13px;
+    font-size: 9px;
     color: #ffffff !important; /* لون النص الأبيض */
     font-weight: 600;
 }
